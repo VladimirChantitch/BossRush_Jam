@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Boss
@@ -23,7 +24,10 @@ namespace Boss
 
         [Header("Stats")]
         [SerializeField] private float vulnerabilityTimer = 5;
-        [SerializeField] private float headVulnerabilityTimer = 5;
+        [SerializeField] private float headVulnerabilityTimer = 8;
+        [SerializeField] private float vulnerabilityFailedRadius = 1.5f;
+        [SerializeField] private float headVulnerabilityFailesradius = 2.5f;
+        [SerializeField] private float explosionDamage = 5;
 
         [Header("State")]
         [SerializeField] private bool isPhaseTwo;
@@ -188,7 +192,7 @@ namespace Boss
             else
             {
                 selectedHand.CloseCollider();
-                // If player is too slow the hand inflicts damages
+                DealDamageToNearByTargets(selectedHand.transform, explosionDamage);
             }
             isVulnerable = false;
         }
@@ -207,8 +211,6 @@ namespace Boss
             
             // Plays an animation tu show that the head is vulnerable 
             // the player can hit and inflict damages to the boss
-            // after a short 10 to 15 sec the boss goes back to awaiting phase
-
         }
 
         private void HeadVulnerabilityFinished()
@@ -219,13 +221,33 @@ namespace Boss
 
                 // goes to second phase
             }
-            if (Health <= 0)
+            else if (Health <= 0)
             {
-                // the boss goes to the Dying Phase
+                // the boss goes to the Dying Phase -- shouldnt be launched caudsed well hum its alreaduy handed by abstrct character 
+            }
+            else
+            {
+                //DealDamageToNearByTargets(head,explosionDamage)
             }
             isDamageable = false;
         }
         #endregion
+
+        private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
+        {
+            //Play an epic explosion animation
+            for(int i = 0; i < radius; i++)
+            Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
+
+            foreach(Collider collider in colliders)
+            {
+                if (collider.gameObject.layer == 20)
+                {
+                    collider.GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
+                    return;
+                }
+            }
+        }
 
         #region Dying
         private void Dying()
