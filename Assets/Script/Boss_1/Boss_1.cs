@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Boss_1 : AbstractCharacter
@@ -76,7 +77,6 @@ public class Boss_1 : AbstractCharacter
     private void Appearing()
     {
         animator.PlayTargetAnimation(true, "Appearing", 0.15f);
-
 
         // This animation is coming with cam shake and epic music
         // At the end of the animation there is a Ui elements that shows that the fight starts
