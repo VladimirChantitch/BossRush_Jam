@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +20,10 @@ namespace Boss
         }
 
         [SerializeField] private Boss_1_Animator animator;
+
+        [Header("Stats")]
+        [SerializeField] private float vulnerabilityTimer = 5;
+        [SerializeField] private float headVulnerabilityTimer = 5;
 
         [Header("State")]
         [SerializeField] private bool isPhaseTwo;
@@ -42,7 +48,7 @@ namespace Boss
         {
             animator = GetComponent<Boss_1_Animator>();
             state = MaxiBestOfState.Idle;
-
+             
             rightCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
             leftCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
         }
@@ -163,6 +169,8 @@ namespace Boss
                     selectedHand = left_vulnerability;
                 }
                 selectedHand.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
+                StartCoroutine(WaitTimer(headVulnerabilityTimer, () => VulnerabilityFinished(false)));
+
             }
                 // Plays ans animation to show vulnerability
                 // Gives player 10 to 15 sec to hit the vulnerability while playing a recovering animation 
@@ -170,6 +178,7 @@ namespace Boss
 
         public void VulnerabilityFinished(bool isDestroyed)
         {
+            state = MaxiBestOfState.Awaiting;
             if (isDestroyed)
             {
                 selectedHand.CloseCollider();
@@ -192,6 +201,8 @@ namespace Boss
             {
                 isDamageable = true;
 
+
+                StartCoroutine(WaitTimer(headVulnerabilityTimer, HeadVulnerabilityFinished));
             }
             
             // Plays an animation tu show that the head is vulnerable 
@@ -202,7 +213,7 @@ namespace Boss
 
         private void HeadVulnerabilityFinished()
         {
-
+            state = MaxiBestOfState.Awaiting;
             if (Health <= 0.5 * MaxHealth)
             {
 
@@ -227,6 +238,14 @@ namespace Boss
             // Once collect is done the player goes back to the Hub
         }
         #endregion
+
+        IEnumerator WaitTimer(float time, Action action)
+        {
+            yield return new WaitForSeconds(time);
+            action?.Invoke();
+
+            yield return null;
+        }
     }
 
     [System.Serializable]
