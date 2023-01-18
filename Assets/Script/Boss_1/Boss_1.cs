@@ -46,18 +46,25 @@ public class Boss_1 : AbstractCharacter
             case MaxiBestOfState.Idle:
                 break;
             case MaxiBestOfState.Appearing:
+                Appearing();
                 break;
             case MaxiBestOfState.Awaiting:
+                Awaiting();
                 break;
             case MaxiBestOfState.Attacking:
+                Attacking();
                 break;
             case MaxiBestOfState.Vulnerability_rightHand:
+                Vulnerability(false);
                 break;
             case MaxiBestOfState.Vulnerability_leftHand:
+                Vulnerability(true);
                 break;
             case MaxiBestOfState.Vulnerability_Head:
+                HeadVulnerability();
                 break;
             case MaxiBestOfState.Dying:
+                Dying();    
                 break;
         }
     }
@@ -94,7 +101,7 @@ public class Boss_1 : AbstractCharacter
     #endregion
 
     #region Vulnerability_Hand
-    private void Vulnerability()
+    private void Vulnerability(bool isLeft)
     { 
         // Picks a hand
         // Plays ans animation to show vulnerability
