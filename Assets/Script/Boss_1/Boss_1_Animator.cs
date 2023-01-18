@@ -11,8 +11,9 @@ public class Boss_1_Animator : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void PlayTargetAnimation(bool looping, float fadeTime)
+    public void PlayTargetAnimation(bool looping, string animationName, float fadeTime)
     {
-
+        animator.SetBool("Loop", true);
+        animator.CrossFade(animationName, fadeTime);
     }
 }

@@ -23,6 +23,9 @@ public class Boss_1 : AbstractCharacter
     [SerializeField] private bool isPhaseTwo;
     [SerializeField] private MaxiBestOfState state;
 
+    public bool isAttacking;
+    public int attackPhaseCounter;
+
     private void Start()
     {
         animator = GetComponent<Boss_1_Animator>();
@@ -72,7 +75,9 @@ public class Boss_1 : AbstractCharacter
     #region Appearing
     private void Appearing()
     {
-        // Launch an animation
+        animator.PlayTargetAnimation(true, "Appearing", 0.15f);
+
+
         // This animation is coming with cam shake and epic music
         // At the end of the animation there is a Ui elements that shows that the fight starts
         // The Ui changes the state to awaiting which starts the fight for real
@@ -92,10 +97,38 @@ public class Boss_1 : AbstractCharacter
     #region Attacking 
     private void Attacking()
     {
+        if(isAttacking == false)
+        {
+            isAttacking = true;
+            attackPhaseCounter += 1;
+        }
         // Picks an attack that makes sens
         // plays the attack 
-        // gets back to awaiting
-        // after 2 phases gets to a hand vulnerability.
+    }
+
+    /// <summary>
+    /// Method called ByAnimation Event
+    /// </summary>
+    public void AttackFinished()
+    {
+        if (attackPhaseCounter >= 2)
+        {
+            attackPhaseCounter = 0;
+
+            if((int)Time.time % 2 == 0)
+            {
+                state = MaxiBestOfState.Vulnerability_rightHand;
+            }
+            else
+            {
+                state = MaxiBestOfState.Vulnerability_leftHand;
+            }
+        }
+        else
+        {
+            state = MaxiBestOfState.Awaiting;
+        }
+        isAttacking = false;
     }
 
     #endregion
