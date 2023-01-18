@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Boss
@@ -27,6 +24,7 @@ namespace Boss
         [SerializeField] private MaxiBestOfState state;
         public bool isAttacking;
         public bool isVulnerable;
+        public bool isDamageable;
         public int attackPhaseCounter;
 
         [Header("Attack Logic")]
@@ -36,7 +34,9 @@ namespace Boss
         [Header("Collider reference")]
         [SerializeField] C_BossAttackCollider rightCollider;
         [SerializeField] C_BossAttackCollider leftCollider;
-        [SerializeField] VulnerabilityData selectedHand;
+        [SerializeField] Boss_1_Vulnerability right_vulnerability;
+        [SerializeField] Boss_1_Vulnerability left_vulnerability;
+        [SerializeField] Boss_1_Vulnerability selectedHand;
 
         private void Start()
         {
@@ -156,43 +156,63 @@ namespace Boss
                 isVulnerable = true;
                 if ((int)Time.time % 2 == 0)
                 {
-                    selectedHand = new VulnerabilityData();
+                    selectedHand = right_vulnerability;
                 }
                 else
                 {
-                    selectedHand = new VulnerabilityData();
+                    selectedHand = left_vulnerability;
                 }
+                selectedHand.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
             }
-
-                // Picks a hand
                 // Plays ans animation to show vulnerability
                 // Gives player 10 to 15 sec to hit the vulnerability while playing a recovering animation 
-
-
         }
 
         public void VulnerabilityFinished(bool isDestroyed)
         {
             if (isDestroyed)
             {
+                selectedHand.CloseCollider();
                 // If hit the boss goes back in Awaiting but has only one hand left
                 // If it was the second hand, its goes to head vulnerablity
             }
             else
             {
+                selectedHand.CloseCollider();
                 // If player is too slow the hand inflicts damages
             }
+            isVulnerable = false;
         }
         #endregion
 
         #region Vulnerability_Head
         private void HeadVulnerability()
         {
+            if (isDamageable == false)
+            {
+                isDamageable = true;
+
+            }
+            
             // Plays an animation tu show that the head is vulnerable 
             // the player can hit and inflict damages to the boss
             // after a short 10 to 15 sec the boss goes back to awaiting phase
-            // If under 50% HPs the boss goes to second phase
-            // If his Hps get to 0 at any point the boss goes to the Dying Phase
+
+        }
+
+        private void HeadVulnerabilityFinished()
+        {
+
+            if (Health <= 0.5 * MaxHealth)
+            {
+
+                // goes to second phase
+            }
+            if (Health <= 0)
+            {
+                // the boss goes to the Dying Phase
+            }
+            isDamageable = false;
         }
         #endregion
 
@@ -221,13 +241,6 @@ namespace Boss
         public bool isSecondPhase;
         [Header("data")]
         public AnimationClip associatedAnimation;
-    }
-
-    [System.Serializable]
-    public class VulnerabilityData
-    {
-
-
     }
 }
 
