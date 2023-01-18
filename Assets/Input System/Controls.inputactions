@@ -1,0 +1,116 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "8c50a089-1c9d-4fcd-a1ef-41ee215f00ca",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "ed617c04-fdbd-481d-b3f2-e901f3e6e63b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "4815e7e6-09b1-45c8-ad2c-8d703fbc758a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FrontDash",
+                    "type": "Button",
+                    "id": "15efa004-88b5-4c6f-8c7e-f3e02f35ae33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackDash",
+                    "type": "Button",
+                    "id": "0612a960-94a6-4742-8be9-083b239569e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "968b7b3d-46ff-41e4-8790-ab21c7b8f8b4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "08ebbedb-3dd0-4e6e-815f-7e27d4d36262",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "15330891-b696-4d1d-af07-b52488353e0b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "7d92268c-715b-44da-84b2-e85fccbf7b14",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "71a5f9e5-cbd1-47ad-b3fb-1c82366d2805",
+                    "path": "<Keyboard>/d",
+                    "interactions": "MultiTap(tapTime=0.15,tapDelay=0.25)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FrontDash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c50c38fa-b087-4eda-aeef-1f66fe93f0d3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "MultiTap(tapTime=0.15,tapDelay=0.25)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackDash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
