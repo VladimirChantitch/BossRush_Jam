@@ -1,23 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class C_BossAttackCollider : MonoBehaviour
+public class C_BossAttackCollider : AbstractTogglelableCollider
 {
-    [SerializeField] Collider collider;
-
-    public void OpenCollider()
-    {
-        collider.enabled = true;
-    }
-
-    public void CloseCollider()
-    {
-        collider.enabled = false;
-    }
+    public UnityEvent<AbstractCharacter> applyDamageToTarget;
 
     private void OnTriggerEnter(Collider other)
     {
-        /// check if player collision damage layer
+        if (other.gameObject.layer == 20)
+        {
+            applyDamageToTarget?.Invoke(other.GetComponent<AbstractCharacter>());
+        }
     }
 }
