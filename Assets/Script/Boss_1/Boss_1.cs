@@ -17,7 +17,7 @@ public class Boss_1 : AbstractCharacter
         Dying,
     }
 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Boss_1_Animator animator;
 
     [Header("State")]
     [SerializeField] private bool isPhaseTwo;
@@ -25,7 +25,7 @@ public class Boss_1 : AbstractCharacter
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Boss_1_Animator>();
         state = MaxiBestOfState.Idle;
     }
 
