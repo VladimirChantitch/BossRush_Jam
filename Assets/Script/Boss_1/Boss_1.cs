@@ -194,6 +194,21 @@ namespace Boss
             isVulnerable = false;
         }
 
+        public void EnterLeftVulnerability()
+        {
+            EnterVulnerabilityState(true);
+        }
+
+        public void EnterRightVulnerability()
+        {
+            EnterVulnerabilityState(false);
+        }
+
+        public void EnterRandomVulnerability()
+        {
+            EnterVulnerabilityState((int)Time.time % 2 == 0);
+        }
+
         private void Vulnerability(bool isLeft)
         {
             if (isVulnerable == false)
@@ -207,7 +222,7 @@ namespace Boss
                 {
                     selectedHand = left_vulnerability;
                 }
-                else if ((int)Time.time % 2 == 0)
+                else if (isLeft)
                 {
                     selectedHand = right_vulnerability;
                 }
@@ -215,6 +230,7 @@ namespace Boss
                 {
                     selectedHand = left_vulnerability;
                 }
+
                 selectedHand.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
 
                 if (isLeft)
