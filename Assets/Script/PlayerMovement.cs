@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Controls controls;
 
+    private Animator animator;
+
     private CameraJuice camJuice;
 
     [Header("Movement")]
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
         camJuice = GetComponent<CameraJuice>();
 
         controls = new Controls();
@@ -62,14 +65,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = groundCheckCollider.IsTouching(groundFilter);
-        if (!airJumpingReady)
-            airJumpingReady = groundCheckCollider.IsTouching(groundFilter);
+        GroundCheck();
 
         if (isDecelerating)
             decelerationSpeed = Mathf.Lerp(rb.velocity.x, 0, Time.deltaTime * decelerationSmooth);
         if (decelerationSpeed <= decelerationDeadZone && decelerationSpeed >= -decelerationDeadZone)
+        {
             decelerationSpeed = 0;
+        }
+            
 
         if(dashPool < 3 && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
         {
@@ -86,6 +90,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = (new Vector2(decelerationSpeed, rb.velocity.y));
     }
 
+    private void LateUpdate()
+    {
+        if (isGrounded)
+            animator.SetBool("isJumping", false);
+    }
+
+    private void GroundCheck()
+    {
+        isGrounded = groundCheckCollider.IsTouching(groundFilter);
+        if (!airJumpingReady)
+            airJumpingReady = groundCheckCollider.IsTouching(groundFilter);
+    }
+
     private void Movement_performed(InputAction.CallbackContext context)
     {
         camJuice.MovementDezoom();
@@ -94,19 +111,28 @@ public class PlayerMovement : MonoBehaviour
 
         inputVector = controls.Player.Movement.ReadValue<Vector2>();
         if (inputVector.x != 0)
+        {
+            animator.SetBool("isMoving", true);
             rb.velocity = (new Vector2(inputVector.x * mvtVelocity, rb.velocity.y));
+        }
     }
 
     private void Movement_canceled(InputAction.CallbackContext context)
     {
         isDecelerating = true;
         camJuice.Default();
+        animator.SetBool("isMoving", false);
     }
 
     private void Jump_performed(InputAction.CallbackContext context)
     {
         if (isGrounded) //Normal Jump
+        {
+            groundCheckCollider.enabled = false;
+            StartCoroutine(ActivateGroundCheckCollider());
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+            animator.SetBool("isJumping", true);
+        }
         else if (!isGrounded && airJumpingReady)
         {
             airJumpingReady = false;
@@ -114,7 +140,15 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector2.up * airjumpVelocityAfterDash, ForceMode2D.Impulse);
             else
                 rb.AddForce(Vector2.up * airjumpVelocity, ForceMode2D.Impulse);
+
+            animator.SetBool("isJumping", true);
         }
+    }
+
+    private IEnumerator ActivateGroundCheckCollider()
+    {
+        yield return new WaitForSeconds(0.1f);
+        groundCheckCollider.enabled = true;
     }
 
     private void FrontDash_performed(InputAction.CallbackContext context)
@@ -122,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         if(dashPool > 0)
         {
             dashPool--;
+            animator.SetBool("isForwardDash", true);
             camJuice.DashZoom();
             isDashing = true;
             rb.velocity = Vector2.zero;
@@ -135,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashPool > 0)
         {
             dashPool--;
+            animator.SetBool("isBackDash", true);
             camJuice.DashZoom();
             isDashing = true;
             rb.velocity = Vector2.zero;
@@ -159,7 +195,9 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 4f;
         rb.velocity = new Vector2(0, rb.velocity.y);
         isDashing = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool("isForwardDash", false);
+        animator.SetBool("isBackDash", false);
         camJuice.Default();
     }
 
