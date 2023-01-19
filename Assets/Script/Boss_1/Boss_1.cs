@@ -235,15 +235,13 @@ namespace Boss
 
         private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
         {
-            //Play an epic explosion animation
-            for(int i = 0; i < radius; i++)
             Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
-
-            foreach(Collider collider in colliders)
+            //Play an epic explosion animation
+            for (int i = 0; i < radius; i++)
             {
-                if (collider.gameObject.layer == 20)
+                if (colliders[i].gameObject.layer == 20)
                 {
-                    collider.GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
+                    colliders[i].GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
                     return;
                 }
             }
