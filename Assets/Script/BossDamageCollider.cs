@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class BossDamageCollider : AbstractTogglelableCollider
 {
     public abstract void TakeDamage(float value = 0);
+    public GameObject parent;
 }

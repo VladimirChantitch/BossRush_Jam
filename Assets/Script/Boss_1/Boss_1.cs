@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +16,7 @@ namespace Boss
             Vulnerability_leftHand,
             Vulnerability_Head,
             Dying,
+            PhaseTransition,
         }
 
         [SerializeField] private Boss_1_Animator animator;
@@ -35,6 +34,8 @@ namespace Boss
         public bool isAttacking;
         public bool isVulnerable;
         public bool isDamageable;
+        public bool isArriving;
+        public bool isAwaiting;
         public int attackPhaseCounter;
 
         [Header("Attack Logic")]
@@ -42,16 +43,24 @@ namespace Boss
         [SerializeField] AttackData current_attack;
 
         [Header("Collider reference")]
-        [SerializeField] C_BossAttackCollider rightCollider;
-        [SerializeField] C_BossAttackCollider leftCollider;
+        [SerializeField] C_Boss_1_AttackCollider rightCollider;
+        [SerializeField] C_Boss_1_AttackCollider leftCollider;
         [SerializeField] Boss_1_Vulnerability right_vulnerability;
         [SerializeField] Boss_1_Vulnerability left_vulnerability;
         [SerializeField] Boss_1_Vulnerability selectedHand;
+        [SerializeField] Boss_1_HeadVUlnerability headVUlnerability;
+
+        [Header("Animations")]
+        [SerializeField] AnimationClip Idle;
+        [SerializeField] AnimationClip Arriving;
+        [SerializeField] AnimationClip RightVulnerability;
+        [SerializeField] AnimationClip LeftVulnerability;
+
 
         private void Start()
         {
             animator = GetComponent<Boss_1_Animator>();
-            state = MaxiBestOfState.Idle;
+            state = MaxiBestOfState.Appearing;
              
             rightCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
             leftCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
@@ -59,12 +68,8 @@ namespace Boss
 
         private void Update()
         {
+            Debug.Log($"<color=purple> the current is {state} </color>");
             HandleState();
-        }
-
-        public void StartFight()
-        {
-            state = MaxiBestOfState.Appearing;
         }
 
         private void HandleState()
@@ -100,35 +105,57 @@ namespace Boss
         #region Appearing
         private void Appearing()
         {
-            animator.PlayTargetAnimation(true, "Appearing", 0.15f);
+            if (isArriving == false)
+            {
+                isArriving = true;
+                animator.PlayTargetAnimation(true, Arriving.name, 0.15f);
+            }
+        }
 
-            // This animation is coming with cam shake and epic music
-            // At the end of the animation there is a Ui elements that shows that the fight starts
-            // The Ui changes the state to awaiting which starts the fight for real
+        public void initBoss()
+        {
+            state = MaxiBestOfState.Appearing;
         }
 
         #endregion
 
         #region Awaiting
+        public void EnterAwaitingState()
+        {
+            state = MaxiBestOfState.Awaiting;
+            isAwaiting = false;
+        }
+
         private void Awaiting()
         {
-
-            // Awaits rdn time with an animation max 3
-            // Goes to attacking at the end of the animation
+            if (isAwaiting == false)
+            {
+                isAwaiting = true;
+                animator.PlayTargetAnimation(false, Idle.name, 0.75f);
+            }
         }
 
         #endregion
 
         #region Attacking 
+        public void EnterAttackState()
+        {
+            state = MaxiBestOfState.Attacking;
+            isAttacking = false;
+        }
+
         private void Attacking()
         {
             if (isAttacking == false)
             {
                 isAttacking = true;
                 attackPhaseCounter += 1;
+
+                List<AttackData> attackData_phase = attackDatas.Where(a => a.isSecondPhase == isPhaseTwo).ToList();
+
+                current_attack = attackData_phase[Random.Range(0, attackData_phase.Count)];
+                animator.PlayTargetAnimation(false, current_attack.associatedAnimation.name, 0.25f);
             }
-            // Picks an attack that makes sens
-            // plays the attack 
         }
 
         /// <summary>
@@ -140,31 +167,47 @@ namespace Boss
             {
                 attackPhaseCounter = 0;
 
-                if ((int)Time.time % 2 == 0)
-                {
-                    state = MaxiBestOfState.Vulnerability_rightHand;
-                }
-                else
-                {
-                    state = MaxiBestOfState.Vulnerability_leftHand;
-                }
+                bool isLeft = (int)Time.time % 2 == 0;
+
+                EnterVulnerabilityState(isLeft);
+                EnterVulnerabilityState(isLeft);
             }
             else
             {
-                state = MaxiBestOfState.Awaiting;
+                EnterAwaitingState();
             }
-            isAttacking = false;
         }
 
         #endregion
 
         #region Vulnerability_Hand
+        public void EnterVulnerabilityState(bool isLeft)
+        {
+            if (isLeft)
+            {
+                state = MaxiBestOfState.Vulnerability_leftHand;
+            }
+            else
+            {
+                state = MaxiBestOfState.Vulnerability_rightHand;
+            }
+            isVulnerable = false;
+        }
+
         private void Vulnerability(bool isLeft)
         {
             if (isVulnerable == false)
             {
                 isVulnerable = true;
-                if ((int)Time.time % 2 == 0)
+                if (left_vulnerability.isDestroyed)
+                {
+                    selectedHand = right_vulnerability;
+                }
+                else if (right_vulnerability.isDestroyed)
+                {
+                    selectedHand = left_vulnerability;
+                }
+                else if ((int)Time.time % 2 == 0)
                 {
                     selectedHand = right_vulnerability;
                 }
@@ -173,40 +216,61 @@ namespace Boss
                     selectedHand = left_vulnerability;
                 }
                 selectedHand.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
-                StartCoroutine(WaitTimer(headVulnerabilityTimer, () => VulnerabilityFinished(false)));
 
+                if (isLeft)
+                {
+                    animator.PlayTargetAnimation(false, LeftVulnerability.name, 0.75f);
+                }
+                else
+                {
+                    animator.PlayTargetAnimation(false, RightVulnerability.name, 0.75f);
+                }
             }
-                // Plays ans animation to show vulnerability
-                // Gives player 10 to 15 sec to hit the vulnerability while playing a recovering animation 
+        }
+
+        public void VulnerabilityFinished()
+        {
+            VulnerabilityFinished(false);
         }
 
         public void VulnerabilityFinished(bool isDestroyed)
         {
-            state = MaxiBestOfState.Awaiting;
             if (isDestroyed)
             {
-                selectedHand.CloseCollider();
-                // If hit the boss goes back in Awaiting but has only one hand left
-                // If it was the second hand, its goes to head vulnerablity
+                //selectedHand.CloseCollider();
+                selectedHand.parent.SetActive(false);
+                if(left_vulnerability.parent.activeInHierarchy == false && right_vulnerability.parent.activeInHierarchy == false)
+                {
+                    
+                    EnterAwaitingState(); // to change for the transition animation
+                }
+                else
+                {
+                    EnterAwaitingState();
+                }
             }
             else
             {
-                selectedHand.CloseCollider();
+                //selectedHand.CloseCollider();
                 DealDamageToNearByTargets(selectedHand.transform, explosionDamage);
+                EnterAwaitingState();
             }
-            isVulnerable = false;
         }
         #endregion
 
         #region Vulnerability_Head
+        public void EnterHeadVulnerability()
+        {
+            state = MaxiBestOfState.Vulnerability_Head;
+            isDamageable = false;
+        }
+
         private void HeadVulnerability()
         {
             if (isDamageable == false)
             {
                 isDamageable = true;
-
-
-                StartCoroutine(WaitTimer(headVulnerabilityTimer, HeadVulnerabilityFinished));
+                headVUlnerability.vulnerabilirabilityDestroyed.AddListener(amount => AddDamage(amount));
             }
             
             // Plays an animation tu show that the head is vulnerable 
@@ -218,8 +282,8 @@ namespace Boss
             state = MaxiBestOfState.Awaiting;
             if (Health <= 0.5 * MaxHealth)
             {
-
-                // goes to second phase
+                isPhaseTwo = true;
+                // Do something epic
             }
             else if (Health <= 0)
             {
@@ -235,16 +299,16 @@ namespace Boss
 
         private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
         {
-            Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
-            //Play an epic explosion animation
-            for (int i = 0; i < radius; i++)
-            {
-                if (colliders[i].gameObject.layer == 20)
-                {
-                    colliders[i].GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
-                    return;
-                }
-            }
+            //Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
+            ////Play an epic explosion animation
+            //for (int i = 0; i < radius; i++)
+            //{
+            //    if (colliders[i].gameObject.layer == 20)
+            //    {
+            //        colliders[i].GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
+            //        return;
+            //    }
+            //}
         }
 
         #region Dying
@@ -258,14 +322,6 @@ namespace Boss
             // Once collect is done the player goes back to the Hub
         }
         #endregion
-
-        IEnumerator WaitTimer(float time, Action action)
-        {
-            yield return new WaitForSeconds(time);
-            action?.Invoke();
-
-            yield return null;
-        }
     }
 
     [System.Serializable]

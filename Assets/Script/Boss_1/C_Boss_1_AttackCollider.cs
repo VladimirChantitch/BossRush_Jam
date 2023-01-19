@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class C_BossAttackCollider : AbstractTogglelableCollider
+public class C_Boss_1_AttackCollider : AbstractTogglelableCollider
 {
     public UnityEvent<AbstractCharacter> applyDamageToTarget;
 

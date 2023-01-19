@@ -15,5 +15,6 @@ public class Boss_1_Animator : MonoBehaviour
     {
         animator.SetBool("Loop", true);
         animator.CrossFade(animationName, fadeTime);
+        animator.Play(animationName);
     }
 }
