@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class AbstractTogglelableCollider : MonoBehaviour
 {
-    [SerializeField] Collider h_collider;
+    [SerializeField] Collider2D h_collider;
 
     private void Start()
     {
-        h_collider = GetComponent<Collider>();
+        h_collider = GetComponent<Collider2D>();
     }
 
     public virtual void OpenCollider()

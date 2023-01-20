@@ -13,8 +13,10 @@ public class Boss_1_Animator : MonoBehaviour
 
     public void PlayTargetAnimation(bool looping, string animationName, float fadeTime)
     {
-        animator.SetBool("Loop", true);
-        animator.CrossFade(animationName, fadeTime);
-        animator.Play(animationName);
+        {
+            animator.SetBool("Loop", looping);
+            animator.CrossFade(animationName, fadeTime);
+            animator.Play(animationName);
+        }
     }
 }
