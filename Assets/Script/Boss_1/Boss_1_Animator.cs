@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class Boss_1_Animator : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
+    [SerializeField] Animator animator;
     public void PlayTargetAnimation(bool looping, string animationName, float fadeTime)
     {
+        if (animator == null)
         {
-            animator.SetBool("Loop", looping);
-            animator.CrossFade(animationName, fadeTime);
-            animator.Play(animationName);
+            animator = GetComponent<Animator>();
         }
+        animator.SetBool("Loop", looping);
+        animator.CrossFade(animationName, fadeTime);
+        animator.Play(animationName);
     }
 }

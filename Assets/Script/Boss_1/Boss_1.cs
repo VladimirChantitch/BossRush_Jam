@@ -40,30 +40,29 @@ namespace Boss
 
         public bool isLeftDestroyed;
         public bool isRightDestroyed;
-        public int attackPhaseCounter;
 
         [Header("Attack Logic")]
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>(4);
         [SerializeField] AttackData current_attack;
 
         [Header("Collider reference")]
-        [SerializeField] C_Boss_1_AttackCollider rightCollider;
+        [SerializeField] C_Boss_1_AttackCollider rightAttackCollider;
         public void OpenRightAttackCollider()
         {
-            rightCollider.OpenCollider();
+            rightAttackCollider.OpenCollider();
         }
         public void CloseRightAttackCollider()
         {
-            rightCollider.CloseCollider();
+            rightAttackCollider.CloseCollider();
         }
-        [SerializeField] C_Boss_1_AttackCollider leftCollider;
+        [SerializeField] C_Boss_1_AttackCollider leftAttackCollider;
         public void OpenLeftAttackCollider()
         {
-            leftCollider.OpenCollider();
+            leftAttackCollider.OpenCollider();
         }
         public void CloseLeftAttackCollider()
         {
-            leftCollider.CloseCollider();
+            leftAttackCollider.CloseCollider();
         }
         [SerializeField] Boss_1_Vulnerability right_vulnerability;
         [SerializeField] Boss_1_Vulnerability left_vulnerability;
@@ -87,26 +86,54 @@ namespace Boss
         }
 
         [Header("Animations")]
-        [SerializeField] AnimationClip Idle;
-        [SerializeField] AnimationClip Arriving;
-        [SerializeField] AnimationClip RightVulnerability;
-        [SerializeField] AnimationClip LeftVulnerability;
-        [SerializeField] AnimationClip HeadVulnerabilityAnim;
-        [SerializeField] AnimationClip Death;
+        [SerializeField] string Idle;
+        [SerializeField] string Arriving;
+        [SerializeField] string RightVulnerability;
+        [SerializeField] string LeftVulnerability;
+        [SerializeField] string HeadVulnerabilityAnim;
+        [SerializeField] string Death;
 
 
         private void Start()
         {
             animator = GetComponent<Boss_1_Animator>();
-            state = MaxiBestOfState.Appearing;
+            initBoss();
              
-            rightCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
-            leftCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
+            rightAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
+            leftAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
+
+            right_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
+            left_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
+
+            headVulnerability.TakeDamageEvent.AddListener(amount => {
+                amount *= 0.1f;
+                if (!isAwaiting)
+                {
+                    if (isLeftDestroyed)
+                    {
+                        amount *= 2;
+                    }
+                    if (isRightDestroyed)
+                    {
+                        amount *= 2;
+                    }
+                    if (isAttacking)
+                    {
+                        amount *= 2;
+                    }
+                    if (state == MaxiBestOfState.Vulnerability_Head)
+                    {
+                        amount *= 4;
+                    }
+                }
+                AddDamage(amount);
+            });
+            left_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
+            right_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
         }
 
         private void Update()
         {
-            Debug.Log($"<color=purple> the current is {state} </color>");
             HandleState();
         }
 
@@ -146,7 +173,7 @@ namespace Boss
             if (isArriving == false)
             {
                 isArriving = true;
-                animator.PlayTargetAnimation(true, Arriving.name, 0.15f);
+                animator.PlayTargetAnimation(true, Arriving, 1f);
             }
         }
 
@@ -169,7 +196,7 @@ namespace Boss
             if (isAwaiting == false)
             {
                 isAwaiting = true;
-                animator.PlayTargetAnimation(false, Idle.name, 0.75f);
+                animator.PlayTargetAnimation(false, Idle, 1f);
             }
         }
 
@@ -187,45 +214,29 @@ namespace Boss
             if (isAttacking == false)
             {
                 isAttacking = true;
-                if (attackPhaseCounter >= 2)
-                {
-                    EnterRandomVulnerability();
-                    attackPhaseCounter = 0;
-                }
-                attackPhaseCounter += 1;
 
                 List<AttackData> attackData_phase = attackDatas.Where(a => a.isSecondPhase == isPhaseTwo).ToList();
 
                 current_attack = attackData_phase[Random.Range(0, attackData_phase.Count)];
-                animator.PlayTargetAnimation(false, current_attack.associatedAnimation.name, 0.25f);
+                animator.PlayTargetAnimation(false, current_attack.associatedAnimation.name, 1f);
             }
         }
 
-        /// <summary>
-        /// Method called ByAnimation Event
-        /// </summary>
         public void AttackFinished()
         {
-            if (attackPhaseCounter >= 2)
-            {
-
-                attackPhaseCounter = 0;
-
-                bool isLeft = (int)Time.time % 2 == 0;
-
-                EnterVulnerabilityState(isLeft);
-            }
-            else
-            {
-                EnterAwaitingState();
-            }
+            EnterVulnerabilityState();
         }
-
         #endregion
 
         #region Vulnerability_Hand
-        public void EnterVulnerabilityState(bool isLeft)
+        public void EnterVulnerabilityState()
         {
+            if (isLeftDestroyed && isRightDestroyed)
+            {
+                EnterHeadVulnerability();
+            }
+
+            bool isLeft = 0 == Random.Range(0, 2);
             if (isLeft)
             {
                 if (isLeftDestroyed)
@@ -251,55 +262,21 @@ namespace Boss
             isVulnerable = false;
         }
 
-        public void EnterLeftVulnerability()
-        {
-            EnterVulnerabilityState(true);
-            isVulnerable = false;
-        }
-
-        public void EnterRightVulnerability()
-        {
-            EnterVulnerabilityState(false);
-            isVulnerable = false;
-        }
-
-        public void EnterRandomVulnerability()
-        {
-            EnterVulnerabilityState((int)Time.time % 2 == 0);
-            isVulnerable = false;
-        }
-
         private void Vulnerability(bool isLeft)
         {
             if (isVulnerable == false)
             {
                 isVulnerable = true;
-                if (isLeftDestroyed)
-                {
-                    selectedHand = right_vulnerability;
-                }
-                else if (isRightDestroyed)
-                {
-                    selectedHand = left_vulnerability;
-                }
-                else if (isLeft)
-                {
-                    selectedHand = right_vulnerability;
-                }
-                else
-                {
-                    selectedHand = left_vulnerability;
-                }
-
-                selectedHand.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
 
                 if (isLeft)
                 {
-                    animator.PlayTargetAnimation(false, LeftVulnerability.name, 0.75f);
+                    selectedHand = left_vulnerability;
+                    animator.PlayTargetAnimation(false, LeftVulnerability, 1f);
                 }
                 else
                 {
-                    animator.PlayTargetAnimation(false, RightVulnerability.name, 0.75f);
+                    selectedHand = right_vulnerability;
+                    animator.PlayTargetAnimation(false, RightVulnerability, 1f);
                 }
             }
         }
@@ -311,26 +288,18 @@ namespace Boss
 
         public void VulnerabilityFinished(bool isDestroyed)
         {
-            if (isDestroyed)
+            if (left_vulnerability.isDestroyed)
             {
-                selectedHand.parent.SetActive(false);
-                if (left_vulnerability.isDestroyed || isLeftDestroyed)
-                {
-                    isLeftDestroyed = true;
-                }
-                if (right_vulnerability.isDestroyed || isRightDestroyed)
-                {
-                    isRightDestroyed = true;
-                }
+                isLeftDestroyed = true;
+            }
+            if (right_vulnerability.isDestroyed)
+            {
+                isRightDestroyed = true;
+            }
 
-                if(isLeftDestroyed && isRightDestroyed)
-                {
-                    EnterHeadVulnerability(); 
-                }
-                else
-                {
-                    EnterAwaitingState();
-                }
+            if(isLeftDestroyed && isRightDestroyed)
+            {
+                EnterHeadVulnerability(); 
             }
             else
             {
@@ -352,11 +321,8 @@ namespace Boss
             if (isDamageable == false)
             {
                 isDamageable = true;
-                headVulnerability.vulnerabilirabilityDestroyed.AddListener(amount => AddDamage(amount));
+                animator.PlayTargetAnimation(false, HeadVulnerabilityAnim, 1f);
             }
-            
-            // Plays an animation tu show that the head is vulnerable 
-            // the player can hit and inflict damages to the boss
         }
 
         public void HeadVulnerabilityFinished()
@@ -367,12 +333,13 @@ namespace Boss
                 isPhaseTwo = true;
                 right_vulnerability.Reactivate();
                 left_vulnerability.Reactivate();
-                // Do something epic
+                isLeftDestroyed = false;
+                isRightDestroyed = false;
+                EnterAwaitingState();
             }
             else if (Health <= 0)
             {
                 EnterDyingState();
-                // the boss goes to the Dying Phase -- shouldnt be launched caudsed well hum its alreaduy handed by abstrct character 
             }
             else
             {
@@ -381,8 +348,6 @@ namespace Boss
                 isLeftDestroyed = false;
                 isRightDestroyed = false;
                 EnterAwaitingState();
-                //Play hand Recovery animation;
-                //DealDamageToNearByTargets(head,explosionDamage)
             }
             isDamageable = false;
         }
@@ -407,7 +372,6 @@ namespace Boss
         {
             state = MaxiBestOfState.Dying;
             isDying = false;
-
         }
 
         private void Dying()
@@ -415,7 +379,7 @@ namespace Boss
             if (isDying == false)
             {
                 isDying = true;
-                animator.PlayTargetAnimation(false, Death.name, 1);
+                animator.PlayTargetAnimation(false, Death, 1f);
                 // Stops the fight, the player gets to a lock position 
                 // Explosion 
                 // Three item are displayed 
