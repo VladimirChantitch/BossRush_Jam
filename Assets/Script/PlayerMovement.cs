@@ -10,18 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private Controls controls;
 
     private Animator animator;
+    [SerializeField] TrailRenderer trailRenderer;
 
     private CameraJuice camJuice;
 
     [Header("Movement")]
     public float mvtVelocity; //need to be relocated in Player Stat Struct
     private Vector2 inputVector;
-
-    [Header("Deceleration")]
-    public float decelerationSmooth;
-    public float decelerationDeadZone;
-    private bool isDecelerating = false;
-    private float decelerationSpeed;
 
 
     [Header("Ground")]
@@ -35,15 +30,28 @@ public class PlayerMovement : MonoBehaviour
     private bool airJumpingReady = true;
     public float airjumpVelocity; //need to be relocated in Player Stat Struct
     public float airjumpVelocityAfterDash; //need to be relocated in Player Stat Struct
+    public Collider2D defaultCollider2D;
+    public Collider defaultCollider3D;
+    public Collider2D jumpCollider2D;
+    public Collider jumpCollider3D;
+    public Vector2 defaultGroundCheckPos;
+    public Vector2 jumpgroundCheckPos;
+
 
     [Header("Dash")]
+    public bool canDash;
     public bool isDashing;
     public float dashVelocity;
+    public float dashingTime;
+    private Vector2 dashingDir;
     private int dashPool = 3;
     private bool dashCooldown = false;
 
     /*Temp Canvas*/
     public TextMeshProUGUI dashTMP;
+
+    [Header("Flip")]
+    private bool isFlipped = false;
 
     private void Awake()
     {
@@ -56,26 +64,19 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Jump.performed += Jump_performed;
         controls.Player.Movement.performed += Movement_performed;
         controls.Player.Movement.canceled += Movement_canceled;
-        controls.Player.FrontDash.performed += FrontDash_performed;
-        controls.Player.BackDash.performed += BackDash_performed;
-        controls.Player.FrontDash.performed += FrontDash_canceled;
-        controls.Player.BackDash.performed += BackDash_canceled;
+        controls.Player.Dash.performed += Dash_performed;
+        controls.Player.MousePosition.performed += MousePosition_performed;
+        controls.Player.Attack1.performed += Attack1_performed;
+        controls.Player.Attack2.performed += Attack2_performed;
 
     }
 
     private void Update()
     {
         GroundCheck();
+        
 
-        if (isDecelerating)
-            decelerationSpeed = Mathf.Lerp(rb.velocity.x, 0, Time.deltaTime * decelerationSmooth);
-        if (decelerationSpeed <= decelerationDeadZone && decelerationSpeed >= -decelerationDeadZone)
-        {
-            decelerationSpeed = 0;
-        }
-            
-
-        if(dashPool < 3 && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
+        if (dashPool < 3 && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
         {
             StartCoroutine(DashCooldown());
         }
@@ -86,15 +87,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDecelerating)
-            rb.velocity = (new Vector2(decelerationSpeed, rb.velocity.y));
+        if(isDashing)
+        {
+            rb.velocity = dashingDir * dashVelocity;
+            return;
+        }
     }
 
     private void LateUpdate()
     {
         if (isGrounded)
+        {
             animator.SetBool("isJumping", false);
+            SetJumpColliders(false);
+        }
+
+        if(rb.velocity.x < 5 && rb.velocity.x > -5)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
+
+    /*TEST ATTACK*/
+    private void Attack1_performed(InputAction.CallbackContext context)
+    {
+        animator.Play("Attack"); 
+    }
+
+    private void Attack2_performed(InputAction.CallbackContext context)
+    {
+        animator.Play("RiffAttack");
+    }
+    /*         */
 
     private void GroundCheck()
     {
@@ -105,22 +129,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement_performed(InputAction.CallbackContext context)
     {
-        camJuice.MovementDezoom();
-        isDecelerating = false;
-        decelerationSpeed = 0;
-
-        inputVector = controls.Player.Movement.ReadValue<Vector2>();
-        if (inputVector.x != 0)
+        if(!isDashing)
         {
-            animator.SetBool("isMoving", true);
-            rb.velocity = (new Vector2(inputVector.x * mvtVelocity, rb.velocity.y));
+            inputVector = controls.Player.Movement.ReadValue<Vector2>();
+            camJuice.MovementDezoom();
+
+            if (inputVector.x != 0)
+            {
+                animator.SetBool("isMoving", true);
+                rb.velocity = new Vector2(inputVector.x * mvtVelocity, rb.velocity.y);
+            }
         }
     }
 
     private void Movement_canceled(InputAction.CallbackContext context)
     {
-        isDecelerating = true;
         camJuice.Default();
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+        inputVector = Vector2.zero;
         animator.SetBool("isMoving", false);
     }
 
@@ -132,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ActivateGroundCheckCollider());
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
+            SetJumpColliders(true);
         }
         else if (!isGrounded && airJumpingReady)
         {
@@ -142,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector2.up * airjumpVelocity, ForceMode2D.Impulse);
 
             animator.SetBool("isJumping", true);
+            SetJumpColliders(true);
         }
     }
 
@@ -151,54 +179,69 @@ public class PlayerMovement : MonoBehaviour
         groundCheckCollider.enabled = true;
     }
 
-    private void FrontDash_performed(InputAction.CallbackContext context)
+    private void SetJumpColliders(bool flag)
     {
-        if(dashPool > 0)
-        {
-            dashPool--;
-            animator.SetBool("isForwardDash", true);
-            camJuice.DashZoom();
-            isDashing = true;
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0f;
-            rb.AddForce(Vector2.right * dashVelocity, ForceMode2D.Impulse);
-        }
+        defaultCollider2D.enabled = defaultCollider3D.enabled = !flag;
+        jumpCollider2D.enabled = jumpCollider3D.enabled = flag;
+        if (flag)
+            groundCheckCollider.offset = jumpgroundCheckPos;
+        else
+            groundCheckCollider.offset = defaultGroundCheckPos;
     }
 
-    private void BackDash_performed(InputAction.CallbackContext context)
+    private void Dash_performed(InputAction.CallbackContext context) //Hold Shift
     {
         if (dashPool > 0)
         {
-            dashPool--;
-            animator.SetBool("isBackDash", true);
             camJuice.DashZoom();
-            isDashing = true;
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0f;
-            rb.AddForce(Vector2.left * dashVelocity, ForceMode2D.Impulse);
+            trailRenderer.emitting = true;
+            isDashing = true;   
+            dashPool--;
+            dashingDir = new Vector2(inputVector.x, 0);
+            if(inputVector.x == 0)
+            {
+                dashingDir = new Vector2(transform.localScale.x, 0);
+            }
+            PlayDashAnimation(isFlipped, dashingDir.x, true);
+            StartCoroutine(StopDashing());
         }
     }
 
-    private void FrontDash_canceled(InputAction.CallbackContext context)
+    private IEnumerator StopDashing()
     {
-        StartCoroutine(StopDash());
-    }
-
-    private void BackDash_canceled(InputAction.CallbackContext context)
-    {
-        StartCoroutine(StopDash());
-    }
-
-    private IEnumerator StopDash()
-    {      
-        yield return new WaitForSeconds(0.1f);
-        rb.gravityScale = 4f;
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        yield return new WaitForSeconds(dashingTime);
+        PlayDashAnimation(isFlipped, dashingDir.x, false);
+        trailRenderer.emitting = false;
+        if (animator.GetBool("isMoving"))
+        {
+            rb.velocity = new Vector2(inputVector.x * mvtVelocity, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         isDashing = false;
-        yield return new WaitForSeconds(0.1f);
-        animator.SetBool("isForwardDash", false);
-        animator.SetBool("isBackDash", false);
         camJuice.Default();
+    }
+
+    private void PlayDashAnimation(bool isFlipped, float dir, bool flag)
+    {
+        if(!isFlipped && dir >= 0)
+        {
+            animator.SetBool("isForwardDash", flag);
+        }
+        else if(!isFlipped && dir < 0)
+        {
+            animator.SetBool("isBackDash", flag);
+        }
+        else if(isFlipped && dir >= 0)
+        {
+            animator.SetBool("isBackDash", flag);
+        }
+        else if (isFlipped && dir < 0)
+        {
+            animator.SetBool("isForwardDash", flag);
+        }
     }
 
     private IEnumerator DashCooldown()
@@ -207,5 +250,25 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1.75f);
         dashPool++;
         dashCooldown = false;
+    }
+
+    private void MousePosition_performed(InputAction.CallbackContext context)
+    {
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        mousePos.z = Camera.main.farClipPlane * .5f;
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mousePos);
+
+        if(worldPoint.x - transform.position.x >= 0 && isFlipped || worldPoint.x - transform.position.x <= 0 && !isFlipped)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        Vector3 localScale = transform.localScale;
+        isFlipped = !isFlipped;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 }
