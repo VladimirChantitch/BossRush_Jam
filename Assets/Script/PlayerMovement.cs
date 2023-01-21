@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float mvtVelocity; //need to be relocated in Player Stat Struct
     private Vector2 inputVector;
+    private bool isMoving = false;
 
 
     [Header("Ground")]
@@ -29,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpVelocity; //need to be relocated in Player Stat Struct
     private bool airJumpingReady = true;
     public float airjumpVelocity; //need to be relocated in Player Stat Struct
-    public float airjumpVelocityAfterDash; //need to be relocated in Player Stat Struct
     public Collider2D defaultCollider2D;
     public Collider defaultCollider3D;
     public Collider2D jumpCollider2D;
@@ -92,6 +92,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = dashingDir * dashVelocity;
             return;
         }
+
+        if(isMoving)
+        {
+            inputVector = controls.Player.Movement.ReadValue<Vector2>();
+
+            if (inputVector.x != 0)
+            {
+
+
+                animator.SetBool("isMoving", true);
+                rb.velocity = new Vector2(inputVector.x * mvtVelocity, rb.velocity.y);
+            }
+        }
     }
 
     private void LateUpdate()
@@ -99,10 +112,16 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             animator.SetBool("isJumping", false);
+            animator.SetBool("isInAir", false);
             SetJumpColliders(false);
         }
+        
+        if(!isGrounded && !animator.GetBool("isJumping"))
+        {
+            animator.SetBool("isInAir", true);
+        }
 
-        if(rb.velocity.x < 5 && rb.velocity.x > -5)
+        if(rb.velocity.x < 5 && rb.velocity.x > -5 && rb.velocity.x != 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -131,14 +150,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isDashing)
         {
-            inputVector = controls.Player.Movement.ReadValue<Vector2>();
             camJuice.MovementDezoom();
-
-            if (inputVector.x != 0)
-            {
-                animator.SetBool("isMoving", true);
-                rb.velocity = new Vector2(inputVector.x * mvtVelocity, rb.velocity.y);
-            }
+            isMoving = true;
         }
     }
 
@@ -152,24 +165,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump_performed(InputAction.CallbackContext context)
     {
-        if (isGrounded) //Normal Jump
+        if(!isDashing)
         {
-            groundCheckCollider.enabled = false;
-            StartCoroutine(ActivateGroundCheckCollider());
-            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-            animator.SetBool("isJumping", true);
-            SetJumpColliders(true);
-        }
-        else if (!isGrounded && airJumpingReady)
-        {
-            airJumpingReady = false;
-            if(isDashing)
-                rb.AddForce(Vector2.up * airjumpVelocityAfterDash, ForceMode2D.Impulse);
-            else
-                rb.AddForce(Vector2.up * airjumpVelocity, ForceMode2D.Impulse);
+            if (isGrounded) //Normal Jump
+            {
+                groundCheckCollider.enabled = false;
+                StartCoroutine(ActivateGroundCheckCollider());
+                rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+                animator.SetBool("isJumping", true);
+                SetJumpColliders(true);
+            }
+            else if (!isGrounded && airJumpingReady)
+            {
+                airJumpingReady = false;
+                rb.velocity = new Vector2(rb.velocity.x, airjumpVelocity);
 
-            animator.SetBool("isJumping", true);
-            SetJumpColliders(true);
+                animator.SetBool("isJumping", true);
+                SetJumpColliders(true);
+            }
         }
     }
 
