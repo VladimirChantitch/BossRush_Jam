@@ -281,15 +281,14 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  jumpVelocity: 22
-  airjumpVelocity: 15
-  airjumpVelocityAfterDash: 22
+  jumpVelocity: 23
+  airjumpVelocity: 20
   defaultCollider2D: {fileID: 2348196337006595967}
   defaultCollider3D: {fileID: 2348196337207002417}
   jumpCollider2D: {fileID: 2459296218508995136}
   jumpCollider3D: {fileID: 3340603403971245973}
   defaultGroundCheckPos: {x: 0, y: 0.125}
-  jumpgroundCheckPos: {x: 0, y: 0.25}
+  jumpgroundCheckPos: {x: 0, y: 0.125}
   canDash: 0
   isDashing: 0
   dashVelocity: 55
