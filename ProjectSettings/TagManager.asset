@@ -24,7 +24,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PlayerInflictDamage
   - PlayerTakeDamageCollider
   - BossTakeDamageCollider
   - BossInflictDamageCollider

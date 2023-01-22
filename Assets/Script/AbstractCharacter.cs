@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class AbstractCharacter : MonoBehaviour
 {
-
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
     public float Health { get => health; }    

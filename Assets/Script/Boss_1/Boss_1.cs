@@ -45,7 +45,7 @@ namespace Boss
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>(4);
         [SerializeField] AttackData current_attack;
 
-        [Header("Collider reference")]
+        [Header("Attack Collider references")]
         [SerializeField] C_Boss_1_AttackCollider rightAttackCollider;
         public void OpenRightAttackCollider()
         {
@@ -64,6 +64,26 @@ namespace Boss
         {
             leftAttackCollider.CloseCollider();
         }
+        [SerializeField] Boss_1_ShootLaser rightLaser;
+        public void OpenRightLaser()
+        {
+            rightLaser.OpenLaser();
+        }
+        public void CloseLaser()
+        {
+            rightLaser.CloseLaser();
+        }
+        [SerializeField] Boss_1_ShootLaser leftLaser;
+        public void OpenLeftLaser()
+        {
+            leftLaser.OpenLaser();
+        }
+        public void CloseLeftLaser()
+        {
+            leftLaser.CloseLaser();
+        }
+
+        [Header("Vulnerabilities Collider references")]
         [SerializeField] Boss_1_Vulnerability right_vulnerability;
         [SerializeField] Boss_1_Vulnerability left_vulnerability;
         [SerializeField] Boss_1_Vulnerability selectedHand;
@@ -93,7 +113,6 @@ namespace Boss
         [SerializeField] string HeadVulnerabilityAnim;
         [SerializeField] string Death;
 
-
         private void Start()
         {
             animator = GetComponent<Boss_1_Animator>();
@@ -101,6 +120,7 @@ namespace Boss
              
             rightAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
             leftAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
+            rightLaser.SetUpEvents(current_attack.damageAmount);
 
             right_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
             left_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
@@ -134,6 +154,10 @@ namespace Boss
 
         private void Update()
         {
+            if (Health <= 0)
+            {
+                EnterDyingState();
+            }
             HandleState();
         }
 
@@ -264,6 +288,12 @@ namespace Boss
 
         private void Vulnerability(bool isLeft)
         {
+            if (isLeftDestroyed && isRightDestroyed)
+            {
+                isVulnerable = true;
+                EnterHeadVulnerability();
+            }
+
             if (isVulnerable == false)
             {
                 isVulnerable = true;
@@ -325,9 +355,8 @@ namespace Boss
             }
         }
 
-        public void HeadVulnerabilityFinished()
+        public void ExitHeadVulnerability()
         {
-            state = MaxiBestOfState.Awaiting;
             if (Health <= 0.5 * MaxHealth)
             {
                 isPhaseTwo = true;
@@ -349,7 +378,6 @@ namespace Boss
                 isRightDestroyed = false;
                 EnterAwaitingState();
             }
-            isDamageable = false;
         }
         #endregion
 
@@ -379,7 +407,7 @@ namespace Boss
             if (isDying == false)
             {
                 isDying = true;
-                animator.PlayTargetAnimation(false, Death, 1f);
+                animator.PlayTargetAnimation(false, Death, 0.25f);
                 // Stops the fight, the player gets to a lock position 
                 // Explosion 
                 // Three item are displayed 
