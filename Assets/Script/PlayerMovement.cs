@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
+using player;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Flip")]
     private bool isFlipped = false;
+
+    public UnityEvent<AttackType> attackPerformed;
 
     private void Awake()
     {
@@ -130,12 +134,14 @@ public class PlayerMovement : MonoBehaviour
     /*TEST ATTACK*/
     private void Attack1_performed(InputAction.CallbackContext context)
     {
-        animator.Play("Attack"); 
+        animator.Play("Attack");
+        attackPerformed?.Invoke(AttackType.normal);
     }
 
     private void Attack2_performed(InputAction.CallbackContext context)
     {
         animator.Play("RiffAttack");
+        attackPerformed?.Invoke(AttackType.big);
     }
     /*         */
 

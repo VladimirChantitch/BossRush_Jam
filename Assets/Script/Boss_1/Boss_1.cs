@@ -117,9 +117,9 @@ namespace Boss
         {
             animator = GetComponent<Boss_1_Animator>();
             initBoss();
-             
-            rightAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
-            leftAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
+
+            rightAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
             rightLaser.SetUpEvents(current_attack.damageAmount);
 
             right_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
@@ -150,6 +150,15 @@ namespace Boss
             });
             left_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
             right_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
+        }
+
+        public float GetCurrentDamage()
+        {
+            if (current_attack == null)
+            {
+                return 0;
+            }
+            return current_attack.damageAmount;
         }
 
         private void Update()

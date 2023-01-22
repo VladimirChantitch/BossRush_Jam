@@ -37,8 +37,8 @@ public class Boss_1_ShootLaser : MonoBehaviour
 
     public void SetUpEvents(float damageAmount)
     {
-        laserRightCollider.applyDamageToTarget.AddListener(target => target.AddDamage(damageAmount));
-        laserLeftCollider.applyDamageToTarget.AddListener(target => target.AddDamage(damageAmount));
+        laserRightCollider.applyDamageToTarget.AddListener(target => target.takeDamage?.Invoke(damageAmount));
+        laserLeftCollider.applyDamageToTarget.AddListener(target => target.takeDamage?.Invoke(damageAmount));
     }
 
     private void Update()
