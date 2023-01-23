@@ -183,15 +183,19 @@ namespace Boss
                     Awaiting();
                     break;
                 case MaxiBestOfState.Attacking:
+                    isAwaiting = false;
                     Attacking();
                     break;
                 case MaxiBestOfState.Vulnerability_rightHand:
+                    isAwaiting = false;
                     Vulnerability(false);
                     break;
                 case MaxiBestOfState.Vulnerability_leftHand:
+                    isAwaiting = false;
                     Vulnerability(true);
                     break;
                 case MaxiBestOfState.Vulnerability_Head:
+                    isAwaiting = false;
                     HeadVulnerability();
                     break;
                 case MaxiBestOfState.Dying:

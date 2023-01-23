@@ -13,13 +13,11 @@ public abstract class AbstractTogglelableCollider : MonoBehaviour
 
     public virtual void OpenCollider()
     {
-        Debug.Log($"<color=orange> Open collider of {gameObject.name} </color>");
         h_collider.enabled = true;
     }
 
     public virtual void CloseCollider()
     {
-        Debug.Log($"<color=yellow> Close collider of {gameObject.name} </color>");
         h_collider.enabled = false;
     }
 
