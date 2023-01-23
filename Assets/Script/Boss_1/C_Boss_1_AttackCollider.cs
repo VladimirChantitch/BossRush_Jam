@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class C_Boss_1_AttackCollider : AbstractTogglelableCollider
 {
-    public UnityEvent<AbstractCharacter> applyDamageToTarget;
+    public UnityEvent<PlayerTakeDamageCollider> applyDamageToTarget;
     public bool isDestroyed;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.layer == 20)
+        if (collision.gameObject.layer == 20)
         {
-            applyDamageToTarget?.Invoke(other.GetComponent<AbstractCharacter>());
+            applyDamageToTarget?.Invoke(collision.GetComponent<PlayerTakeDamageCollider>());
         }
     }
 

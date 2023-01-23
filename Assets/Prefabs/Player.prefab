@@ -1,5 +1,178 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &945650774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945650775}
+  - component: {fileID: 945650777}
+  - component: {fileID: 945650776}
+  m_Layer: 20
+  m_Name: PlayerTakeDamageCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &945650775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945650774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.65, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9147401861924334208}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &945650777
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945650774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.292781, y: 0.39037418}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.541253, y: 8.361347}
+  m_EdgeRadius: 0
+--- !u!114 &945650776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945650774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469fe7273e4406c40a1251adf8c0e549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  h_collider: {fileID: 945650777}
+  takeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &958683401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958683402}
+  - component: {fileID: 958683405}
+  - component: {fileID: 958683404}
+  - component: {fileID: 958683403}
+  m_Layer: 19
+  m_Name: PlayerAttackCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958683402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2509714, w: 0.9679946}
+  m_LocalPosition: {x: 1.3642291, y: 0.69640684, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8729683369409788021}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -9.65}
+--- !u!50 &958683405
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1000
+  m_AngularDrag: 1000
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
+--- !u!61 &958683404
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.8609138, y: 0.16865367}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.3198957, y: 2.340077}
+  m_EdgeRadius: 0
+--- !u!114 &958683403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9073c737a3eb8304d95dd384f89e7506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  h_collider: {fileID: 958683404}
+  applyDamageToTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  isDestroyed: 0
 --- !u!1 &2263563735644423637
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +467,9 @@ MonoBehaviour:
   dashVelocity: 55
   dashingTime: 0.2
   dashTMP: {fileID: 2348196337210004836}
+  attackPerformed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2348196337006595906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1339,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8b22aeca4dc5d4fb2472750d6409c9, type: 3}
+--- !u!1 &7942661251739710179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3762039477713001432, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6489531665170311483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2348196337018363110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942661251739710179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d82fbf19b77634aade8274c85edf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 150
+  maxHealth: 150
+  playerMovement: {fileID: 0}
+  attackDatas:
+  - AttackType: 0
+    DamageAmount: -15
+  - AttackType: 1
+    DamageAmount: -30
+  multiplier: 1
+  attackCollider: {fileID: 958683403}
+  playerTakeDamageCollider: {fileID: 945650776}
+  currentAttackType: 0
+--- !u!4 &8729683369409788021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2533664495703560526, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6489531665170311483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9147401861924334208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2665404399125201851, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,

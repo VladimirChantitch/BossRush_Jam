@@ -16,6 +16,7 @@ public abstract class AbstractCharacter : MonoBehaviour
     /// <param name="amout"></param>
     public virtual void AddDamage(float amount)
     {
+        Debug.Log($"<color=purple> {gameObject.name} has taken {amount} damages </color>");
         health += amount;
         if (health <= 0) 
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
+using player;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Flip")]
     private bool isFlipped = false;
+
+    public UnityEvent<AttackType> attackPerformed;
+    public UnityEvent StartDash;
+    public UnityEvent EndDash;
 
     private void Awake()
     {
@@ -130,12 +136,14 @@ public class PlayerMovement : MonoBehaviour
     /*TEST ATTACK*/
     private void Attack1_performed(InputAction.CallbackContext context)
     {
-        animator.Play("Attack"); 
+        animator.Play("Attack");
+        attackPerformed?.Invoke(AttackType.normal);
     }
 
     private void Attack2_performed(InputAction.CallbackContext context)
     {
         animator.Play("RiffAttack");
+        attackPerformed?.Invoke(AttackType.big);
     }
     /*         */
 
@@ -206,6 +214,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashPool > 0)
         {
+            StartDash?.Invoke();
             camJuice.DashZoom();
             trailRenderer.emitting = true;
             isDashing = true;   
@@ -223,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(dashingTime);
+        EndDash?.Invoke();
         PlayDashAnimation(isFlipped, dashingDir.x, false);
         trailRenderer.emitting = false;
         if (animator.GetBool("isMoving"))

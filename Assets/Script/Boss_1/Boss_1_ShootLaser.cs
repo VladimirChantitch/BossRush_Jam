@@ -9,8 +9,8 @@ public class Boss_1_ShootLaser : MonoBehaviour
     [SerializeField] LineRenderer left;
     [SerializeField] Transform rightTarget;
     [SerializeField] Transform leftTarget;
-    [SerializeField] C_Boss_1_LaserCollider laserRightCollider;
-    [SerializeField] C_Boss_1_LaserCollider laserLeftCollider;
+    [SerializeField] public C_Boss_1_LaserCollider laserRightCollider;
+    [SerializeField] public C_Boss_1_LaserCollider laserLeftCollider;
 
 
     Vector3[] rightPositions = new Vector3[2];
@@ -33,12 +33,6 @@ public class Boss_1_ShootLaser : MonoBehaviour
         laserLeftCollider.OpenCollider();
         laserRightCollider.OpenCollider();
         isOpen = true;
-    }
-
-    public void SetUpEvents(float damageAmount)
-    {
-        laserRightCollider.applyDamageToTarget.AddListener(target => target.AddDamage(damageAmount));
-        laserLeftCollider.applyDamageToTarget.AddListener(target => target.AddDamage(damageAmount));
     }
 
     private void Update()

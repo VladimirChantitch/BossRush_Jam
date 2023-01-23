@@ -117,10 +117,13 @@ namespace Boss
         {
             animator = GetComponent<Boss_1_Animator>();
             initBoss();
-             
-            rightAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
-            leftAttackCollider.applyDamageToTarget.AddListener(target => target.AddDamage(current_attack.damageAmount));
-            rightLaser.SetUpEvents(current_attack.damageAmount);
+
+            rightAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            rightLaser.laserLeftCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            rightLaser.laserRightCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftLaser.laserLeftCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftLaser.laserRightCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
 
             right_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
             left_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
@@ -152,6 +155,15 @@ namespace Boss
             right_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
         }
 
+        public float GetCurrentDamage()
+        {
+            if (current_attack == null)
+            {
+                return 0;
+            }
+            return current_attack.damageAmount;
+        }
+
         private void Update()
         {
             if (Health <= 0)
@@ -174,15 +186,19 @@ namespace Boss
                     Awaiting();
                     break;
                 case MaxiBestOfState.Attacking:
+                    isAwaiting = false;
                     Attacking();
                     break;
                 case MaxiBestOfState.Vulnerability_rightHand:
+                    isAwaiting = false;
                     Vulnerability(false);
                     break;
                 case MaxiBestOfState.Vulnerability_leftHand:
+                    isAwaiting = false;
                     Vulnerability(true);
                     break;
                 case MaxiBestOfState.Vulnerability_Head:
+                    isAwaiting = false;
                     HeadVulnerability();
                     break;
                 case MaxiBestOfState.Dying:
@@ -384,7 +400,8 @@ namespace Boss
         private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
         {
             //Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
-            ////Play an epic explosion animation
+ 
+           ////Play an epic explosion animation
             //for (int i = 0; i < radius; i++)
             //{
             //    if (colliders[i].gameObject.layer == 20)
@@ -394,7 +411,6 @@ namespace Boss
             //    }
             //}
         }
-
         #region Dying
         public void EnterDyingState()
         {
