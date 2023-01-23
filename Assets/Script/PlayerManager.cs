@@ -26,6 +26,15 @@ namespace player
             attackCollider.CloseCollider();
         }
         [SerializeField] PlayerTakeDamageCollider playerTakeDamageCollider;
+        public void CloseTakeDamageCollide()
+        {
+            playerTakeDamageCollider.CloseCollider();
+        }
+
+        public void OpenTakeDamageCollider()
+        {
+            playerTakeDamageCollider.OpenCollider();
+        }
 
         [Header("state")]
         [SerializeField] AttackType currentAttackType;
@@ -39,6 +48,8 @@ namespace player
             attackCollider.applyDamageToTarget.AddListener(target => target?.TakeDamageEvent?.Invoke(GetAttackAmount(currentAttackType)));
             playerTakeDamageCollider.takeDamage.AddListener(amount => AddDamage(amount));
             playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
+            playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
+            playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
         }
 
         public float GetAttackAmount(AttackType type)

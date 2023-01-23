@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isFlipped = false;
 
     public UnityEvent<AttackType> attackPerformed;
+    public UnityEvent StartDash;
+    public UnityEvent EndDash;
 
     private void Awake()
     {
@@ -212,6 +214,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashPool > 0)
         {
+            StartDash?.Invoke();
             camJuice.DashZoom();
             trailRenderer.emitting = true;
             isDashing = true;   
@@ -229,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(dashingTime);
+        EndDash?.Invoke();
         PlayDashAnimation(isFlipped, dashingDir.x, false);
         trailRenderer.emitting = false;
         if (animator.GetBool("isMoving"))

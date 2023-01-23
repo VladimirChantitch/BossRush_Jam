@@ -120,7 +120,10 @@ namespace Boss
 
             rightAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
             leftAttackCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
-            rightLaser.SetUpEvents(current_attack.damageAmount);
+            rightLaser.laserLeftCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            rightLaser.laserRightCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftLaser.laserLeftCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
+            leftLaser.laserRightCollider.applyDamageToTarget.AddListener(target => target?.takeDamage?.Invoke(GetCurrentDamage()));
 
             right_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
             left_vulnerability.vulnerabilirabilityDestroyed.AddListener(() => VulnerabilityFinished(true));
@@ -397,7 +400,8 @@ namespace Boss
         private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
         {
             //Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
-            ////Play an epic explosion animation
+ 
+           ////Play an epic explosion animation
             //for (int i = 0; i < radius; i++)
             //{
             //    if (colliders[i].gameObject.layer == 20)
@@ -407,7 +411,6 @@ namespace Boss
             //    }
             //}
         }
-
         #region Dying
         public void EnterDyingState()
         {

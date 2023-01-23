@@ -141,6 +141,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafed39c6c5c06942997ffaf98e9a239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1417067168 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 627820549, guid: a7c3ec1ced90fc449986697ed9bf8dea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1648582799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a391bdb4d42ee7843bf40937ef1c2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1646988404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1452103472, guid: a7c3ec1ced90fc449986697ed9bf8dea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1648582799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a391bdb4d42ee7843bf40937ef1c2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1648582799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,6 +176,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 220251638, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
+      propertyPath: boss_1_ShootLaser
+      value: 
+      objectReference: {fileID: 1646988404}
     - target: {fileID: 333233348, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: m_Layer
       value: 21
@@ -164,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 437252547, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
+      propertyPath: boss_1_ShootLaser
+      value: 
+      objectReference: {fileID: 1417067168}
     - target: {fileID: 627525737, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -178,11 +210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 786289546, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: health
-      value: 510
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 786289546, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: isPhaseTwo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 786289546, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: selectedHand
@@ -242,6 +274,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429003771, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452103472, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
+      propertyPath: isOpen
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1579498874, guid: a7c3ec1ced90fc449986697ed9bf8dea, type: 3}
