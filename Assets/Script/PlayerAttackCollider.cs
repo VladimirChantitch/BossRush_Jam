@@ -16,4 +16,16 @@ public class PlayerAttackCollider : AbstractTogglelableCollider
             applyDamageToTarget?.Invoke(collision.GetComponent<BossTakeDamageCollider>());
         }
     }
+
+    public override void OpenCollider()
+    {
+        transform.localPosition = Vector3.zero;
+        base.OpenCollider();
+    }
+
+    public override void CloseCollider()
+    {
+        transform.localPosition = Vector3.zero;
+        base.CloseCollider();
+    }
 }

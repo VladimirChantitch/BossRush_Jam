@@ -101,13 +101,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958683401}
-  m_LocalRotation: {x: 0, y: 0, z: -0.08411271, w: 0.9964563}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2509714, w: 0.9679946}
+  m_LocalPosition: {x: 1.3642291, y: 0.69640684, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2408959653254689962}
-  m_RootOrder: 1
+  m_Father: {fileID: 8729683369409788021}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -9.65}
 --- !u!50 &958683405
 Rigidbody2D:
@@ -118,17 +118,17 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958683401}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 1000
+  m_AngularDrag: 1000
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!61 &958683404
 BoxCollider2D:
@@ -137,7 +137,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958683401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -467,6 +467,9 @@ MonoBehaviour:
   dashVelocity: 55
   dashingTime: 0.2
   dashTMP: {fileID: 2348196337210004836}
+  attackPerformed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2348196337006595906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,12 +1339,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8b22aeca4dc5d4fb2472750d6409c9, type: 3}
---- !u!4 &2408959653254689962 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8890434006212828561, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6489531665170311483}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7942661251739710179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3762039477713001432, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
@@ -1362,15 +1359,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 150
   maxHealth: 150
+  playerMovement: {fileID: 0}
   attackDatas:
   - AttackType: 0
-    DamageAmount: 15
+    DamageAmount: -15
   - AttackType: 1
-    DamageAmount: 30
+    DamageAmount: -30
   multiplier: 1
   attackCollider: {fileID: 958683403}
   playerTakeDamageCollider: {fileID: 945650776}
   currentAttackType: 0
+--- !u!4 &8729683369409788021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2533664495703560526, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6489531665170311483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9147401861924334208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2665404399125201851, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
