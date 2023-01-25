@@ -1,0 +1,10 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Boss.save.DTO, Assembly-CSharp]], mscorlib",
+  "$values": [
+    {
+      "$type": "player.Player_DTO, Assembly-CSharp",
+      "CurrentHealth": 5742.0,
+      "MaxHealth": 8.746536E+11
+    }
+  ]
+}
