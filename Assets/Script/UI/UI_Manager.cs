@@ -14,9 +14,14 @@ namespace Boss.UI
         public enum CurrentScrenn { MainMenu, Hub, BossRoom }
 
         [SerializeField] CurrentScrenn currentScrenn;
+        public CurrentScrenn GetCurrentScreen()
+        {
+            return currentScrenn;
+        }
         public UnityEvent SaveGame = new UnityEvent();
         public UnityEvent LoadGame = new UnityEvent();
         public UnityEvent LoadNewScreen = new UnityEvent();
+        public UnityEvent DeleteSaveFile = new UnityEvent();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -60,7 +65,11 @@ namespace Boss.UI
             mainMenuController.Init(uIDocument.rootVisualElement);
 
             mainMenuController.continuEvent.AddListener(() => LoadGame?.Invoke());
-            mainMenuController.startEvent.AddListener(() => SceneManager.LoadScene("Hub"));
+            mainMenuController.startEvent.AddListener(() =>
+            {
+                DeleteSaveFile?.Invoke();
+                SceneManager.LoadScene("Hub");
+            });
         }
 
         public void Hub()

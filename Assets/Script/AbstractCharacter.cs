@@ -10,6 +10,15 @@ public abstract class AbstractCharacter : MonoBehaviour
     public float MaxHealth { get => maxHealth; }
     public string name { get; private set; }
 
+    protected void SetHealth(float value)
+    {
+        health = value;
+    }
+
+    protected void SetMaxHealth(float value)
+    {
+        maxHealth = value;
+    }
     /// <summary>
     /// take damage or heals character
     /// </summary>

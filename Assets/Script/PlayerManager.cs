@@ -1,3 +1,4 @@
+using Boss.save;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace player
 {
-    public class PlayerManager : AbstractCharacter
+    public class PlayerManager : AbstractCharacter, ISavable
     {
         [Header("services ref")]
         [SerializeField] PlayerMovement playerMovement;
@@ -17,6 +18,7 @@ namespace player
 
         [Header("Colliders refs")]
         [SerializeField] PlayerAttackCollider attackCollider;
+
         public void OpenAttackCollider()
         {
             attackCollider.OpenCollider();
@@ -57,6 +59,20 @@ namespace player
             float attack = attackDatas.Where(a => a.GetAttackType() == type).First().GetAttackDamage();
             return attack * multiplier;
         }
+
+        public DTO GetData()
+        {
+            return new Player_DTO(Health, MaxHealth);
+        }
+
+        public void LoadData(DTO dTO)
+        {
+            if (dTO is Player_DTO player_dto)
+            {
+                SetHealth(player_dto.CurrentHealth);
+                SetMaxHealth(player_dto.MaxHealth);
+            }
+        }
     }
 
     [Serializable]
@@ -80,6 +96,18 @@ namespace player
         {
             return DamageAmount;
         }
+    }
+
+    public class Player_DTO : DTO
+    {
+        public Player_DTO(float CurrentHealth, float MaxHealth)
+        {
+            this.CurrentHealth = CurrentHealth;
+            this.MaxHealth = MaxHealth;
+        }
+
+        public float CurrentHealth;
+        public float MaxHealth;
     }
 
     public enum AttackType
