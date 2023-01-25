@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
         currentScrenn = ui_manager.GetCurrentScreen();
 
-        if (currentScrenn != UI_Manager.CurrentScrenn.MainMenu)
+        if (currentScrenn == UI_Manager.CurrentScrenn.MainMenu)
         {
             saveManager.LoadGame();
         }

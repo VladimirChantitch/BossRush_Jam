@@ -76,13 +76,22 @@ namespace Boss.save
             JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented };
 
             string path = Directory.GetCurrentDirectory();
-            path = Directory.GetDirectories(path).ToList().Where(dir_path => dir_path.Contains("Saves")).ToList().First();
+
+            try
+            {
+                path = Directory.GetDirectories(path).ToList().Where(dir_path => dir_path.Contains("Saves")).ToList().First();
+            }
+            catch(Exception e)
+            {
+                Debug.Log("<color=red> No save files Yet </color>");
+                return saved_dtos;
+            }
+
 
             if (path == null || !path.Contains("Saves"))
             {
                 Debug.Log("<color=red> No save files Yet </color>");
                 return saved_dtos;
-
             }
             string save_path = Directory.GetFiles(path)[0];
 
@@ -102,8 +111,16 @@ namespace Boss.save
         public void DestroySaveFile()
         {
             string path = Directory.GetCurrentDirectory();
-            path = Directory.GetDirectories(path).ToList().Where(dir_path => dir_path.Contains("Saves")).ToList().First();
-            Directory.Delete(path, true);
+            try
+            {
+                path = Directory.GetDirectories(path)?.ToList()?.Where(dir_path => dir_path.Contains("Saves"))?.ToList()?.First();
+                Directory.Delete(path, true);
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
         }
     }
 
