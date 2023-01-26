@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Boss.stats;
 
 namespace Boss
 {
@@ -166,7 +167,7 @@ namespace Boss
 
         private void Update()
         {
-            if (Health <= 0)
+            if (GetStat(StatsType.health).Value <= 0)
             {
                 EnterDyingState();
             }
@@ -373,7 +374,7 @@ namespace Boss
 
         public void ExitHeadVulnerability()
         {
-            if (Health <= 0.5 * MaxHealth)
+            if (GetStat(StatsType.health).Value <= 0.5 * GetStat(StatsType.health).MaxValue)
             {
                 isPhaseTwo = true;
                 right_vulnerability.Reactivate();
@@ -382,7 +383,7 @@ namespace Boss
                 isRightDestroyed = false;
                 EnterAwaitingState();
             }
-            else if (Health <= 0)
+            else if (GetStat(StatsType.health).Value <= 0)
             {
                 EnterDyingState();
             }

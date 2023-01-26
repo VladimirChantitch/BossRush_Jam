@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Boss.stats;
 
 namespace player
 {
@@ -62,15 +63,20 @@ namespace player
 
         public DTO GetData()
         {
-            return new Player_DTO(Health, MaxHealth);
+            List<Stat_DTO> stats_dto = new List<Stat_DTO>();
+            stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
+            return new Player_DTO(stats_dto);
         }
 
         public void LoadData(DTO dTO)
         {
             if (dTO is Player_DTO player_dto)
             {
-                SetHealth(player_dto.CurrentHealth);
-                SetMaxHealth(player_dto.MaxHealth);
+                player_dto.Stats.ForEach(stat =>
+                {
+                    SetStat(false, stat.value, stat.statType);
+                    SetStat(false, stat.maxValue, stat.statType);
+                });
             }
         }
     }
@@ -100,14 +106,12 @@ namespace player
 
     public class Player_DTO : DTO
     {
-        public Player_DTO(float CurrentHealth, float MaxHealth)
+        public Player_DTO(List<Stat_DTO> stats)
         {
-            this.CurrentHealth = CurrentHealth;
-            this.MaxHealth = MaxHealth;
+            Stats = stats;
         }
 
-        public float CurrentHealth;
-        public float MaxHealth;
+        public List<Stat_DTO> Stats { get; private set; }
     }
 
     public enum AttackType
