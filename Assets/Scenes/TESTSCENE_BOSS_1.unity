@@ -129,18 +129,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2348196337018363107}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &669581393 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2348196337006595964, guid: b5ff194404c75514ea51b8740595642e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2348196337018363107}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafed39c6c5c06942997ffaf98e9a239, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1648582799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4011,62 +3999,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 958683402, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683402, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683403, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: applyDamageToTarget.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683403, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: applyDamageToTarget.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683403, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: applyDamageToTarget.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_Size.x
-      value: 6.770349
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_Offset.x
-      value: -3.635687
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.16865373
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_AutoTiling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_EdgeRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683405, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683405, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683405, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 958683405, guid: b5ff194404c75514ea51b8740595642e, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2348196337006595960, guid: b5ff194404c75514ea51b8740595642e,
         type: 3}
       propertyPath: m_Name
@@ -4126,26 +4058,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2348196337018363110, guid: b5ff194404c75514ea51b8740595642e,
-        type: 3}
-      propertyPath: playerMovement
-      value: 
-      objectReference: {fileID: 669581393}
-    - target: {fileID: 2348196337018363110, guid: b5ff194404c75514ea51b8740595642e,
-        type: 3}
-      propertyPath: stats.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2348196337018363110, guid: b5ff194404c75514ea51b8740595642e,
-        type: 3}
-      propertyPath: stats.Array.data[0].value
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2348196337018363110, guid: b5ff194404c75514ea51b8740595642e,
-        type: 3}
-      propertyPath: stats.Array.data[0].maxValue
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ff194404c75514ea51b8740595642e, type: 3}
