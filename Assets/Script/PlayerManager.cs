@@ -11,6 +11,20 @@ namespace player
 {
     public class PlayerManager : AbstractCharacter, ISavable
     {
+        [Header("Behaviour Mode")]
+        [SerializeField] Status status = Status.HubMode;
+        public void SetStatus(bool isReadyToFight)
+        {
+            if (isReadyToFight)
+            {
+                status = Status.BossMode;
+            }
+            else
+            {
+                status = Status.HubMode;
+            }
+        }
+
         [Header("services ref")]
         [SerializeField] PlayerMovement playerMovement;
 
@@ -45,15 +59,28 @@ namespace player
 
         private void Start()
         {
-            if (playerMovement == null)
+            if (status == Status.BossMode)
             {
-                playerMovement = FindObjectOfType<PlayerMovement>();
+                if (playerMovement == null)
+                {
+                    playerMovement = FindObjectOfType<PlayerMovement>();
+                }
+                attackCollider.applyDamageToTarget.AddListener(target => target?.TakeDamageEvent?.Invoke(GetAttackAmount(currentAttackType)));
+                playerTakeDamageCollider.takeDamage.AddListener(amount => AddDamage(amount));
+                playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
+                playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
+                playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
             }
-            attackCollider.applyDamageToTarget.AddListener(target => target?.TakeDamageEvent?.Invoke(GetAttackAmount(currentAttackType)));
-            playerTakeDamageCollider.takeDamage.AddListener(amount => AddDamage(amount));
-            playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
-            playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
-            playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
+            else if (status == Status.HubMode)
+            {
+                playerMovement.GetComponent<Rigidbody2D>().simulated = false;
+                playerMovement.defaultCollider2D.enabled = false;
+                playerMovement.defaultCollider3D.enabled = false;
+                playerMovement.groundCheckCollider.enabled = false;
+                playerMovement.jumpCollider2D.enabled = false;
+                playerMovement.jumpCollider3D.enabled = false;
+                playerMovement.enabled = false;
+            }
         }
 
         public float GetAttackAmount(AttackType type)
@@ -123,6 +150,12 @@ namespace player
     {
         normal, 
         big
+    }
+
+    public enum Status
+    {
+        HubMode, 
+        BossMode
     }
 }
 
