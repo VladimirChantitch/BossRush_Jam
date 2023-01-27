@@ -11,12 +11,11 @@ namespace Boss.UI
 {
     public class UI_Manager : MonoBehaviour
     {
-        public enum CurrentScrenn { MainMenu, Hub, BossRoom }
 
-        [SerializeField] CurrentScrenn currentScrenn;
-        public CurrentScrenn GetCurrentScreen()
+        [SerializeField] GameManager.CurrentScrenn currentScrenn;
+        public void SetCurrentScreen(GameManager.CurrentScrenn currentScrenn)
         {
-            return currentScrenn;
+            this.currentScrenn = currentScrenn; 
         }
         public UnityEvent SaveGame = new UnityEvent();
         public UnityEvent LoadGame = new UnityEvent();
@@ -41,13 +40,13 @@ namespace Boss.UI
         {
             switch (currentScrenn)
             {
-                case CurrentScrenn.MainMenu:
+                case GameManager.CurrentScrenn.MainMenu:
                     MainMenu();
                     break;
-                case CurrentScrenn.Hub:
+                case GameManager.CurrentScrenn.Hub:
                     Hub();
                     break;
-                case CurrentScrenn.BossRoom:
+                case GameManager.CurrentScrenn.BossRoom:
                     BossRoom();
                     break;
             }
@@ -55,7 +54,7 @@ namespace Boss.UI
 
         public void MainMenu()
         {
-            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
 
             Type[] types = new Type[1] { typeof(MainMenuController) };
             GameObject go = new GameObject("MainMenuController", types);
@@ -86,11 +85,11 @@ namespace Boss.UI
         {
 
         }
-            
+
         [Serializable]
         public class UI_Datafiles
         {
-            [SerializeField] CurrentScrenn CurrentScrenn;
+            [SerializeField] GameManager.CurrentScrenn CurrentScrenn;
             [SerializeField] VisualTreeAsset treeAsset;
 
             public VisualTreeAsset GetVisualTreeAsset()
@@ -98,7 +97,7 @@ namespace Boss.UI
                 return treeAsset;
             }
 
-            public CurrentScrenn GetScreen()
+            public GameManager.CurrentScrenn GetScreen()
             {
                 return CurrentScrenn;
             }

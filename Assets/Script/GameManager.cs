@@ -6,22 +6,24 @@ using Boss.save;
 
 public class GameManager : MonoBehaviour
 {
-   [SerializeField] UI_Manager ui_manager;
-   [SerializeField] SaveManager saveManager;
-    UI_Manager.CurrentScrenn currentScrenn;
+    public enum CurrentScrenn { MainMenu, Hub, BossRoom }
+
+    [SerializeField] UI_Manager ui_manager;
+    [SerializeField] SaveManager saveManager;
+    [SerializeField] CurrentScrenn currentScrenn;
 
     public bool Save;
     public bool Load;
 
     private void Start()
     {
+        ui_manager.SetCurrentScreen(currentScrenn);
+
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
         ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
         ui_manager.DeleteSaveFile.AddListener(() => saveManager.DestroySaveFile());
 
-        currentScrenn = ui_manager.GetCurrentScreen();
-
-        if (currentScrenn == UI_Manager.CurrentScrenn.MainMenu)
+        if (currentScrenn == CurrentScrenn.MainMenu)
         {
             saveManager.LoadGame();
         }
