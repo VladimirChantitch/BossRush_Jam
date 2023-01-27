@@ -80,6 +80,10 @@ namespace player
                 playerMovement.jumpCollider2D.enabled = false;
                 playerMovement.jumpCollider3D.enabled = false;
                 playerMovement.enabled = false;
+                GetComponentsInChildren<SpriteRenderer>().ToList().ForEach(sr =>
+                {
+                    sr.enabled = false;
+                });
             }
         }
 
