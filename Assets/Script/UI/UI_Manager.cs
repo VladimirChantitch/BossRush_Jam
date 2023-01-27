@@ -73,6 +73,8 @@ namespace Boss.UI
 
         public void Hub()
         {
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
+
             Type[] types = new Type[1] { typeof(HubManager) };
             GameObject go = new GameObject("HubManager", types);
             go.transform.parent = transform;
