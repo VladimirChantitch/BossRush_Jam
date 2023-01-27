@@ -11,7 +11,10 @@ public abstract class AbstractCharacter : MonoBehaviour
 {
     private void Start()
     {
-        inventory = inventory.Clone();
+        if (inventory != null)
+        {
+            inventory = inventory.Clone();
+        }
     }
     #region stats
     [SerializeField] protected List<Stat> stats = new List<Stat>()

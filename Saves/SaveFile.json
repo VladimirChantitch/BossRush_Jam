@@ -1,0 +1,37 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Boss.save.DTO, Assembly-CSharp]], mscorlib",
+  "$values": [
+    {
+      "$type": "player.Player_DTO, Assembly-CSharp",
+      "Stats": {
+        "$type": "System.Collections.Generic.List`1[[Boss.stats.Stat_DTO, Assembly-CSharp]], mscorlib",
+        "$values": [
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 200.0,
+            "maxValue": 200.0,
+            "statType": 0
+          }
+        ]
+      },
+      "Inventory": {
+        "$type": "Boss.inventory.Inventory_DTO, Assembly-CSharp",
+        "itemSlots": {
+          "$type": "System.Collections.Generic.List`1[[Boss.inventory.ItemSlot_DTO, Assembly-CSharp]], mscorlib",
+          "$values": [
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 12,
+              "path": "Assets/Objects/Test/Mediat.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 11,
+              "path": "Assets/Objects/Test/Poutre.asset"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
