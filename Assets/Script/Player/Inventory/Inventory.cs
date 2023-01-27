@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using Boss.save;
 using System.Linq;
+using static Boss.inventory.Inventory;
+using UnityEditor;
+using System.IO;
 
 namespace Boss.inventory
 {
@@ -13,14 +16,32 @@ namespace Boss.inventory
     {
         [SerializeField] List<ItemSlot> itemsSlots = new List<ItemSlot>();
 
-        public void LoadData()
+        public Inventory Clone()
         {
-            throw new NotImplementedException();
+            Inventory clone = new Inventory();
+            clone.itemsSlots.AddRange(itemsSlots);
+
+            return clone;
         }
 
-        public Inventory_DTO SaveInventory()
+        public void Load(Inventory_DTO inventory_DTO)
         {
-            throw new NotImplementedException();
+            itemsSlots.Clear();
+            inventory_DTO.itemSlots.ForEach(itemSlot_dto =>
+            {
+                itemsSlots.Add(new ItemSlot(itemSlot_dto));
+            });
+        }
+
+        public Inventory_DTO Save()
+        {
+            List<ItemSlot_DTO> itemSlot_DTOs = new List<ItemSlot_DTO>();
+            itemsSlots.ForEach(itemSlot =>
+            {
+                itemSlot_DTOs.Add(itemSlot.Save());
+            });
+
+            return new Inventory_DTO(itemSlot_DTOs);
         }
 
         public void AddItem(AbstractItem item, int amount = 1)
@@ -36,6 +57,30 @@ namespace Boss.inventory
             }
         }
 
+        public bool RemoveItem(AbstractItem item, int amount = -1)
+        {
+            ItemSlot itemSlot = itemsSlots.Where(itemSlot => itemSlot.Item == item).First();
+            if (itemSlot != null)
+            {
+                itemSlot.RemoveItem(amount);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal List<AbstractItem> GetItems()
+        {
+            List<AbstractItem> items = new List<AbstractItem>();
+            itemsSlots.ForEach(itemSlot =>
+            {
+                items.Add(itemSlot.Item);
+            });
+            return items;
+        }
+
         [Serializable]
         public class ItemSlot
         {
@@ -46,6 +91,13 @@ namespace Boss.inventory
                 this.item = item;
             }
 
+            public ItemSlot (ItemSlot_DTO dto)
+            {
+                this.amount = dto.amount;
+                this.item = (AbstractItem)AssetDatabase.LoadAssetAtPath(dto.path, typeof(AbstractItem));
+
+            }
+
             [SerializeField] int amount;
             [SerializeField] AbstractItem item;
 
@@ -54,7 +106,19 @@ namespace Boss.inventory
 
             public void AddItem(int amount)
             {
-                this.amount = amount;
+                this.amount += amount;
+            }
+
+            public void RemoveItem(int amount)
+            {
+                this.amount -= amount;
+            }
+
+            public ItemSlot_DTO Save()
+            {
+                string path = AssetDatabase.GetAssetPath(Item);
+
+                return new ItemSlot_DTO(amount, path);
             }
         }
     }
@@ -71,13 +135,13 @@ namespace Boss.inventory
 
     public class ItemSlot_DTO : DTO
     {
-        public ItemSlot_DTO(int amount, int id)
+        public ItemSlot_DTO(int amount, string path)
         {
             this.amount = amount;
-            this.id = id;
+            this.path = path;
         }
 
         public int amount { private set; get; }
-        public int id { private set; get; }
+        public string path { private set; get; }
     }
 }

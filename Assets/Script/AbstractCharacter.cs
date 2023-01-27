@@ -9,6 +9,10 @@ using Boss.stats;
 
 public abstract class AbstractCharacter : MonoBehaviour
 {
+    private void Start()
+    {
+        inventory = inventory.Clone();
+    }
     #region stats
     [SerializeField] protected List<Stat> stats = new List<Stat>()
     {
@@ -40,25 +44,38 @@ public abstract class AbstractCharacter : MonoBehaviour
     #region Inventory
     [SerializeField] protected Inventory inventory;
 
-    public void AddToInventory(AbstractItem item)
+    public void AddToInventory(AbstractItem item, int amount = 1)
     {
-        if (inventory == null)
+        if (inventory != null)
         {
-            throw new NotImplementedException();
+            inventory.AddItem(item, amount);
         }
     }
 
-    public void RemoveItem()
+    public bool RemoveItem(AbstractItem item, int amount = -1)
     {
-        if (inventory == null)
+        if (inventory != null)
         {
-            throw new NotImplementedException();
+            if (inventory.RemoveItem(item, amount))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+        return false;
     }
 
-    public AbstractItem GetItem(AbstractItem item)
+    public List<AbstractItem> GetItems()
     {
-        throw new NotImplementedException();
+        if (inventory != null)
+        {
+            return inventory.GetItems();
+        }
+
+        return new List<AbstractItem>();
     }
 
     #endregion

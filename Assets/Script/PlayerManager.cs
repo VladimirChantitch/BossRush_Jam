@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Boss.stats;
+using Boss.inventory;
 
 namespace player
 {
@@ -64,8 +65,10 @@ namespace player
         public DTO GetData()
         {
             List<Stat_DTO> stats_dto = new List<Stat_DTO>();
+            Inventory_DTO inventory_DTO = inventory.Save();
             stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
-            return new Player_DTO(stats_dto);
+
+            return new Player_DTO(stats_dto, inventory_DTO);
         }
 
         public void LoadData(DTO dTO)
@@ -106,12 +109,14 @@ namespace player
 
     public class Player_DTO : DTO
     {
-        public Player_DTO(List<Stat_DTO> stats)
+        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory)
         {
             Stats = stats;
+            Inventory = inventory;
         }
 
         public List<Stat_DTO> Stats { get; private set; }
+        public Inventory_DTO Inventory { get; private set; }
     }
 
     public enum AttackType
