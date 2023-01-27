@@ -1,12 +1,41 @@
 using Boss.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class HubManager : MonoBehaviour
 {
     public UnityEvent GoblinInteract = new UnityEvent();
+    public UnityEvent CrafterInteract = new UnityEvent();
+
+    VisualElement root;
+    List<UI_ItemSlot> itemSlots = new List<UI_ItemSlot>();
+    List<UI_ItemSlot> crafterSlots = new List<UI_ItemSlot>();
+
+    public void Init(VisualElement root)
+    {
+        this.root = root;
+        SetRefs();
+        BindEvents();
+    }
+
+    private void SetRefs()
+    {
+        List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().Where(c => c is UI_ItemSlot).ToList();
+        slots.ForEach(s => itemSlots.Add(s as UI_ItemSlot));
+        slots = root.Q<VisualElement>("Crafter").Children().Where(c => c is UI_ItemSlot).ToList();
+        slots.ForEach(s => crafterSlots.Add(s as UI_ItemSlot));
+    }
+
+
+    private void BindEvents()
+    {
+        throw new NotImplementedException();
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,6 +71,7 @@ public class HubManager : MonoBehaviour
                 GoblinInteract?.Invoke();
                 break;
             case HubInteractor.Interactables.Crafter:
+                CrafterInteract?.Invoke();
                 break;
             case HubInteractor.Interactables.Gauge:
                 break;
