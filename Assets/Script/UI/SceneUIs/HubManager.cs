@@ -16,6 +16,8 @@ public class HubManager : MonoBehaviour
     List<UI_ItemSlot> itemSlots = new List<UI_ItemSlot>();
     List<UI_ItemSlot> crafterSlots = new List<UI_ItemSlot>();
 
+    [SerializeField] HubInteractor currentHubInteractor;
+
     public void Init(VisualElement root)
     {
         this.root = root;
@@ -34,7 +36,7 @@ public class HubManager : MonoBehaviour
 
     private void BindEvents()
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); 
     }
 
     // Update is called once per frame

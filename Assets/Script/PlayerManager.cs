@@ -12,7 +12,7 @@ namespace player
     public class PlayerManager : AbstractCharacter, ISavable
     {
         [Header("Behaviour Mode")]
-        [SerializeField] Status status = Status.HubMode;
+        [SerializeField] Status status = Status.HubMode;    
         public void SetStatus(bool isReadyToFight)
         {
             if (isReadyToFight)
