@@ -46,17 +46,17 @@ namespace Boss.crafter
 
         private void CheckRecipy()
         {
-            List<Recipies> firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1]));
-            Recipies secondSelect = 
-                                                .Where(r => (r.Item_2 == items[0] || r.Item_2 == items[1])).First();
+            List<Recipies> firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1])).ToList();
+            if (firstSelected == null) FailledToCraft();
+            Recipies secondSelect = firstSelected.Find(r => (r.Item_2 == items[0] || r.Item_2 == items[1]));
 
-            if (firstSelected == null)
+            if (secondSelect == null)
             {
                 FailledToCraft();
             }
             else
             {
-                SucceedToCraft(firstSelected.Result);
+                SucceedToCraft(secondSelect.Result);
             }
         }
 

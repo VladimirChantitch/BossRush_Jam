@@ -63,7 +63,6 @@ public class HubManager : MonoBehaviour
         crafter.fail.AddListener((fail_dto) =>
         {
             crafterSlots.ForEach(c => c.Clean());
-            itemSlots.ForEach(c => c.Clean());
         });
 
         crafter.info.AddListener((dto) =>
@@ -81,6 +80,7 @@ public class HubManager : MonoBehaviour
                 c.isSelected = false;
             });
             CrafterSuccess?.Invoke(success_dto);
+            crafterRoot.visible = false;
         });
     }
 
@@ -108,7 +108,7 @@ public class HubManager : MonoBehaviour
     private void HandleInteractable(HubInteractor interactable)
     {
         interactable.interacts?.Invoke();
-        CloseAllPopUp();
+        //CloseAllPopUp();
         switch (interactable.interactables)
         {
             case HubInteractor.Interactables.Door:

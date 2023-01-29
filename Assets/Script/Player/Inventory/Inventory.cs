@@ -46,7 +46,7 @@ namespace Boss.inventory
 
         public void AddItem(AbstractItem item, int amount = 1)
         {
-            ItemSlot itemSlot = itemsSlots.Where(itemSlot => itemSlot.Item == item).First();
+            ItemSlot itemSlot = itemsSlots.Find(itemSlot => itemSlot.Item == item);
             if (itemSlot != null)
             {
                 itemSlot.AddItem(amount);
