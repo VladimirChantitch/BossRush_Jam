@@ -55,7 +55,7 @@ public abstract class AbstractCharacter : MonoBehaviour
         }
     }
 
-    public bool RemoveItem(AbstractItem item, int amount = -1)
+    public bool RemoveFromInventory(AbstractItem item, int amount = -1)
     {
         if (inventory != null)
         {

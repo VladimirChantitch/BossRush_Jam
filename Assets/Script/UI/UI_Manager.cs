@@ -1,3 +1,5 @@
+using Boss.inventory;
+using player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +23,8 @@ namespace Boss.UI
         public UnityEvent LoadGame = new UnityEvent();
         public UnityEvent LoadNewScreen = new UnityEvent();
         public UnityEvent DeleteSaveFile = new UnityEvent();
+        public UnityEvent<CrafterSuccessDTO> CrafterSuccess = new UnityEvent<CrafterSuccessDTO>();
+        public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -36,7 +40,7 @@ namespace Boss.UI
             }
         }
 
-        private void Start()
+        public void Init()
         {
             switch (currentScrenn)
             {
@@ -81,6 +85,16 @@ namespace Boss.UI
 
             hubManager = go.GetComponent<HubManager>();
             hubManager.GoblinInteract.AddListener(() => Debug.Log("I'm a goblin"));
+            hubManager.CrafterSuccess.AddListener(succes_dto =>
+            {
+                CrafterSuccess?.Invoke(succes_dto);
+            });
+            hubManager.AskOfrInventory.AddListener(action =>
+            {
+                AskOfrInventory?.Invoke(action);
+            });
+
+            hubManager.Init(uIDocument.rootVisualElement);
         }
 
         public void BossRoom()

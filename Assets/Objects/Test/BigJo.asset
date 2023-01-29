@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
-  m_Name: Poutre
+  m_Script: {fileID: 11500000, guid: a49fa7c9610f7f64a9725dc01607554e, type: 3}
+  m_Name: BigJo
   m_EditorClassIdentifier: 
-  itemName: Poutre
-  description: "Past\xE8que"
+  itemName: 
+  description: 
   prefab: {fileID: 0}
-  icon: {fileID: -846957400024657625, guid: 63a25069b1c3aa645912c6bff3f56294, type: 3}
+  icon: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  BossFight: {fileID: 0}

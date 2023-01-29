@@ -339,5 +339,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: HubPrefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7019866638778059677, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}
+--- !u!1 &1734603900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019866638778059678, guid: f105a5bcd6ee86346bd47628813adce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1734603899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1734603901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734603900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61abd425ab08119488597b44a1749760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactables: 0
+  interacts:
+    m_PersistentCalls:
+      m_Calls: []
+  recipies:
+  - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
+  failled:
+    m_PersistentCalls:
+      m_Calls: []
+  success:
+    m_PersistentCalls:
+      m_Calls: []

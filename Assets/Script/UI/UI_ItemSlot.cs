@@ -18,10 +18,12 @@ public class UI_ItemSlot : Button
         Init();
     }
 
-    UnityEvent<AbstractItem> ItemSelected = new UnityEvent<AbstractItem>();
-    UnityEvent<AbstractItem> ItemDeselected = new UnityEvent<AbstractItem>();
-    bool isSelected;
+    public UnityEvent<AbstractItem> ItemSelected = new UnityEvent<AbstractItem>();
+    public UnityEvent<AbstractItem> ItemDeselected = new UnityEvent<AbstractItem>();
+    public bool isSelected;
     string overriderClass;
+    AbstractItem Item;
+
 
     private void Init()
     {
@@ -69,6 +71,15 @@ public class UI_ItemSlot : Button
         };
     }
 
+    public void Clean()
+    {
+        RemoveFromClassList("SlotSelected");
+        Item = null;
+        style.backgroundImage = null;
+        AddToClassList("Slot");
+        isSelected = false;
+    }
+
     private void InitIcon()
     {
         StyleBackground styleBackground = new StyleBackground();
@@ -78,5 +89,5 @@ public class UI_ItemSlot : Button
         style.backgroundImage = styleBackground;
     }
 
-    AbstractItem Item;
+
 }
