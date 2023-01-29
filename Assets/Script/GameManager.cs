@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //playerManager = FindObjectOfType<PlayerManager>();
-
         ui_manager.SetCurrentScreen(currentScrenn);
         ui_manager.Init();
 

@@ -88,6 +88,4 @@ public class UI_ItemSlot : Button
         styleBackground.value = background;
         style.backgroundImage = styleBackground;
     }
-
-
 }

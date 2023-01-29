@@ -12,8 +12,10 @@ namespace Boss.crafter
     public class Crafter : HubInteractor
     {
         [SerializeField] List<Recipies> recipies = new List<Recipies>();
-        public UnityEvent<CrafterFailledDTO> failled = new UnityEvent<CrafterFailledDTO>();
+        public UnityEvent<CrafterDTO> info = new UnityEvent<CrafterDTO>();
+        public UnityEvent<CrafterDTO> fail = new UnityEvent<CrafterDTO>();
         public UnityEvent<CrafterSuccessDTO> success = new UnityEvent<CrafterSuccessDTO>();
+
 
         AbstractItem[] items = new AbstractItem[2];
 
@@ -38,11 +40,13 @@ namespace Boss.crafter
             {
                 CheckRecipy();
             }
+
+            info?.Invoke(new CrafterDTO(items[0], items[1]));
         }
 
         private void CheckRecipy()
         {
-            Recipies firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1]))
+            Recipies firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1]))?
                                                 .Where(r => (r.Item_2 == items[0] || r.Item_2 == items[1])).First();
 
             if (firstSelected == null)
@@ -71,7 +75,7 @@ namespace Boss.crafter
 
         private void FailledToCraft()
         {
-            failled?.Invoke(new CrafterFailledDTO(items[0], items[1]));
+            fail?.Invoke(new CrafterDTO(items[0], items[1]));
         }
 
         private void SucceedToCraft(AbstractItem sacrifice)
@@ -95,9 +99,9 @@ public class CrafterSuccessDTO
     public AbstractItem resutl;
 }
 
-public class CrafterFailledDTO
+public class CrafterDTO
 {
-    public CrafterFailledDTO(AbstractItem i1, AbstractItem i2)
+    public CrafterDTO(AbstractItem i1, AbstractItem i2)
     {
         item_1 = i1;
         item_2 = i2;

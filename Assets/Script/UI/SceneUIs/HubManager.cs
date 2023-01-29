@@ -37,9 +37,9 @@ public class HubManager : MonoBehaviour
     {
         crafterRoot = root.Q<VisualElement>("CrafterPopUp");
         crafterRoot.visible = false;
-        List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().Where(c => c is UI_ItemSlot).ToList();
+        List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().ToList();
         slots.ForEach(s => itemSlots.Add(s as UI_ItemSlot));
-        slots = root.Q<VisualElement>("Crafter").Children().Where(c => c is UI_ItemSlot).ToList();
+        slots = root.Q<VisualElement>("Crafter").Children().ToList();
         slots.ForEach(s => crafterSlots.Add(s as UI_ItemSlot));
     }
 
@@ -60,10 +60,16 @@ public class HubManager : MonoBehaviour
         });
 
         //CrafterEvents
-        crafter.failled.AddListener((fail_dto) =>
+        crafter.fail.AddListener((fail_dto) =>
         {
-            crafterSlots.ForEach(c => c.Clean());
-            itemSlots.ForEach(c => c.Clean());
+            CleanSlots();
+        });
+
+        crafter.info.AddListener((dto) =>
+        {
+            CleanSlots();
+            crafterSlots[0].Init(dto.item_1);
+            crafterSlots[1].Init(dto.item_2);
         });
 
         crafter.success.AddListener((success_dto) =>
@@ -132,6 +138,8 @@ public class HubManager : MonoBehaviour
     private void CloseAllPopUp()
     {
         crafterRoot.visible = false;
+        CleanSlots();
+        
     }
 
     private void OpenCrafterMenu()
@@ -141,10 +149,17 @@ public class HubManager : MonoBehaviour
 
     }
 
+    private void CleanSlots()
+    {
+        crafterSlots.ForEach(c => c.Clean());
+        itemSlots.ForEach(c => c.Clean());
+    }
+
     public void SetItemSlots(List<AbstractItem> items) 
     {
         for(int i =0; i < items.Count; i++)
         {
+            Debug.Log(items[i]);
             itemSlots[i].Init(items[i]);
         }
     }
