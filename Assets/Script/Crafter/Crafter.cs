@@ -46,7 +46,8 @@ namespace Boss.crafter
 
         private void CheckRecipy()
         {
-            Recipies firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1]))?
+            List<Recipies> firstSelected = recipies.Where(r => (r.Item_1 == items[0] || r.Item_1 == items[1]));
+            Recipies secondSelect = 
                                                 .Where(r => (r.Item_2 == items[0] || r.Item_2 == items[1])).First();
 
             if (firstSelected == null)

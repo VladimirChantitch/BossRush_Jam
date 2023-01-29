@@ -62,14 +62,15 @@ public class HubManager : MonoBehaviour
         //CrafterEvents
         crafter.fail.AddListener((fail_dto) =>
         {
-            CleanSlots();
+            crafterSlots.ForEach(c => c.Clean());
+            itemSlots.ForEach(c => c.Clean());
         });
 
         crafter.info.AddListener((dto) =>
         {
-            CleanSlots();
-            crafterSlots[0].Init(dto.item_1);
-            crafterSlots[1].Init(dto.item_2);
+            crafterSlots.ForEach(c => c.Clean());
+            if (dto.item_1 != null) crafterSlots[0].Init(dto.item_1);
+            if (dto.item_2 != null) crafterSlots[1].Init(dto.item_2);
         });
 
         crafter.success.AddListener((success_dto) =>
@@ -138,8 +139,8 @@ public class HubManager : MonoBehaviour
     private void CloseAllPopUp()
     {
         crafterRoot.visible = false;
-        CleanSlots();
-        
+        crafterSlots.ForEach(c => c.Clean());
+        itemSlots.ForEach(c => c.Clean());
     }
 
     private void OpenCrafterMenu()
@@ -147,12 +148,6 @@ public class HubManager : MonoBehaviour
         crafterRoot.visible = true;
         AskOfrInventory?.Invoke(i => SetItemSlots(i));
 
-    }
-
-    private void CleanSlots()
-    {
-        crafterSlots.ForEach(c => c.Clean());
-        itemSlots.ForEach(c => c.Clean());
     }
 
     public void SetItemSlots(List<AbstractItem> items) 
