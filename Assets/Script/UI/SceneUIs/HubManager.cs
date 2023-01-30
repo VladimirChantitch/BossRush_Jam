@@ -81,6 +81,8 @@ public class HubManager : MonoBehaviour
             });
             CrafterSuccess?.Invoke(success_dto);
             crafterRoot.visible = false;
+
+            Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
         });
 
         crafter.onDeselect.AddListener(item =>
