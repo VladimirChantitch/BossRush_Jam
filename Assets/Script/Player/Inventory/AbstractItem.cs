@@ -10,9 +10,11 @@ namespace Boss.inventory
         [SerializeField] string itemName;
         [SerializeField] string description;
         [SerializeField] GameObject prefab;
+        [SerializeField] Sprite icon;
 
         public string ItemName { get => itemName; }
         public string Description { get => description; }
         public GameObject Prefab { get => prefab; }
+        public Sprite Icon { get => icon; }
     }
 }

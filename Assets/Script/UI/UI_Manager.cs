@@ -1,3 +1,5 @@
+using Boss.inventory;
+using player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,17 +13,18 @@ namespace Boss.UI
 {
     public class UI_Manager : MonoBehaviour
     {
-        public enum CurrentScrenn { MainMenu, Hub, BossRoom }
 
-        [SerializeField] CurrentScrenn currentScrenn;
-        public CurrentScrenn GetCurrentScreen()
+        [SerializeField] GameManager.CurrentScrenn currentScrenn;
+        public void SetCurrentScreen(GameManager.CurrentScrenn currentScrenn)
         {
-            return currentScrenn;
+            this.currentScrenn = currentScrenn; 
         }
         public UnityEvent SaveGame = new UnityEvent();
         public UnityEvent LoadGame = new UnityEvent();
         public UnityEvent LoadNewScreen = new UnityEvent();
         public UnityEvent DeleteSaveFile = new UnityEvent();
+        public UnityEvent<CrafterSuccessDTO> CrafterSuccess = new UnityEvent<CrafterSuccessDTO>();
+        public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -37,17 +40,17 @@ namespace Boss.UI
             }
         }
 
-        private void Start()
+        public void Init()
         {
             switch (currentScrenn)
             {
-                case CurrentScrenn.MainMenu:
+                case GameManager.CurrentScrenn.MainMenu:
                     MainMenu();
                     break;
-                case CurrentScrenn.Hub:
+                case GameManager.CurrentScrenn.Hub:
                     Hub();
                     break;
-                case CurrentScrenn.BossRoom:
+                case GameManager.CurrentScrenn.BossRoom:
                     BossRoom();
                     break;
             }
@@ -55,7 +58,7 @@ namespace Boss.UI
 
         public void MainMenu()
         {
-            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
 
             Type[] types = new Type[1] { typeof(MainMenuController) };
             GameObject go = new GameObject("MainMenuController", types);
@@ -74,23 +77,35 @@ namespace Boss.UI
 
         public void Hub()
         {
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
+
             Type[] types = new Type[1] { typeof(HubManager) };
             GameObject go = new GameObject("HubManager", types);
             go.transform.parent = transform;
 
             hubManager = go.GetComponent<HubManager>();
             hubManager.GoblinInteract.AddListener(() => Debug.Log("I'm a goblin"));
+            hubManager.CrafterSuccess.AddListener(succes_dto =>
+            {
+                CrafterSuccess?.Invoke(succes_dto);
+            });
+            hubManager.AskOfrInventory.AddListener(action =>
+            {
+                AskOfrInventory?.Invoke(action);
+            });
+
+            hubManager.Init(uIDocument.rootVisualElement);
         }
 
         public void BossRoom()
         {
 
         }
-            
+
         [Serializable]
         public class UI_Datafiles
         {
-            [SerializeField] CurrentScrenn CurrentScrenn;
+            [SerializeField] GameManager.CurrentScrenn CurrentScrenn;
             [SerializeField] VisualTreeAsset treeAsset;
 
             public VisualTreeAsset GetVisualTreeAsset()
@@ -98,7 +113,7 @@ namespace Boss.UI
                 return treeAsset;
             }
 
-            public CurrentScrenn GetScreen()
+            public GameManager.CurrentScrenn GetScreen()
             {
                 return CurrentScrenn;
             }
