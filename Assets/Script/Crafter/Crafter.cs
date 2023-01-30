@@ -12,9 +12,10 @@ namespace Boss.crafter
     public class Crafter : HubInteractor
     {
         [SerializeField] List<Recipies> recipies = new List<Recipies>();
-        public UnityEvent<CrafterDTO> info = new UnityEvent<CrafterDTO>();
-        public UnityEvent<CrafterDTO> fail = new UnityEvent<CrafterDTO>();
-        public UnityEvent<CrafterSuccessDTO> success = new UnityEvent<CrafterSuccessDTO>();
+        public UnityEvent<CrafterDTO> onInfo = new UnityEvent<CrafterDTO>();
+        public UnityEvent<CrafterDTO> onFail = new UnityEvent<CrafterDTO>();
+        public UnityEvent<CrafterSuccessDTO> onSuccess = new UnityEvent<CrafterSuccessDTO>();
+        public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
 
 
         AbstractItem[] items = new AbstractItem[2];
@@ -32,6 +33,7 @@ namespace Boss.crafter
             }
             else
             {
+                onDeselect?.Invoke(items[1]);
                 items[1] = items[0];
                 items[0] = item;
             }
@@ -41,7 +43,7 @@ namespace Boss.crafter
                 CheckRecipy();
             }
 
-            info?.Invoke(new CrafterDTO(items[0], items[1]));
+            onInfo?.Invoke(new CrafterDTO(items[0], items[1]));
         }
 
         private void CheckRecipy()
@@ -76,12 +78,12 @@ namespace Boss.crafter
 
         private void FailledToCraft()
         {
-            fail?.Invoke(new CrafterDTO(items[0], items[1]));
+            onFail?.Invoke(new CrafterDTO(items[0], items[1]));
         }
 
         private void SucceedToCraft(AbstractItem sacrifice)
         {
-            success.Invoke(new CrafterSuccessDTO(items[0], items[1], sacrifice));
+            onSuccess.Invoke(new CrafterSuccessDTO(items[0], items[1], sacrifice));
         }
     }
 }

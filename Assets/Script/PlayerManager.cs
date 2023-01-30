@@ -59,6 +59,7 @@ namespace player
 
         private void Start()
         {
+            base.Init();
             if (status == Status.BossMode)
             {
                 if (playerMovement == null)

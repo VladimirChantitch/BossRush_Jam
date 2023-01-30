@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool Save;
     public bool Load;
+    [SerializeField] bool AutoLoad;
 
     private void Start()
     {
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
             playerManager.AddToInventory(sucess_DTO.resutl);
         });
 
-        if (currentScrenn == CurrentScrenn.MainMenu)
+        if (AutoLoad)
         {
             saveManager.LoadGame();
         }

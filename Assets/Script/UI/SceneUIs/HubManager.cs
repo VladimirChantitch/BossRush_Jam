@@ -60,19 +60,19 @@ public class HubManager : MonoBehaviour
         });
 
         //CrafterEvents
-        crafter.fail.AddListener((fail_dto) =>
+        crafter.onFail.AddListener((fail_dto) =>
         {
             crafterSlots.ForEach(c => c.Clean());
         });
 
-        crafter.info.AddListener((dto) =>
+        crafter.onInfo.AddListener((dto) =>
         {
             crafterSlots.ForEach(c => c.Clean());
             if (dto.item_1 != null) crafterSlots[0].Init(dto.item_1);
             if (dto.item_2 != null) crafterSlots[1].Init(dto.item_2);
         });
 
-        crafter.success.AddListener((success_dto) =>
+        crafter.onSuccess.AddListener((success_dto) =>
         {
             crafterSlots.ForEach(c => c.Clean());
             itemSlots.ForEach(c => {
@@ -81,6 +81,11 @@ public class HubManager : MonoBehaviour
             });
             CrafterSuccess?.Invoke(success_dto);
             crafterRoot.visible = false;
+        });
+
+        crafter.onDeselect.AddListener(item =>
+        {
+            itemSlots.Find(i => i.Item == item).RemoveOverriderClass();
         });
     }
 
@@ -154,7 +159,6 @@ public class HubManager : MonoBehaviour
     {
         for(int i =0; i < items.Count; i++)
         {
-            Debug.Log(items[i]);
             itemSlots[i].Init(items[i]);
         }
     }

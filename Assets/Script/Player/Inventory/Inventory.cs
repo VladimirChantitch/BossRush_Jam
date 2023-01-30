@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using Boss.save;
 using System.Linq;
-using static Boss.inventory.Inventory;
 using UnityEditor;
 using System.IO;
 
@@ -18,8 +17,13 @@ namespace Boss.inventory
 
         public Inventory Clone()
         {
-            Inventory clone = new Inventory();
-            clone.itemsSlots.AddRange(itemsSlots);
+            Inventory clone = (Inventory)CreateInstance($"{typeof(Inventory)}");
+            itemsSlots.ForEach(i =>
+            {
+                clone.itemsSlots.Add(new ItemSlot(i.Amount, i.Item));
+            });
+
+            clone.name = "Clone_" + name;
 
             return clone;
         }
@@ -62,7 +66,10 @@ namespace Boss.inventory
             ItemSlot itemSlot = itemsSlots.Where(itemSlot => itemSlot.Item == item).First();
             if (itemSlot != null)
             {
-                itemSlot.RemoveItem(amount);
+                if (itemSlot.RemoveItem(amount))
+                {
+                    itemsSlots.Remove(itemSlot);
+                }
                 return true;
             }
             else
@@ -109,9 +116,14 @@ namespace Boss.inventory
                 this.amount += amount;
             }
 
-            public void RemoveItem(int amount)
+            public bool RemoveItem(int amount)
             {
                 this.amount -= amount;
+                if (this.amount <= 0)
+                {
+                    return true;
+                }
+                return false;
             }
 
             public ItemSlot_DTO Save()

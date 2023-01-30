@@ -9,11 +9,15 @@ using Boss.stats;
 
 public abstract class AbstractCharacter : MonoBehaviour
 {
-    private void Start()
+    protected virtual void Init()
     {
         if (inventory != null)
         {
             inventory = inventory.Clone();
+        }
+        else
+        {
+            inventory = (Inventory)ScriptableObject.CreateInstance($"{typeof(Inventory)}");
         }
     }
     #region stats
@@ -55,7 +59,7 @@ public abstract class AbstractCharacter : MonoBehaviour
         }
     }
 
-    public bool RemoveFromInventory(AbstractItem item, int amount = -1)
+    public bool RemoveFromInventory(AbstractItem item, int amount = 1)
     {
         if (inventory != null)
         {

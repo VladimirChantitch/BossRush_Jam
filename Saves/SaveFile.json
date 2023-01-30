@@ -21,17 +21,7 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 25,
-              "path": "Assets/Objects/Test/Mediat.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 11,
-              "path": "Assets/Objects/Test/Poutre.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 16,
+              "amount": 7,
               "path": "Assets/Objects/Test/fraise.asset"
             },
             {
@@ -41,7 +31,7 @@
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 9,
+              "amount": 1,
               "path": "Assets/Objects/Test/BigJo.asset"
             }
           ]

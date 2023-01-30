@@ -22,7 +22,7 @@ public class UI_ItemSlot : Button
     public UnityEvent<AbstractItem> ItemDeselected = new UnityEvent<AbstractItem>();
     public bool isSelected;
     string overriderClass;
-    AbstractItem Item;
+    public AbstractItem Item { get; private set; }
 
 
     private void Init()
@@ -47,7 +47,10 @@ public class UI_ItemSlot : Button
 
     public void RemoveOverriderClass()
     {
-        RemoveFromClassList(overriderClass);
+        RemoveFromClassList("SlotSelected");
+        RemoveFromClassList("Slot");
+        AddToClassList("Slot");
+        isSelected = false; 
     }
 
     private void BindEvents()
@@ -82,6 +85,8 @@ public class UI_ItemSlot : Button
 
     private void InitIcon()
     {
+        RemoveFromClassList("Slot");
+        AddToClassList("Slot");
         StyleBackground styleBackground = new StyleBackground();
         Background background = new Background();
         background.sprite = Item.Icon;
