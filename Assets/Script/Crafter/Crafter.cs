@@ -12,9 +12,9 @@ namespace Boss.crafter
     public class Crafter : HubInteractor
     {
         [SerializeField] List<Recipies> recipies = new List<Recipies>();
-        public UnityEvent<CrafterDTO> onInfo = new UnityEvent<CrafterDTO>();
-        public UnityEvent<CrafterDTO> onFail = new UnityEvent<CrafterDTO>();
-        public UnityEvent<CrafterSuccessDTO> onSuccess = new UnityEvent<CrafterSuccessDTO>();
+        public UnityEvent<CrafterData> onInfo = new UnityEvent<CrafterData>();
+        public UnityEvent<CrafterData> onFail = new UnityEvent<CrafterData>();
+        public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
 
 
@@ -43,7 +43,7 @@ namespace Boss.crafter
                 CheckRecipy();
             }
 
-            onInfo?.Invoke(new CrafterDTO(items[0], items[1]));
+            onInfo?.Invoke(new CrafterData(items[0], items[1]));
         }
 
         private void CheckRecipy()
@@ -78,20 +78,20 @@ namespace Boss.crafter
 
         private void FailledToCraft()
         {
-            onFail?.Invoke(new CrafterDTO(items[0], items[1]));
+            onFail?.Invoke(new CrafterData(items[0], items[1]));
         }
 
         private void SucceedToCraft(AbstractItem sacrifice)
         {
-            onSuccess.Invoke(new CrafterSuccessDTO(items[0], items[1], sacrifice));
+            onSuccess.Invoke(new CrafterSuccessData(items[0], items[1], sacrifice));
         }
     }
 }
 
 
-public class CrafterSuccessDTO
+public class CrafterSuccessData
 {
-    public CrafterSuccessDTO(AbstractItem i1, AbstractItem i2, AbstractItem success)
+    public CrafterSuccessData(AbstractItem i1, AbstractItem i2, AbstractItem success)
     {
         item_1 = i1;
         item_2 = i2;
@@ -102,9 +102,9 @@ public class CrafterSuccessDTO
     public AbstractItem resutl;
 }
 
-public class CrafterDTO
+public class CrafterData
 {
-    public CrafterDTO(AbstractItem i1, AbstractItem i2)
+    public CrafterData(AbstractItem i1, AbstractItem i2)
     {
         item_1 = i1;
         item_2 = i2;

@@ -1,4 +1,5 @@
 using Boss.inventory;
+using Boss.loot;
 using player;
 using System;
 using System.Collections;
@@ -19,12 +20,12 @@ namespace Boss.UI
         {
             this.currentScrenn = currentScrenn; 
         }
-        public UnityEvent SaveGame = new UnityEvent();
-        public UnityEvent LoadGame = new UnityEvent();
-        public UnityEvent LoadNewScreen = new UnityEvent();
-        public UnityEvent DeleteSaveFile = new UnityEvent();
-        public UnityEvent<CrafterSuccessDTO> CrafterSuccess = new UnityEvent<CrafterSuccessDTO>();
-        public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        [HideInInspector] public UnityEvent SaveGame = new UnityEvent();
+        [HideInInspector] public UnityEvent LoadGame = new UnityEvent();
+        [HideInInspector] public UnityEvent LoadNewScreen = new UnityEvent();
+        [HideInInspector] public UnityEvent DeleteSaveFile = new UnityEvent();
+        [HideInInspector] public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
+        [HideInInspector] public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -56,6 +57,7 @@ namespace Boss.UI
             }
         }
 
+        #region mainMenu
         public void MainMenu()
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
@@ -74,7 +76,9 @@ namespace Boss.UI
                 SceneManager.LoadScene("Hub");
             });
         }
+        #endregion
 
+        #region hub
         public void Hub()
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
@@ -96,11 +100,30 @@ namespace Boss.UI
 
             hubManager.Init(uIDocument.rootVisualElement);
         }
+        #endregion
+
+        #region boss
+        /// <summary>
+        /// When the fight has finished and the boss gives loots 
+        /// </summary>
+        /// <param name="bossLootData"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void ShowLoots(BossLootData bossLootData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void BossFinished()
+        {
+            throw new NotImplementedException();
+        }
 
         public void BossRoom()
         {
-
+            throw new NotImplementedException();
         }
+
+        #endregion
 
         [Serializable]
         public class UI_Datafiles

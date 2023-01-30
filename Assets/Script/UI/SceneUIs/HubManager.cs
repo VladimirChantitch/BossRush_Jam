@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 public class HubManager : MonoBehaviour
 {
     public UnityEvent GoblinInteract = new UnityEvent();
-    public UnityEvent<CrafterSuccessDTO> CrafterSuccess = new UnityEvent<CrafterSuccessDTO>();
+    public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
     public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
 
     VisualElement root;

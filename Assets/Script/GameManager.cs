@@ -5,6 +5,7 @@ using Boss.UI;
 using Boss.save;
 using player;
 using Boss.inventory;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] UI_Manager ui_manager;
     [SerializeField] SaveManager saveManager;
     [SerializeField] PlayerManager playerManager;
+    [SerializeField] BossCharacter bossCharacter;
     [SerializeField] CurrentScrenn currentScrenn;
 
     public bool Save;
@@ -20,6 +22,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool AutoLoad;
 
     private void Start()
+    {
+        SetUIManagerEvents();
+        SetBossCharacterEvent();
+        SetPlayerManagerEvents();
+
+        if (AutoLoad)
+        {
+            saveManager.LoadGame();
+        }
+    }
+
+    private void SetUIManagerEvents()
     {
         ui_manager.SetCurrentScreen(currentScrenn);
         ui_manager.Init();
@@ -39,11 +53,22 @@ public class GameManager : MonoBehaviour
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
             playerManager.AddToInventory(sucess_DTO.resutl);
         });
+    }
 
-        if (AutoLoad)
+    private void SetBossCharacterEvent()
+    {
+        bossCharacter.onLoot.AddListener(data =>
         {
-            saveManager.LoadGame();
-        }
+            ui_manager.ShowLoots(data);
+            playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
+        });
+
+        bossCharacter.onBossDead.AddListener(() => ui_manager.BossFinished());
+    }
+
+    private void SetPlayerManagerEvents()
+    {
+        playerManager.onPlayerDead.AddListener(() => ui_manager.BossFinished());
     }
 
     private void Update()
