@@ -126,7 +126,7 @@ public class HubManager : MonoBehaviour
                 GoblinInteract?.Invoke();
                 break;
             case HubInteractor.Interactables.Crafter:
-                OpenCrafterMenu();
+                OpenCrafterMenu(interactable);
                 break;
             case HubInteractor.Interactables.Gauge:
                 break;
@@ -150,11 +150,15 @@ public class HubManager : MonoBehaviour
         itemSlots.ForEach(c => c.Clean());
     }
 
-    private void OpenCrafterMenu()
+    private void OpenCrafterMenu(HubInteractor hubInteractor)
     {
         crafterRoot.visible = true;
         AskOfrInventory?.Invoke(i => SetItemSlots(i));
-
+        //crafterRoot.transform.position = hubInteractor.transform.position;
+        //crafterRoot.style.right = 0;
+        //crafterRoot.style.left = 0;
+        //crafterRoot.style.top = 0;
+        //crafterRoot.style.
     }
 
     public void SetItemSlots(List<AbstractItem> items) 

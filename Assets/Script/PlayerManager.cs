@@ -74,13 +74,17 @@ namespace player
             }
             else if (status == Status.HubMode)
             {
-                playerMovement.GetComponent<Rigidbody2D>().simulated = false;
-                playerMovement.defaultCollider2D.enabled = false;
-                playerMovement.defaultCollider3D.enabled = false;
-                playerMovement.groundCheckCollider.enabled = false;
-                playerMovement.jumpCollider2D.enabled = false;
-                playerMovement.jumpCollider3D.enabled = false;
-                playerMovement.enabled = false;
+                if (playerMovement != null)
+                {
+                    playerMovement.GetComponent<Rigidbody2D>().simulated = false;
+                    playerMovement.defaultCollider2D.enabled = false;
+                    playerMovement.defaultCollider3D.enabled = false;
+                    playerMovement.groundCheckCollider.enabled = false;
+                    playerMovement.jumpCollider2D.enabled = false;
+                    playerMovement.jumpCollider3D.enabled = false;
+                    playerMovement.enabled = false;
+                }
+
                 GetComponentsInChildren<SpriteRenderer>().ToList().ForEach(sr =>
                 {
                     sr.enabled = false;

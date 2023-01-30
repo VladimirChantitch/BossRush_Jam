@@ -3195,7 +3195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7019866638778059679}
   - component: {fileID: 7019866638778059676}
-  - component: {fileID: 7019866638778059677}
+  - component: {fileID: 306360595}
   m_Layer: 0
   m_Name: Crafter
   m_TagString: Untagged
@@ -3246,7 +3246,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.75, y: 2}
   m_EdgeRadius: 0
---- !u!114 &7019866638778059677
+--- !u!114 &306360595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3255,11 +3255,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7019866638778059678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f609e8a393ace9749bcad5df430f775e, type: 3}
+  m_Script: {fileID: 11500000, guid: 61abd425ab08119488597b44a1749760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactables: 0
+  interactables: 3
   interacts:
+    m_PersistentCalls:
+      m_Calls: []
+  recipies: []
+  onInfo:
+    m_PersistentCalls:
+      m_Calls: []
+  onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  onSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7019866638795783717
