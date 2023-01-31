@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -117,9 +118,10 @@ namespace Boss.UI
         /// </summary>
         /// <param name="bossLootData"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void ShowLoots(BossLootData bossLootData)
+        public async void ShowLoots(BossLootData bossLootData)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1000);
+
         }
 
         /// <summary>
@@ -137,6 +139,7 @@ namespace Boss.UI
         /// <exception cref="NotImplementedException"></exception>
         public void BossRoom()
         {
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.BossRoom).First().GetVisualTreeAsset();
             throw new NotImplementedException();
         }
 
