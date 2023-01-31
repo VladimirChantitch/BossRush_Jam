@@ -269,13 +269,16 @@ public class MobileHomeRex : AbstractCharacter
 
     public int Phase()
     {
-        if ((Health > MaxHealth * 0.5f))
+        float currentHealth = GetStat(Boss.stats.StatsType.health).Value;
+        float maxHealth = GetStat(Boss.stats.StatsType.health).MaxValue;
+
+        if (currentHealth > maxHealth * 0.5f)
             return 1;
-        else if (Health <= MaxHealth * 0.5f && Health > MaxHealth * 0.25f)
+        else if (currentHealth <= maxHealth * 0.5f && currentHealth > maxHealth * 0.25f)
             return 2;
-        else if (Health < MaxHealth * 0.25f)
+        else if (currentHealth < maxHealth * 0.25f)
             return 3;
-        else if (Health <= 0)
+        else if (currentHealth <= 0)
             return 0;
         return -1;
     }
