@@ -10,7 +10,7 @@ namespace Boss.loot
     {
         List<BossItem> bossItems = new List<BossItem>();
         List<GuitareUpgrade> guitareUpgrades = new List<GuitareUpgrade>();
-        public UnityEvent<BossLootData> onLoot = new UnityEvent<BossLootData>();
+        [HideInInspector] public UnityEvent<BossLootData> onLoot = new UnityEvent<BossLootData>();
 
         /// <summary>
         /// Select the items to loot in the inventory

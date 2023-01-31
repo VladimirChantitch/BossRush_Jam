@@ -41,6 +41,9 @@ namespace Boss.UI
             }
         }
 
+        /// <summary>
+        /// Init the UI depending on the type of the scene
+        /// </summary>
         public void Init()
         {
             switch (currentScrenn)
@@ -58,6 +61,9 @@ namespace Boss.UI
         }
 
         #region mainMenu
+        /// <summary>
+        /// Load main meanu manager
+        /// </summary>
         public void MainMenu()
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.MainMenu).First().GetVisualTreeAsset();
@@ -79,6 +85,9 @@ namespace Boss.UI
         #endregion
 
         #region hub
+        /// <summary>
+        /// Load the hub controller
+        /// </summary>
         public void Hub()
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
@@ -113,11 +122,19 @@ namespace Boss.UI
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Called when the fight is finished (player or boss death)
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         public void BossFinished()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Load Boss Room
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
         public void BossRoom()
         {
             throw new NotImplementedException();
