@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.Events;
 using player;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFlipped = false;
 
     public UnityEvent<AttackType> attackPerformed;
+    public TrailRenderer guitareTrail;
     public UnityEvent StartDash;
     public UnityEvent EndDash;
 
@@ -73,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Dash.performed += Dash_performed;
         controls.Player.MousePosition.performed += MousePosition_performed;
         controls.Player.Attack1.performed += Attack1_performed;
+        controls.Player.Attack1.canceled += Attack1_canceled;
         controls.Player.Attack2.performed += Attack2_performed;
 
     }
@@ -137,8 +140,15 @@ public class PlayerMovement : MonoBehaviour
     private void Attack1_performed(InputAction.CallbackContext context)
     {
         animator.Play("Attack");
+        guitareTrail.emitting = true;
         attackPerformed?.Invoke(AttackType.normal);
     }
+
+    private void Attack1_canceled(InputAction.CallbackContext obj)
+    {
+        guitareTrail.emitting = false;
+    }
+
 
     private void Attack2_performed(InputAction.CallbackContext context)
     {
