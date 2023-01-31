@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using Boss.stats;
 using Boss.inventory;
+using UnityEngine.Events;
 
 namespace player
 {
@@ -56,6 +57,8 @@ namespace player
 
         [Header("state")]
         [SerializeField] AttackType currentAttackType;
+
+        [HideInInspector] public UnityEvent onPlayerDead = new UnityEvent();  
 
         private void Start()
         {
@@ -116,7 +119,28 @@ namespace player
                     SetStat(false, stat.value, stat.statType);
                     SetStat(false, stat.maxValue, stat.statType);
                 });
+
+                inventory.Load(player_dto.Inventory);
             }
+        }
+
+        /// <summary>
+        /// Add looted items to player inventory
+        /// </summary>
+        /// <param name="guitareUpgrades"></param>
+        /// <param name="bossItems"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void AddToInventory(List<GuitareUpgrade> guitareUpgrades, List<BossItem> bossItems)
+        {
+            guitareUpgrades.ForEach(gu =>
+            {
+                AddToInventory(gu);
+            });
+
+            bossItems.ForEach(bi =>
+            {
+                AddToInventory(bi);
+            });
         }
     }
 

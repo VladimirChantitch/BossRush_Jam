@@ -15,7 +15,6 @@ namespace Boss.save
     {
         List<DTO> dTOs = new List<DTO>();
 
-
         public void LoadGame()
         {
             dTOs = new List<DTO>();

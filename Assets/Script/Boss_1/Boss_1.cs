@@ -1,11 +1,11 @@
+using Boss.stats;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Boss.stats;
 
 namespace Boss
 {
-    public class Boss_1 : AbstractCharacter
+    public class Boss_1 : BossCharacter
     {
         public enum MaxiBestOfState
         {
@@ -116,6 +116,8 @@ namespace Boss
 
         private void Start()
         {
+            base.Init();
+
             animator = GetComponent<Boss_1_Animator>();
             initBoss();
 
