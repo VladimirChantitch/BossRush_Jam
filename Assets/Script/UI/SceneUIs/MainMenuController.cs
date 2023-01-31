@@ -3,37 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class MainMenuController : MonoBehaviour
 {
-    private UIDocument doc;
+    private VisualElement root;
     private Button startButton;
     private Button continueButton;
     private Button exitButton;
 
-    private void Awake()
+    public UnityEvent continuEvent = new UnityEvent();
+    public UnityEvent startEvent = new UnityEvent();
+
+    public void Init(VisualElement root)
     {
-        doc = GetComponent<UIDocument>();
-        startButton = doc.rootVisualElement.Q<Button>("Start");
-        continueButton = doc.rootVisualElement.Q<Button>("Continue");
-        exitButton = doc.rootVisualElement.Q<Button>("Exit");
+        this.root = root; 
+        BindButons();
+    }
+
+    private void BindButons()
+    {
+        startButton = root.Q<Button>("Start");
+        continueButton = root.Q<Button>("Continue");
+        exitButton = root.Q<Button>("Exit");
+
         startButton.clicked += StartButtonOnClicked;
         continueButton.clicked += ContinueButtonOnClicked;
         exitButton.clicked += ExitButtonOnClicked;
     }
 
+    #region Bindings
     private void StartButtonOnClicked()
     {
-        SceneManager.LoadScene("Hub");
+        startEvent?.Invoke();
     }
 
     private void ContinueButtonOnClicked()
     {
-        Debug.Log("I'm doing something useful");
+        continuEvent?.Invoke();
     }
 
     private void ExitButtonOnClicked()
     {
         Application.Quit();
     }
+    #endregion
 }
