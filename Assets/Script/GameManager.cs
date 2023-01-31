@@ -6,6 +6,7 @@ using Boss.save;
 using player;
 using Boss.inventory;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SetUIManagerEvents();
-        SetBossCharacterEvent();
+        if (currentScrenn == CurrentScrenn.BossRoom)
+        {
+            SetBossCharacterEvent();
+        }
         SetPlayerManagerEvents();
 
         if (AutoLoad)
@@ -53,22 +57,27 @@ public class GameManager : MonoBehaviour
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
             playerManager.AddToInventory(sucess_DTO.resutl);
         });
+
+        ui_manager.onGoToHub.AddListener(() =>
+        {
+            saveManager.SaveGame();
+            SceneManager.LoadScene("Hub");
+        });
     }
 
     private void SetBossCharacterEvent()
     {
-        bossCharacter.onLoot.AddListener(data =>
+        bossCharacter.onBossDead.AddListener(data =>
         {
+            Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
         });
-
-        bossCharacter.onBossDead.AddListener(() => ui_manager.BossFinished());
     }
 
     private void SetPlayerManagerEvents()
     {
-        playerManager.onPlayerDead.AddListener(() => ui_manager.BossFinished());
+        playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
     }
 
     private void Update()

@@ -132,9 +132,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
+      propertyPath: bossCharacter
+      value: 
+      objectReference: {fileID: 846374679}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
       propertyPath: currentScrenn
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 652830871}
     - target: {fileID: 7937059688534768007, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: m_Name
@@ -202,6 +212,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab3ef40fcfef4cc4db20ab594fec8545, type: 3}
+--- !u!1 &652830870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652830872}
+  - component: {fileID: 652830871}
+  m_Layer: 0
+  m_Name: PlayerEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &652830871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652830870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d82fbf19b77634aade8274c85edf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+  - value: 100
+    maxValue: 100
+    statType: 0
+  inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
+  status: 0
+  playerMovement: {fileID: 0}
+  attackDatas: []
+  multiplier: 1
+  attackCollider: {fileID: 0}
+  playerTakeDamageCollider: {fileID: 0}
+  currentAttackType: 0
+  onPlayerDead:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &652830872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652830870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.922179, y: 8.620744, z: 0.60810727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846374677
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,14 +320,12 @@ MonoBehaviour:
   - value: 100
     maxValue: 100
     statType: 0
-  inventory: {fileID: 0}
+  inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
   bossLoot: {fileID: 846374678}
-  onLoot:
-    m_PersistentCalls:
-      m_Calls: []
   onBossDead:
     m_PersistentCalls:
       m_Calls: []
+  killBoss: 0
 --- !u!4 &846374680
 Transform:
   m_ObjectHideFlags: 0

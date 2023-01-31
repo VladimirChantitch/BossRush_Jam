@@ -46,6 +46,7 @@ namespace Boss.loot
         private void LaunchLootMoment()
         {
             onLoot?.Invoke(new BossLootData(bossItems, guitareUpgrades));
+            Debug.Log("trigered");
         }
     }
 

@@ -1,3 +1,4 @@
+using Boss.inventory;
 using Boss.loot;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,11 +8,10 @@ using UnityEngine.Events;
 public class BossCharacter : AbstractCharacter
 {
     [SerializeField] BossLoot bossLoot;
-    [HideInInspector] public UnityEvent<BossLootData> onLoot = new UnityEvent<BossLootData>();
-    [HideInInspector] public UnityEvent onBossDead = new UnityEvent();
+    [HideInInspector] public UnityEvent<BossLootData> onBossDead = new UnityEvent<BossLootData>();
 
-    protected void Init()
+    private void Start()
     {
-        bossLoot.onLoot.AddListener(data => onLoot?.Invoke(data));
+        bossLoot.onLoot.AddListener(data => onBossDead?.Invoke(data));
     }
 }
