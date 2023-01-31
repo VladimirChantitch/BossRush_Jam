@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3152190938580054893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3152190938580054883}
+  - component: {fileID: 3152190938580054882}
+  m_Layer: 0
+  m_Name: BulletPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3152190938580054883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152190938580054893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3152190938580054882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152190938580054893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f4dfc785ce60d43a351e5a5d26489f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Bullet_1
+    prefab: {fileID: 2466175418964411947, guid: 4cfb449d5f05694459d1363e783ebf1b,
+      type: 3}
+    size: 50
+    spawn: {fileID: 0}
+  - tag: Bullet_2
+    prefab: {fileID: 2466175418964411947, guid: c3464261c4c9e024eb502876457e9dc4,
+      type: 3}
+    size: 50
+    spawn: {fileID: 0}
+  - tag: Bullet_3
+    prefab: {fileID: 2466175418964411947, guid: 68a17f703e6c72e4a9704cdcc467b00e,
+      type: 3}
+    size: 50
+    spawn: {fileID: 0}
+  - tag: Bullet_4
+    prefab: {fileID: 2466175418964411947, guid: 94062ae38174c7a4ab8d90ef17061a69,
+      type: 3}
+    size: 50
+    spawn: {fileID: 0}
+  - tag: Bullet_5
+    prefab: {fileID: 2466175418964411947, guid: 29cae22e00c57054891176d3edbc63db,
+      type: 3}
+    size: 50
+    spawn: {fileID: 0}

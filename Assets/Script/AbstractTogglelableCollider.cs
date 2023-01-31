@@ -6,7 +6,7 @@ public abstract class AbstractTogglelableCollider : MonoBehaviour
 {
     [SerializeField] Collider2D h_collider;
 
-    private void Start()
+    public virtual void Start()
     {
         h_collider = GetComponent<Collider2D>();
     }
