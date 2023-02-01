@@ -164,6 +164,9 @@ MonoBehaviour:
   attackCollider: {fileID: 0}
   playerTakeDamageCollider: {fileID: 0}
   currentAttackType: 0
+  onPlayerDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &91031581
 Transform:
   m_ObjectHideFlags: 0
@@ -349,5 +352,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: HubPrefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7019866639286232771, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}
+--- !u!1 &7019866638605569879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019866639286232772, guid: f105a5bcd6ee86346bd47628813adce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7019866638605569878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7019866638605569880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7019866638605569879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875aecc7e891f7248aae12b29cb17801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactables: 2
+  interacts:
+    m_PersistentCalls:
+      m_Calls: []

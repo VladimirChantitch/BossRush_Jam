@@ -50,8 +50,13 @@ public class HubManager : MonoBehaviour
     {
         //Slots Events
         UI_crafter.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
-        UI_inventory.onItemSelected.AddListener(selected => crafter.HandleSelection(selected));
-        UI_inventory.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
+        UI_inventory.onItemSelected.AddListener(selected => {
+            crafter.HandleSelection(selected);
+           //TODO -- Guitare upgrade selection 
+        });
+        UI_inventory.onItemDeselected.AddListener(disSelected => {
+            crafter.DeselectSlot(disSelected);
+        });
 
         //CrafterEvents
         crafter.onFail.AddListener((fail_dto) => {UI_crafter.Fail(); });
@@ -99,30 +104,13 @@ public class HubManager : MonoBehaviour
     private void HandleInteractable(HubInteractor interactable)
     {
         interactable.interacts?.Invoke();
-        //CloseAllPopUp();
-        switch (interactable.interactables)
+        switch (interactable)
         {
-            case HubInteractor.Interactables.Door:
-                break;
-            case HubInteractor.Interactables.Wheel:
-                break;
-            case HubInteractor.Interactables.Goblin:
+            case Goblin:
                 GoblinInteract?.Invoke();
                 break;
-            case HubInteractor.Interactables.Crafter:
+            case Crafter:
                 OpenCrafterMenu(interactable);
-                break;
-            case HubInteractor.Interactables.Gauge:
-                break;
-            case HubInteractor.Interactables.Weapon:
-                break;
-            case HubInteractor.Interactables.Map:
-                break;
-            case HubInteractor.Interactables.Pot_1:
-                break;
-            case HubInteractor.Interactables.Pot_2:
-                break;
-            case HubInteractor.Interactables.Pot_3:
                 break;
         }
     }
