@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     [SerializeField] TrailRenderer trailRenderer;
 
+    public GameObject camera;
+    private CameraShake camShake;
     private CameraJuice camJuice;
 
     [Header("Movement")]
@@ -63,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        camShake = camera.GetComponentInChildren<CameraShake>();
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         camJuice = GetComponent<CameraJuice>();
@@ -140,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
     private void Attack1_performed(InputAction.CallbackContext context)
     {
         animator.Play("Attack");
+        //camShake.ShakeCamera(20f, 0.1f, 1f);
         guitareTrail.emitting = true;
         attackPerformed?.Invoke(AttackType.normal);
     }
