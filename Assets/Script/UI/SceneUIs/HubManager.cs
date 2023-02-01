@@ -16,9 +16,8 @@ public class HubManager : MonoBehaviour
     public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
 
     VisualElement root;
-    VisualElement crafterRoot;
-    List<UI_ItemSlot> itemSlots = new List<UI_ItemSlot>();
-    List<UI_ItemSlot> crafterSlots = new List<UI_ItemSlot>();
+    UI_Inventory UI_inventory;
+    UI_Crafter UI_crafter;
 
     [SerializeField] HubInteractor currentHubInteractor;
     [SerializeField] Crafter crafter;
@@ -36,62 +35,43 @@ public class HubManager : MonoBehaviour
 
     private void SetRefs(List<Recipies> recipies)
     {
-        crafterRoot = root.Q<VisualElement>("CrafterPopUp");
-        crafterRoot.visible = false;
         crafter.Init(recipies);
         goblin.Init(recipies);
 
-        List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().ToList();
-        slots.ForEach(s => itemSlots.Add(s as UI_ItemSlot));
-        slots = root.Q<VisualElement>("Crafter").Children().ToList();
-        slots.ForEach(s => crafterSlots.Add(s as UI_ItemSlot));
+        UI_inventory = root.Q<UI_Inventory>("UI_Inventory");
+        UI_crafter = root.Q<UI_Crafter>("UI_Crafrater");
+
+        UI_inventory.Init();
+        UI_crafter.Init();
     }
 
 
     private void BindEvents()
     {
         //Slots Events
-        crafterSlots.ForEach(c =>
-        {
-            c.ItemSelected.AddListener(t => Debug.Log("nothing, but thats ok"));
-            c.ItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
-        });
-
-        itemSlots.ForEach(c =>
-        {
-            c.ItemSelected.AddListener(selected => crafter.HandleSelection(selected));
-            c.ItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
-        });
+        UI_crafter.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
+        UI_inventory.onItemSelected.AddListener(selected => crafter.HandleSelection(selected));
+        UI_inventory.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
 
         //CrafterEvents
-        crafter.onFail.AddListener((fail_dto) =>
-        {
-            crafterSlots.ForEach(c => c.Clean());
-        });
+        crafter.onFail.AddListener((fail_dto) => {UI_crafter.Fail(); });
 
-        crafter.onInfo.AddListener((dto) =>
-        {
-            crafterSlots.ForEach(c => c.Clean());
-            if (dto.item_1 != null) crafterSlots[0].Init(dto.item_1);
-            if (dto.item_2 != null) crafterSlots[1].Init(dto.item_2);
-        });
+        crafter.onInfo.AddListener((dto) => {UI_crafter.Info(dto); });
 
         crafter.onSuccess.AddListener((success_dto) =>
         {
-            crafterSlots.ForEach(c => c.Clean());
-            itemSlots.ForEach(c => {
-                c.RemoveOverriderClass();
-                c.isSelected = false;
-            });
+            UI_crafter.CraftSuccess();
+            UI_inventory.CraftSuccess();
+
             CrafterSuccess?.Invoke(success_dto);
-            crafterRoot.visible = false;
+            UI_crafter.visible = false;
 
             Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
         });
 
         crafter.onDeselect.AddListener(item =>
         {
-            itemSlots.Find(i => i.Item == item).RemoveOverriderClass();
+            UI_inventory.DeselectItem(item);
         });
     }
 
@@ -149,27 +129,19 @@ public class HubManager : MonoBehaviour
 
     private void CloseAllPopUp()
     {
-        crafterRoot.visible = false;
-        crafterSlots.ForEach(c => c.Clean());
-        itemSlots.ForEach(c => c.Clean());
+        UI_crafter.visible = false;
+        UI_crafter.ClearAllSlots();
+        UI_inventory.ClearAllSlots();
     }
 
     private void OpenCrafterMenu(HubInteractor hubInteractor)
     {
-        crafterRoot.visible = true;
+        UI_crafter.visible = true;
         AskOfrInventory?.Invoke(i => SetItemSlots(i));
-        //crafterRoot.transform.position = hubInteractor.transform.position;
-        //crafterRoot.style.right = 0;
-        //crafterRoot.style.left = 0;
-        //crafterRoot.style.top = 0;
-        //crafterRoot.style.
     }
 
     public void SetItemSlots(List<AbstractItem> items) 
     {
-        for(int i =0; i < items.Count; i++)
-        {
-            itemSlots[i].Init(items[i]);
-        }
+        UI_inventory.SetItemSlots(items);
     }
 }

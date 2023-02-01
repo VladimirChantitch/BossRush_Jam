@@ -4,21 +4,23 @@
     <ui:VisualElement style="flex-direction: column; transform-origin: bottom; bottom: -80%;">
         <ui:Instance template="PlayerHP" name="HubTemplate" />
     </ui:VisualElement>
-    <ui:VisualElement name="CrafterPopUp" style="position: absolute; height: 350px; width: 450px; flex-direction: row; align-items: center; flex-grow: 1; top: 292px; left: 1040px;">
-        <ui:VisualElement name="InventoryView" class="PopUp" style="height: 214px; width: 81px; flex-wrap: wrap; flex-direction: row;">
-            <UI_ItemSlot class="Slot" />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
-            <UI_ItemSlot />
+    <ui:VisualElement name="PopUps">
+        <ui:VisualElement name="CrafterPopUp" style="position: absolute; height: 350px; width: 150px; flex-direction: row; align-items: center; flex-grow: 1; top: 292px; left: 1040px;">
+            <ui:VisualElement name="Crafter" class="PopUp" style="height: 89px; width: 77px; flex-direction: row; align-items: center; justify-content: center;">
+                <UI_ItemSlot class="Slot" />
+                <UI_ItemSlot class="Slot" />
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Crafter" class="PopUp" style="height: 89px; width: 77px; flex-direction: row; align-items: center; justify-content: center;">
+        <ui:VisualElement name="InventoryView" class="PopUp" style="height: 225px; width: 225px; flex-wrap: wrap; flex-direction: row; align-items: center; justify-content: center;">
             <UI_ItemSlot class="Slot" />
-            <UI_ItemSlot class="Slot" />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
+            <UI_ItemSlot />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
