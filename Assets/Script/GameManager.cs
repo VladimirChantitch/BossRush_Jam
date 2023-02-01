@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] BossCharacter bossCharacter;
     [SerializeField] CurrentScrenn currentScrenn;
 
+    [Header("Data")]
+    List<Recipies> recipies = new List<Recipies>();
+
     public bool Save;
     public bool Load;
     [SerializeField] bool AutoLoad;
@@ -40,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void SetUIManagerEvents()
     {
         ui_manager.SetCurrentScreen(currentScrenn);
-        ui_manager.Init();
+        ui_manager.Init(recipies);
 
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
         ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());

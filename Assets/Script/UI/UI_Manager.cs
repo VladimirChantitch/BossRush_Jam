@@ -47,7 +47,7 @@ namespace Boss.UI
         /// <summary>
         /// Init the UI depending on the type of the scene
         /// </summary>
-        public void Init()
+        public void Init(List<Recipies> recipies)
         {
             switch (currentScrenn)
             {
@@ -55,7 +55,7 @@ namespace Boss.UI
                     MainMenu();
                     break;
                 case GameManager.CurrentScrenn.Hub:
-                    Hub();
+                    Hub(recipies);
                     break;
                 case GameManager.CurrentScrenn.BossRoom:
                     BossRoom();
@@ -91,7 +91,7 @@ namespace Boss.UI
         /// <summary>
         /// Load the hub controller
         /// </summary>
-        public void Hub()
+        public void Hub(List<Recipies> recipies)
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
 
@@ -110,7 +110,7 @@ namespace Boss.UI
                 AskOfrInventory?.Invoke(action);
             });
 
-            hubManager.Init(uIDocument.rootVisualElement);
+            hubManager.Init(uIDocument.rootVisualElement, recipies);
         }
         #endregion
 

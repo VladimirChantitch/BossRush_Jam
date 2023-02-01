@@ -22,21 +22,25 @@ public class HubManager : MonoBehaviour
 
     [SerializeField] HubInteractor currentHubInteractor;
     [SerializeField] Crafter crafter;
+    [SerializeField] Goblin goblin;
 
-    public void Init(VisualElement root)
+    public void Init(VisualElement root, List<Recipies> recipies)
     {
         this.root = root;
         crafter = FindObjectOfType<Crafter>();
+        goblin = FindObjectOfType<Goblin>();
 
-        SetRefs();
+        SetRefs(recipies);
         BindEvents();
-
     }
 
-    private void SetRefs()
+    private void SetRefs(List<Recipies> recipies)
     {
         crafterRoot = root.Q<VisualElement>("CrafterPopUp");
         crafterRoot.visible = false;
+        crafter.Init(recipies);
+        goblin.Init(recipies);
+
         List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().ToList();
         slots.ForEach(s => itemSlots.Add(s as UI_ItemSlot));
         slots = root.Q<VisualElement>("Crafter").Children().ToList();

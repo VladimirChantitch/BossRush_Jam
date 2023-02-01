@@ -11,7 +11,7 @@ namespace Boss.crafter
 {
     public class Crafter : HubInteractor
     {
-        [SerializeField] List<Recipies> recipies = new List<Recipies>();
+        List<Recipies> recipies = new List<Recipies>();
         public UnityEvent<CrafterData> onInfo = new UnityEvent<CrafterData>();
         public UnityEvent<CrafterData> onFail = new UnityEvent<CrafterData>();
         public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
@@ -84,6 +84,11 @@ namespace Boss.crafter
         private void SucceedToCraft(AbstractItem sacrifice)
         {
             onSuccess.Invoke(new CrafterSuccessData(items[0], items[1], sacrifice));
+        }
+
+        internal void Init(List<Recipies> recipies)
+        {
+            this.recipies = recipies;
         }
     }
 }
