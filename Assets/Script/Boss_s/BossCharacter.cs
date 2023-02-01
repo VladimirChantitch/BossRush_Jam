@@ -10,7 +10,7 @@ public class BossCharacter : AbstractCharacter
     [SerializeField] BossLoot bossLoot;
     [HideInInspector] public UnityEvent<BossLootData> onBossDead = new UnityEvent<BossLootData>();
 
-    private void Start()
+    private void Init()
     {
         bossLoot.onLoot.AddListener(data => onBossDead?.Invoke(data));
     }
