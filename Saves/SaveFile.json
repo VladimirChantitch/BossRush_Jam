@@ -8,8 +8,8 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 200.0,
-            "maxValue": 200.0,
+            "value": 100.0,
+            "maxValue": 100.0,
             "statType": 0
           }
         ]
@@ -19,6 +19,16 @@
         "itemSlots": {
           "$type": "System.Collections.Generic.List`1[[Boss.inventory.ItemSlot_DTO, Assembly-CSharp]], mscorlib",
           "$values": [
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test/Mediat.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test/Poutre.asset"
+            },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
@@ -32,7 +42,17 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "path": "Assets/Objects/Test/BigJo.asset"
+              "path": "Assets/Objects/Test Boss Loot/guitar up.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test Boss Loot/hehe.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test Boss Loot/Mediat.asset"
             }
           ]
         }

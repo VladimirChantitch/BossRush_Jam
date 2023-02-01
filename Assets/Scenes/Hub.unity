@@ -192,6 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
+      propertyPath: Load
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
       propertyPath: currentScrenn
       value: 1
       objectReference: {fileID: 0}

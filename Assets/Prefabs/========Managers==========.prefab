@@ -165,12 +165,24 @@ MonoBehaviour:
   LoadNewScreen:
     m_PersistentCalls:
       m_Calls: []
+  DeleteSaveFile:
+    m_PersistentCalls:
+      m_Calls: []
+  CrafterSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  AskOfrInventory:
+    m_PersistentCalls:
+      m_Calls: []
   datafiles:
   - CurrentScrenn: 0
     treeAsset: {fileID: 9197481963319205126, guid: b2c56a254ccd66243bf762ef389b9209,
       type: 3}
   - CurrentScrenn: 1
     treeAsset: {fileID: 9197481963319205126, guid: 9385e2492ac55f84f9444546208509dc,
+      type: 3}
+  - CurrentScrenn: 2
+    treeAsset: {fileID: 9197481963319205126, guid: 02069ed47bde8a94c984ef6f87d5738d,
       type: 3}
   uIDocument: {fileID: 0}
   mainMenuController: {fileID: 0}
@@ -237,3 +249,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui_manager: {fileID: 7937059689081261468}
   saveManager: {fileID: 4213293222052579877}
+  playerManager: {fileID: 0}
+  bossCharacter: {fileID: 0}
+  currentScrenn: 0
+  Save: 0
+  Load: 0
+  AutoLoad: 0
