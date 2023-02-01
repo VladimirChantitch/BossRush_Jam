@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -26,12 +27,14 @@ namespace Boss.UI
         [HideInInspector] public UnityEvent DeleteSaveFile = new UnityEvent();
         [HideInInspector] public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
         [HideInInspector] public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        [HideInInspector] public UnityEvent onGoToHub = new UnityEvent();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
         [SerializeField] UIDocument uIDocument;
         [SerializeField] MainMenuController mainMenuController;
         [SerializeField] HubManager hubManager;
+        [SerializeField] UI_BossFight ui_bossFight;
 
         private void Awake()
         {
@@ -44,7 +47,7 @@ namespace Boss.UI
         /// <summary>
         /// Init the UI depending on the type of the scene
         /// </summary>
-        public void Init()
+        public void Init(List<Recipies> recipies)
         {
             switch (currentScrenn)
             {
@@ -52,7 +55,7 @@ namespace Boss.UI
                     MainMenu();
                     break;
                 case GameManager.CurrentScrenn.Hub:
-                    Hub();
+                    Hub(recipies);
                     break;
                 case GameManager.CurrentScrenn.BossRoom:
                     BossRoom();
@@ -88,7 +91,7 @@ namespace Boss.UI
         /// <summary>
         /// Load the hub controller
         /// </summary>
-        public void Hub()
+        public void Hub(List<Recipies> recipies)
         {
             uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.Hub).First().GetVisualTreeAsset();
 
@@ -107,7 +110,7 @@ namespace Boss.UI
                 AskOfrInventory?.Invoke(action);
             });
 
-            hubManager.Init(uIDocument.rootVisualElement);
+            hubManager.Init(uIDocument.rootVisualElement, recipies);
         }
         #endregion
 
@@ -119,16 +122,16 @@ namespace Boss.UI
         /// <exception cref="NotImplementedException"></exception>
         public void ShowLoots(BossLootData bossLootData)
         {
-            throw new NotImplementedException();
+            ui_bossFight.ShowLoots(bossLootData);
         }
 
         /// <summary>
         /// Called when the fight is finished (player or boss death)
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void BossFinished()
+        public void PlayerLoose()
         {
-            throw new NotImplementedException();
+            ui_bossFight.OpenDeathScreen();
         }
 
         /// <summary>
@@ -137,7 +140,15 @@ namespace Boss.UI
         /// <exception cref="NotImplementedException"></exception>
         public void BossRoom()
         {
-            throw new NotImplementedException();
+            uIDocument.visualTreeAsset = datafiles.Where(file => file.GetScreen() == GameManager.CurrentScrenn.BossRoom).First().GetVisualTreeAsset();
+            Type[] types = new Type[1] { typeof(UI_BossFight) };
+            GameObject go = new GameObject("HubManager", types);
+            go.transform.parent = transform;
+
+            ui_bossFight = go.GetComponent<UI_BossFight>();
+            ui_bossFight.Init(uIDocument.rootVisualElement);
+
+            ui_bossFight.onBackToHub.AddListener(() => onGoToHub?.Invoke());
         }
 
         #endregion

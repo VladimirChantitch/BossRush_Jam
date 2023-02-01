@@ -21,6 +21,16 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test/Mediat.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test/Poutre.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
               "path": "Assets/Objects/Test/fraise.asset"
             },
@@ -32,7 +42,17 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "path": "Assets/Objects/Test/BigJo.asset"
+              "path": "Assets/Objects/Test Boss Loot/guitar up.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test Boss Loot/hehe.asset"
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "path": "Assets/Objects/Test Boss Loot/Mediat.asset"
             }
           ]
         }
