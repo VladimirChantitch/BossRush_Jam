@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractDialogue : MonoBehaviour
+namespace Boss.Dialogue
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class AbstractDialogue : ScriptableObject
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] string title;
+        [SerializeField][TextArea] protected string dialogue;
     }
 }
+
+
