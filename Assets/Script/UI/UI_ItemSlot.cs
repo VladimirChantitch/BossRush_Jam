@@ -30,10 +30,10 @@ public class UI_ItemSlot : Button
         BindEvents();
     }
 
-    public void Init(AbstractItem Item)
+    public virtual void Init(AbstractItem Item)
     {
+        Clean(true);
         this.Item = Item;
-
         InitIcon();
     }
 
@@ -53,7 +53,7 @@ public class UI_ItemSlot : Button
         isSelected = false; 
     }
 
-    private void BindEvents()
+    protected virtual void BindEvents()
     {
         this.clicked += () =>
         {
@@ -70,14 +70,19 @@ public class UI_ItemSlot : Button
                 ToggleInClassList("Slot");
                 ToggleInClassList("SlotSelected");
             }
-
         };
     }
-
-    public void Clean()
+    /// <summary>
+    /// Cleans the slots
+    /// </summary>
+    /// <param name="isSoft">does it also cleans the reference to the item?</param>
+    public void Clean(bool isSoft)
     {
         RemoveFromClassList("SlotSelected");
-        Item = null;
+        if (!isSoft)
+        {
+            Item = null;
+        }
         style.backgroundImage = null;
         AddToClassList("Slot");
         isSelected = false;

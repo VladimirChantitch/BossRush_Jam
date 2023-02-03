@@ -33,24 +33,24 @@ namespace Boss.UI
 
         internal void Fail()
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_ItemSlots.ForEach(c => c.Clean(false));
         }
 
         internal void Info(CrafterData dto)
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_ItemSlots.ForEach(c => c.Clean(false));
             if (dto.item_1 != null) uI_ItemSlots[0].Init(dto.item_1);
             if (dto.item_2 != null) uI_ItemSlots[1].Init(dto.item_2);
         }
 
         internal void CraftSuccess()
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_ItemSlots.ForEach(c => c.Clean(false));
         }
 
         internal void ClearAllSlots()
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_ItemSlots.ForEach(c => c.Clean(false));
         }
     }
 }

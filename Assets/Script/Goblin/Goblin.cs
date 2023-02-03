@@ -11,16 +11,7 @@ public class Goblin : HubInteractor
     {
         this.recipies = recipies;
     }
+    
+    //TODO -- Start a dialogue
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

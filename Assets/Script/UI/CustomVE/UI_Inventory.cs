@@ -21,11 +21,15 @@ namespace Boss.UI
 
         public UI_Inventory()
         {
-            Children().ToList().ForEach(c => uI_ItemSlots.Add(c as UI_ItemSlot));
+
         }
 
         internal void Init()
         {
+            Children().ToList().ForEach(c => {
+                uI_ItemSlots.Add(c as UI_ItemSlot);
+            });
+
             uI_ItemSlots.ForEach(c =>
             {
                 c.ItemSelected.AddListener(selected => onItemSelected?.Invoke(selected));
@@ -48,7 +52,7 @@ namespace Boss.UI
 
         internal void ClearAllSlots()
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_ItemSlots.ForEach(c => c.Clean(false));
         }
 
         internal void SetItemSlots(List<AbstractItem> items)
