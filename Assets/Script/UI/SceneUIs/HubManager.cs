@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 using Boss.Upgrades.UI;
+using System.Threading.Tasks;
 
 namespace Boss.UI
 {
@@ -78,7 +79,7 @@ namespace Boss.UI
                 else
                 {
                     uI_GuitareUpgrades.SetInfo(selected as GuitareUpgrade);
-                    //TODO -- Send to player the new powerups
+                    //TODO -- Send to player the new UPGRADE
                 }
             });
 
@@ -91,7 +92,7 @@ namespace Boss.UI
             uI_GuitareUpgrades.onDisupgraded.AddListener(data =>
             {
                 guitare.UpdateGuitareAspect(data);
-                //TODO -- Send to player to delete precedent powerups
+                //TODO -- Send to player to delete precedent UPGRADE
             });
 
 
@@ -100,16 +101,17 @@ namespace Boss.UI
 
             crafter.onInfo.AddListener((dto) => { uI_crafter.Info(dto); });
 
-            crafter.onSuccess.AddListener((success_dto) =>
+            crafter.onSuccess.AddListener(async (success_dto) =>
             {
-                uI_crafter.CraftSuccess();
-                uI_inventory.CraftSuccess();
-
                 CrafterSuccess?.Invoke(success_dto);
                 crafterRoot.visible = false;
                 inventoryRoot.visible = false;
 
                 Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
+
+                await Task.Delay(100);
+                uI_crafter.CraftSuccess();
+                uI_inventory.CraftSuccess();
             });
 
             crafter.onDeselect.AddListener(item =>
@@ -173,6 +175,7 @@ namespace Boss.UI
         private void OpenGuitareUpgradesMenu()
         {
             upgradeRoot.visible = true;
+            AskOfrInventory?.Invoke(i => SetInventoryItemSlots(i));
         }
 
         private void OpenCrafterMenu(HubInteractor hubInteractor)

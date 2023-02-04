@@ -24,6 +24,8 @@ namespace Boss.UI
 
         internal void Init()
         {
+            uI_ItemSlots = new List<UI_ItemSlot>();
+
             Children().ToList().ForEach(c => uI_ItemSlots.Add(c as UI_ItemSlot));
 
             uI_ItemSlots.ForEach(c =>

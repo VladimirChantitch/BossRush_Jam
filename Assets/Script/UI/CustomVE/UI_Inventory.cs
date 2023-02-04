@@ -59,6 +59,7 @@ namespace Boss.UI
 
         internal void SetItemSlots(List<AbstractItem> items)
         {
+            ClearAllSlots();
             for (int i = 0; i < items.Count; i++)
             {
                 uI_ItemSlots[i].Init(items[i]);
