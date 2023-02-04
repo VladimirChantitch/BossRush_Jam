@@ -48,11 +48,17 @@ public class GameManager : MonoBehaviour
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
         ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
         ui_manager.DeleteSaveFile.AddListener(() => saveManager.DestroySaveFile());
-        ui_manager.AskOfrInventory.AddListener(action =>
+        ui_manager.AskForInventory.AddListener(action =>
         {
             List<AbstractItem> items = playerManager.GetItems();
             action.Invoke(items);
         });
+        ui_manager.AskForUpgrades.AddListener(action =>
+        {
+            List <GuitareUpgrade> items = playerManager.GetGuitareUpgrades();
+            action.Invoke(items);
+        });
+
 
         ui_manager.CrafterSuccess.AddListener(sucess_DTO =>
         {
@@ -62,13 +68,13 @@ public class GameManager : MonoBehaviour
         });
         ui_manager.onItemSetAsUpgrade.AddListener(item =>
         {
-            //TODO -- Send the upgrade to the player
+            playerManager.AddOrModifyUpgrade(item as GuitareUpgrade);
             Debug.Log("add upgrade");
             playerManager.RemoveFromInventory(item);
         });
         ui_manager.onRemoveUpgrade.AddListener(upgrade => {
             Debug.Log("remove upgrade");
-            //TODO -- Send Upgrade to remove to player
+            playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
         });
 
         ui_manager.onGoToHub.AddListener(() =>

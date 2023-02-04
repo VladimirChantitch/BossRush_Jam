@@ -41,6 +41,44 @@
             }
           ]
         }
+      },
+      "Upgrades": {
+        "$type": "Boss.Upgrades.GuitareUpgrade_DTO, Assembly-CSharp",
+        "guitareUpgradeSlots_DTOs": {
+          "$type": "System.Collections.Generic.List`1[[Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp]], mscorlib",
+          "$values": [
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 0,
+              "path": "Assets/Objects/Test/Truc.asset"
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 5,
+              "path": ""
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 2,
+              "path": ""
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 4,
+              "path": ""
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 3,
+              "path": ""
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 1,
+              "path": ""
+            }
+          ]
+        }
       }
     }
   ]

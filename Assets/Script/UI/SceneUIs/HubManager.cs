@@ -15,7 +15,8 @@ namespace Boss.UI
     {
         public UnityEvent GoblinInteract = new UnityEvent();
         public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
-        public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        public UnityEvent<Action<List<AbstractItem>>> AskForInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        public UnityEvent<Action<List<GuitareUpgrade>>> AskForUpgrades = new UnityEvent<Action<List<GuitareUpgrade>>>();
         public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
         public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
 
@@ -84,7 +85,7 @@ namespace Boss.UI
                     if(selected is GuitareUpgrade guitareUpgrade)
                     {
                         onItemSetAsUpgrade.Invoke(guitareUpgrade);
-                        AskOfrInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
+                        AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
                         guitareAspect.UpdateGuitareAspect(guitareUpgrade);
                         uI_GuitareUpgrades.SetInfo(guitareUpgrade);
                     }
@@ -179,19 +180,25 @@ namespace Boss.UI
         {
             uI_inventory.SetItemSlots(items);
         }
+
+        public void SetUpgradeItemSlots(List<GuitareUpgrade> items)
+        {
+            uI_GuitareUpgrades.SetInfo(items);
+        }
         #endregion
 
         #region Open/CloseMenus
         private void OpenGuitareUpgradesMenu()
         {
             upgradeRoot.visible = true;
-            AskOfrInventory?.Invoke(i => SetInventoryItemSlots(i));
+            AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
+            AskForUpgrades?.Invoke(u => SetUpgradeItemSlots(u));
         }
 
         private void OpenCrafterMenu(HubInteractor hubInteractor)
         {
             crafterRoot.visible = true;
-            AskOfrInventory?.Invoke(i => SetInventoryItemSlots(i));
+            AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
         }
 
         private void CloseAllPopups()
