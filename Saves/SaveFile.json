@@ -22,22 +22,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "path": "Assets/Objects/Test/Mediat.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test/Poutre.asset"
+              "instance_ID": 28902
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
-              "path": "Assets/Objects/Test/fraise.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test/Truc.asset"
+              "instance_ID": 28904
             }
           ]
         }
@@ -50,32 +40,32 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 0,
-              "path": "Assets/Objects/Test/Truc.asset"
+              "intance_ID": 28906
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 5,
-              "path": ""
+              "intance_ID": -1
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 2,
-              "path": ""
+              "intance_ID": -1
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 4,
-              "path": ""
+              "intance_ID": -1
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 3,
-              "path": ""
+              "intance_ID": 28900
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 1,
-              "path": ""
+              "intance_ID": -1
             }
           ]
         }

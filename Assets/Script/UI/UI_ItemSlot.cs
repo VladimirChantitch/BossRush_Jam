@@ -14,7 +14,7 @@ public class UI_ItemSlot : Button
 
     public UI_ItemSlot()
     {
-        this.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/UI/Boss.uss"));
+        this.styleSheets.Add(DADDY.Instance.USS_STYLE);
         AddToClassList("Slot");
         Init();
     }

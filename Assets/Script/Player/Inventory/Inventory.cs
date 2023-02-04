@@ -103,7 +103,7 @@ namespace Boss.inventory
             public ItemSlot (ItemSlot_DTO dto)
             {
                 this.amount = dto.amount;
-                this.item = (AbstractItem)AssetDatabase.LoadAssetAtPath(dto.path, typeof(AbstractItem));
+                this.item = DADDY.Instance.GetItemByID(dto.instance_ID);
 
             }
 
@@ -130,9 +130,11 @@ namespace Boss.inventory
 
             public ItemSlot_DTO Save()
             {
-                string path = AssetDatabase.GetAssetPath(Item);
-
-                return new ItemSlot_DTO(amount, path);
+                if (Item == null)
+                {
+                    return new ItemSlot_DTO(amount);
+                }
+                return new ItemSlot_DTO(amount, Item.GetInstanceID());
             }
         }
     }
@@ -149,13 +151,13 @@ namespace Boss.inventory
 
     public class ItemSlot_DTO : DTO
     {
-        public ItemSlot_DTO(int amount, string path)
+        public ItemSlot_DTO(int amount, int instance_ID = -1)
         {
             this.amount = amount;
-            this.path = path;
+            this.instance_ID = instance_ID;
         }
 
         public int amount { private set; get; }
-        public string path { private set; get; }
+        public int instance_ID { private set; get; }
     }
 }

@@ -88,7 +88,7 @@ namespace Boss.Upgrades
             public GuitareUpgradeSlot(GuitareUpgradeSlot_DTO dto)
             {
                 this.type = dto.type;
-                this.guitareUpgrade = (GuitareUpgrade)AssetDatabase.LoadAssetAtPath(dto.path, typeof(GuitareUpgrade));
+                this.guitareUpgrade = (GuitareUpgrade)DADDY.Instance.GetItemByID(dto.intance_ID);
             }
 
             public UpgradePartType type { get; private set; }
@@ -107,8 +107,11 @@ namespace Boss.Upgrades
 
             public GuitareUpgradeSlot_DTO Save()
             {
-                string path = AssetDatabase.GetAssetPath(guitareUpgrade);
-                return new GuitareUpgradeSlot_DTO(type, path);
+                if (guitareUpgrade == null)
+                {
+                    return new GuitareUpgradeSlot_DTO(type);
+                }
+                return new GuitareUpgradeSlot_DTO(type, guitareUpgrade.GetInstanceID());
             }
         }
     }
@@ -125,14 +128,14 @@ namespace Boss.Upgrades
 
     public class GuitareUpgradeSlot_DTO : DTO
     {
-        public GuitareUpgradeSlot_DTO(UpgradePartType type, string path)
+        public GuitareUpgradeSlot_DTO(UpgradePartType type, int intance_ID = -1)
         {
             this.type = type;
-            this.path = path;
+            this.intance_ID = intance_ID;
         }
 
         public UpgradePartType type;
-        public string path;
+        public int intance_ID;
     }
 }
 
