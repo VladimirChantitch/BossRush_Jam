@@ -63,6 +63,8 @@ namespace Boss.inventory
 
         public bool RemoveItem(AbstractItem item, int amount = -1)
         {
+            if (item == null) return false;
+
             ItemSlot itemSlot = itemsSlots.Where(itemSlot => itemSlot.Item == item).First();
             if (itemSlot != null)
             {

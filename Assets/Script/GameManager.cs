@@ -60,6 +60,16 @@ public class GameManager : MonoBehaviour
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
             playerManager.AddToInventory(sucess_DTO.resutl);
         });
+        ui_manager.onItemSetAsUpgrade.AddListener(item =>
+        {
+            //TODO -- Send the upgrade to the player
+            Debug.Log("add upgrade");
+            playerManager.RemoveFromInventory(item);
+        });
+        ui_manager.onRemoveUpgrade.AddListener(upgrade => {
+            Debug.Log("remove upgrade");
+            //TODO -- Send Upgrade to remove to player
+        });
 
         ui_manager.onGoToHub.AddListener(() =>
         {

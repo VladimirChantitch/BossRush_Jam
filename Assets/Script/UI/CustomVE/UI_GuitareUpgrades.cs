@@ -14,34 +14,38 @@ namespace Boss.Upgrades.UI
     {
         public new class UxmlFactory : UxmlFactory<UI_GuitareUpgrades, UxmlTraits> { }
 
-        List<UI_GuitareSlotUpgrades> uI_ItemSlots = new List<UI_GuitareSlotUpgrades>();
+        List<UI_GuitareSlotUpgrades> uI_UpgradeSlots = new List<UI_GuitareSlotUpgrades>();
         public UnityEvent<GuitareUpgrade> onDisupgraded = new UnityEvent<GuitareUpgrade>();
 
         public UI_GuitareUpgrades()
         {
-            Children().ToList().ForEach(c => uI_ItemSlots.Add(c as UI_GuitareSlotUpgrades));
+
         }
 
         internal void Init()
         {
-            uI_ItemSlots.ForEach(c =>
+            Children().ToList().ForEach(c => uI_UpgradeSlots.Add(c as UI_GuitareSlotUpgrades));
+            int index = 0;
+            uI_UpgradeSlots.ForEach(c =>
             {
                 c.onDisupgraded.AddListener(disSelected => onDisupgraded?.Invoke(disSelected));
+                c.type = (UpgradePartType)index;
+                index++;    
             });
         }
 
         internal void SetInfo(List<GuitareUpgrade> guitareUpgrades)
         {
-            uI_ItemSlots.ForEach(c => c.Clean());
+            uI_UpgradeSlots.ForEach(c => c.Clean());
             guitareUpgrades.ForEach(gu =>
             {
-                uI_ItemSlots.Find(s => s.type == gu.UpgradePartType).Init(gu);
+                uI_UpgradeSlots.Find(s => s.type == gu.UpgradePartType).Init(gu);
             });
         }
 
         internal void SetInfo(GuitareUpgrade guitareUpgrade)
         {
-            UI_ItemSlot slot = uI_ItemSlots.Find(s => s.type == guitareUpgrade.UpgradePartType);
+            UI_GuitareSlotUpgrades slot = uI_UpgradeSlots.Find(s => s.type == guitareUpgrade.UpgradePartType);
             slot.Init(guitareUpgrade);
         }
     }

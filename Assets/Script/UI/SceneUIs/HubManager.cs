@@ -16,6 +16,8 @@ namespace Boss.UI
         public UnityEvent GoblinInteract = new UnityEvent();
         public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
+        public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
 
         VisualElement root;
         VisualElement crafterRoot;
@@ -29,7 +31,7 @@ namespace Boss.UI
         [SerializeField] HubInteractor currentHubInteractor;
         [SerializeField] Crafter crafter;
         [SerializeField] Goblin goblin;
-        [SerializeField] GuitareAspect guitare;
+        [SerializeField] GuitareAspect guitareAspect;
 
         #region Initialisation
         public void Init(VisualElement root, List<Recipies> recipies)
@@ -50,6 +52,7 @@ namespace Boss.UI
             crafterRoot = root.Q<VisualElement>("Crafter");
             inventoryRoot = root.Q<VisualElement>("Inventory");
             upgradeRoot = root.Q<VisualElement>("Upgrades");
+            guitareAspect = FindObjectOfType<GuitareAspect>();
             
             uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
             uI_crafter = root.Q<UI_Crafter>("UI_Crafter");
@@ -71,28 +74,37 @@ namespace Boss.UI
             uI_crafter.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
 
             //UI ___Inventory
-            uI_inventory.onItemSelected.AddListener(selected => {
+            uI_inventory.onItemSelected.AddListener(async selected => {
                 if (currentHubInteractor is Crafter)
                 {
                     crafter.HandleSelection(selected);
                 }
                 else
                 {
-                    uI_GuitareUpgrades.SetInfo(selected as GuitareUpgrade);
-                    //TODO -- Send to player the new UPGRADE
+                    if(selected is GuitareUpgrade guitareUpgrade)
+                    {
+                        onItemSetAsUpgrade.Invoke(guitareUpgrade);
+                        AskOfrInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
+                        guitareAspect.UpdateGuitareAspect(guitareUpgrade);
+                        uI_GuitareUpgrades.SetInfo(guitareUpgrade);
+                    }
+                    //TODO -- give a feed back to tell thats not the rght item
+                    uI_inventory.DeselectItem(null);
                 }
             });
 
             uI_inventory.onItemDeselected.AddListener(disSelected => {
-                crafter.DeselectSlot(disSelected);
-                uI_crafter.Deselect(disSelected);
+                if (currentHubInteractor is Crafter)
+                {
+                    crafter.DeselectSlot(disSelected);
+                    uI_crafter.Deselect(disSelected);
+                }
             });
 
             //UI __Upgrades
-            uI_GuitareUpgrades.onDisupgraded.AddListener(data =>
+            uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
             {
-                guitare.UpdateGuitareAspect(data);
-                //TODO -- Send to player to delete precedent UPGRADE
+                onRemoveUpgrade?.Invoke(guitareUpgrade);
             });
 
 
@@ -106,8 +118,6 @@ namespace Boss.UI
                 CrafterSuccess?.Invoke(success_dto);
                 crafterRoot.visible = false;
                 inventoryRoot.visible = false;
-
-                Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
 
                 await Task.Delay(100);
                 uI_crafter.CraftSuccess();
@@ -162,7 +172,7 @@ namespace Boss.UI
         #region setters
         public void SetGuitareSprite(List<GuitareUpgrade> guitareUpgrades)
         {
-            guitare.UpdateGuitareAspect(guitareUpgrades);
+            guitareAspect.UpdateGuitareAspect(guitareUpgrades);
         }
 
         public void SetInventoryItemSlots(List<AbstractItem> items)

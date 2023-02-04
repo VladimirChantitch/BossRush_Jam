@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 
@@ -19,7 +20,7 @@ namespace Boss.Upgrades.UI
 
         }
 
-        public UpgradePartType type { get; private set; }
+        public UpgradePartType type { get; set; }
 
         /// <summary>
         /// Sets up the slot with the right item ref

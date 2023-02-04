@@ -49,7 +49,26 @@ namespace Boss.UI
 
         internal void DeselectItem(AbstractItem item)
         {
-            uI_ItemSlots.Find(i => i.Item == item).RemoveOverriderClass();
+            if(item != null)
+            {
+                try
+                {
+                    uI_ItemSlots.Find(i => i.Item == item)?.RemoveOverriderClass();
+                }
+                catch
+                {
+                    DeselectAll();
+                }
+            }
+            else
+            {
+                DeselectAll();
+            }
+        }
+
+        private void DeselectAll()
+        {
+            uI_ItemSlots.ForEach(s => s.RemoveOverriderClass());
         }
 
         internal void ClearAllSlots()

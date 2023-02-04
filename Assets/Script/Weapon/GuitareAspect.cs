@@ -2,13 +2,19 @@ using Boss.inventory;
 using Boss.Upgrades.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Boss.Upgrades
 {
     public class GuitareAspect : MonoBehaviour
     {
-        List<UpgradeSlots> slots = new List<UpgradeSlots>();
+        List<GuitareAspectSlot> slots = new List<GuitareAspectSlot>();
+
+        private void Awake()
+        {
+            slots = GetComponentsInChildren<GuitareAspectSlot>().ToList();
+        }
 
         public void UpdateGuitareAspect(List<GuitareUpgrade> guitareUpgrades)
         {
@@ -20,30 +26,15 @@ namespace Boss.Upgrades
 
         public void UpdateGuitareAspect(GuitareUpgrade guitareUpgrade)
         {
-            ChangeSprite(guitareUpgrade.Icon, guitareUpgrade.UpgradePartType);
+            if (guitareUpgrade != null)
+            {
+                ChangeSprite(guitareUpgrade.Icon, guitareUpgrade.UpgradePartType);
+            }
         }
 
         private void ChangeSprite(Sprite sprite, UpgradePartType upgradePart)
         {
-            slots.Find(s => s.upgrade == upgradePart).LoadNewUpgrade(sprite);
-        }
-
-        [Serializable]
-        protected class UpgradeSlots
-        {
-            public UpgradeSlots(UpgradePartType upgrade, SpriteRenderer spriteRenderer)
-            {
-                this.spriteRenderer = spriteRenderer;
-                this.upgrade = upgrade;
-            }
-
-            public UpgradePartType upgrade;
-            [SerializeField] SpriteRenderer spriteRenderer = null;
-
-            public void LoadNewUpgrade(Sprite sprite)
-            {
-                spriteRenderer.sprite = sprite;
-            }
+            slots.Find(s => s.type == upgradePart).LoadNewUpgrade(sprite);
         }
     }
 }
