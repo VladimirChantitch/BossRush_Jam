@@ -32,7 +32,7 @@ namespace Boss.Upgrades.UI
 
         internal void SetInfo(List<GuitareUpgrade> guitareUpgrades)
         {
-            uI_ItemSlots.ForEach(c => c.Clean(false));
+            uI_ItemSlots.ForEach(c => c.Clean());
             guitareUpgrades.ForEach(gu =>
             {
                 uI_ItemSlots.Find(s => s.type == gu.UpgradePartType).Init(gu);

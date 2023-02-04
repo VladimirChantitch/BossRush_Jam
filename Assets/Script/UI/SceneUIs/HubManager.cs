@@ -57,6 +57,10 @@ namespace Boss.UI
             uI_inventory.Init();
             uI_crafter.Init();
             uI_GuitareUpgrades.Init();
+
+            crafterRoot.visible = false;
+            inventoryRoot.visible = false;
+            upgradeRoot.visible = false;
         }
 
 
@@ -77,8 +81,10 @@ namespace Boss.UI
                     //TODO -- Send to player the new powerups
                 }
             });
+
             uI_inventory.onItemDeselected.AddListener(disSelected => {
                 crafter.DeselectSlot(disSelected);
+                uI_crafter.Deselect(disSelected);
             });
 
             //UI __Upgrades
@@ -100,7 +106,8 @@ namespace Boss.UI
                 uI_inventory.CraftSuccess();
 
                 CrafterSuccess?.Invoke(success_dto);
-                uI_crafter.visible = false;
+                crafterRoot.visible = false;
+                inventoryRoot.visible = false;
 
                 Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
             });
@@ -137,10 +144,14 @@ namespace Boss.UI
                 case Goblin:
                     currentHubInteractor = interactable;
                     GoblinInteract?.Invoke();
+                    inventoryRoot.visible = true;
+                    upgradeRoot.visible = true;
                     OpenGuitareUpgradesMenu();
                     break;
                 case Crafter:
                     currentHubInteractor = interactable;
+                    inventoryRoot.visible = true;
+                    crafterRoot.visible = true;
                     OpenCrafterMenu(interactable);
                     break;
             }

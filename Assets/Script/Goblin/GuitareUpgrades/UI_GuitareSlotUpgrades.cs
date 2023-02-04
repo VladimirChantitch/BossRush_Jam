@@ -30,7 +30,7 @@ namespace Boss.Upgrades.UI
             if (Item != null)
             {
                 onDisupgraded?.Invoke(Item as GuitareUpgrade);
-                Clean(false);
+                Clean();
             }
 
             base.Init(item);
@@ -42,7 +42,7 @@ namespace Boss.Upgrades.UI
             this.clicked += () =>
             {
                 onDisupgraded?.Invoke(Item as GuitareUpgrade);
-                Clean(false);
+                Clean();
             };
         }
     }

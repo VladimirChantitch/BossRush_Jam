@@ -17,7 +17,6 @@ namespace Boss.crafter
         public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
 
-
         AbstractItem[] items = new AbstractItem[2];
 
         public void HandleSelection(AbstractItem item)

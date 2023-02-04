@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine.Events;
 using System;
+using System.Diagnostics;
 
 public class UI_ItemSlot : Button
 {
@@ -32,7 +33,7 @@ public class UI_ItemSlot : Button
 
     public virtual void Init(AbstractItem Item)
     {
-        Clean(true);
+        Clean();
         this.Item = Item;
         InitIcon();
     }
@@ -73,16 +74,12 @@ public class UI_ItemSlot : Button
         };
     }
     /// <summary>
-    /// Cleans the slots
+    /// Cleans the slots from its data
     /// </summary>
-    /// <param name="isSoft">does it also cleans the reference to the item?</param>
-    public void Clean(bool isSoft)
+    public void Clean()
     {
         RemoveFromClassList("SlotSelected");
-        if (!isSoft)
-        {
-            Item = null;
-        }
+        Item = null;
         style.backgroundImage = null;
         AddToClassList("Slot");
         isSelected = false;

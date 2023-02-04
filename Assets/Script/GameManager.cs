@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CurrentScrenn currentScrenn;
 
     [Header("Data")]
-    List<Recipies> recipies = new List<Recipies>();
+    [SerializeField] List<Recipies> recipies = new List<Recipies>();
 
     public bool Save;
     public bool Load;

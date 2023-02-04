@@ -19,13 +19,16 @@ namespace Boss.UI
 
         public UI_Crafter()
         {
-            Children().ToList().ForEach(c => uI_ItemSlots.Add(c as UI_ItemSlot));
+
         }
 
         internal void Init()
         {
+            Children().ToList().ForEach(c => uI_ItemSlots.Add(c as UI_ItemSlot));
+
             uI_ItemSlots.ForEach(c =>
             {
+                c.Clean();
                 c.ItemSelected.AddListener(t => Debug.Log("nothing, but thats ok"));
                 c.ItemDeselected.AddListener(disSelected => onItemDeselected?.Invoke(disSelected));
             });
@@ -33,24 +36,24 @@ namespace Boss.UI
 
         internal void Fail()
         {
-            uI_ItemSlots.ForEach(c => c.Clean(false));
+            uI_ItemSlots.ForEach(c => c.Clean());
         }
 
         internal void Info(CrafterData dto)
         {
-            uI_ItemSlots.ForEach(c => c.Clean(false));
+            uI_ItemSlots.ForEach(c => c.Clean());
             if (dto.item_1 != null) uI_ItemSlots[0].Init(dto.item_1);
             if (dto.item_2 != null) uI_ItemSlots[1].Init(dto.item_2);
         }
 
-        internal void CraftSuccess()
+        public void Deselect(AbstractItem item)
         {
-            uI_ItemSlots.ForEach(c => c.Clean(false));
+            uI_ItemSlots.Find(s => s.Item == item).Clean();
         }
 
-        internal void ClearAllSlots()
+        internal void CraftSuccess()
         {
-            uI_ItemSlots.ForEach(c => c.Clean(false));
+            uI_ItemSlots.ForEach(c => c.Clean());
         }
     }
 }
