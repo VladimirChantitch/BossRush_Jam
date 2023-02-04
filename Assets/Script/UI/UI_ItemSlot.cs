@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine.Events;
 using System;
+using System.Diagnostics;
 
 public class UI_ItemSlot : Button
 {
@@ -13,7 +14,7 @@ public class UI_ItemSlot : Button
 
     public UI_ItemSlot()
     {
-        this.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/UI/Boss.uss"));
+        this.styleSheets.Add(DADDY.Instance.USS_STYLE);
         AddToClassList("Slot");
         Init();
     }
@@ -30,10 +31,10 @@ public class UI_ItemSlot : Button
         BindEvents();
     }
 
-    public void Init(AbstractItem Item)
+    public virtual void Init(AbstractItem Item)
     {
+        Clean();
         this.Item = Item;
-
         InitIcon();
     }
 
@@ -53,7 +54,7 @@ public class UI_ItemSlot : Button
         isSelected = false; 
     }
 
-    private void BindEvents()
+    protected virtual void BindEvents()
     {
         this.clicked += () =>
         {
@@ -70,10 +71,11 @@ public class UI_ItemSlot : Button
                 ToggleInClassList("Slot");
                 ToggleInClassList("SlotSelected");
             }
-
         };
     }
-
+    /// <summary>
+    /// Cleans the slots from its data
+    /// </summary>
     public void Clean()
     {
         RemoveFromClassList("SlotSelected");

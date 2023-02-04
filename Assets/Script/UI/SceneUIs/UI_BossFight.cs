@@ -39,7 +39,7 @@ public class UI_BossFight : MonoBehaviour
 
     private void BindUI()
     {
-        style = (StyleSheet)AssetDatabase.LoadAssetAtPath("Assets/UI/Boss.uss",typeof(StyleSheet));
+        style = DADDY.Instance.USS_STYLE;
 
         fightScreen = root.Q<VisualElement>("FightScreen");
         playerDeathScreen = root.Q<VisualElement>("PlayerDeathScreen");

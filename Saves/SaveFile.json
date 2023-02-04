@@ -22,37 +22,50 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "path": "Assets/Objects/Test/Mediat.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test/Poutre.asset"
+              "instance_ID": 28902
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
-              "path": "Assets/Objects/Test/fraise.asset"
+              "instance_ID": 28904
+            }
+          ]
+        }
+      },
+      "Upgrades": {
+        "$type": "Boss.Upgrades.GuitareUpgrade_DTO, Assembly-CSharp",
+        "guitareUpgradeSlots_DTOs": {
+          "$type": "System.Collections.Generic.List`1[[Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp]], mscorlib",
+          "$values": [
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 0,
+              "intance_ID": 28906
             },
             {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 2,
-              "path": "Assets/Objects/Test/Truc.asset"
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 5,
+              "intance_ID": -1
             },
             {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test Boss Loot/guitar up.asset"
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 2,
+              "intance_ID": -1
             },
             {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test Boss Loot/hehe.asset"
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 4,
+              "intance_ID": -1
             },
             {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test Boss Loot/Mediat.asset"
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 3,
+              "intance_ID": 28900
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 1,
+              "intance_ID": -1
             }
           ]
         }

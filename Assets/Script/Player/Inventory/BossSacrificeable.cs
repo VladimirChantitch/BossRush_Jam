@@ -9,7 +9,7 @@ namespace Boss.inventory
     [CreateAssetMenu(menuName = "Items/BossSacrifice")]
     public class BossSacrificeable : AbstractItem
     {
-        [SerializeField] SceneAsset BossFight;
+        [SerializeField] string BossFightName;
     }
 }
 

@@ -1,175 +1,211 @@
 using Boss.inventory;
-using Boss.UI;
+using Boss.Upgrades;
 using Boss.crafter;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using Boss.Upgrades.UI;
+using System.Threading.Tasks;
 
-public class HubManager : MonoBehaviour
+namespace Boss.UI
 {
-    public UnityEvent GoblinInteract = new UnityEvent();
-    public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
-    public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
-
-    VisualElement root;
-    VisualElement crafterRoot;
-    List<UI_ItemSlot> itemSlots = new List<UI_ItemSlot>();
-    List<UI_ItemSlot> crafterSlots = new List<UI_ItemSlot>();
-
-    [SerializeField] HubInteractor currentHubInteractor;
-    [SerializeField] Crafter crafter;
-    [SerializeField] Goblin goblin;
-
-    public void Init(VisualElement root, List<Recipies> recipies)
+    public class HubManager : MonoBehaviour
     {
-        this.root = root;
-        crafter = FindObjectOfType<Crafter>();
-        goblin = FindObjectOfType<Goblin>();
+        public UnityEvent GoblinInteract = new UnityEvent();
+        public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
+        public UnityEvent<Action<List<AbstractItem>>> AskForInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        public UnityEvent<Action<List<GuitareUpgrade>>> AskForUpgrades = new UnityEvent<Action<List<GuitareUpgrade>>>();
+        public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
+        public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
 
-        SetRefs(recipies);
-        BindEvents();
-    }
+        VisualElement root;
+        VisualElement crafterRoot;
+        VisualElement inventoryRoot;
+        VisualElement upgradeRoot;
 
-    private void SetRefs(List<Recipies> recipies)
-    {
-        crafterRoot = root.Q<VisualElement>("CrafterPopUp");
-        crafterRoot.visible = false;
-        crafter.Init(recipies);
-        goblin.Init(recipies);
+        UI_Inventory uI_inventory;
+        UI_Crafter uI_crafter;
+        UI_GuitareUpgrades uI_GuitareUpgrades;
 
-        List<VisualElement> slots = root.Q<VisualElement>("InventoryView").Children().ToList();
-        slots.ForEach(s => itemSlots.Add(s as UI_ItemSlot));
-        slots = root.Q<VisualElement>("Crafter").Children().ToList();
-        slots.ForEach(s => crafterSlots.Add(s as UI_ItemSlot));
-    }
+        [SerializeField] HubInteractor currentHubInteractor;
+        [SerializeField] Crafter crafter;
+        [SerializeField] Goblin goblin;
+        [SerializeField] GuitareAspect guitareAspect;
 
-
-    private void BindEvents()
-    {
-        //Slots Events
-        crafterSlots.ForEach(c =>
+        #region Initialisation
+        public void Init(VisualElement root, List<Recipies> recipies)
         {
-            c.ItemSelected.AddListener(t => Debug.Log("nothing, but thats ok"));
-            c.ItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
-        });
+            this.root = root;
+            crafter = FindObjectOfType<Crafter>();
+            goblin = FindObjectOfType<Goblin>();
 
-        itemSlots.ForEach(c =>
-        {
-            c.ItemSelected.AddListener(selected => crafter.HandleSelection(selected));
-            c.ItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
-        });
+            SetRefs(recipies);
+            BindEvents();
+        }
 
-        //CrafterEvents
-        crafter.onFail.AddListener((fail_dto) =>
+        private void SetRefs(List<Recipies> recipies)
         {
-            crafterSlots.ForEach(c => c.Clean());
-        });
+            crafter.Init(recipies);
+            goblin.Init(recipies);
 
-        crafter.onInfo.AddListener((dto) =>
-        {
-            crafterSlots.ForEach(c => c.Clean());
-            if (dto.item_1 != null) crafterSlots[0].Init(dto.item_1);
-            if (dto.item_2 != null) crafterSlots[1].Init(dto.item_2);
-        });
+            crafterRoot = root.Q<VisualElement>("Crafter");
+            inventoryRoot = root.Q<VisualElement>("Inventory");
+            upgradeRoot = root.Q<VisualElement>("Upgrades");
+            guitareAspect = FindObjectOfType<GuitareAspect>();
+            
+            uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
+            uI_crafter = root.Q<UI_Crafter>("UI_Crafter");
+            uI_GuitareUpgrades = root.Q<UI_GuitareUpgrades>("UI_GuitareUpgrades");
 
-        crafter.onSuccess.AddListener((success_dto) =>
-        {
-            crafterSlots.ForEach(c => c.Clean());
-            itemSlots.ForEach(c => {
-                c.RemoveOverriderClass();
-                c.isSelected = false;
-            });
-            CrafterSuccess?.Invoke(success_dto);
+            uI_inventory.Init();
+            uI_crafter.Init();
+            uI_GuitareUpgrades.Init();
+
             crafterRoot.visible = false;
+            inventoryRoot.visible = false;
+            upgradeRoot.visible = false;
+        }
 
-            Debug.Log($"<color=yellow> CRAFTED WITH SUCESS {success_dto.resutl.name} !!!! </color>");
-        });
 
-        crafter.onDeselect.AddListener(item =>
+        private void BindEvents()
         {
-            itemSlots.Find(i => i.Item == item).RemoveOverriderClass();
-        });
-    }
+            //UI ___Crafter
+            uI_crafter.onItemDeselected.AddListener(disSelected => crafter.DeselectSlot(disSelected));
 
-    // Update is called once per frame
-    void Update()
-    {
-        //If the left mouse button is clicked.
-        if (Input.GetMouseButtonDown(0))
-        {
-            //Get the mouse position on the screen and send a raycast into the game world from that position.
-            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
-
-            //If something was hit, the RaycastHit2D.collider will not be null.
-            if (hit.collider != null)
-            {
-                if (hit.collider.GetComponent<HubInteractor>() is HubInteractor hubInteractor)
+            //UI ___Inventory
+            uI_inventory.onItemSelected.AddListener(async selected => {
+                if (currentHubInteractor is Crafter)
                 {
-                    HandleInteractable(hubInteractor);
+                    crafter.HandleSelection(selected);
+                }
+                else
+                {
+                    if(selected is GuitareUpgrade guitareUpgrade)
+                    {
+                        onItemSetAsUpgrade.Invoke(guitareUpgrade);
+                        AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
+                        guitareAspect.UpdateGuitareAspect(guitareUpgrade);
+                        uI_GuitareUpgrades.SetInfo(guitareUpgrade);
+                    }
+                    //TODO -- give a feed back to tell thats not the rght item
+                    uI_inventory.DeselectItem(null);
+                }
+            });
+
+            uI_inventory.onItemDeselected.AddListener(disSelected => {
+                if (currentHubInteractor is Crafter)
+                {
+                    crafter.DeselectSlot(disSelected);
+                    uI_crafter.Deselect(disSelected);
+                }
+            });
+
+            //UI __Upgrades
+            uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
+            {
+                onRemoveUpgrade?.Invoke(guitareUpgrade);
+            });
+
+
+            //CrafterEvents
+            crafter.onFail.AddListener((fail_dto) => { uI_crafter.Fail(); });
+
+            crafter.onInfo.AddListener((dto) => { uI_crafter.Info(dto); });
+
+            crafter.onSuccess.AddListener(async (success_dto) =>
+            {
+                CrafterSuccess?.Invoke(success_dto);
+                crafterRoot.visible = false;
+                inventoryRoot.visible = false;
+
+                await Task.Delay(100);
+                uI_crafter.CraftSuccess();
+                uI_inventory.CraftSuccess();
+            });
+
+            crafter.onDeselect.AddListener(item =>
+            {
+                uI_inventory.DeselectItem(item);
+            });
+        }
+        #endregion
+
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    if (hit.collider.GetComponent<HubInteractor>() is HubInteractor hubInteractor)
+                    {
+                        HandleInteractable(hubInteractor);
+                    }
                 }
             }
         }
-    }
 
-    private void HandleInteractable(HubInteractor interactable)
-    {
-        interactable.interacts?.Invoke();
-        //CloseAllPopUp();
-        switch (interactable.interactables)
+        private void HandleInteractable(HubInteractor interactable)
         {
-            case HubInteractor.Interactables.Door:
-                break;
-            case HubInteractor.Interactables.Wheel:
-                break;
-            case HubInteractor.Interactables.Goblin:
-                GoblinInteract?.Invoke();
-                break;
-            case HubInteractor.Interactables.Crafter:
-                OpenCrafterMenu(interactable);
-                break;
-            case HubInteractor.Interactables.Gauge:
-                break;
-            case HubInteractor.Interactables.Weapon:
-                break;
-            case HubInteractor.Interactables.Map:
-                break;
-            case HubInteractor.Interactables.Pot_1:
-                break;
-            case HubInteractor.Interactables.Pot_2:
-                break;
-            case HubInteractor.Interactables.Pot_3:
-                break;
+            interactable.interacts?.Invoke();
+            switch (interactable)
+            {
+                case Goblin:
+                    currentHubInteractor = interactable;
+                    GoblinInteract?.Invoke();
+                    inventoryRoot.visible = true;
+                    upgradeRoot.visible = true;
+                    OpenGuitareUpgradesMenu();
+                    break;
+                case Crafter:
+                    currentHubInteractor = interactable;
+                    inventoryRoot.visible = true;
+                    crafterRoot.visible = true;
+                    OpenCrafterMenu(interactable);
+                    break;
+            }
         }
-    }
 
-    private void CloseAllPopUp()
-    {
-        crafterRoot.visible = false;
-        crafterSlots.ForEach(c => c.Clean());
-        itemSlots.ForEach(c => c.Clean());
-    }
-
-    private void OpenCrafterMenu(HubInteractor hubInteractor)
-    {
-        crafterRoot.visible = true;
-        AskOfrInventory?.Invoke(i => SetItemSlots(i));
-        //crafterRoot.transform.position = hubInteractor.transform.position;
-        //crafterRoot.style.right = 0;
-        //crafterRoot.style.left = 0;
-        //crafterRoot.style.top = 0;
-        //crafterRoot.style.
-    }
-
-    public void SetItemSlots(List<AbstractItem> items) 
-    {
-        for(int i =0; i < items.Count; i++)
+        #region setters
+        public void SetGuitareSprite(List<GuitareUpgrade> guitareUpgrades)
         {
-            itemSlots[i].Init(items[i]);
+            guitareAspect.UpdateGuitareAspect(guitareUpgrades);
         }
+
+        public void SetInventoryItemSlots(List<AbstractItem> items)
+        {
+            uI_inventory.SetItemSlots(items);
+        }
+
+        public void SetUpgradeItemSlots(List<GuitareUpgrade> items)
+        {
+            uI_GuitareUpgrades.SetInfo(items);
+        }
+        #endregion
+
+        #region Open/CloseMenus
+        private void OpenGuitareUpgradesMenu()
+        {
+            upgradeRoot.visible = true;
+            AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
+            AskForUpgrades?.Invoke(u => SetUpgradeItemSlots(u));
+        }
+
+        private void OpenCrafterMenu(HubInteractor hubInteractor)
+        {
+            crafterRoot.visible = true;
+            AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
+        }
+
+        private void CloseAllPopups()
+        {
+
+        }
+        #endregion
     }
 }
+

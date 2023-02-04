@@ -26,8 +26,11 @@ namespace Boss.UI
         [HideInInspector] public UnityEvent LoadNewScreen = new UnityEvent();
         [HideInInspector] public UnityEvent DeleteSaveFile = new UnityEvent();
         [HideInInspector] public UnityEvent<CrafterSuccessData> CrafterSuccess = new UnityEvent<CrafterSuccessData>();
-        [HideInInspector] public UnityEvent<Action<List<AbstractItem>>> AskOfrInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        [HideInInspector] public UnityEvent<Action<List<AbstractItem>>> AskForInventory = new UnityEvent<Action<List<AbstractItem>>>();
+        [HideInInspector] public UnityEvent<Action<List<GuitareUpgrade>>> AskForUpgrades = new UnityEvent<Action<List<GuitareUpgrade>>>();
         [HideInInspector] public UnityEvent onGoToHub = new UnityEvent();
+        [HideInInspector] public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
+        [HideInInspector] public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -105,10 +108,9 @@ namespace Boss.UI
             {
                 CrafterSuccess?.Invoke(succes_dto);
             });
-            hubManager.AskOfrInventory.AddListener(action =>
-            {
-                AskOfrInventory?.Invoke(action);
-            });
+            hubManager.AskForInventory.AddListener(action => { AskForInventory?.Invoke(action);  });
+            hubManager.AskForUpgrades.AddListener(action => { AskForUpgrades?.Invoke(action); });
+            hubManager.onItemSetAsUpgrade.AddListener(item => onItemSetAsUpgrade?.Invoke(item));
 
             hubManager.Init(uIDocument.rootVisualElement, recipies);
         }

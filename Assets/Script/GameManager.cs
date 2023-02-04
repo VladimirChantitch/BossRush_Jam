@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CurrentScrenn currentScrenn;
 
     [Header("Data")]
-    List<Recipies> recipies = new List<Recipies>();
+    [SerializeField] List<Recipies> recipies = new List<Recipies>();
 
     public bool Save;
     public bool Load;
@@ -48,17 +48,33 @@ public class GameManager : MonoBehaviour
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
         ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
         ui_manager.DeleteSaveFile.AddListener(() => saveManager.DestroySaveFile());
-        ui_manager.AskOfrInventory.AddListener(action =>
+        ui_manager.AskForInventory.AddListener(action =>
         {
             List<AbstractItem> items = playerManager.GetItems();
             action.Invoke(items);
         });
+        ui_manager.AskForUpgrades.AddListener(action =>
+        {
+            List <GuitareUpgrade> items = playerManager.GetGuitareUpgrades();
+            action.Invoke(items);
+        });
+
 
         ui_manager.CrafterSuccess.AddListener(sucess_DTO =>
         {
             playerManager.RemoveFromInventory(sucess_DTO.item_1);
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
             playerManager.AddToInventory(sucess_DTO.resutl);
+        });
+        ui_manager.onItemSetAsUpgrade.AddListener(item =>
+        {
+            playerManager.AddOrModifyUpgrade(item as GuitareUpgrade);
+            Debug.Log("add upgrade");
+            playerManager.RemoveFromInventory(item);
+        });
+        ui_manager.onRemoveUpgrade.AddListener(upgrade => {
+            Debug.Log("remove upgrade");
+            playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
         });
 
         ui_manager.onGoToHub.AddListener(() =>
