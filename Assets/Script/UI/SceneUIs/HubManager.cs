@@ -167,6 +167,9 @@ namespace Boss.UI
                     crafterRoot.visible = true;
                     OpenCrafterMenu(interactable);
                     break;
+                case MapInterractor mapInterractor:
+                    mapInterractor.Interact();
+                    break;
             }
         }
 
