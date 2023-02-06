@@ -9,20 +9,40 @@ public class DoorManager : MonoBehaviour
 {
     [SerializeField] GameObject Door;
     [SerializeField] GameObject DoorOpen;
+    [SerializeField] float LightOpenSpeed;
+    [SerializeField] float doorOpenSpeed;
+    [SerializeField] float cameraZoomSpeed;
+
+    bool alreadyLoading;
 
     public async void LaunchNewBossFight(string bossName)
     {
-        Door.SetActive(false);
+        if (!alreadyLoading)
+        {
+            alreadyLoading = true;
+            StartCoroutine(Opendoor(bossName));
+        }
+    }
 
-        await Task.Delay(250);
-
+    IEnumerator Opendoor(string bossName)
+    {
         DoorOpen.SetActive(true);
+        Light2D light = DoorOpen.GetComponent<Light2D>();
+        light.enabled = true;
+        light.intensity = 0;
 
-        await Task.Delay(250);
+        while (Door.transform.position.y <= 5)
+        {
+            yield return new WaitForEndOfFrame();
 
-        DoorOpen.GetComponent<Light2D>().enabled = true;
+            Vector2 pos = Door.transform.position;
+            pos.y += Time.deltaTime * doorOpenSpeed;
+            Door.transform.position = pos;
 
-        await Task.Delay(250);
+            light.intensity += Time.deltaTime * LightOpenSpeed;
+
+            Camera.main.orthographicSize -= Time.deltaTime *cameraZoomSpeed;
+        }
 
         SceneManager.LoadScene(bossName);
     }
