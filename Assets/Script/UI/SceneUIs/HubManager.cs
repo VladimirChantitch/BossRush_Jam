@@ -1,6 +1,7 @@
 using Boss.inventory;
 using Boss.Upgrades;
 using Boss.crafter;
+using Boss.Map;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

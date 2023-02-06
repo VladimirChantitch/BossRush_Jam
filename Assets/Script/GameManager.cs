@@ -7,6 +7,7 @@ using player;
 using Boss.inventory;
 using System;
 using UnityEngine.SceneManagement;
+using Boss.Map;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerManager playerManager;
     [SerializeField] BossCharacter bossCharacter;
     [SerializeField] CurrentScrenn currentScrenn;
+    [SerializeField] MapManager mapManager;
 
     [Header("Data")]
     [SerializeField] List<Recipies> recipies = new List<Recipies>();
@@ -33,6 +35,10 @@ public class GameManager : MonoBehaviour
             SetBossCharacterEvent();
         }
         SetPlayerManagerEvents();
+        if (currentScrenn == CurrentScrenn.Hub)
+        {
+            SetMapEvents();
+        }
 
         if (AutoLoad)
         {
@@ -64,16 +70,14 @@ public class GameManager : MonoBehaviour
         {
             playerManager.RemoveFromInventory(sucess_DTO.item_1);
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
-            playerManager.AddToInventory(sucess_DTO.resutl);
+            mapManager.UnlockNewLocation(sucess_DTO.resutl as BossSacrificeable);
         });
         ui_manager.onItemSetAsUpgrade.AddListener(item =>
         {
             playerManager.AddOrModifyUpgrade(item as GuitareUpgrade);
-            Debug.Log("add upgrade");
             playerManager.RemoveFromInventory(item);
         });
         ui_manager.onRemoveUpgrade.AddListener(upgrade => {
-            Debug.Log("remove upgrade");
             playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
         });
 
@@ -97,6 +101,14 @@ public class GameManager : MonoBehaviour
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
+    }
+
+    private void SetMapEvents()
+    {
+        mapManager.onGoToBossFight.AddListener(s => {
+            saveManager.SaveGame();
+            FindObjectOfType<DoorManager>().LaunchNewBossFight(s);
+        });
     }
 
     private void Update()

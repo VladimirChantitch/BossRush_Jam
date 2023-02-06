@@ -24,6 +24,7 @@ namespace Boss.Map
             light2D = GetComponent<Light2D>();
             activator.enabled = false;
             light2D.enabled = false;
+            spriteRenderer.enabled = true;
         }
 
         public void Unlock()

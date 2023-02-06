@@ -1,27 +1,37 @@
+using Boss.inventory;
 using Boss.save;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Boss.Map
 {
     public class MapManager : MonoBehaviour, ISavable
     {
+        public UnityEvent<string> onGoToBossFight = new UnityEvent<string>(){};
+
+        [SerializeField] GameObject mapParent;
         List<MapInterractor> _maps = new List<MapInterractor>();
 
         List<BossLocalization> unlockedLocalization = new List<BossLocalization>();
 
         private void Awake()
         {
-            _maps = GetComponentsInChildren<MapInterractor>().ToList();
-            _maps.ForEach(m => m.onInteract.AddListener(map => Debug.Log(map.location)));
+            if (mapParent != null)
+            {
+                _maps = mapParent.GetComponentsInChildren<MapInterractor>().ToList();
+                _maps.ForEach(m => m.onInteract.AddListener(map => {
+                    onGoToBossFight?.Invoke(DADDY.Instance.GetBossFight(map.location));
+                }));
+            }
         }
 
-        public void UnlockNewLocation(BossLocalization bossLocalization)
+        public void UnlockNewLocation(BossSacrificeable sacrifice)
         {
-            unlockedLocalization.Add(bossLocalization);
-            _maps.Find(m => m.location == bossLocalization).Unlock();
+            unlockedLocalization.Add(sacrifice.Location);
+            _maps.Find(m => m.location == sacrifice.Location).Unlock();
         }
 
         public DTO GetData()
@@ -32,7 +42,7 @@ namespace Boss.Map
         public void LoadData(DTO dTO)
         {
             unlockedLocalization = (dTO as MapManager_DTO).locations;
-            unlockedLocalization.ForEach(ul => _maps.Find(m => m.location == ul).Unlock());
+            unlockedLocalization.ForEach(ul => _maps.Find(m => m.location == ul)?.Unlock());
         }
     }
 

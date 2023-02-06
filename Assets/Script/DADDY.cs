@@ -1,4 +1,6 @@
 using Boss.inventory;
+using Boss.Map;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,14 +15,28 @@ public class DADDY : MonoBehaviour
 
     [SerializeField] List<Recipies> Recipies = new List<Recipies>();
 
+    [SerializeField] List<BossFight> bossFights = new List<BossFight> ();
+
     public AbstractItem GetItemByID(int ID)
     {
         AbstractItem item = itemsAvailible.Find(i => i.GetInstanceID() == ID);
         return item;
     }
 
+    public string GetBossFight(BossLocalization location)
+    {
+        return bossFights.Find(bf => bf.location == location).BossFightName;
+    }
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    [Serializable]
+    public class BossFight
+    {
+        public string BossFightName;
+        public BossLocalization location;
     }
 }
