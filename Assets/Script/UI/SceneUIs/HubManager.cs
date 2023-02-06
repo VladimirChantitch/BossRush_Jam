@@ -1,6 +1,7 @@
 using Boss.inventory;
 using Boss.Upgrades;
 using Boss.crafter;
+using Boss.Map;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -166,6 +167,9 @@ namespace Boss.UI
                     inventoryRoot.visible = true;
                     crafterRoot.visible = true;
                     OpenCrafterMenu(interactable);
+                    break;
+                case MapInterractor mapInterractor:
+                    mapInterractor.Interact();
                     break;
             }
         }

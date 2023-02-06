@@ -2,6 +2,15 @@
   "$type": "System.Collections.Generic.List`1[[Boss.save.DTO, Assembly-CSharp]], mscorlib",
   "$values": [
     {
+      "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
+      "locations": {
+        "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
+        "$values": [
+          0
+        ]
+      }
+    },
+    {
       "$type": "player.Player_DTO, Assembly-CSharp",
       "Stats": {
         "$type": "System.Collections.Generic.List`1[[Boss.stats.Stat_DTO, Assembly-CSharp]], mscorlib",
@@ -21,13 +30,13 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 28902
+              "amount": 7,
+              "instance_ID": 28904
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 7,
-              "instance_ID": 28904
+              "amount": 1,
+              "instance_ID": 28906
             }
           ]
         }
@@ -40,7 +49,7 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 0,
-              "intance_ID": 28906
+              "intance_ID": -1
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
@@ -60,7 +69,7 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 3,
-              "intance_ID": 28900
+              "intance_ID": -1
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
