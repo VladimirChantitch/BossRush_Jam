@@ -1,3 +1,4 @@
+using Boss.loot;
 using Boss.stats;
 using System.Collections.Generic;
 using System.Linq;
@@ -352,7 +353,6 @@ namespace Boss
             }
             else
             {
-                DealDamageToNearByTargets(selectedHand.transform, explosionDamage);
                 EnterAwaitingState();
             }
         }
@@ -400,20 +400,6 @@ namespace Boss
         }
         #endregion
 
-        private void DealDamageToNearByTargets(Transform sourceTransform, float radius)
-        {
-            //Collider[] colliders = Physics.OverlapSphere(sourceTransform.position, radius);
- 
-           ////Play an epic explosion animation
-            //for (int i = 0; i < radius; i++)
-            //{
-            //    if (colliders[i].gameObject.layer == 20)
-            //    {
-            //        colliders[i].GetComponent<AbstractCharacter>().AddDamage(current_attack.damageAmount);
-            //        return;
-            //    }
-            //}
-        }
         #region Dying
         public void EnterDyingState()
         {
@@ -427,11 +413,7 @@ namespace Boss
             {
                 isDying = true;
                 animator.PlayTargetAnimation(false, Death, 0.25f);
-                // Stops the fight, the player gets to a lock position 
-                // Explosion 
-                // Three item are displayed 
-                // The player is unlocked and goes on them to collect
-                // Once collect is done the player goes back to the Hub
+                bossLoot.Loot(inventory.GetItems());
             }
         }
         #endregion
