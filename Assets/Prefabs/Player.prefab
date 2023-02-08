@@ -6919,6 +6919,9 @@ MonoBehaviour:
   - value: 0
     maxValue: 50
     statType: 3
+  - value: 0
+    maxValue: 1000
+    statType: 2
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
   status: 1
   playerMovement: {fileID: 2348196337006595964}

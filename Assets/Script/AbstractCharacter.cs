@@ -30,6 +30,7 @@ public abstract class AbstractCharacter : MonoBehaviour
         new Stat(1f, 1f , StatsType.dash),
 
         new Stat(1f, 1f , StatsType.combo),
+         new Stat(0, 1000, StatsType.Blood),
     };
 
     /// <summary>
@@ -57,14 +58,12 @@ public abstract class AbstractCharacter : MonoBehaviour
     #region Inventory
     [SerializeField] protected Inventory inventory;
 
-    public void AddToInventory(AbstractItem item, int amount = 1)
-    {
-        if (inventory != null)
-        {
-            inventory.AddItem(item, amount);
-        }
-    }
-
+    /// <summary>
+    /// Remove a specfic item from the inventory
+    /// </summary>
+    /// <param name="item">item to remove</param>
+    /// <param name="amount"></param>
+    /// <returns></returns>
     public bool RemoveFromInventory(AbstractItem item, int amount = 1)
     {
         if (inventory != null)
@@ -81,6 +80,10 @@ public abstract class AbstractCharacter : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Get the items in the player inventory
+    /// </summary>
+    /// <returns></returns>
     public List<AbstractItem> GetItems()
     {
         if (inventory != null)
@@ -89,6 +92,34 @@ public abstract class AbstractCharacter : MonoBehaviour
         }
 
         return new List<AbstractItem>();
+    }
+
+    /// <summary>
+    /// Add looted items to player inventory
+    /// </summary>
+    /// <param name="guitareUpgrades"></param>
+    /// <param name="bossItems"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    public void AddToInventory(List<GuitareUpgrade> guitareUpgrades, List<BossItem> bossItems)
+    {
+        guitareUpgrades.ForEach(gu =>
+        {
+            AddToInventory(gu);
+        });
+
+        bossItems.ForEach(bi =>
+        {
+            AddToInventory(bi);
+        });
+    }
+
+
+    public void AddToInventory(AbstractItem item, int amount = 1)
+    {
+        if (inventory != null)
+        {
+            inventory.AddItem(item, amount);
+        }
     }
 
     #endregion

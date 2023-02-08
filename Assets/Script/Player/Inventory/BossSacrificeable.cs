@@ -1,3 +1,4 @@
+using Boss.Map;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,7 +10,9 @@ namespace Boss.inventory
     [CreateAssetMenu(menuName = "Items/BossSacrifice")]
     public class BossSacrificeable : AbstractItem
     {
-        [SerializeField] SceneAsset BossFight;
+        [SerializeField] BossLocalization location;
+
+        public BossLocalization Location { get => location; }
     }
 }
 

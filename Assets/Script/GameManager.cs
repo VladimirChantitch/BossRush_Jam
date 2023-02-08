@@ -7,6 +7,7 @@ using player;
 using Boss.inventory;
 using System;
 using UnityEngine.SceneManagement;
+using Boss.Map;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,9 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerManager playerManager;
     [SerializeField] BossCharacter bossCharacter;
     [SerializeField] CurrentScrenn currentScrenn;
+    [SerializeField] MapManager mapManager;
 
     [Header("Data")]
-    List<Recipies> recipies = new List<Recipies>();
+    [SerializeField] List<Recipies> recipies = new List<Recipies>();
 
     public bool Save;
     public bool Load;
@@ -37,6 +39,10 @@ public class GameManager : MonoBehaviour
             SetBossCharacterEvent();
         }
         SetPlayerManagerEvents();
+        if (currentScrenn == CurrentScrenn.Hub)
+        {
+            SetMapEvents();
+        }
 
         if (AutoLoad)
         {
@@ -52,17 +58,31 @@ public class GameManager : MonoBehaviour
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
         ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
         ui_manager.DeleteSaveFile.AddListener(() => saveManager.DestroySaveFile());
-        ui_manager.AskOfrInventory.AddListener(action =>
+        ui_manager.AskForInventory.AddListener(action =>
         {
             List<AbstractItem> items = playerManager.GetItems();
             action.Invoke(items);
         });
+        ui_manager.AskForUpgrades.AddListener(action =>
+        {
+            List <GuitareUpgrade> items = playerManager.GetGuitareUpgrades();
+            action.Invoke(items);
+        });
+
 
         ui_manager.CrafterSuccess.AddListener(sucess_DTO =>
         {
             playerManager.RemoveFromInventory(sucess_DTO.item_1);
             playerManager.RemoveFromInventory(sucess_DTO.item_2);
-            playerManager.AddToInventory(sucess_DTO.resutl);
+            mapManager.UnlockNewLocation(sucess_DTO.resutl as BossSacrificeable);
+        });
+        ui_manager.onItemSetAsUpgrade.AddListener(item =>
+        {
+            playerManager.AddOrModifyUpgrade(item as GuitareUpgrade);
+            playerManager.RemoveFromInventory(item);
+        });
+        ui_manager.onRemoveUpgrade.AddListener(upgrade => {
+            playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
         });
 
         ui_manager.onGoToHub.AddListener(() =>
@@ -70,6 +90,8 @@ public class GameManager : MonoBehaviour
             saveManager.SaveGame();
             SceneManager.LoadScene("Hub");
         });
+
+        ui_manager.onRequestUseBlood.AddListener(action => playerManager.UseBlood(action));
     }
 
     private void SetBossCharacterEvent()
@@ -85,6 +107,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
+            playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.Blood).Value + bossCharacter.GetStat(Boss.stats.StatsType.Blood).Value, Boss.stats.StatsType.Blood);
         });
 
         bossCharacter.onBossHit.AddListener(() =>
@@ -97,6 +120,15 @@ public class GameManager : MonoBehaviour
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
+        playerManager.onJustRevived.AddListener(() => Debug.Log("you are a fucking looser"));
+    }
+
+    private void SetMapEvents()
+    {
+        mapManager.onGoToBossFight.AddListener(s => {
+            saveManager.SaveGame();
+            FindObjectOfType<DoorManager>().LaunchNewBossFight(s);
+        });
     }
 
     private void Update()

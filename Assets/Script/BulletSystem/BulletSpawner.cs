@@ -46,7 +46,7 @@ public class BulletSpawner : MonoBehaviour
         if (!pooler.poolDictionary.ContainsKey(tag))
             return null;
 
-        GameObject objectToSpawn = pooler.poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn = pooler.poolDictionary[tag]?.Dequeue();
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;

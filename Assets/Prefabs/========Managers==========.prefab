@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7841327489072557128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4808408424924530729}
+  - component: {fileID: 7296933903230272757}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4808408424924530729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841327489072557128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7937059688534768008}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7296933903230272757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841327489072557128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dd8b4250d86f344b6068bf447f7a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapParent: {fileID: 0}
 --- !u!1 &7937059688534768007
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7937059688534768008}
+  - component: {fileID: 5122300098362571950}
   m_Layer: 0
   m_Name: ========Managers==========
   m_TagString: Untagged
@@ -32,9 +78,33 @@ Transform:
   - {fileID: 7937059688992818175}
   - {fileID: 7937059688810602940}
   - {fileID: 7937059689081261467}
+  - {fileID: 4808408424924530729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5122300098362571950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937059688534768007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078d659fc15572f49a71c82db7820a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  USS_STYLE: {fileID: 7433441132597879392, guid: 53c00014f973484478570986e543b710,
+    type: 3}
+  itemsAvailible:
+  - {fileID: 11400000, guid: 69460e865e163554bbfecb04ea66e7ca, type: 2}
+  - {fileID: 11400000, guid: bdc1b645280ba754d89d9790bdd49211, type: 2}
+  - {fileID: 11400000, guid: a61294474c3193c4ca4f5d63b7a72d0c, type: 2}
+  - {fileID: 11400000, guid: bd71368563e013e4dac18b5d49c8383f, type: 2}
+  - {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7, type: 2}
+  Recipies:
+  - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
+  bossFights: []
 --- !u!1 &7937059688810602939
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +241,19 @@ MonoBehaviour:
   CrafterSuccess:
     m_PersistentCalls:
       m_Calls: []
-  AskOfrInventory:
+  AskForInventory:
+    m_PersistentCalls:
+      m_Calls: []
+  AskForUpgrades:
+    m_PersistentCalls:
+      m_Calls: []
+  onGoToHub:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemSetAsUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  onRemoveUpgrade:
     m_PersistentCalls:
       m_Calls: []
   datafiles:
@@ -187,6 +269,7 @@ MonoBehaviour:
   uIDocument: {fileID: 0}
   mainMenuController: {fileID: 0}
   hubManager: {fileID: 0}
+  ui_bossFight: {fileID: 0}
 --- !u!114 &235649885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +335,8 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   bossCharacter: {fileID: 0}
   currentScrenn: 0
+  mapManager: {fileID: 7296933903230272757}
+  recipies: []
   Save: 0
   Load: 0
   AutoLoad: 0

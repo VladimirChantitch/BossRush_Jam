@@ -7,11 +7,14 @@ using UnityEngine;
 using Boss.stats;
 using Boss.inventory;
 using UnityEngine.Events;
+using Boss.Upgrades;
 
 namespace player
 {
     public class PlayerManager : AbstractCharacter, ISavable
     {
+        public UnityEvent onJustRevived = new UnityEvent();
+
         [Header("Behaviour Mode")]
         [SerializeField] Status status = Status.HubMode;    
         public void SetStatus(bool isReadyToFight)
@@ -29,6 +32,7 @@ namespace player
         [Header("services ref")]
         [SerializeField] PlayerMovement playerMovement;
         public PlayerUIManager playerUIManager;
+        [SerializeField] GuitareUpgradeSystem guitareUpgradeSystem;
 
         [Header("attack data")]
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>();
@@ -71,7 +75,15 @@ namespace player
         [Header("state")]
         [SerializeField] AttackType currentAttackType;
 
-        [HideInInspector] public UnityEvent onPlayerDead = new UnityEvent();  
+        [HideInInspector] public UnityEvent onPlayerDead = new UnityEvent();
+
+        private void Awake()
+        {
+            if (guitareUpgradeSystem == null)
+            {
+                guitareUpgradeSystem = new GuitareUpgradeSystem();
+            }
+        }
 
         private void Start()
         {
@@ -109,6 +121,20 @@ namespace player
                     sr.enabled = false;
                 });
             }
+
+            guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
+            {
+                LoadUpgrades(Upgrades);
+            });
+
+            LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
+
+            if (GetStat(StatsType.health).Value <= 0)
+            {
+                onJustRevived?.Invoke();
+                SetStat(false, 0, StatsType.Blood);
+                SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+            }
         }
 
         public override void AddDamage(float amount)
@@ -129,18 +155,59 @@ namespace player
             return attack * multiplier;
         }
 
+        #region Upgrades
+        public List<GuitareUpgrade> GetGuitareUpgrades()
+        {
+            return guitareUpgradeSystem.GetUpgrades();
+        }
+
+        public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
+        {
+            guitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
+        }
+
+        public void AddOrModifyUpgrade(GuitareUpgrade guitareUpgrade)
+        {
+            guitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
+        }
+
+        private void LoadUpgrades(List<GuitareUpgrade> upgrades)
+        {
+            Debug.Log("<color=red> Not implemented </color>");
+        }
+        #endregion
+
+        internal void UseBlood(Action<float> action)
+        {
+            (float,float) amount = (GetStat(StatsType.Blood).Value, GetStat(StatsType.Blood).MaxValue);
+            float rate = amount.Item1 / amount.Item2;
+            if (rate > 0.1)
+            {
+                AddDamage(GetStat(StatsType.health).MaxValue * 0.1f);
+                SetStat(false, amount.Item1 - amount.Item2 * 0.1f, StatsType.Blood);
+                action.Invoke(rate - 0.1f);
+            }
+            else
+            {
+                Debug.Log("Not enought blood to heal player");
+            }
+        }
+
         private float GetMultipler()
         {
             throw new NotImplementedException();
         }
 
+        #region data
         public DTO GetData()
         {
             List<Stat_DTO> stats_dto = new List<Stat_DTO>();
-            Inventory_DTO inventory_DTO = inventory.Save();
             stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
 
-            return new Player_DTO(stats_dto, inventory_DTO);
+            Inventory_DTO inventory_DTO = inventory.Save();
+            GuitareUpgrade_DTO guitareUpgrade_DTO = guitareUpgradeSystem.Save();
+
+            return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO);
         }
 
         public void LoadData(DTO dTO)
@@ -154,27 +221,10 @@ namespace player
                 });
 
                 inventory.Load(player_dto.Inventory);
+                guitareUpgradeSystem.Load(player_dto.Upgrades);
             }
         }
-
-        /// <summary>
-        /// Add looted items to player inventory
-        /// </summary>
-        /// <param name="guitareUpgrades"></param>
-        /// <param name="bossItems"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void AddToInventory(List<GuitareUpgrade> guitareUpgrades, List<BossItem> bossItems)
-        {
-            guitareUpgrades.ForEach(gu =>
-            {
-                AddToInventory(gu);
-            });
-
-            bossItems.ForEach(bi =>
-            {
-                AddToInventory(bi);
-            });
-        }
+        #endregion
     }
 
     [Serializable]
@@ -202,14 +252,16 @@ namespace player
 
     public class Player_DTO : DTO
     {
-        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory)
+        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory, GuitareUpgrade_DTO upgrades)
         {
             Stats = stats;
             Inventory = inventory;
+            Upgrades = upgrades;
         }
 
         public List<Stat_DTO> Stats { get; private set; }
         public Inventory_DTO Inventory { get; private set; }
+        public GuitareUpgrade_DTO Upgrades { get; private set; }
     }
 
     public enum AttackType

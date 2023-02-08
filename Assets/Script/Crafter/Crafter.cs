@@ -17,7 +17,6 @@ namespace Boss.crafter
         public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
 
-
         AbstractItem[] items = new AbstractItem[2];
 
         public void HandleSelection(AbstractItem item)
@@ -84,6 +83,8 @@ namespace Boss.crafter
         private void SucceedToCraft(AbstractItem sacrifice)
         {
             onSuccess.Invoke(new CrafterSuccessData(items[0], items[1], sacrifice));
+            items[0] = null;
+            items[1] = null;
         }
 
         internal void Init(List<Recipies> recipies)

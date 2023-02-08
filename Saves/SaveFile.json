@@ -2,33 +2,24 @@
   "$type": "System.Collections.Generic.List`1[[Boss.save.DTO, Assembly-CSharp]], mscorlib",
   "$values": [
     {
+      "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
+      "locations": {
+        "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
+        "$values": [
+          0
+        ]
+      }
+    },
+    {
       "$type": "player.Player_DTO, Assembly-CSharp",
       "Stats": {
         "$type": "System.Collections.Generic.List`1[[Boss.stats.Stat_DTO, Assembly-CSharp]], mscorlib",
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 200.0,
+            "value": 100.0,
+            "maxValue": 100.0,
             "statType": 0
-          },
-          {
-            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.2,
-            "maxValue": 0.25,
-            "statType": 2
-          },
-          {
-            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 1.0,
-            "maxValue": 1.0,
-            "statType": 1
-          },
-          {
-            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 50.0,
-            "statType": 3
           }
         ]
       },
@@ -39,23 +30,51 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test/Mediat.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "path": "Assets/Objects/Test/Poutre.asset"
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
-              "path": "Assets/Objects/Test/fraise.asset"
+              "instance_ID": 28904
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 2,
-              "path": "Assets/Objects/Test/Truc.asset"
+              "amount": 1,
+              "instance_ID": 28906
+            }
+          ]
+        }
+      },
+      "Upgrades": {
+        "$type": "Boss.Upgrades.GuitareUpgrade_DTO, Assembly-CSharp",
+        "guitareUpgradeSlots_DTOs": {
+          "$type": "System.Collections.Generic.List`1[[Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp]], mscorlib",
+          "$values": [
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 0,
+              "intance_ID": -1
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 5,
+              "intance_ID": -1
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 2,
+              "intance_ID": -1
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 4,
+              "intance_ID": -1
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 3,
+              "intance_ID": -1
+            },
+            {
+              "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
+              "type": 1,
+              "intance_ID": -1
             }
           ]
         }
