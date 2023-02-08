@@ -28,6 +28,7 @@ namespace player
 
         [Header("services ref")]
         [SerializeField] PlayerMovement playerMovement;
+        public PlayerUIManager playerUIManager;
 
         [Header("attack data")]
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>();
@@ -74,6 +75,9 @@ namespace player
                 playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
                 playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
                 playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
+
+                playerUIManager.InitPlayerHealth(GetStat(StatsType.health).Value, GetStat(StatsType.health).MaxValue);
+                playerUIManager.InitPlayerCombo(GetStat(StatsType.combo).MaxValue);
             }
             else if (status == Status.HubMode)
             {
@@ -95,10 +99,27 @@ namespace player
             }
         }
 
+        public override void AddDamage(float amount)
+        {
+            base.AddDamage(amount);
+            if (status == Status.BossMode)
+            {
+                playerUIManager.SetPlayerHealth(GetStat(StatsType.health).Value);
+
+                if (GetStat(StatsType.health).Value <= 0)
+                    onPlayerDead?.Invoke();
+            }
+        }
+
         public float GetAttackAmount(AttackType type)
         {
             float attack = attackDatas.Where(a => a.GetAttackType() == type).First().GetAttackDamage();
             return attack * multiplier;
+        }
+
+        private float GetMultipler()
+        {
+            throw new NotImplementedException();
         }
 
         public DTO GetData()

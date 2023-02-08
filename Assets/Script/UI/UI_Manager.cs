@@ -16,10 +16,10 @@ namespace Boss.UI
     public class UI_Manager : MonoBehaviour
     {
 
-        [SerializeField] GameManager.CurrentScrenn currentScrenn;
-        public void SetCurrentScreen(GameManager.CurrentScrenn currentScrenn)
+        [SerializeField] GameManager.CurrentScrenn currentScreen;
+        public void SetCurrentScreen(GameManager.CurrentScrenn currentScreen)
         {
-            this.currentScrenn = currentScrenn; 
+            this.currentScreen = currentScreen; 
         }
         [HideInInspector] public UnityEvent SaveGame = new UnityEvent();
         [HideInInspector] public UnityEvent LoadGame = new UnityEvent();
@@ -49,7 +49,7 @@ namespace Boss.UI
         /// </summary>
         public void Init(List<Recipies> recipies)
         {
-            switch (currentScrenn)
+            switch (currentScreen)
             {
                 case GameManager.CurrentScrenn.MainMenu:
                     MainMenu();

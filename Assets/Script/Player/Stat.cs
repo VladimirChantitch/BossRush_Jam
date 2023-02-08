@@ -69,6 +69,7 @@ namespace Boss.stats
         health,
         dash,
         rythme_deadZone,
+        combo,
     }
 
     public class Stat_DTO : DTO

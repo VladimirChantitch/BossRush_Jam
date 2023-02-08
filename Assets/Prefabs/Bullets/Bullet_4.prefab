@@ -137,12 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 0
+  shotType: 2
   tag: Cannon
-  damage: 5
+  damage: 10
   canPassWall: 1
   upForce: 1
-  sideForce: 20
+  sideForce: 5
   rb: {fileID: 2466175418964411949}
   timeBeforeAutodestruct: -1
   applyDamageToTarget:

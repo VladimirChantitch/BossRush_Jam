@@ -144,7 +144,7 @@ MonoBehaviour:
   upForce: 20
   sideForce: 10
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: -1
+  timeBeforeAutodestruct: 5
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

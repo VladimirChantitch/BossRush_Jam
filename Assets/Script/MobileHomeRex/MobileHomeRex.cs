@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobileHomeRex : AbstractCharacter
+public class MobileHomeRex : BossCharacter
 {
     public enum MobileHomeState
     {
@@ -60,14 +60,20 @@ public class MobileHomeRex : AbstractCharacter
     private float airDefenseCoolDown = 2f;
     protected float m_Timer;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        base.Init();
+
         cam = Camera.main;
         rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        damageCollider.TakeDamageEvent.AddListener(amount => AddDamage(amount));
+        damageCollider.TakeDamageEvent.AddListener(amount => {
+            AddDamage(amount);
+            onBossHit?.Invoke();
+        });
 
 
         Flip();
@@ -78,23 +84,27 @@ public class MobileHomeRex : AbstractCharacter
     // Update is called once per frame
     void Update()
     {
-
-        if (cam.transform.position.x - transform.position.x >= 0 && !isFlipped || cam.transform.position.x - transform.position.x <= 0 && isFlipped)
+        if(!isDying)
         {
-            Flip();
+            if (cam.transform.position.x - transform.position.x >= 0 && !isFlipped || cam.transform.position.x - transform.position.x <= 0 && isFlipped)
+            {
+                Flip();
+            }
+
+            if (cam.transform.position.y - transform.position.y >= 5 && AirDefense())
+            {
+                DefensePosition();
+            }
+
+            HandleState();
         }
 
-        if(cam.transform.position.y - transform.position.y >= 5 && AirDefense())
+        if (Phase() == 0)
         {
-            DefensePosition();
-        }
-
-        if(Phase() == 0)
-        {
+            Debug.Log("Dead");
             state = MobileHomeState.Dying;
+            return;
         }
-
-        HandleState();
     }
 
     private void HandleState()
@@ -246,9 +256,20 @@ public class MobileHomeRex : AbstractCharacter
         shootingPoints[index].SetActive(false);
     }
 
+    private void StopAllShooting()
+    {
+        for (int i = 0; i < shootingPoints.Length; i++)
+        {
+            shootingPoints[i].SetActive(false);
+        }
+    }
+
     private void Dying()
     {
-        throw new NotImplementedException();
+        isDying = true;
+        onBossDying?.Invoke();
+        PlayTargetAnimation(_Death, 1f);
+        bossLoot.Loot(inventory.GetItems());
     }
 
     private void Flip()
@@ -258,7 +279,7 @@ public class MobileHomeRex : AbstractCharacter
         localScale.x *= -1f;
         transform.localScale = localScale;
 
-        if(shootingPoints != null)
+        if (shootingPoints != null)
         {
             for (int i = 0; i < shootingPoints.Length; i++)
             {
@@ -276,7 +297,7 @@ public class MobileHomeRex : AbstractCharacter
             return 1;
         else if (currentHealth <= maxHealth * 0.5f && currentHealth > maxHealth * 0.25f)
             return 2;
-        else if (currentHealth < maxHealth * 0.25f)
+        else if (currentHealth < maxHealth * 0.25f && currentHealth > 0)
             return 3;
         else if (currentHealth <= 0)
             return 0;
@@ -311,6 +332,9 @@ public class MobileHomeRex : AbstractCharacter
                     state = MobileHomeState.AttackingCannon;
                 else
                     state = MobileHomeState.AttackingTurtle_High;
+                break;
+            case 0:
+                isDying = true;
                 break;
         }
 

@@ -16,6 +16,13 @@ public class RythmBonus : MonoBehaviour
     public Color color;
     private bool onTime;
 
+    [SerializeField] GameObject particule;
+    [SerializeField] Light2D guitareLight;
+    [SerializeField] TrailRenderer trail;
+    Material trailMaterial;
+
+    private int combo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +30,7 @@ public class RythmBonus : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         rythmDZ = playerManager.GetStat(Boss.stats.StatsType.rythme_deadZone).Value;
 
+        trailMaterial = trail.material;
     }
 
     // Update is called once per frame
@@ -30,12 +38,13 @@ public class RythmBonus : MonoBehaviour
     {
         if (plusMusic.AllFilesLoaded())
         {
-            if(!onTime)
+            light.pointLightInnerRadius = Mathf.Clamp(math.remap(rythmDZ, rythmDZ + 0.25f, 0.0f, 2.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
+            light.pointLightOuterRadius = math.remap(0.0f, 1.0f, 0.0f, 20.0f, plusMusic.TimeNextBeat());
+            light.intensity = Mathf.Clamp(math.remap(0.0f, rythmDZ + 0.25f, 5.0f, 0.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
+
+            if (!onTime)
             {
-                light.pointLightInnerRadius = Mathf.Clamp(math.remap(rythmDZ, rythmDZ + 0.25f, 0.0f, 2.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
-                light.pointLightOuterRadius = math.remap(0.0f, 1.0f, 0.0f, 20.0f, plusMusic.TimeNextBeat());
-                light.intensity = Mathf.Clamp(math.remap(0.0f, rythmDZ + 0.25f, 5.0f, 0.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
-                Debug.Log($"<color=green> {plusMusic.TimeNextBeat()} remaped {light.pointLightInnerRadius} </color>");
+                light.color = Color.Lerp(Color.red, Color.white, plusMusic.TimeNextBeat());
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -47,7 +56,11 @@ public class RythmBonus : MonoBehaviour
                 else
                 {
                     light.color = Color.white;
+                    combo = 0;
+                    playerManager.playerUIManager.SetPlayerCombo(combo, 50);
                 }
+
+                ComboEffect();
             }
         }
     }
@@ -55,12 +68,47 @@ public class RythmBonus : MonoBehaviour
     IEnumerator OnTime()
     {
         onTime = true;
+        combo++;
+        playerManager.playerUIManager.SetPlayerCombo(combo, 50);
         light.color = color;
-        light.pointLightInnerRadius = 0.25f;
-        light.pointLightOuterRadius = 20.0f;
-        light.intensity = 1.0f;
-        yield return new WaitForSeconds(0.1f);
+        //light.pointLightInnerRadius = 0.25f;
+        //light.pointLightOuterRadius = 10.0f;
+        //light.intensity = 1.5f;
+        yield return new WaitForSeconds(0.15f);
         onTime = false;
-        light.color = Color.white;
+        //light.color = Color.white;
+    }
+
+    private void ComboEffect()
+    {
+        ParticleCombo();
+        LightCombo();
+        TrailCombo();
+    }
+
+    private void ParticleCombo()
+    {
+        var ps = particule.GetComponent<ParticleSystem>();
+
+        var main = ps.main;
+        main.startSpeedMultiplier = combo;
+
+        var em = ps.emission;
+        ParticleSystem.Burst burst = em.GetBurst(0);
+        burst.count = math.remap(0.0f, 20f, 0.0f, 1000f, (float)combo);
+        em.SetBurst(0, burst);
+
+        ps.Play();
+    }
+
+    private void LightCombo()
+    {
+        guitareLight.intensity = math.remap(0.0f, 20f, 0.0f, 200f, (float)combo);
+    }
+
+    private void TrailCombo()
+    {
+        trail.time = math.remap(0.0f, 20f, 0.01f, 0.2f, (float)combo);
+        trailMaterial.SetFloat("_Combo", combo);
     }
 }

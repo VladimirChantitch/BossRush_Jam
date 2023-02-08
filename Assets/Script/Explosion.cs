@@ -15,7 +15,7 @@ public class Explosion : MonoBehaviour
         audioSource = GetComponent<AudioSource>();  
     }
 
-    private void Explode()
+    public void Explode()
     {
         particleSystem.Play();
         audioSource.PlayOneShot(audioSource.clip);

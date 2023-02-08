@@ -13,12 +13,9 @@ using UnityEngine.UIElements;
 public class UI_BossFight : MonoBehaviour
 {
     VisualElement root;
-    VisualElement fightScreen;
+
     VisualElement playerDeathScreen;
     VisualElement endScreen;
-
-    ProgressBar playerHealth;
-    ProgressBar bossHealth;
 
     VisualElement bossCraftableParent = null;
     VisualElement guitareUpgradeParent = null;
@@ -41,7 +38,7 @@ public class UI_BossFight : MonoBehaviour
     {
         style = (StyleSheet)AssetDatabase.LoadAssetAtPath("Assets/UI/Boss.uss",typeof(StyleSheet));
 
-        fightScreen = root.Q<VisualElement>("FightScreen");
+        //fightScreen = root.Q<VisualElement>("FightScreen");
         playerDeathScreen = root.Q<VisualElement>("PlayerDeathScreen");
         endScreen = root.Q<VisualElement>("EndScreenLoot");
         bossCraftableParent = endScreen.Q<VisualElement>("BossLoots");
@@ -49,13 +46,6 @@ public class UI_BossFight : MonoBehaviour
 
         playerDeathScreen.visible = false;
         endScreen.visible = false;
-        fightScreen.visible = true;
-
-        playerHealth = fightScreen.Q<VisualElement>("PlayerHP").Q<ProgressBar>();
-        bossHealth = fightScreen.Q<VisualElement>("BossHP").Q<ProgressBar>();
-
-        // To Do --- player dash
-        // To Do --- pulse bar
 
         congrats = endScreen.Q<Label>("Congratulation");
 
@@ -69,16 +59,6 @@ public class UI_BossFight : MonoBehaviour
         {
             onBackToHub?.Invoke();
         };
-    }
-
-    public void UpdatePlayerLife(Stat_DTO stat_DTO)
-    {
-        throw new NotImplementedException();
-    } 
-
-    public void UpdateBossLife(Stat_DTO stat_DTO)
-    {
-        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -127,18 +107,10 @@ public class UI_BossFight : MonoBehaviour
     private void OpenWinScreen()
     {
         endScreen.visible = true;
-        fightScreen.visible = false;
-        fightScreen.Children().ToList().ForEach(c => c.visible = false);
-        bossHealth.visible = false;
-        playerHealth.visible = false;   
     }
 
     public void OpenDeathScreen()
     {
         playerDeathScreen.visible = true;
-        fightScreen.visible = false;
-        fightScreen.Children().ToList().ForEach(c => c.visible = false);
-        bossHealth.visible = false;
-        playerHealth.visible = false;
     }
 }

@@ -9,6 +9,8 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerManager playerManager;
+
     private Rigidbody2D rb;
     private Controls controls;
 
@@ -49,11 +51,9 @@ public class PlayerMovement : MonoBehaviour
     public float dashVelocity;
     public float dashingTime;
     private Vector2 dashingDir;
-    private int dashPool = 3;
+    private int maxDash;
+    private int dashPool;
     private bool dashCooldown = false;
-
-    /*Temp Canvas*/
-    public TextMeshProUGUI dashTMP;
 
     [Header("Flip")]
     private bool isFlipped = false;
@@ -65,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponentInChildren<PlayerManager>();
+
         camShake = camera.GetComponentInChildren<CameraShake>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -82,6 +84,10 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Attack1.canceled += Attack1_canceled;
         controls.Player.Attack2.performed += Attack2_performed;
 
+        maxDash = dashPool = (int)playerManager.GetStat(Boss.stats.StatsType.dash).MaxValue;
+
+        playerManager.playerUIManager.SetDash(dashPool);
+
     }
 
     private void Update()
@@ -89,13 +95,10 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         
 
-        if (dashPool < 3 && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
+        if (dashPool < maxDash && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
         {
             StartCoroutine(DashCooldown());
         }
-
-        /*Temp Canvas*/
-        dashTMP.text = dashPool.ToString();
     }
 
     private void FixedUpdate()
@@ -234,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
             trailRenderer.emitting = true;
             isDashing = true;   
             dashPool--;
+            playerManager.playerUIManager.SetDash(dashPool);
             dashingDir = new Vector2(inputVector.x, 0);
             if(inputVector.x == 0)
             {
@@ -287,6 +291,7 @@ public class PlayerMovement : MonoBehaviour
         dashCooldown = true;
         yield return new WaitForSeconds(1.75f);
         dashPool++;
+        playerManager.playerUIManager.SetDash(dashPool);
         dashCooldown = false;
     }
 
