@@ -17,15 +17,23 @@ public class PlayerAttackCollider : AbstractTogglelableCollider
         }
     }
 
+    private void Update()
+    {
+        if (h_collider.enabled)
+        {
+            transform.localPosition = pos;
+        }
+    }
+
     public override void OpenCollider()
     {
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = pos;
         base.OpenCollider();
     }
 
     public override void CloseCollider()
     {
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = pos;
         base.CloseCollider();
     }
 }

@@ -68,6 +68,8 @@ namespace Boss.stats
     {
         health,
         dash,
+        rythme_deadZone,
+        combo,
         Blood
     }
 

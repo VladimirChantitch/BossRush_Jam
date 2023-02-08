@@ -9,12 +9,16 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerManager playerManager;
+
     private Rigidbody2D rb;
     private Controls controls;
 
     private Animator animator;
     [SerializeField] TrailRenderer trailRenderer;
 
+    public GameObject camera;
+    private CameraShake camShake;
     private CameraJuice camJuice;
 
     [Header("Movement")]
@@ -47,22 +51,26 @@ public class PlayerMovement : MonoBehaviour
     public float dashVelocity;
     public float dashingTime;
     private Vector2 dashingDir;
-    private int dashPool = 3;
+    private int maxDash;
+    private int dashPool;
     private bool dashCooldown = false;
-
-    /*Temp Canvas*/
-    public TextMeshProUGUI dashTMP;
 
     [Header("Flip")]
     private bool isFlipped = false;
 
+    [Header("Ground")]
     public UnityEvent<AttackType> attackPerformed;
+    private bool isAtk2;
     public TrailRenderer guitareTrail;
     public UnityEvent StartDash;
     public UnityEvent EndDash;
 
     private void Awake()
     {
+        playerManager = GetComponentInChildren<PlayerManager>();
+
+        camShake = camera.GetComponentInChildren<CameraShake>();
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         camJuice = GetComponent<CameraJuice>();
@@ -77,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Attack1.performed += Attack1_performed;
         controls.Player.Attack1.canceled += Attack1_canceled;
         controls.Player.Attack2.performed += Attack2_performed;
+        controls.Player.Attack2.canceled += Attack2_canceled;
+
+        maxDash = dashPool = (int)playerManager.GetStat(Boss.stats.StatsType.dash).MaxValue;
+
+        playerManager.playerUIManager.SetDash(dashPool);
 
     }
 
@@ -85,13 +98,10 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         
 
-        if (dashPool < 3 && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
+        if (dashPool < maxDash && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
         {
             StartCoroutine(DashCooldown());
         }
-
-        /*Temp Canvas*/
-        dashTMP.text = dashPool.ToString();
     }
 
     private void FixedUpdate()
@@ -136,7 +146,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*TEST ATTACK*/
     private void Attack1_performed(InputAction.CallbackContext context)
     {
         animator.Play("Attack");
@@ -149,13 +158,18 @@ public class PlayerMovement : MonoBehaviour
         guitareTrail.emitting = false;
     }
 
-
     private void Attack2_performed(InputAction.CallbackContext context)
     {
-        animator.Play("RiffAttack");
-        attackPerformed?.Invoke(AttackType.big);
+            animator.Play("RiffAttack");
+
+            attackPerformed?.Invoke(AttackType.big);
     }
-    /*         */
+
+    private void Attack2_canceled(InputAction.CallbackContext obj)
+    {
+        //animator.
+        guitareTrail.emitting = false;
+    }
 
     private void GroundCheck()
     {
@@ -229,6 +243,7 @@ public class PlayerMovement : MonoBehaviour
             trailRenderer.emitting = true;
             isDashing = true;   
             dashPool--;
+            playerManager.playerUIManager.SetDash(dashPool);
             dashingDir = new Vector2(inputVector.x, 0);
             if(inputVector.x == 0)
             {
@@ -282,6 +297,7 @@ public class PlayerMovement : MonoBehaviour
         dashCooldown = true;
         yield return new WaitForSeconds(1.75f);
         dashPool++;
+        playerManager.playerUIManager.SetDash(dashPool);
         dashCooldown = false;
     }
 
