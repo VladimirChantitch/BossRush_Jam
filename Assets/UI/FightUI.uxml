@@ -1,42 +1,53 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="BossHP" src="project://database/Assets/UI/BossHP.uxml?fileID=9197481963319205126&amp;guid=18e7f7a38b81f474a9d745475d4e77f6&amp;type=3#BossHP" />
-    <ui:Template name="PlayerHP" src="project://database/Assets/UI/PlayerHP.uxml?fileID=9197481963319205126&amp;guid=9385e2492ac55f84f9444546208509dc&amp;type=3#PlayerHP" />
     <Style src="project://database/Assets/UI/Boss.uss?fileID=7433441132597879392&amp;guid=53c00014f973484478570986e543b710&amp;type=3#Boss" />
-    <ui:VisualElement name="EndScreenLoot" style="position: absolute; flex-grow: 1; background-color: rgb(0, 0, 0); width: 100%; height: 100%; align-items: stretch; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: flex-start; left: -8px; top: -10px; right: -2px; bottom: 0; visibility: hidden;">
+    <Style src="project://database/Assets/UI/StyleSheet.uss?fileID=7433441132597879392&amp;guid=0ea526cd7bf24a94ab1f2390a6ca29f2&amp;type=3#StyleSheet" />
+    <ui:VisualElement name="EndScreenLoot" style="background-color: rgb(0, 0, 0); align-items: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: flex-start; position: absolute; height: 100%; width: 100%; visibility: hidden;">
         <ui:VisualElement name="Head" style="width: 100%; height: 15%;">
-            <ui:Label text="CARAVANE REX DEFEATED" display-tooltip-when-elided="true" name="Congratulation" class="CongratulationText" style="-unity-font-definition: url(&apos;project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&amp;guid=56d7ff9bb0b26ef47b7d2037389ae8e7&amp;type=2#alagard SDF&apos;); font-size: 53px; white-space: normal; -unity-text-align: upper-center;" />
+            <ui:Label text="CARAVANE REX DEFEATED" display-tooltip-when-elided="true" name="Congratulation" class="CongratulationText" style="-unity-font-definition: url(&apos;project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&amp;guid=56d7ff9bb0b26ef47b7d2037389ae8e7&amp;type=2#alagard SDF&apos;); font-size: 53px; white-space: normal; -unity-text-align: upper-center; color: rgb(219, 0, 0);" />
         </ui:VisualElement>
         <ui:VisualElement name="Mid" class="LootContainer" style="width: 100%; height: 70%; align-items: stretch; justify-content: space-around; flex-direction: row;">
             <ui:VisualElement name="BossLoots" class="LootContainer" />
             <ui:VisualElement name="PlayerLoots" class="LootContainer" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="width: 100%; height: 15%; align-items: center; justify-content: center;">
-            <ui:Button text="! HUB !" display-tooltip-when-elided="true" name="GetBackToHub" class="Button CongratulationText" />
+            <ui:Button text="!Back to the Hub!" display-tooltip-when-elided="true" name="GetBackToHub" class="menu-button-Boss" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="FightScreen" style="flex-wrap: nowrap; flex-grow: 1; flex-direction: column; visibility: visible; display: flex;">
-        <ui:VisualElement name="BossSpace" style="position: relative; width: 100%; height: 20%; flex-grow: 1;">
-            <ui:Instance template="BossHP" name="BossHP" />
-        </ui:VisualElement>
-        <ui:VisualElement name="GameSpace" style="width: 100%; max-width: 100%; max-height: 60%; height: 60%; justify-content: space-around; flex-grow: 1;" />
-        <ui:VisualElement name="PlayerSpace" style="position: relative; align-items: stretch; justify-content: space-around; width: 100%; flex-direction: row; flex-grow: 1; height: 20%; flex-wrap: nowrap;">
-            <ui:VisualElement name="Dash" style="width: 15%; flex-direction: row;">
-                <ui:VisualElement name="DashAction" class="Dash" style="width: 25%; height: 100%; flex-grow: 1; justify-content: space-around; background-color: rgb(42, 180, 0);" />
-                <ui:VisualElement name="DashAction" class="Dash" style="width: 25%; height: 100%; flex-grow: 1; justify-content: space-around; background-color: rgb(42, 180, 0);" />
-                <ui:VisualElement name="DashAction" class="Dash" style="width: 25%; height: 100%; flex-grow: 1; justify-content: space-around; background-color: rgb(42, 180, 0);" />
-                <ui:VisualElement name="DashAction" class="Dash" style="width: 25%; height: 100%; flex-grow: 1; justify-content: space-around; background-color: rgb(42, 180, 0);" />
+    <ui:VisualElement name="FightScreen" style="flex-wrap: nowrap; flex-grow: 1; flex-direction: column; visibility: visible; display: none;">
+        <ui:VisualElement name="PlayerSpace" style="height: 15%; margin-top: 1%; width: 100%; flex-direction: column; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-start;">
+            <ui:VisualElement name="PlayerHp" style="flex-direction: row; padding-left: 0.5%; padding-right: 0.5%; padding-top: 0; padding-bottom: 0; align-items: center; width: 30%; height: 30%;">
+                <ui:Instance template="BossHP" name="Life" class="PlayerBarUI2 unity-progress-bar__progress unity-progress-bar__background" style="flex-direction: row; position: relative; right: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
             </ui:VisualElement>
-            <ui:Instance template="PlayerHP" name="PlayerHP" style="flex-grow: 1; width: 65%; -unity-text-align: middle-left; align-items: stretch; justify-content: flex-start;" />
-            <ui:VisualElement name="Pulse_2" style="width: 15%;" />
+            <ui:VisualElement name="PlayerCombo" style="width: 30%; padding-left: 0.5%; padding-right: 0.5%; flex-direction: column; padding-top: 0; padding-bottom: 0; margin-bottom: 0; align-items: flex-start; max-height: 50%; height: 100%;">
+                <ui:Instance template="BossHP" name="Combo" class="PlayerBarUI unity-progress-bar__progress" style="flex-direction: row; background-color: rgba(78, 141, 211, 0); align-items: center; height: 100%; position: relative; right: 0;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Dash" style="width: 15%; flex-direction: row; margin-left: 0; margin-right: 0; height: 30%; margin-top: 0; padding-left: 0; padding-top: 0; align-items: flex-start;">
+                <ui:VisualElement name="DashActionBG_1" class="Dash" style="margin-left: 0; margin-top: 0;">
+                    <ui:VisualElement name="DashAction_1" class="Dash" style="background-image: url(&apos;project://database/Assets/Graphics/UI/Dash.png?fileID=2800000&amp;guid=477836f12ec9e344cb58ffb8bff2b363&amp;type=3#Dash&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(0, 0, 0, 0); margin-left: 0; width: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0; align-items: stretch; height: 100%; display: flex;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="DashActionBG_2" class="Dash" style="margin-right: 0; margin-top: 0; margin-left: 0;">
+                    <ui:VisualElement name="DashAction_2" class="Dash" style="background-image: url(&apos;project://database/Assets/Graphics/UI/Dash.png?fileID=2800000&amp;guid=477836f12ec9e344cb58ffb8bff2b363&amp;type=3#Dash&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(0, 0, 0, 0); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 100%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="DashActionBG_3" class="Dash" style="margin-right: 0; margin-top: 0; margin-left: 0;">
+                    <ui:VisualElement name="DashAction_3" class="Dash" style="background-image: url(&apos;project://database/Assets/Graphics/UI/Dash.png?fileID=2800000&amp;guid=477836f12ec9e344cb58ffb8bff2b363&amp;type=3#Dash&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(0, 0, 0, 0); margin-left: 0; width: 100%; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="DashActionBG_4" class="Dash" style="margin-right: 0; margin-top: 0; margin-left: 0;">
+                    <ui:VisualElement name="DashAction_4" class="Dash" style="background-image: url(&apos;project://database/Assets/Graphics/UI/Dash.png?fileID=2800000&amp;guid=477836f12ec9e344cb58ffb8bff2b363&amp;type=3#Dash&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(0, 0, 0, 0); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 100%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BossSpace" style="position: relative; width: 100%; flex-grow: 1; justify-content: flex-start; align-items: center; flex-direction: column-reverse;">
+            <ui:Instance template="BossHP" name="BossHP" style="height: 5%; width: 75%; align-items: center; left: auto; right: auto; justify-content: flex-start; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); display: flex; padding-bottom: 0; margin-bottom: 1%;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="PlayerDeathScreen" style="position: absolute; flex-grow: 1; background-color: rgb(0, 0, 0); width: 100%; height: 100%; align-items: stretch; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: flex-start; left: -8px; top: -10px; right: -2px; bottom: 0; visibility: hidden; display: flex;">
+    <ui:VisualElement name="PlayerDeathScreen" style="flex-grow: 1; background-color: rgb(0, 0, 0); width: 100%; height: 100%; align-items: stretch; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: flex-start; display: flex; position: absolute; visibility: hidden;">
         <ui:VisualElement name="Head" style="width: 100%; height: 15%;">
-            <ui:Label text="YOU &apos;VE GOT TRASHED" display-tooltip-when-elided="true" name="Congratulation" class="CongratulationText" style="-unity-font-definition: url(&apos;project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&amp;guid=56d7ff9bb0b26ef47b7d2037389ae8e7&amp;type=2#alagard SDF&apos;); font-size: 250px; white-space: normal; -unity-text-align: upper-center;" />
+            <ui:Label text="YOU&apos;VE GOT TRASHED" display-tooltip-when-elided="true" name="Congratulation" class="CongratulationText" style="-unity-font-definition: url(&apos;project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&amp;guid=56d7ff9bb0b26ef47b7d2037389ae8e7&amp;type=2#alagard SDF&apos;); font-size: 125px; white-space: normal; -unity-text-align: middle-center; margin-top: 25%; color: rgb(255, 0, 0);" />
         </ui:VisualElement>
         <ui:VisualElement name="Mid" class="LootContainer" style="width: 100%; height: 70%; align-items: stretch; justify-content: space-around; flex-direction: row;" />
         <ui:VisualElement name="Footer" style="width: 100%; height: 15%; align-items: center; justify-content: center;">
-            <ui:Button text="! HUB !" display-tooltip-when-elided="true" name="GetBackToHub" class="Button CongratulationText" />
+            <ui:Button text="!Back to the Hub!" display-tooltip-when-elided="true" name="GetBackToHub" class="menu-button-Boss" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

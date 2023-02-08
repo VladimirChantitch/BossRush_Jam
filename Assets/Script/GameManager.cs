@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public bool Load;
     [SerializeField] bool AutoLoad;
 
+    [SerializeField] CameraJuice cameraJuice;
+    [SerializeField] Explosion explosion;
+
+
     private void Start()
     {
         SetUIManagerEvents();
@@ -92,12 +96,24 @@ public class GameManager : MonoBehaviour
 
     private void SetBossCharacterEvent()
     {
+        bossCharacter.onBossDying.AddListener(() =>
+        {
+            explosion.Explode();
+            cameraJuice.Shake(35f, 0.55f);
+        });
+
         bossCharacter.onBossDead.AddListener(data =>
         {
             Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
             playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.Blood).Value + bossCharacter.GetStat(Boss.stats.StatsType.Blood).Value, Boss.stats.StatsType.Blood);
+        });
+
+        bossCharacter.onBossHit.AddListener(() =>
+        {
+            Debug.Log("HIT");
+            cameraJuice.Shake(5f, 0.1f);
         });
     }
 

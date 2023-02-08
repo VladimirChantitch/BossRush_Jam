@@ -12,27 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 469775282, guid: 5950ea68dc5a4a04e9ab0c749b70cf85, type: 3}
   m_Name: PlusMusicSettingsSo
   m_EditorClassIdentifier: 
-  _projectId: 0
-  _apiKey: 
-  _musicVolume: 0
-  _autoLoadProject: 0
-  _autoPlayProject: 0
+  _projectId: 1432
+  _apiKey: $2y$13$/VsePf8CiVtb6m4zdRMO3.sSQijmcf2XE9KFxfCkdOsK8rdsz6ldO
+  _musicVolume: 1
+  _autoLoadProject: 1
+  _autoPlayProject: 1
   _debugMode: 0
   _logServerResponses: 0
-  jsonPackage: {fileID: 0}
+  jsonPackage: {fileID: 4900000, guid: 4cc34a5c27056d44295b946ddad73494, type: 3}
   packageData:
-    name: 
-    version: 
-    displayName: 
-    description: 
-    unity: 
-    unityRelease: 
-    documentationUrl: 
-    changelogUrl: 
-    licensesUrl: 
+    name: ai.plusmusic
+    version: 0.9.14
+    displayName: PlusMusic Audio Plugin
+    description: This is the PlusMusic Audio Plugin Package
+    unity: 2019.1
+    unityRelease: 0b5
+    documentationUrl: https://www.plusmusic.ai/
+    changelogUrl: https://www.plusmusic.ai/
+    licensesUrl: https://www.plusmusic.ai/
     dependencies: []
-    keywords: []
+    keywords:
+    - music
+    - dj
+    - dynamic
     author:
-      name: 
-      email: 
-      url: 
+      name: PlusMusic
+      email: unity@plusmusic.ai
+      url: https://www.plusmusic.ai/

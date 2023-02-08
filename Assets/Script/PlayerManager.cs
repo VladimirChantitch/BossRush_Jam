@@ -31,6 +31,7 @@ namespace player
 
         [Header("services ref")]
         [SerializeField] PlayerMovement playerMovement;
+        public PlayerUIManager playerUIManager;
         [SerializeField] GuitareUpgradeSystem guitareUpgradeSystem;
 
         [Header("attack data")]
@@ -48,6 +49,18 @@ namespace player
         {
             attackCollider.CloseCollider();
         }
+
+        [SerializeField] PlayerAttackCollider_Big attackCollider_Big;
+
+        public void OpenAttackCollider_Big()
+        {
+            attackCollider_Big.OpenCollider();
+        }
+        public void CloseAttackCollider_Big()
+        {
+            attackCollider_Big.CloseCollider();
+        }
+
         [SerializeField] PlayerTakeDamageCollider playerTakeDamageCollider;
         public void CloseTakeDamageCollide()
         {
@@ -86,6 +99,9 @@ namespace player
                 playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
                 playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
                 playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
+
+                playerUIManager.InitPlayerHealth(GetStat(StatsType.health).Value, GetStat(StatsType.health).MaxValue);
+                playerUIManager.InitPlayerCombo(GetStat(StatsType.combo).MaxValue);
             }
             else if (status == Status.HubMode)
             {
@@ -118,6 +134,18 @@ namespace player
                 onJustRevived?.Invoke();
                 SetStat(false, 0, StatsType.Blood);
                 SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+            }
+        }
+
+        public override void AddDamage(float amount)
+        {
+            base.AddDamage(amount);
+            if (status == Status.BossMode)
+            {
+                playerUIManager.SetPlayerHealth(GetStat(StatsType.health).Value);
+
+                if (GetStat(StatsType.health).Value <= 0)
+                    onPlayerDead?.Invoke();
             }
         }
 
@@ -163,6 +191,11 @@ namespace player
             {
                 Debug.Log("Not enought blood to heal player");
             }
+        }
+
+        private float GetMultipler()
+        {
+            throw new NotImplementedException();
         }
 
         #region data
@@ -213,7 +246,7 @@ namespace player
 
         public float GetAttackDamage()
         {
-            return DamageAmount;
+            return DamageAmount * -1;
         }
     }
 
