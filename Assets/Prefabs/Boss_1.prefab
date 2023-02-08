@@ -210,11 +210,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isDestroyed: 0
-  hasRespawned: 0
+  hasRespawned: 1
   trailRenderer: {fileID: 1559732362}
   bulletSpawner: {fileID: 786386694}
-  time: 1000
-  duration: 500
+  time: 300
+  duration: 2000
 --- !u!61 &6333920388704868159
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786386692}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a4fd6b3dd76164ea4221b891c26ecf, type: 3}
   m_Name: 
@@ -583,11 +583,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isDestroyed: 0
-  hasRespawned: 0
+  hasRespawned: 1
   trailRenderer: {fileID: 797606374}
   bulletSpawner: {fileID: 1188794759}
-  time: 1000
-  duration: 500
+  time: 300
+  duration: 2000
 --- !u!61 &6170073547644995287
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188794757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a4fd6b3dd76164ea4221b891c26ecf, type: 3}
   m_Name: 
@@ -3235,8 +3235,8 @@ MonoBehaviour:
   - value: 5000
     maxValue: 5000
     statType: 0
-  inventory: {fileID: 0}
-  bossLoot: {fileID: 0}
+  inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
+  bossLoot: {fileID: 2113162902}
   onBossDead:
     m_PersistentCalls:
       m_Calls: []

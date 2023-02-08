@@ -139,7 +139,7 @@ MonoBehaviour:
   destroyWhenOutOfView: 0
   shotType: 3
   tag: Fontaine_passif
-  damage: 1
+  damage: 5
   canPassWall: 1
   upForce: 25
   sideForce: 5
