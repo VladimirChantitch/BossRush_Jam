@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
         playerManager.onJustRevived.AddListener(() =>
         {
-            DADDY.Instance.SetJustLost();
+            //TODO *-- call something
         });
     }
 

@@ -26,10 +26,12 @@ namespace Boss.UI
         VisualElement crafterRoot;
         VisualElement inventoryRoot;
         VisualElement upgradeRoot;
+        
 
         UI_Inventory uI_inventory;
         UI_Crafter uI_crafter;
         UI_GuitareUpgrades uI_GuitareUpgrades;
+        UI_Dialogue uI_Dialogue;
 
         [SerializeField] HubInteractor currentHubInteractor;
         [SerializeField] Crafter crafter;
@@ -58,7 +60,8 @@ namespace Boss.UI
             upgradeRoot = root.Q<VisualElement>("Upgrades");
             guitareAspect = FindObjectOfType<GuitareAspect>();
             hubBloodGauge = FindObjectOfType<HubBloodGauge>();
-            
+
+            uI_Dialogue = root.Q<UI_Dialogue>("UI_Dialogue");
             uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
             uI_crafter = root.Q<UI_Crafter>("UI_Crafter");
             uI_GuitareUpgrades = root.Q<UI_GuitareUpgrades>("UI_GuitareUpgrades");
@@ -67,6 +70,7 @@ namespace Boss.UI
             uI_crafter.Init();
             uI_GuitareUpgrades.Init();
             hubBloodGauge.Init();
+            uI_Dialogue.Init();
 
             crafterRoot.visible = false;
             inventoryRoot.visible = false;
@@ -137,6 +141,9 @@ namespace Boss.UI
 
             ///Blood Events
             hubBloodGauge.interacts.AddListener(() => onRequestUseBlood?.Invoke(amount => hubBloodGauge.UpdateAmount(amount)));
+
+            //Goblin
+            goblin.onPlayDialogue.AddListener(s => uI_Dialogue.SetNewDialogue(s));
         }
         #endregion
 
