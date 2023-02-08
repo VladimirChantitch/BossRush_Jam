@@ -176,7 +176,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .PlayerBarUI2 {
@@ -200,4 +200,30 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.menu-button-Boss {
+    -unity-font: url('project://database/Assets/Graphics/Fonts/alagard.ttf?fileID=12800000&guid=f4c58eaa4c6474342b9bfcce15466703&type=3#alagard');
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&guid=56d7ff9bb0b26ef47b7d2037389ae8e7&type=2#alagard SDF');
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    text-shadow: 5px 5px 50px rgb(0, 0, 0);
+    visibility: hidden;
+}
+
+.menu-button-Boss:hover {
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&guid=56d7ff9bb0b26ef47b7d2037389ae8e7&type=2#alagard SDF');
+    -unity-font: url('project://database/Assets/Graphics/Fonts/alagard.ttf?fileID=12800000&guid=f4c58eaa4c6474342b9bfcce15466703&type=3#alagard');
+    color: rgb(224, 0, 0);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0);
+    -unity-font-style: bold;
+    rotate: -1deg;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in;
+    visibility: hidden;
 }

@@ -139,7 +139,7 @@ MonoBehaviour:
   destroyWhenOutOfView: 0
   shotType: 2
   tag: Cannon
-  damage: 10
+  damage: 2
   canPassWall: 1
   upForce: 1
   sideForce: 5

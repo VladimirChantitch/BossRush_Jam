@@ -1840,7 +1840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -35, y: 54.399963}
+  m_AnchoredPosition: {x: -35.00006, y: 54.399963}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &532885107
@@ -2097,6 +2097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707570329}
+  - component: {fileID: 707570332}
   - component: {fileID: 707570330}
   - component: {fileID: 707570331}
   m_Layer: 0
@@ -2158,6 +2159,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBG: {fileID: 1967656668}
   life: {fileID: 592267079}
+--- !u!114 &707570332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707570328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0293624b6691b043935398d2abce9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &793852638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 386791141387813222, guid: 589944dde54880948b1557db7f9bde06,
@@ -63092,7 +63105,7 @@ PrefabInstance:
     - target: {fileID: 3152190938580054882, guid: c66e9f3996f38204a8059293a0dc24c7,
         type: 3}
       propertyPath: pools.Array.data[0].bullet.damage
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3152190938580054882, guid: c66e9f3996f38204a8059293a0dc24c7,
         type: 3}

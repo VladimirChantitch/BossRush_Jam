@@ -24,6 +24,8 @@ public class UI_BossFight : MonoBehaviour
 
     StyleSheet style;
 
+    FightUI fightUI;
+
     [HideInInspector] public UnityEvent onBackToHub = new UnityEvent();
 
 
@@ -36,6 +38,8 @@ public class UI_BossFight : MonoBehaviour
 
     private void BindUI()
     {
+        fightUI = FindObjectOfType<FightUI>();  
+
         style = (StyleSheet)AssetDatabase.LoadAssetAtPath("Assets/UI/Boss.uss",typeof(StyleSheet));
 
         //fightScreen = root.Q<VisualElement>("FightScreen");
@@ -81,6 +85,7 @@ public class UI_BossFight : MonoBehaviour
 
     private async void GenerateLoot(Texture texture, bool isUpgrade)
     {
+        await Task.Delay(1000);
         OpenWinScreen();
 
         await Task.Delay(1000);
@@ -107,10 +112,12 @@ public class UI_BossFight : MonoBehaviour
     private void OpenWinScreen()
     {
         endScreen.visible = true;
+        fightUI.Activate(false);
     }
 
     public void OpenDeathScreen()
     {
         playerDeathScreen.visible = true;
+        fightUI.Activate(false);
     }
 }

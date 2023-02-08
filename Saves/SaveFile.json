@@ -8,7 +8,7 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 180.0,
+            "value": 0.0,
             "maxValue": 200.0,
             "statType": 0
           },
