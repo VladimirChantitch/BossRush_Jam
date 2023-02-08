@@ -138,13 +138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
   shotType: 3
-  tag: Fontaine
+  tag: Fontaine_passif
   damage: 1
   canPassWall: 1
   upForce: 25
   sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 1
+  timeBeforeAutodestruct: 4
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

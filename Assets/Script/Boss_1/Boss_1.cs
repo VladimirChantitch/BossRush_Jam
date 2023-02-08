@@ -85,6 +85,30 @@ namespace Boss
             leftLaser.CloseLaser();
         }
 
+        [Header("Projectiles")]
+        [SerializeField] BulletSpawner bulletSpawner_passif;
+        [SerializeField] BulletSpawner bulletSpawner_active;
+
+        public void ActivatedActiveBulletSpawner()
+        {
+            bulletSpawner_active.enabled = true;
+        }
+
+        public void DesactivatedActiveBulletSpawner()
+        {
+            bulletSpawner_active.enabled = false;
+        }
+
+        public void ActivatedPassiveBulletSpawner()
+        {
+            bulletSpawner_passif.enabled = true;
+        }
+
+        public void DesactivatedPassiveBulletSpawner()
+        {
+            bulletSpawner_passif.enabled = false;
+        }
+
         [Header("Vulnerabilities Collider references")]
         [SerializeField] Boss_1_Vulnerability right_vulnerability;
         [SerializeField] Boss_1_Vulnerability left_vulnerability;
