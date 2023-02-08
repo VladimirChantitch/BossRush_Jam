@@ -45,6 +45,18 @@ namespace player
         {
             attackCollider.CloseCollider();
         }
+
+        [SerializeField] PlayerAttackCollider_Big attackCollider_Big;
+
+        public void OpenAttackCollider_Big()
+        {
+            attackCollider_Big.OpenCollider();
+        }
+        public void CloseAttackCollider_Big()
+        {
+            attackCollider_Big.CloseCollider();
+        }
+
         [SerializeField] PlayerTakeDamageCollider playerTakeDamageCollider;
         public void CloseTakeDamageCollide()
         {
@@ -184,7 +196,7 @@ namespace player
 
         public float GetAttackDamage()
         {
-            return DamageAmount;
+            return DamageAmount * -1;
         }
     }
 

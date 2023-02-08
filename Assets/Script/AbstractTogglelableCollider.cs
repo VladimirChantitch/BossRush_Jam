@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class AbstractTogglelableCollider : MonoBehaviour
 {
-    [SerializeField] Collider2D h_collider;
+    [SerializeField] protected Collider2D h_collider;
+    [SerializeField] protected Vector3 pos;
 
     public virtual void Start()
     {

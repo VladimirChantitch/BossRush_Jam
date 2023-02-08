@@ -58,7 +58,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Flip")]
     private bool isFlipped = false;
 
+    [Header("Ground")]
     public UnityEvent<AttackType> attackPerformed;
+    private bool isAtk2;
     public TrailRenderer guitareTrail;
     public UnityEvent StartDash;
     public UnityEvent EndDash;
@@ -83,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Attack1.performed += Attack1_performed;
         controls.Player.Attack1.canceled += Attack1_canceled;
         controls.Player.Attack2.performed += Attack2_performed;
+        controls.Player.Attack2.canceled += Attack2_canceled;
 
         maxDash = dashPool = (int)playerManager.GetStat(Boss.stats.StatsType.dash).MaxValue;
 
@@ -143,11 +146,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*TEST ATTACK*/
     private void Attack1_performed(InputAction.CallbackContext context)
     {
         animator.Play("Attack");
-        //camShake.ShakeCamera(20f, 0.1f, 1f);
         guitareTrail.emitting = true;
         attackPerformed?.Invoke(AttackType.normal);
     }
@@ -157,13 +158,18 @@ public class PlayerMovement : MonoBehaviour
         guitareTrail.emitting = false;
     }
 
-
     private void Attack2_performed(InputAction.CallbackContext context)
     {
-        animator.Play("RiffAttack");
-        attackPerformed?.Invoke(AttackType.big);
+            animator.Play("RiffAttack");
+
+            attackPerformed?.Invoke(AttackType.big);
     }
-    /*         */
+
+    private void Attack2_canceled(InputAction.CallbackContext obj)
+    {
+        //animator.
+        guitareTrail.emitting = false;
+    }
 
     private void GroundCheck()
     {

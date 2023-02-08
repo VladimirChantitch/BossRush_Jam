@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 945650777}
+  pos: {x: 0, y: 0, z: 0}
   takeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -86,7 +87,9 @@ GameObject:
   - component: {fileID: 958683402}
   - component: {fileID: 958683405}
   - component: {fileID: 958683404}
+  - component: {fileID: 7421071697681855883}
   - component: {fileID: 958683403}
+  - component: {fileID: 4798921812454511803}
   m_Layer: 19
   m_Name: PlayerAttackCollider
   m_TagString: Untagged
@@ -143,7 +146,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.8609138, y: 0.16865367}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -156,6 +159,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.3198957, y: 2.340077}
   m_EdgeRadius: 0
+--- !u!58 &7421071697681855883
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &958683403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +188,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 958683404}
+  pos: {x: -2.88, y: -1.69, z: 0}
+  applyDamageToTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  isDestroyed: 0
+--- !u!114 &4798921812454511803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958683401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf358d8d3660ef43a58a293cff28280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  h_collider: {fileID: 0}
+  pos: {x: -2.88, y: -1.69, z: 0}
+  circleCollider: {fileID: 7421071697681855883}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -6886,11 +6925,12 @@ MonoBehaviour:
   playerUIManager: {fileID: 0}
   attackDatas:
   - AttackType: 0
-    DamageAmount: -15
+    DamageAmount: 5
   - AttackType: 1
-    DamageAmount: -30
+    DamageAmount: 1
   multiplier: 1
   attackCollider: {fileID: 958683403}
+  attackCollider_Big: {fileID: 4798921812454511803}
   playerTakeDamageCollider: {fileID: 945650776}
   currentAttackType: 0
   onPlayerDead:
