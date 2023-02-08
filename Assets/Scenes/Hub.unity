@@ -156,6 +156,9 @@ MonoBehaviour:
   - value: 100
     maxValue: 100
     statType: 0
+  - value: 1000
+    maxValue: 1000
+    statType: 2
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
   status: 0
   playerMovement: {fileID: 0}
@@ -182,6 +185,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &171462330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019866638155564073, guid: f105a5bcd6ee86346bd47628813adce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7019866638605569878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &171462334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171462330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7633099ebc3a69749a14765e08d1800f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interacts:
+    m_PersistentCalls:
+      m_Calls: []
+  gaugeTranform: {fileID: 1438633724}
 --- !u!114 &461986733 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 235649885, guid: ab3ef40fcfef4cc4db20ab594fec8545,
@@ -194,6 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1438633724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7019866638308913123, guid: f105a5bcd6ee86346bd47628813adce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7019866638605569878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1662591422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,10 +474,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7019866638308913121, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_MaskAlphaCutoff
+      value: 0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019866638308913123, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8322463549029146920, guid: f105a5bcd6ee86346bd47628813adce0,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7019866638155564244, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f105a5bcd6ee86346bd47628813adce0, type: 3}

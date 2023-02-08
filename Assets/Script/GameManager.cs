@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
             saveManager.SaveGame();
             SceneManager.LoadScene("Hub");
         });
+
+        ui_manager.onRequestUseBlood.AddListener(action => playerManager.UseBlood(action));
     }
 
     private void SetBossCharacterEvent()
@@ -95,12 +97,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
+            playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.Blood).Value + bossCharacter.GetStat(Boss.stats.StatsType.Blood).Value, Boss.stats.StatsType.Blood);
         });
     }
 
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
+        playerManager.onJustRevived.AddListener(() => Debug.Log("you are a fucking looser"));
     }
 
     private void SetMapEvents()

@@ -68,6 +68,7 @@ namespace Boss.stats
     {
         health,
         dash,
+        Blood
     }
 
     public class Stat_DTO : DTO
