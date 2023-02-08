@@ -24,6 +24,7 @@ public abstract class AbstractCharacter : MonoBehaviour
     [SerializeField] protected List<Stat> stats = new List<Stat>()
     {
         new Stat(100, 100, StatsType.health),
+         new Stat(0, 1000, StatsType.Blood),
     };
 
     /// <summary>

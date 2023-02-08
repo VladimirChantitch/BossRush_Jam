@@ -1513,6 +1513,9 @@ MonoBehaviour:
   - value: 200
     maxValue: 200
     statType: 0
+  - value: 0
+    maxValue: 1000
+    statType: 2
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
   status: 1
   playerMovement: {fileID: 2348196337006595964}
@@ -1525,6 +1528,9 @@ MonoBehaviour:
   attackCollider: {fileID: 958683403}
   playerTakeDamageCollider: {fileID: 945650776}
   currentAttackType: 0
+  onPlayerDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8729683369409788021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2533664495703560526, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,

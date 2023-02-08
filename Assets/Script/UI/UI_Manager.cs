@@ -31,6 +31,7 @@ namespace Boss.UI
         [HideInInspector] public UnityEvent onGoToHub = new UnityEvent();
         [HideInInspector] public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
         [HideInInspector] public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
+        public UnityEvent<Action<float>> onRequestUseBlood = new UnityEvent<Action<float>>();
 
         [SerializeField] List<UI_Datafiles> datafiles = new List<UI_Datafiles> ();
 
@@ -111,6 +112,7 @@ namespace Boss.UI
             hubManager.AskForInventory.AddListener(action => { AskForInventory?.Invoke(action);  });
             hubManager.AskForUpgrades.AddListener(action => { AskForUpgrades?.Invoke(action); });
             hubManager.onItemSetAsUpgrade.AddListener(item => onItemSetAsUpgrade?.Invoke(item));
+            hubManager.onRequestUseBlood.AddListener(action => onRequestUseBlood?.Invoke(action));
 
             hubManager.Init(uIDocument.rootVisualElement, recipies);
         }

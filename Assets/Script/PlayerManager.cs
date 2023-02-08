@@ -13,6 +13,8 @@ namespace player
 {
     public class PlayerManager : AbstractCharacter, ISavable
     {
+        public UnityEvent onJustRevived = new UnityEvent();
+
         [Header("Behaviour Mode")]
         [SerializeField] Status status = Status.HubMode;    
         public void SetStatus(bool isReadyToFight)
@@ -110,6 +112,13 @@ namespace player
             });
 
             LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
+
+            if (GetStat(StatsType.health).Value <= 0)
+            {
+                onJustRevived?.Invoke();
+                SetStat(false, 0, StatsType.Blood);
+                SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+            }
         }
 
         public float GetAttackAmount(AttackType type)
@@ -139,6 +148,22 @@ namespace player
             Debug.Log("<color=red> Not implemented </color>");
         }
         #endregion
+
+        internal void UseBlood(Action<float> action)
+        {
+            (float,float) amount = (GetStat(StatsType.Blood).Value, GetStat(StatsType.Blood).MaxValue);
+            float rate = amount.Item1 / amount.Item2;
+            if (rate > 0.1)
+            {
+                AddDamage(GetStat(StatsType.health).MaxValue * 0.1f);
+                SetStat(false, amount.Item1 - amount.Item2 * 0.1f, StatsType.Blood);
+                action.Invoke(rate - 0.1f);
+            }
+            else
+            {
+                Debug.Log("Not enought blood to heal player");
+            }
+        }
 
         #region data
         public DTO GetData()

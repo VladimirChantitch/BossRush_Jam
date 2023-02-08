@@ -20,6 +20,7 @@ namespace Boss.UI
         public UnityEvent<Action<List<GuitareUpgrade>>> AskForUpgrades = new UnityEvent<Action<List<GuitareUpgrade>>>();
         public UnityEvent<AbstractItem> onItemSetAsUpgrade = new UnityEvent<AbstractItem>();
         public UnityEvent<AbstractItem> onRemoveUpgrade = new UnityEvent<AbstractItem>();
+        public UnityEvent<Action<float>> onRequestUseBlood = new UnityEvent<Action<float>>();
 
         VisualElement root;
         VisualElement crafterRoot;
@@ -34,6 +35,7 @@ namespace Boss.UI
         [SerializeField] Crafter crafter;
         [SerializeField] Goblin goblin;
         [SerializeField] GuitareAspect guitareAspect;
+        [SerializeField] HubBloodGauge hubBloodGauge;
 
         #region Initialisation
         public void Init(VisualElement root, List<Recipies> recipies)
@@ -55,6 +57,7 @@ namespace Boss.UI
             inventoryRoot = root.Q<VisualElement>("Inventory");
             upgradeRoot = root.Q<VisualElement>("Upgrades");
             guitareAspect = FindObjectOfType<GuitareAspect>();
+            hubBloodGauge = FindObjectOfType<HubBloodGauge>();
             
             uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
             uI_crafter = root.Q<UI_Crafter>("UI_Crafter");
@@ -63,6 +66,7 @@ namespace Boss.UI
             uI_inventory.Init();
             uI_crafter.Init();
             uI_GuitareUpgrades.Init();
+            hubBloodGauge.Init();
 
             crafterRoot.visible = false;
             inventoryRoot.visible = false;
@@ -130,6 +134,9 @@ namespace Boss.UI
             {
                 uI_inventory.DeselectItem(item);
             });
+
+            ///Blood Events
+            hubBloodGauge.interacts.AddListener(() => onRequestUseBlood?.Invoke(amount => hubBloodGauge.UpdateAmount(amount)));
         }
         #endregion
 
