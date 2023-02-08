@@ -120,7 +120,10 @@ public class GameManager : MonoBehaviour
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
-        playerManager.onJustRevived.AddListener(() => Debug.Log("you are a fucking looser"));
+        playerManager.onJustRevived.AddListener(() =>
+        {
+            DADDY.Instance.SetJustLost();
+        });
     }
 
     private void SetMapEvents()

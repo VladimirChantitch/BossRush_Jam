@@ -51,7 +51,7 @@ namespace Boss.UI
         private void SetRefs(List<Recipies> recipies)
         {
             crafter.Init(recipies);
-            goblin.Init(recipies);
+            goblin.Init();
 
             crafterRoot = root.Q<VisualElement>("Crafter");
             inventoryRoot = root.Q<VisualElement>("Inventory");
