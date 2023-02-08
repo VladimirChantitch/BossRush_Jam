@@ -136,15 +136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac68626a4599c640aca0381be1b2521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyWhenOutOfView: 1
-  shotType: 0
-  tag: 
-  damage: 0
-  canPassWall: 0
-  upForce: 1
-  sideForce: 0.1
+  destroyWhenOutOfView: 0
+  shotType: 3
+  tag: l_respawn
+  damage: 5
+  canPassWall: 1
+  upForce: 20
+  sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: -1
+  timeBeforeAutodestruct: 4.5
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
