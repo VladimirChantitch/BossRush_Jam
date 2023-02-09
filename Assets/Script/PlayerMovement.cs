@@ -54,16 +54,20 @@ public class PlayerMovement : MonoBehaviour
     private int maxDash;
     private int dashPool;
     private bool dashCooldown = false;
+    public UnityEvent StartDash;
+    public UnityEvent EndDash;
 
     [Header("Flip")]
     private bool isFlipped = false;
 
-    [Header("Ground")]
+    [Header("Attack")]
     public UnityEvent<AttackType> attackPerformed;
-    private bool isAtk2;
     public TrailRenderer guitareTrail;
-    public UnityEvent StartDash;
-    public UnityEvent EndDash;
+    public Transform aoe_gfx;
+    bool aoeTrigger = false;
+    float timeElapsed;
+    float lerpDuration = 1;
+
 
     private void Awake()
     {
@@ -101,6 +105,18 @@ public class PlayerMovement : MonoBehaviour
         if (dashPool < maxDash && !dashCooldown) //Pour l'instant ca recharge tt le temps. On peut faire en sorte que ca recharge que quand tu es static
         {
             StartCoroutine(DashCooldown());
+        }
+
+        if(playerManager.isAtk2)
+        {
+            aoeTrigger = true;
+            EnbiggenAOE();
+        }
+        else if(!playerManager.isAtk2 && aoeTrigger)
+        {
+            aoeTrigger = false;
+            timeElapsed = 0;
+            aoe_gfx.localScale = Vector3.zero;
         }
     }
 
@@ -160,15 +176,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack2_performed(InputAction.CallbackContext context)
     {
-            animator.Play("RiffAttack");
-
-            attackPerformed?.Invoke(AttackType.big);
+        animator.Play("RiffAttack");
+        attackPerformed?.Invoke(AttackType.big);
     }
 
     private void Attack2_canceled(InputAction.CallbackContext obj)
     {
-        //animator.
-        guitareTrail.emitting = false;
+        playerManager.isAtk2 = false;
+    }
+
+    private void EnbiggenAOE()
+    {
+        aoe_gfx.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 10f, timeElapsed / lerpDuration);
+        timeElapsed += Time.deltaTime;
     }
 
     private void GroundCheck()

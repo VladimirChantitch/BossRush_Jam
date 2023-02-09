@@ -51,14 +51,17 @@ namespace player
         }
 
         [SerializeField] PlayerAttackCollider_Big attackCollider_Big;
+        public bool isAtk2 = false;
 
         public void OpenAttackCollider_Big()
         {
             attackCollider_Big.OpenCollider();
+            isAtk2 = true;  
         }
         public void CloseAttackCollider_Big()
         {
             attackCollider_Big.CloseCollider();
+            isAtk2 = false;
         }
 
         [SerializeField] PlayerTakeDamageCollider playerTakeDamageCollider;

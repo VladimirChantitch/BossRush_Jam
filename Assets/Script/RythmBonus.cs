@@ -21,6 +21,8 @@ public class RythmBonus : MonoBehaviour
     [SerializeField] TrailRenderer trail;
     Material trailMaterial;
 
+    [SerializeField] GameObject particule_Atk2;
+
     private int combo;
 
     // Start is called before the first frame update
@@ -60,7 +62,23 @@ public class RythmBonus : MonoBehaviour
                     playerManager.playerUIManager.SetPlayerCombo(combo, 50);
                 }
 
-                ComboEffect();
+                ComboEffect_Atk1();
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (plusMusic.TimeNextBeat() < rythmDZ)
+                {
+                    StartCoroutine(OnTime());
+                }
+                else
+                {
+                    light.color = Color.white;
+                    combo = 0;
+                    playerManager.playerUIManager.SetPlayerCombo(combo, 50);
+                }
+
+                ComboEffect_Atk2();
             }
         }
     }
@@ -79,9 +97,16 @@ public class RythmBonus : MonoBehaviour
         //light.color = Color.white;
     }
 
-    private void ComboEffect()
+    private void ComboEffect_Atk1()
     {
         ParticleCombo();
+        LightCombo();
+        TrailCombo();
+    }
+
+    private void ComboEffect_Atk2()
+    {
+        WaveCombo();
         LightCombo();
         TrailCombo();
     }
@@ -110,5 +135,22 @@ public class RythmBonus : MonoBehaviour
     {
         trail.time = math.remap(0.0f, 20f, 0.01f, 0.2f, (float)combo);
         trailMaterial.SetFloat("_Combo", combo);
+    }
+
+    private void WaveCombo()
+    {
+        var ps = particule_Atk2.GetComponent<ParticleSystem>();
+
+        var main = ps.main;
+
+        var solt = ps.sizeOverLifetime;
+
+        AnimationCurve curve = new AnimationCurve();
+        curve.AddKey(0.0f, 0.0f);
+        curve.AddKey(1.0f, combo);
+
+        solt.size = new ParticleSystem.MinMaxCurve(1f, curve);
+
+        ps.Play();
     }
 }

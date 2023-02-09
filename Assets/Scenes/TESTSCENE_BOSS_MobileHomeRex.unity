@@ -755,6 +755,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 958683404, guid: b5ff194404c75514ea51b8740595642e, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206274795648605196, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232058562544303212, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232058562544303212, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1287815386712399043, guid: b5ff194404c75514ea51b8740595642e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -764,6 +807,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289889307111966052, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_Name
+      value: Trail_atk1
       objectReference: {fileID: 0}
     - target: {fileID: 1415832772199024479, guid: b5ff194404c75514ea51b8740595642e,
         type: 3}
@@ -779,6 +827,11 @@ PrefabInstance:
         type: 3}
       propertyPath: color.g
       value: 0.16443026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644660950093276309, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System_atk1
       objectReference: {fileID: 0}
     - target: {fileID: 2348196337006595960, guid: b5ff194404c75514ea51b8740595642e,
         type: 3}
@@ -871,6 +924,11 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2730948299182500864, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670432317256023064, guid: b5ff194404c75514ea51b8740595642e,
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -1841,7 +1899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -35.00006, y: 54.399963}
+  m_AnchoredPosition: {x: -34.999878, y: 54.399963}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &532885107
