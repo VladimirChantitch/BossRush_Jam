@@ -43,8 +43,7 @@ namespace Boss.UI
         public void Init(VisualElement root, List<Recipies> recipies)
         {
             this.root = root;
-            crafter = FindObjectOfType<Crafter>();
-            goblin = FindObjectOfType<Goblin>();
+
 
             SetRefs(recipies);
             BindEvents();
@@ -52,14 +51,19 @@ namespace Boss.UI
 
         private void SetRefs(List<Recipies> recipies)
         {
+            crafter = FindObjectOfType<Crafter>();
+            goblin = FindObjectOfType<Goblin>();
+            guitareAspect = FindObjectOfType<GuitareAspect>();
+            hubBloodGauge = FindObjectOfType<HubBloodGauge>();
+
             crafter.Init(recipies);
             goblin.Init();
+            hubBloodGauge.Init();
 
             crafterRoot = root.Q<VisualElement>("Crafter");
             inventoryRoot = root.Q<VisualElement>("Inventory");
             upgradeRoot = root.Q<VisualElement>("Upgrades");
-            guitareAspect = FindObjectOfType<GuitareAspect>();
-            hubBloodGauge = FindObjectOfType<HubBloodGauge>();
+
 
             uI_Dialogue = root.Q<UI_Dialogue>("UI_Dialogue");
             uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
@@ -69,7 +73,6 @@ namespace Boss.UI
             uI_inventory.Init();
             uI_crafter.Init();
             uI_GuitareUpgrades.Init();
-            hubBloodGauge.Init();
             uI_Dialogue.Init();
 
             crafterRoot.visible = false;
@@ -139,11 +142,15 @@ namespace Boss.UI
                 uI_inventory.DeselectItem(item);
             });
 
+            crafter.interacts.AddListener(() => goblin.onPlayDialogue?.Invoke(crafter.AbstractDialogue.dialogue));
+
             ///Blood Events
             hubBloodGauge.interacts.AddListener(() => onRequestUseBlood?.Invoke(amount => hubBloodGauge.UpdateAmount(amount)));
+            hubBloodGauge.interacts.AddListener(() => goblin.onPlayDialogue?.Invoke(hubBloodGauge.AbstractDialogue.dialogue));
 
             //Goblin
             goblin.onPlayDialogue.AddListener(s => uI_Dialogue.SetNewDialogue(s));
+            goblin.interacts.AddListener(() => goblin.onPlayDialogue?.Invoke(goblin.AbstractDialogue.dialogue));
         }
         #endregion
 

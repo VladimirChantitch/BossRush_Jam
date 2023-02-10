@@ -11,17 +11,7 @@ namespace Boss.Dialogue
         [SerializeField][TextArea] public string dialogue;
         public DialogueActionType type;
         public AbstractDialogue nextDialogue;
-        [Header("has Sens Only for Tutorial and ActionFailled")]
-        public ActionTypes actionType;
     }
-}
-
-public enum ActionTypes
-{
-    NONE,
-    Craft,
-    Upgrade,
-    BloodUse
 }
 
 public enum DialogueActionType

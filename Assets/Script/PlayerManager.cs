@@ -13,7 +13,10 @@ namespace player
 {
     public class PlayerManager : AbstractCharacter, ISavable
     {
-        public UnityEvent onJustRevived = new UnityEvent();
+        /// <summary>
+        /// The bool stands for if the player died in the boss fight or not 
+        /// </summary>
+        public UnityEvent<BossRelatedDialogues, bool> onJustCameBack = new UnityEvent<BossRelatedDialogues, bool>();
 
         [Header("Behaviour Mode")]
         [SerializeField] Status status = Status.HubMode;    
@@ -37,6 +40,7 @@ namespace player
         [Header("attack data")]
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>();
         [SerializeField] float multiplier = 1;
+        [SerializeField] BossRelatedDialogues currentBossRelatedDialogues;
 
         [Header("Colliders refs")]
         [SerializeField] PlayerAttackCollider attackCollider;
@@ -131,9 +135,13 @@ namespace player
 
             if (GetStat(StatsType.health).Value <= 0)
             {
-                onJustRevived?.Invoke();
+                onJustCameBack?.Invoke(currentBossRelatedDialogues, true);
                 SetStat(false, 0, StatsType.Blood);
                 SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+            }
+            else
+            {
+                onJustCameBack?.Invoke(currentBossRelatedDialogues, false);
             }
         }
 
@@ -223,6 +231,11 @@ namespace player
                 inventory.Load(player_dto.Inventory);
                 guitareUpgradeSystem.Load(player_dto.Upgrades);
             }
+        }
+
+        internal void ReceiveDialogueData(BossRelatedDialogues bossRelatedDialogues)
+        {
+            this.currentBossRelatedDialogues = bossRelatedDialogues;
         }
         #endregion
     }

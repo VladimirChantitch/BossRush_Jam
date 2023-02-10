@@ -116,6 +116,12 @@ namespace Boss.UI
 
             hubManager.Init(uIDocument.rootVisualElement, recipies);
         }
+
+        public void SendDialogue(string currentDialogue)
+        {
+
+        }
+
         #endregion
 
         #region boss

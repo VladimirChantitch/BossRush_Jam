@@ -96,10 +96,11 @@ public class GameManager : MonoBehaviour
 
     private void SetBossCharacterEvent()
     {
-        bossCharacter.onBossDying.AddListener(() =>
+        bossCharacter.onBossDying.AddListener(data =>
         {
             explosion.Explode();
             cameraJuice.Shake(35f, 0.55f);
+            playerManager.ReceiveDialogueData(data);
         });
 
         bossCharacter.onBossDead.AddListener(data =>
@@ -120,9 +121,19 @@ public class GameManager : MonoBehaviour
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
-        playerManager.onJustRevived.AddListener(() =>
+        playerManager.onJustCameBack.AddListener((dialogues, b) =>
         {
-            //TODO *-- call something
+            if (currentScrenn == CurrentScrenn.Hub)
+            {
+                if (b)
+                {
+                    ui_manager.SendDialogue(dialogues.LooseDialogue.dialogue);
+            }
+                else
+                {
+                    ui_manager.SendDialogue(dialogues.WinDialogue.dialogue);
+                }
+            }
         });
     }
 
