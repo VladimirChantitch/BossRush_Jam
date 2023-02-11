@@ -119,7 +119,7 @@ namespace Boss.UI
 
         public void SendDialogue(string currentDialogue)
         {
-
+            hubManager.OpenDialogue(currentDialogue);
         }
 
         #endregion

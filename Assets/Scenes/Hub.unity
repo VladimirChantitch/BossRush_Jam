@@ -159,8 +159,11 @@ MonoBehaviour:
   - value: 1000
     maxValue: 1000
     statType: 2
+  - value: 100
+    maxValue: 1000
+    statType: 4
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
-  onJustRevived:
+  onJustCameBack:
     m_PersistentCalls:
       m_Calls: []
   status: 0
@@ -168,6 +171,9 @@ MonoBehaviour:
   playerUIManager: {fileID: 0}
   attackDatas: []
   multiplier: 1
+  currentBossRelatedDialogues:
+    winDialogue: {fileID: 0}
+    looseDialogue: {fileID: 0}
   attackCollider: {fileID: 0}
   attackCollider_Big: {fileID: 0}
   playerTakeDamageCollider: {fileID: 0}
@@ -211,6 +217,7 @@ MonoBehaviour:
   interacts:
     m_PersistentCalls:
       m_Calls: []
+  abstractDialogue: {fileID: 0}
   gaugeTranform: {fileID: 1438633724}
 --- !u!114 &461986733 stripped
 MonoBehaviour:

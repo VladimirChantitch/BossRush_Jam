@@ -14,9 +14,7 @@ public class UI_ItemSlot : Button
 
     public UI_ItemSlot()
     {
-        this.styleSheets.Add(DADDY.Instance.USS_STYLE);
-        AddToClassList("Slot");
-        Init();
+
     }
 
     public UnityEvent<AbstractItem> ItemSelected = new UnityEvent<AbstractItem>();
@@ -26,8 +24,10 @@ public class UI_ItemSlot : Button
     public AbstractItem Item { get; private set; }
 
 
-    private void Init()
+    public void Init()
     {
+        this.styleSheets.Add(DADDY.Instance.USS_STYLE);
+        AddToClassList("Slot");
         BindEvents();
     }
 

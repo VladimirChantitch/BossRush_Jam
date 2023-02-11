@@ -127,11 +127,11 @@ public class GameManager : MonoBehaviour
             {
                 if (b)
                 {
-                    ui_manager.SendDialogue(dialogues.LooseDialogue.dialogue);
+                    ui_manager.SendDialogue(dialogues?.LooseDialogue?.dialogue);
             }
                 else
                 {
-                    ui_manager.SendDialogue(dialogues.WinDialogue.dialogue);
+                    ui_manager.SendDialogue(dialogues?.WinDialogue?.dialogue);
                 }
             }
         });

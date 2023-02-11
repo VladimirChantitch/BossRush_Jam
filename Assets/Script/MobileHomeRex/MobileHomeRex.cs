@@ -267,7 +267,7 @@ public class MobileHomeRex : BossCharacter
     private void Dying()
     {
         isDying = true;
-        onBossDying?.Invoke();
+        onBossDying?.Invoke(bossRelatedDialogues);
         PlayTargetAnimation(_Death, 1f);
         bossLoot.Loot(inventory.GetItems());
     }

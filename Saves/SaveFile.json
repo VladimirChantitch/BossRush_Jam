@@ -20,6 +20,18 @@
             "value": 100.0,
             "maxValue": 100.0,
             "statType": 0
+          },
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 1000.0,
+            "maxValue": 1000.0,
+            "statType": 2
+          },
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 100.0,
+            "maxValue": 1000.0,
+            "statType": 4
           }
         ]
       },
@@ -31,12 +43,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
-              "instance_ID": 28904
+              "instance_ID": 29044
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 28906
+              "amount": 2,
+              "instance_ID": 29046
             }
           ]
         }
