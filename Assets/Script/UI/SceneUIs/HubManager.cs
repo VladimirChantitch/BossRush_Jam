@@ -9,6 +9,8 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 using Boss.Upgrades.UI;
 using System.Threading.Tasks;
+using System.Collections;
+using System.Linq;
 
 namespace Boss.UI
 {
@@ -26,10 +28,13 @@ namespace Boss.UI
         VisualElement crafterRoot;
         VisualElement inventoryRoot;
         VisualElement upgradeRoot;
+        VisualElement dialogueRoot;
+        
 
         UI_Inventory uI_inventory;
         UI_Crafter uI_crafter;
         UI_GuitareUpgrades uI_GuitareUpgrades;
+        UI_Dialogue uI_Dialogue;
 
         [SerializeField] HubInteractor currentHubInteractor;
         [SerializeField] Crafter crafter;
@@ -41,8 +46,7 @@ namespace Boss.UI
         public void Init(VisualElement root, List<Recipies> recipies)
         {
             this.root = root;
-            crafter = FindObjectOfType<Crafter>();
-            goblin = FindObjectOfType<Goblin>();
+
 
             SetRefs(recipies);
             BindEvents();
@@ -50,15 +54,21 @@ namespace Boss.UI
 
         private void SetRefs(List<Recipies> recipies)
         {
+            crafter = FindObjectOfType<Crafter>();
+            goblin = FindObjectOfType<Goblin>();
+            guitareAspect = FindObjectOfType<GuitareAspect>();
+            hubBloodGauge = FindObjectOfType<HubBloodGauge>();
+
             crafter.Init(recipies);
-            goblin.Init(recipies);
+            hubBloodGauge.Init();
 
             crafterRoot = root.Q<VisualElement>("Crafter");
             inventoryRoot = root.Q<VisualElement>("Inventory");
             upgradeRoot = root.Q<VisualElement>("Upgrades");
-            guitareAspect = FindObjectOfType<GuitareAspect>();
-            hubBloodGauge = FindObjectOfType<HubBloodGauge>();
-            
+            dialogueRoot = root.Q<VisualElement>("Dialogue");
+
+
+            uI_Dialogue = root.Q<UI_Dialogue>("UI_Dialogue");
             uI_inventory = root.Q<UI_Inventory>("UI_Inventory");
             uI_crafter = root.Q<UI_Crafter>("UI_Crafter");
             uI_GuitareUpgrades = root.Q<UI_GuitareUpgrades>("UI_GuitareUpgrades");
@@ -66,7 +76,7 @@ namespace Boss.UI
             uI_inventory.Init();
             uI_crafter.Init();
             uI_GuitareUpgrades.Init();
-            hubBloodGauge.Init();
+            uI_Dialogue.Init();
 
             crafterRoot.visible = false;
             inventoryRoot.visible = false;
@@ -97,6 +107,8 @@ namespace Boss.UI
                     //TODO -- give a feed back to tell thats not the rght item
                     uI_inventory.DeselectItem(null);
                 }
+
+                OpenDialogue(selected?.Description);
             });
 
             uI_inventory.onItemDeselected.AddListener(disSelected => {
@@ -111,6 +123,7 @@ namespace Boss.UI
             uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
             {
                 onRemoveUpgrade?.Invoke(guitareUpgrade);
+                AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
 
@@ -122,12 +135,13 @@ namespace Boss.UI
             crafter.onSuccess.AddListener(async (success_dto) =>
             {
                 CrafterSuccess?.Invoke(success_dto);
-                crafterRoot.visible = false;
-                inventoryRoot.visible = false;
+                CloseAllPopups();
 
                 await Task.Delay(100);
                 uI_crafter.CraftSuccess();
                 uI_inventory.CraftSuccess();
+                OpenDialogue(success_dto.resutl.Description);
+                AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
             crafter.onDeselect.AddListener(item =>
@@ -135,10 +149,34 @@ namespace Boss.UI
                 uI_inventory.DeselectItem(item);
             });
 
+            crafter.interacts.AddListener(() => OpenDialogue(crafter.AbstractDialogue?.dialogue));
+
             ///Blood Events
             hubBloodGauge.interacts.AddListener(() => onRequestUseBlood?.Invoke(amount => hubBloodGauge.UpdateAmount(amount)));
+            hubBloodGauge.interacts.AddListener(() => OpenDialogue(hubBloodGauge.AbstractDialogue?.dialogue));
+
+            //Goblin
+            goblin.onPlayDialogue.AddListener(s =>
+            {
+                if (currentDialoguePlaying != null)
+                {
+                    StopCoroutine(currentDialoguePlaying);
+                }
+
+                currentDialoguePlaying = uI_Dialogue.SetNewDialogue(s);
+                StartCoroutine(currentDialoguePlaying);
+            });
+
+            goblin.interacts.AddListener(() => OpenDialogue(goblin.AbstractDialogue?.dialogue));
+
+            //UI_ Dialogue
+            uI_Dialogue.onFinished?.AddListener(() => {
+                dialogueRoot.visible = false;
+                uI_Dialogue.visible = false;
+            });
         }
         #endregion
+        IEnumerator currentDialoguePlaying;
 
         void Update()
         {
@@ -173,7 +211,7 @@ namespace Boss.UI
                     currentHubInteractor = interactable;
                     inventoryRoot.visible = true;
                     crafterRoot.visible = true;
-                    OpenCrafterMenu(interactable);
+                    OpenCrafterMenu();
                     break;
                 case MapInterractor mapInterractor:
                     mapInterractor.Interact();
@@ -189,6 +227,7 @@ namespace Boss.UI
 
         public void SetInventoryItemSlots(List<AbstractItem> items)
         {
+
             uI_inventory.SetItemSlots(items);
         }
 
@@ -201,20 +240,40 @@ namespace Boss.UI
         #region Open/CloseMenus
         private void OpenGuitareUpgradesMenu()
         {
+            CloseAllPopups();
             upgradeRoot.visible = true;
+            inventoryRoot.visible = true;
+            uI_inventory.visible = true;
+            uI_GuitareUpgrades.visible = true;
             AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
             AskForUpgrades?.Invoke(u => SetUpgradeItemSlots(u));
         }
 
-        private void OpenCrafterMenu(HubInteractor hubInteractor)
+        private void OpenCrafterMenu()
         {
+            CloseAllPopups();
             crafterRoot.visible = true;
+            inventoryRoot.visible = true;
+            uI_inventory.visible = true;
+            uI_crafter.visible = true;
             AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
+        }
+
+        public void OpenDialogue(string txt)
+        {
+            dialogueRoot.visible = true;
+            uI_Dialogue.visible = true;
+            goblin.onPlayDialogue?.Invoke(txt);
         }
 
         private void CloseAllPopups()
         {
-
+            inventoryRoot.visible = false;  
+            upgradeRoot.visible = false;
+            uI_inventory.visible = false;
+            uI_GuitareUpgrades.visible = false;
+            crafterRoot.visible = false;
+            uI_crafter.visible = false;
         }
         #endregion
     }

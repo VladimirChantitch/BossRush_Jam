@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Mono.Cecil.Cil;
 using System;
 using System.IO;
+using Boss.Map;
 
 namespace Boss.save
 {
@@ -33,6 +34,9 @@ namespace Boss.save
                 {
                     case Player_DTO player_DTO:
                         (savables.Where(s => s is PlayerManager).First() as ISavable).LoadData(player_DTO);
+                        break;
+                    case MapManager_DTO mapManager_DTO:
+                        (savables.Where(s => s is MapManager).First() as ISavable).LoadData(mapManager_DTO);
                         break;
                 }
             }

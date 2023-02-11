@@ -101,7 +101,6 @@ public class MobileHomeRex : BossCharacter
 
         if (Phase() == 0)
         {
-            Debug.Log("Dead");
             state = MobileHomeState.Dying;
             return;
         }
@@ -267,7 +266,7 @@ public class MobileHomeRex : BossCharacter
     private void Dying()
     {
         isDying = true;
-        onBossDying?.Invoke();
+        onBossDying?.Invoke(bossRelatedDialogues);
         PlayTargetAnimation(_Death, 1f);
         bossLoot.Loot(inventory.GetItems());
     }

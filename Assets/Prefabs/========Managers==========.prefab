@@ -107,7 +107,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7, type: 2}
   Recipies:
   - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
-  bossFights: []
+  bossFights:
+  - BossFightName: Boss_MobileHomeRex
+    location: 0
+  - BossFightName: Boss_Ubuntu
+    location: 1
+  hasJustLoose: 0
+  allDialoguesThatNeedToBeSaved:
+  - {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
+  - {fileID: 11400000, guid: a5418c3da7f68ef4aa1c934814d0bf38, type: 2}
 --- !u!1 &7937059688810602939
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +310,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7937059689801115771}
   - component: {fileID: 7810337630690655896}
-  - component: {fileID: 3160298831820906441}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -349,23 +356,3 @@ MonoBehaviour:
   AutoLoad: 0
   cameraJuice: {fileID: 0}
   explosion: {fileID: 0}
---- !u!114 &3160298831820906441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937059689801115770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eb43ad32a8a5a94dac301825f6e4755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: e00f79986c7eb2047ac7fbef4c0899cf, type: 2}
-  spriteBlinkingTimer: 0
-  spriteBlinkingMiniDuration: 0.075
-  spriteBlinkingTotalTimer: 0
-  spriteBlinkingTotalDuration: 0.5
-  startBlinking: 0
-  color: {r: 1, g: 0, b: 0, a: 1}
-  expo: 5

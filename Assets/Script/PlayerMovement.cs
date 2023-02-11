@@ -95,6 +95,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Dispose()
+    {
+        controls.Player.Jump.performed -= Jump_performed;
+        controls.Player.Movement.performed -= Movement_performed;
+        controls.Player.Movement.canceled -= Movement_canceled;
+        controls.Player.Dash.performed -= Dash_performed;
+        controls.Player.MousePosition.performed -= MousePosition_performed;
+        controls.Player.Attack1.performed -= Attack1_performed;
+        controls.Player.Attack1.canceled -= Attack1_canceled;
+        controls.Player.Attack2.performed -= Attack2_performed;
+        controls.Player.Attack2.canceled -= Attack2_canceled;
+
+        controls.Dispose();
+    }
+
     private void Update()
     {
         GroundCheck();

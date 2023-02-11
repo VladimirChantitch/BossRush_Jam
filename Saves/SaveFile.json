@@ -5,7 +5,9 @@
       "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
-        "$values": []
+        "$values": [
+          1
+        ]
       }
     },
     {
@@ -16,13 +18,13 @@
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.0,
-            "maxValue": 350.0,
+            "maxValue": 200.0,
             "statType": 0
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.2,
-            "maxValue": 0.25,
+            "value": 0.0,
+            "maxValue": 1000.0,
             "statType": 2
           },
           {
@@ -41,7 +43,7 @@
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.0,
             "maxValue": 1000.0,
-            "statType": 2
+            "statType": 4
           }
         ]
       },
@@ -52,23 +54,23 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 30272
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 30274
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
-              "instance_ID": 30276
+              "instance_ID": 29044
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 2,
-              "instance_ID": 30278
+              "instance_ID": 29046
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29042
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29040
             }
           ]
         }
@@ -110,6 +112,11 @@
             }
           ]
         }
+      },
+      "BossRelated_Dto": {
+        "$type": "BossRelated_Dto, Assembly-CSharp",
+        "loose_id": -1,
+        "win_id": -1
       }
     }
   ]
