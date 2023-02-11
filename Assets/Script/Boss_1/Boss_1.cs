@@ -443,7 +443,7 @@ namespace Boss
             if (isDying == false)
             {
                 isDying = true;
-                onBossDying?.Invoke();
+                onBossDying?.Invoke(bossRelatedDialogues);
                 animator.PlayTargetAnimation(false, Death, 0.25f);
                 bossLoot.Loot(inventory.GetItems());
             }
