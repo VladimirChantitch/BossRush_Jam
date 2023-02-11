@@ -16,6 +16,11 @@ public class DamageEffect : MonoBehaviour
     public Color color;
     public float expo;
 
+    private void Start()
+    {
+        mat.SetColor("_Color", Color.white);
+    }
+
     void Update()
     {
         if (startBlinking == true)

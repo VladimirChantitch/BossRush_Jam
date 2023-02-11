@@ -178,9 +178,16 @@ namespace Boss
                     }
                 }
                 AddDamage(amount);
+                onBossHit?.Invoke();
             });
-            left_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
-            right_vulnerability.TakeDamageEvent.AddListener(amount => AddDamage(amount / 4));
+            left_vulnerability.TakeDamageEvent.AddListener(amount => {
+                AddDamage(amount/4);
+                onBossHit?.Invoke();
+            });
+            right_vulnerability.TakeDamageEvent.AddListener(amount => {
+                AddDamage(amount/4);
+                onBossHit?.Invoke();
+            });
         }
 
         public float GetCurrentDamage()
@@ -436,6 +443,7 @@ namespace Boss
             if (isDying == false)
             {
                 isDying = true;
+                onBossDying?.Invoke();
                 animator.PlayTargetAnimation(false, Death, 0.25f);
                 bossLoot.Loot(inventory.GetItems());
             }
