@@ -108,7 +108,7 @@ namespace Boss.UI
                     uI_inventory.DeselectItem(null);
                 }
 
-                OpenDialogue(selected.DescriptiveDialogue?.dialogue);
+                OpenDialogue(selected.Description);
             });
 
             uI_inventory.onItemDeselected.AddListener(disSelected => {
@@ -141,7 +141,7 @@ namespace Boss.UI
                 await Task.Delay(100);
                 uI_crafter.CraftSuccess();
                 uI_inventory.CraftSuccess();
-                OpenDialogue(success_dto.resutl.DescriptiveDialogue?.dialogue);
+                OpenDialogue(success_dto.resutl.Description);
             });
 
             crafter.onDeselect.AddListener(item =>

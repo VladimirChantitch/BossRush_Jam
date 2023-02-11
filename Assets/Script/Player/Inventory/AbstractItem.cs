@@ -18,6 +18,5 @@ namespace Boss.inventory
         public string Description { get => description; }
         public GameObject Prefab { get => prefab; }
         public Sprite Icon { get => icon; }
-        public AbstractDialogue DescriptiveDialogue { get => descriptiveDialogue; }
     }
 }
