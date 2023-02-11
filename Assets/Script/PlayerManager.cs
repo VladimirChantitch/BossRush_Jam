@@ -8,6 +8,7 @@ using Boss.stats;
 using Boss.inventory;
 using UnityEngine.Events;
 using Boss.Upgrades;
+using Boss.UI;
 
 namespace player
 {
@@ -135,9 +136,11 @@ namespace player
 
             if (GetStat(StatsType.health).Value <= 0)
             {
+                Debug.Log("hoho");
                 onJustCameBack?.Invoke(currentBossRelatedDialogues, true);
                 SetStat(false, 0, StatsType.Blood);
                 SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+                FindObjectOfType<HubBloodGauge>().Init();
             }
             else
             {
@@ -226,7 +229,7 @@ namespace player
                 player_dto.Stats.ForEach(stat =>
                 {
                     SetStat(false, stat.value, stat.statType);
-                    SetStat(false, stat.maxValue, stat.statType);
+                    SetStat(true, stat.maxValue, stat.statType);
                 });
 
                 inventory.Load(player_dto.Inventory);
@@ -278,7 +281,7 @@ namespace player
         public List<Stat_DTO> Stats { get; private set; }
         public Inventory_DTO Inventory { get; private set; }
         public GuitareUpgrade_DTO Upgrades { get; private set; }
-        public BossRelated_Dto BossRelated_Dto { get; private set }
+        public BossRelated_Dto BossRelated_Dto { get; private set; }
     }
 
     public enum AttackType

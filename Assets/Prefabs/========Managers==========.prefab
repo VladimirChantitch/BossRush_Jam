@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0dd8b4250d86f344b6068bf447f7a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGoToBossFight:
+    m_PersistentCalls:
+      m_Calls: []
   mapParent: {fileID: 0}
 --- !u!1 &7937059688534768007
 GameObject:
@@ -105,6 +108,10 @@ MonoBehaviour:
   Recipies:
   - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
   bossFights: []
+  hasJustLoose: 0
+  allDialoguesThatNeedToBeSaved:
+  - {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
+  - {fileID: 11400000, guid: a5418c3da7f68ef4aa1c934814d0bf38, type: 2}
 --- !u!1 &7937059688810602939
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e27f6568a8f854d94d93db52b4a97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScrenn: 1
+  currentScreen: 0
   SaveGame:
     m_PersistentCalls:
       m_Calls: []
@@ -254,6 +261,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRemoveUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  onRequestUseBlood:
     m_PersistentCalls:
       m_Calls: []
   datafiles:
@@ -340,3 +350,5 @@ MonoBehaviour:
   Save: 0
   Load: 0
   AutoLoad: 0
+  cameraJuice: {fileID: 0}
+  explosion: {fileID: 0}

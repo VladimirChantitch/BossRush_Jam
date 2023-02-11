@@ -106,7 +106,6 @@ public class GameManager : MonoBehaviour
 
         bossCharacter.onBossDead.AddListener(data =>
         {
-            Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
             playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.Blood).Value + bossCharacter.GetStat(Boss.stats.StatsType.Blood).Value, Boss.stats.StatsType.Blood);
@@ -114,7 +113,6 @@ public class GameManager : MonoBehaviour
 
         bossCharacter.onBossHit.AddListener(() =>
         {
-            Debug.Log("HIT");
             cameraJuice.Shake(5f, 0.1f);
         });
     }
@@ -129,7 +127,7 @@ public class GameManager : MonoBehaviour
                 if (b)
                 {
                     ui_manager.SendDialogue(dialogues?.LooseDialogue?.dialogue);
-            }
+                }
                 else
                 {
                     ui_manager.SendDialogue(dialogues?.WinDialogue?.dialogue);

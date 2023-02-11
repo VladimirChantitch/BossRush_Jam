@@ -25,10 +25,14 @@ public class UI_Dialogue : VisualElement
         foreach (var t in txt)
         {
             label.text += t;
-            yield return new WaitForSeconds(0.05f);
+            if (t.ToString() == " ")
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return new WaitForSeconds(0.03f);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.5f);
         onFinished?.Invoke();
     } 
 }
