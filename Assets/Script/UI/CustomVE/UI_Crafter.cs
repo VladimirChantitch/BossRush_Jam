@@ -50,7 +50,7 @@ namespace Boss.UI
 
         public void Deselect(AbstractItem item)
         {
-            uI_ItemSlots.Find(s => s.Item == item).Clean();
+            uI_ItemSlots.Find(s => s.Item == item)?.Clean();
         }
 
         internal void CraftSuccess()

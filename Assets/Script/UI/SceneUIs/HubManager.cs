@@ -108,7 +108,7 @@ namespace Boss.UI
                     uI_inventory.DeselectItem(null);
                 }
 
-                OpenDialogue(selected.Description);
+                OpenDialogue(selected?.Description);
             });
 
             uI_inventory.onItemDeselected.AddListener(disSelected => {
@@ -227,6 +227,7 @@ namespace Boss.UI
 
         public void SetInventoryItemSlots(List<AbstractItem> items)
         {
+
             uI_inventory.SetItemSlots(items);
         }
 

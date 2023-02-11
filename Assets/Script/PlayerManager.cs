@@ -94,11 +94,11 @@ namespace player
             {
                 guitareUpgradeSystem = new GuitareUpgradeSystem();
             }
+            base.Init();
         }
 
         private void Start()
         {
-            base.Init();
             if (status == Status.BossMode)
             {
                 playerDamageEffect = GetComponent<DamageEffect>();

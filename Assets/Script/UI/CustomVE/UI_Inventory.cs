@@ -82,7 +82,7 @@ namespace Boss.UI
             ClearAllSlots();
             for (int i = 0; i < items.Count; i++)
             {
-                uI_ItemSlots[i].Init(items[i]);
+                uI_ItemSlots[i]?.Init(items[i]);
             }
         }
     }

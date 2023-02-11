@@ -52,7 +52,7 @@ public class RythmBonus : MonoBehaviour
 
     public void BaseAttack(int type)
     {
-        if (plusMusic.TimeNextBeat() < rythmDZ)
+        if (plusMusic?.TimeNextBeat() < rythmDZ)
         {
             StartCoroutine(OnTime());
         }

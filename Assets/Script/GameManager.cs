@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         ui_manager.onGoToHub.AddListener(() =>
         {
             saveManager.SaveGame();
+            FindObjectOfType<PlayerMovement>().Dispose();
             SceneManager.LoadScene("Hub");
         });
 
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
         bossCharacter.onBossHit.AddListener(() =>
         {
             cameraJuice.Shake(5f, 0.1f);
-            damageEffect.Blinking();
+            damageEffect.Blinking(); 
         });
     }
 

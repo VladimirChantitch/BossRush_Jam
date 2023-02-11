@@ -15,27 +15,33 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0,
-            "maxValue": 200.0,
+            "value": 100.0,
+            "maxValue": 100.0,
             "statType": 0
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.2,
-            "maxValue": 0.25,
+            "value": 0.25,
+            "maxValue": 1000.0,
             "statType": 2
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 1.0,
-            "maxValue": 1.0,
+            "maxValue": 1000.0,
             "statType": 1
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 50.0,
+            "value": 30.0,
+            "maxValue": 1000.0,
             "statType": 3
+          },
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 175.0,
+            "maxValue": 1000.0,
+            "statType": 4
           }
         ]
       },
@@ -44,16 +50,6 @@
         "itemSlots": {
           "$type": "System.Collections.Generic.List`1[[Boss.inventory.ItemSlot_DTO, Assembly-CSharp]], mscorlib",
           "$values": [
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 29040
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 29042
-            },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 7,
@@ -72,12 +68,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 48584
+              "instance_ID": 48588
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 48592
+              "instance_ID": 48590
             }
           ]
         }

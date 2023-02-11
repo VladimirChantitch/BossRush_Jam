@@ -52,7 +52,15 @@ public class BossRelatedDialogues
 
     public BossRelated_Dto Save()
     {
-        return new BossRelated_Dto() { loose_id = LooseDialogue.GetInstanceID(), win_id = WinDialogue.GetInstanceID() };
+        if (looseDialogue == null || winDialogue == null)
+        {
+            return new BossRelated_Dto() { loose_id = -1, win_id = -1 };
+        }
+        else
+        {
+            return new BossRelated_Dto() { loose_id = LooseDialogue.GetInstanceID(), win_id = WinDialogue.GetInstanceID() };
+        }
+
     }
 }
 

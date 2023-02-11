@@ -91,7 +91,7 @@ public class UI_ItemSlot : Button
         AddToClassList("Slot");
         StyleBackground styleBackground = new StyleBackground();
         Background background = new Background();
-        background.sprite = Item.Icon;
+        background.sprite = Item?.Icon;
         styleBackground.value = background;
         style.backgroundImage = styleBackground;
     }

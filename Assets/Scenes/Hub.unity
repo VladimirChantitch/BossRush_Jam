@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -172,9 +172,6 @@ MonoBehaviour:
   onJustCameBack:
     m_PersistentCalls:
       m_Calls: []
-  onJustRevived:
-    m_PersistentCalls:
-      m_Calls: []
   status: 0
   playerMovement: {fileID: 0}
   playerUIManager: {fileID: 0}
@@ -236,8 +233,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
+      propertyPath: itemsAvailible.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 54194ec863a544e42b4da1327b6dc796,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 06268e1495a027d4dacbd01d0c4475b1,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 222f4af1d04117c4b8de7e0147139e0c,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 12ed86c6ecc38b140ae72e8abaace3f0,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: itemsAvailible.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
       propertyPath: bossFights.Array.data[0].BossFightName
-      value: TESTSCENE_BOSS_MobileHomeRex
+      value: Boss_MobileHomeRex
       objectReference: {fileID: 0}
     - target: {fileID: 7296933903230272757, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}

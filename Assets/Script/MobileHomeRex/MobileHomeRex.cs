@@ -101,7 +101,6 @@ public class MobileHomeRex : BossCharacter
 
         if (Phase() == 0)
         {
-            Debug.Log("Dead");
             state = MobileHomeState.Dying;
             return;
         }

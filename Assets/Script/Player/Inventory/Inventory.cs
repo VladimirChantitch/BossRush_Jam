@@ -42,7 +42,11 @@ namespace Boss.inventory
             List<ItemSlot_DTO> itemSlot_DTOs = new List<ItemSlot_DTO>();
             itemsSlots.ForEach(itemSlot =>
             {
-                itemSlot_DTOs.Add(itemSlot.Save());
+                ItemSlot_DTO slot_dto = itemSlot.Save();
+                if (slot_dto.instance_ID != -1)
+                {
+                    itemSlot_DTOs.Add(slot_dto);
+                }
             });
 
             return new Inventory_DTO(itemSlot_DTOs);
