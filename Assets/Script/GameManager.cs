@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] CameraJuice cameraJuice;
     [SerializeField] Explosion explosion;
-
+    DamageEffect damageEffect;
 
     private void Start()
     {
@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
         {
             saveManager.LoadGame();
         }
+
+        damageEffect = GetComponent<DamageEffect>();
     }
 
     private void SetUIManagerEvents()
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
         bossCharacter.onBossHit.AddListener(() =>
         {
             cameraJuice.Shake(5f, 0.1f);
+            damageEffect.Blinking();
         });
     }
 

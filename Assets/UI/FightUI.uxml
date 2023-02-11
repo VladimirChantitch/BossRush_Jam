@@ -11,7 +11,7 @@
             <ui:VisualElement name="PlayerLoots" class="LootContainer" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="width: 100%; height: 15%; align-items: center; justify-content: center;">
-            <ui:Button text="!Back to the Hub!" display-tooltip-when-elided="true" name="GetBackToHub" class="menu-button-Boss" />
+            <ui:Button text="!Back to the Hub!" display-tooltip-when-elided="true" name="GetBackToHub" class="menu-button-Boss"/>
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="FightScreen" style="flex-wrap: nowrap; flex-grow: 1; flex-direction: column; visibility: visible; display: none;">
