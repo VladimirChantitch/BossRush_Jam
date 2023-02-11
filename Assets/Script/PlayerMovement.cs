@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TrailRenderer trailRenderer;
 
     public GameObject camera;
-    private CameraShake camShake;
     private CameraJuice camJuice;
 
     [Header("Movement")]
@@ -73,8 +72,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInChildren<PlayerManager>();
-
-        camShake = camera.GetComponentInChildren<CameraShake>();
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
