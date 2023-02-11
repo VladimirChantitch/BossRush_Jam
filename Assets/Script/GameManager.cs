@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         });
         ui_manager.onRemoveUpgrade.AddListener(upgrade => {
             playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
+            playerManager.AddToInventory(upgrade);
         });
 
         ui_manager.onGoToHub.AddListener(() =>

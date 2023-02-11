@@ -113,6 +113,7 @@ namespace Boss.UI
             hubManager.AskForUpgrades.AddListener(action => { AskForUpgrades?.Invoke(action); });
             hubManager.onItemSetAsUpgrade.AddListener(item => onItemSetAsUpgrade?.Invoke(item));
             hubManager.onRequestUseBlood.AddListener(action => onRequestUseBlood?.Invoke(action));
+            hubManager.onRemoveUpgrade.AddListener(upgrade => onRemoveUpgrade.Invoke(upgrade));
 
             hubManager.Init(uIDocument.rootVisualElement, recipies);
         }

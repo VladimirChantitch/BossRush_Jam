@@ -30,6 +30,7 @@ namespace Boss.Upgrades.UI
             {
                 c.onDisupgraded.AddListener(disSelected => onDisupgraded?.Invoke(disSelected));
                 c.type = (UpgradePartType)index;
+                c.Init();
                 index++;    
             });
         }

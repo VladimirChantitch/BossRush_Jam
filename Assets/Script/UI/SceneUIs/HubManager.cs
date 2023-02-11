@@ -123,6 +123,7 @@ namespace Boss.UI
             uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
             {
                 onRemoveUpgrade?.Invoke(guitareUpgrade);
+                AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
 

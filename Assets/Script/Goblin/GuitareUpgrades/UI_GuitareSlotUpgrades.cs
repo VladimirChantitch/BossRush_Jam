@@ -42,6 +42,7 @@ namespace Boss.Upgrades.UI
         {
             this.clicked += () =>
             {
+                Debug.Log("iahzgrb");
                 onDisupgraded?.Invoke(Item as GuitareUpgrade);
                 Clean();
             };
