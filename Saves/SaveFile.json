@@ -5,7 +5,9 @@
       "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
-        "$values": []
+        "$values": [
+          0
+        ]
       }
     },
     {
@@ -33,13 +35,13 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 30.0,
+            "value": 0.0,
             "maxValue": 1000.0,
             "statType": 3
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 175.0,
+            "value": 625.0,
             "maxValue": 1000.0,
             "statType": 4
           }
@@ -63,7 +65,7 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 48594
+              "instance_ID": 48586
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",

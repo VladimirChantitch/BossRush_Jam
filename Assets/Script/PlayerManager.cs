@@ -136,6 +136,19 @@ namespace player
                 {
                     sr.enabled = false;
                 });
+
+                if (GetStat(StatsType.health).Value <= 0)
+                {
+                    onJustCameBack?.Invoke(currentBossRelatedDialogues, true);
+                    SetStat(false, 0, StatsType.Blood);
+                    SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+                    FindObjectOfType<HubBloodGauge>()?.Init();
+                }
+                else
+                {
+                    onJustCameBack?.Invoke(currentBossRelatedDialogues, false);
+                    FindObjectOfType<HubBloodGauge>()?.Init();
+                }
             }
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
@@ -144,19 +157,6 @@ namespace player
             });
 
             LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
-
-            if (GetStat(StatsType.health).Value <= 0)
-            {
-                Debug.Log("hoho");
-                onJustCameBack?.Invoke(currentBossRelatedDialogues, true);
-                SetStat(false, 0, StatsType.Blood);
-                SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
-                FindObjectOfType<HubBloodGauge>().Init();
-            }
-            else
-            {
-                onJustCameBack?.Invoke(currentBossRelatedDialogues, false);
-            }
         }
 
         public override void AddDamage(float amount)
