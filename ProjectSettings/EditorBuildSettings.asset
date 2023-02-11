@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Hub.unity
     guid: a695722a3e3d3224383d83ee4d2db91b
   - enabled: 1
-    path: Assets/Scenes/TESTSCENE_BOSS_MobileHomeRex.unity
+    path: Assets/Scenes/Boss_MobileHomeRex.unity
     guid: 91f9229d1308f064aa71cdfe1e1cb3ec
+  - enabled: 1
+    path: Assets/Scenes/Boss_Ubuntu.unity
+    guid: f6288a0c30b73af4db5d16f68513815e
   m_configObjects: {}

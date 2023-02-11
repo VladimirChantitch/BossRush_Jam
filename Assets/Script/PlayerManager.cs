@@ -9,12 +9,16 @@ using Boss.inventory;
 using UnityEngine.Events;
 using Boss.Upgrades;
 using Unity.Mathematics;
+using Boss.UI;
 
 namespace player
 {
     public class PlayerManager : AbstractCharacter, ISavable
     {
-        public UnityEvent onJustRevived = new UnityEvent();
+        /// <summary>
+        /// The bool stands for if the player died in the boss fight or not 
+        /// </summary>
+        public UnityEvent<BossRelatedDialogues, bool> onJustCameBack = new UnityEvent<BossRelatedDialogues, bool>();
 
         [Header("Behaviour Mode")]
         [SerializeField] Status status = Status.HubMode;    
@@ -38,6 +42,7 @@ namespace player
         [Header("attack data")]
         [SerializeField] List<AttackData> attackDatas = new List<AttackData>();
         [SerializeField] float multiplier = 1;
+        [SerializeField] BossRelatedDialogues currentBossRelatedDialogues;
 
         [Header("Colliders refs")]
         [SerializeField] PlayerAttackCollider attackCollider;
@@ -89,11 +94,11 @@ namespace player
             {
                 guitareUpgradeSystem = new GuitareUpgradeSystem();
             }
+            base.Init();
         }
 
         private void Start()
         {
-            base.Init();
             if (status == Status.BossMode)
             {
                 playerDamageEffect = GetComponent<DamageEffect>();
@@ -131,6 +136,19 @@ namespace player
                 {
                     sr.enabled = false;
                 });
+
+                if (GetStat(StatsType.health).Value <= 0)
+                {
+                    onJustCameBack?.Invoke(currentBossRelatedDialogues, true);
+                    SetStat(false, 0, StatsType.Blood);
+                    SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
+                    FindObjectOfType<HubBloodGauge>()?.Init();
+                }
+                else
+                {
+                    onJustCameBack?.Invoke(currentBossRelatedDialogues, false);
+                    FindObjectOfType<HubBloodGauge>()?.Init();
+                }
             }
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
@@ -139,13 +157,6 @@ namespace player
             });
 
             LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
-
-            if (GetStat(StatsType.health).Value <= 0)
-            {
-                onJustRevived?.Invoke();
-                SetStat(false, 0, StatsType.Blood);
-                SetStat(false, GetStat(StatsType.health).MaxValue, StatsType.health);
-            }
         }
 
         public override void AddDamage(float amount)
@@ -227,8 +238,9 @@ namespace player
 
             Inventory_DTO inventory_DTO = inventory.Save();
             GuitareUpgrade_DTO guitareUpgrade_DTO = guitareUpgradeSystem.Save();
+            BossRelated_Dto bossRelated_Dto = currentBossRelatedDialogues.Save();
 
-            return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO);
+            return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO, bossRelated_Dto);
         }
 
         public void LoadData(DTO dTO)
@@ -238,12 +250,18 @@ namespace player
                 player_dto.Stats.ForEach(stat =>
                 {
                     SetStat(false, stat.value, stat.statType);
-                    SetStat(false, stat.maxValue, stat.statType);
+                    SetStat(true, stat.maxValue, stat.statType);
                 });
 
                 inventory.Load(player_dto.Inventory);
                 guitareUpgradeSystem.Load(player_dto.Upgrades);
+                currentBossRelatedDialogues = new BossRelatedDialogues(player_dto.BossRelated_Dto);
             }
+        }
+
+        internal void ReceiveDialogueData(BossRelatedDialogues bossRelatedDialogues)
+        {
+            this.currentBossRelatedDialogues = bossRelatedDialogues;
         }
         #endregion
     }
@@ -273,16 +291,18 @@ namespace player
 
     public class Player_DTO : DTO
     {
-        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory, GuitareUpgrade_DTO upgrades)
+        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory, GuitareUpgrade_DTO upgrades, BossRelated_Dto bossRelated_Dto)
         {
             Stats = stats;
             Inventory = inventory;
             Upgrades = upgrades;
+            BossRelated_Dto = bossRelated_Dto;
         }
 
         public List<Stat_DTO> Stats { get; private set; }
         public Inventory_DTO Inventory { get; private set; }
         public GuitareUpgrade_DTO Upgrades { get; private set; }
+        public BossRelated_Dto BossRelated_Dto { get; private set; }
     }
 
     public enum AttackType

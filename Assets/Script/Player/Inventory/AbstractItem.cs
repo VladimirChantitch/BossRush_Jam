@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Boss.save;
+using Boss.Dialogue;
 
 namespace Boss.inventory
 {
@@ -11,6 +12,7 @@ namespace Boss.inventory
         [SerializeField] string description;
         [SerializeField] GameObject prefab;
         [SerializeField] Sprite icon;
+        [SerializeField] AbstractDialogue descriptiveDialogue;
 
         public string ItemName { get => itemName; }
         public string Description { get => description; }

@@ -85,11 +85,13 @@ public class GameManager : MonoBehaviour
         });
         ui_manager.onRemoveUpgrade.AddListener(upgrade => {
             playerManager.RemoveUpgrade(upgrade as GuitareUpgrade);
+            playerManager.AddToInventory(upgrade);
         });
 
         ui_manager.onGoToHub.AddListener(() =>
         {
             saveManager.SaveGame();
+            FindObjectOfType<PlayerMovement>().Dispose();
             SceneManager.LoadScene("Hub");
         });
 
@@ -98,10 +100,11 @@ public class GameManager : MonoBehaviour
 
     private void SetBossCharacterEvent()
     {
-        bossCharacter.onBossDying.AddListener(() =>
+        bossCharacter.onBossDying.AddListener(data =>
         {
             explosion.Explode();
             cameraJuice.Shake(35f, 0.55f);
+            playerManager.ReceiveDialogueData(data);
         });
 
         bossCharacter.onBossDead.AddListener(data =>
@@ -114,14 +117,27 @@ public class GameManager : MonoBehaviour
         bossCharacter.onBossHit.AddListener(() =>
         {
             cameraJuice.Shake(5f, 0.1f);
-            damageEffect.Blinking();
+            damageEffect?.Blinking(); 
         });
     }
 
     private void SetPlayerManagerEvents()
     {
         playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
-        playerManager.onJustRevived.AddListener(() => Debug.Log("you are a fucking looser"));
+        playerManager.onJustCameBack.AddListener((dialogues, b) =>
+        {
+            if (currentScrenn == CurrentScrenn.Hub)
+            {
+                if (b)
+                {
+                    ui_manager.SendDialogue(dialogues?.LooseDialogue?.dialogue);
+                }
+                else
+                {
+                    ui_manager.SendDialogue(dialogues?.WinDialogue?.dialogue);
+                }
+            }
+        });
     }
 
     private void SetMapEvents()

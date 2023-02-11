@@ -4,11 +4,23 @@ using UnityEngine;
 
 namespace Boss.Dialogue
 {
-    public abstract class AbstractDialogue : ScriptableObject
+    [CreateAssetMenu(menuName = "Dialogue")]
+    public class AbstractDialogue : ScriptableObject
     {
-        [SerializeField] string title;
-        [SerializeField][TextArea] protected string dialogue;
+        [SerializeField] public string title;
+        [SerializeField][TextArea] public string dialogue;
+        public DialogueActionType type;
+        public AbstractDialogue nextDialogue;
     }
+}
+
+public enum DialogueActionType
+{
+    LooseDialogue,
+    WinDialogue,
+    BossBeatenDialogue,
+    Tutorial,
+    Actionfailled
 }
 
 

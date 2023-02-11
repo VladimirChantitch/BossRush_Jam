@@ -30,6 +30,7 @@ namespace Boss.UI
 
             Children().ToList().ForEach(c => {
                 uI_ItemSlots.Add(c as UI_ItemSlot);
+                uI_ItemSlots.Last().Init();
             });
 
             uI_ItemSlots.ForEach(c =>
@@ -81,7 +82,7 @@ namespace Boss.UI
             ClearAllSlots();
             for (int i = 0; i < items.Count; i++)
             {
-                uI_ItemSlots[i].Init(items[i]);
+                uI_ItemSlots[i]?.Init(items[i]);
             }
         }
     }

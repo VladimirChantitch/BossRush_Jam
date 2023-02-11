@@ -225,3 +225,31 @@
     transition-duration: 0.15s;
     transition-timing-function: ease-in;
 }
+
+.UI_labels {
+    background-color: rgba(152, 152, 152, 255);
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/Graphics/Fonts/alagard.ttf?fileID=12800000&guid=f4c58eaa4c6474342b9bfcce15466703&type=3#alagard');
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/alagard%20SDF.asset?fileID=11400000&guid=56d7ff9bb0b26ef47b7d2037389ae8e7&type=2#alagard SDF');
+    border-left-color: rgba(0, 0, 0, 255);
+    border-right-color: rgba(0, 0, 0, 255);
+    border-top-color: rgba(0, 0, 0, 255);
+    border-bottom-color: rgba(0, 0, 0, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}

@@ -3,15 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Boss.UI;
+using Boss.Dialogue;
+using UnityEngine.Events;
 
 public class Goblin : HubInteractor
 {
-    List<Recipies> recipies = new List<Recipies>();
-    internal void Init(List<Recipies> recipies)
-    {
-        this.recipies = recipies;
-    }
-    
-    //TODO -- Start a dialogue
+    public UnityEvent<string> onPlayDialogue = new UnityEvent<string>();  
 
 }
