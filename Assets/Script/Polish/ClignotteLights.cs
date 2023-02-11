@@ -8,6 +8,8 @@ public class ClignotteLights : MonoBehaviour
     public Light2D currentLight;
     [SerializeField] float speed;
     bool isDecreasing;
+    [SerializeField] float min = 0;
+    [SerializeField] float max = 2;
 
     void Start()
     {
@@ -19,7 +21,7 @@ public class ClignotteLights : MonoBehaviour
         if (isDecreasing)
         {
             currentLight.intensity -= Time.deltaTime * speed;
-            if (currentLight.intensity <= 0)
+            if (currentLight.intensity <= min)
             {
                 isDecreasing = false;
             }
@@ -27,9 +29,9 @@ public class ClignotteLights : MonoBehaviour
         else
         {
             currentLight.intensity += Time.deltaTime * speed;
-            if (currentLight.intensity >= 2)
+            if (currentLight.intensity >= max)
             {
-                currentLight.intensity = 2;
+                currentLight.intensity = max;
                 isDecreasing = true;
             }
         }

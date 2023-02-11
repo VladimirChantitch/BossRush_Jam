@@ -52,7 +52,7 @@
                     <ui:Label text="MODDY :" display-tooltip-when-elided="true" name="Speaker" class="UI_labels" style="width: 15%; -unity-text-align: middle-left;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Label" display-tooltip-when-elided="true" name="Dialogue" class="UI_labels" style="flex-shrink: 1; flex-grow: 1;" />
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="Dialogue" class="UI_labels" style="flex-shrink: 1; flex-grow: 1; white-space: normal;" />
                 </ui:VisualElement>
             </UI_Dialogue>
         </ui:VisualElement>

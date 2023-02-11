@@ -135,13 +135,13 @@ namespace Boss.UI
             crafter.onSuccess.AddListener(async (success_dto) =>
             {
                 CrafterSuccess?.Invoke(success_dto);
-                crafterRoot.visible = false;
-                inventoryRoot.visible = false;
+                CloseAllPopups();
 
                 await Task.Delay(100);
                 uI_crafter.CraftSuccess();
                 uI_inventory.CraftSuccess();
                 OpenDialogue(success_dto.resutl.Description);
+                AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
             crafter.onDeselect.AddListener(item =>
