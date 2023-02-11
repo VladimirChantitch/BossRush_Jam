@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -160,11 +160,17 @@ MonoBehaviour:
     maxValue: 1000
     statType: 2
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
+  onJustRevived:
+    m_PersistentCalls:
+      m_Calls: []
   status: 0
   playerMovement: {fileID: 0}
+  playerUIManager: {fileID: 0}
   attackDatas: []
   multiplier: 1
   attackCollider: {fileID: 0}
+  attackCollider_Big: {fileID: 0}
+  isAtk2: 0
   playerTakeDamageCollider: {fileID: 0}
   currentAttackType: 0
   onPlayerDead:

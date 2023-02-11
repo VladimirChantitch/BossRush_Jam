@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] CameraJuice cameraJuice;
     [SerializeField] Explosion explosion;
-
+    DamageEffect damageEffect;
 
     private void Start()
     {
@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
         {
             saveManager.LoadGame();
         }
+
+        damageEffect = GetComponent<DamageEffect>();
     }
 
     private void SetUIManagerEvents()
@@ -104,7 +106,6 @@ public class GameManager : MonoBehaviour
 
         bossCharacter.onBossDead.AddListener(data =>
         {
-            Debug.Log("GameManger");
             ui_manager.ShowLoots(data);
             playerManager.AddToInventory(data.guitareUpgrades, data.bossItems);
             playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.Blood).Value + bossCharacter.GetStat(Boss.stats.StatsType.Blood).Value, Boss.stats.StatsType.Blood);
@@ -112,8 +113,8 @@ public class GameManager : MonoBehaviour
 
         bossCharacter.onBossHit.AddListener(() =>
         {
-            Debug.Log("HIT");
             cameraJuice.Shake(5f, 0.1f);
+            damageEffect.Blinking();
         });
     }
 

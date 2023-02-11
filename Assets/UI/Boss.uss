@@ -213,7 +213,6 @@
     border-top-color: rgba(255, 255, 255, 0);
     border-bottom-color: rgba(255, 255, 255, 0);
     text-shadow: 5px 5px 50px rgb(0, 0, 0);
-    visibility: hidden;
 }
 
 .menu-button-Boss:hover {
@@ -225,5 +224,4 @@
     rotate: -1deg;
     transition-duration: 0.15s;
     transition-timing-function: ease-in;
-    visibility: hidden;
 }

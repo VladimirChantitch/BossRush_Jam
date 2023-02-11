@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0dd8b4250d86f344b6068bf447f7a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGoToBossFight:
+    m_PersistentCalls:
+      m_Calls: []
   mapParent: {fileID: 0}
 --- !u!1 &7937059688534768007
 GameObject:
@@ -225,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e27f6568a8f854d94d93db52b4a97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScrenn: 1
+  currentScreen: 0
   SaveGame:
     m_PersistentCalls:
       m_Calls: []
@@ -254,6 +257,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRemoveUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  onRequestUseBlood:
     m_PersistentCalls:
       m_Calls: []
   datafiles:
@@ -296,6 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7937059689801115771}
   - component: {fileID: 7810337630690655896}
+  - component: {fileID: 3160298831820906441}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -340,3 +347,25 @@ MonoBehaviour:
   Save: 0
   Load: 0
   AutoLoad: 0
+  cameraJuice: {fileID: 0}
+  explosion: {fileID: 0}
+--- !u!114 &3160298831820906441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937059689801115770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb43ad32a8a5a94dac301825f6e4755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: e00f79986c7eb2047ac7fbef4c0899cf, type: 2}
+  spriteBlinkingTimer: 0
+  spriteBlinkingMiniDuration: 0.075
+  spriteBlinkingTotalTimer: 0
+  spriteBlinkingTotalDuration: 0.5
+  startBlinking: 0
+  color: {r: 1, g: 0, b: 0, a: 1}
+  expo: 5

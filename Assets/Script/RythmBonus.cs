@@ -22,8 +22,7 @@ public class RythmBonus : MonoBehaviour
     Material trailMaterial;
 
     [SerializeField] GameObject particule_Atk2;
-
-    private int combo;
+    [SerializeField] GameObject particule_Atk2_2;
 
     // Start is called before the first frame update
     void Start()
@@ -48,79 +47,61 @@ public class RythmBonus : MonoBehaviour
             {
                 light.color = Color.Lerp(Color.red, Color.white, plusMusic.TimeNextBeat());
             }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (plusMusic.TimeNextBeat() < rythmDZ)
-                {
-                    StartCoroutine(OnTime());
-                }
-                else
-                {
-                    light.color = Color.white;
-                    combo = 0;
-                    playerManager.playerUIManager.SetPlayerCombo(combo, 50);
-                }
-
-                ComboEffect_Atk1();
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (plusMusic.TimeNextBeat() < rythmDZ)
-                {
-                    StartCoroutine(OnTime());
-                }
-                else
-                {
-                    light.color = Color.white;
-                    combo = 0;
-                    playerManager.playerUIManager.SetPlayerCombo(combo, 50);
-                }
-
-                ComboEffect_Atk2();
-            }
         }
+    }
+
+    public void BaseAttack(int type)
+    {
+        if (plusMusic.TimeNextBeat() < rythmDZ)
+        {
+            StartCoroutine(OnTime());
+        }
+        else
+        {
+            light.color = Color.white;
+            playerManager.SetStat(false, 0, Boss.stats.StatsType.combo);
+            playerManager.playerUIManager.SetPlayerCombo(playerManager.GetStat(Boss.stats.StatsType.combo).Value, playerManager.GetStat(Boss.stats.StatsType.combo).MaxValue);
+        }
+
+        if (type == 0)
+            ComboEffect_Atk1();
+        else
+            ComboEffect_Atk2();
     }
 
     IEnumerator OnTime()
     {
         onTime = true;
-        combo++;
-        playerManager.playerUIManager.SetPlayerCombo(combo, 50);
+        playerManager.SetStat(false, playerManager.GetStat(Boss.stats.StatsType.combo).Value + 1, Boss.stats.StatsType.combo);
+        playerManager.playerUIManager.SetPlayerCombo(playerManager.GetStat(Boss.stats.StatsType.combo).Value, playerManager.GetStat(Boss.stats.StatsType.combo).MaxValue);
         light.color = color;
-        //light.pointLightInnerRadius = 0.25f;
-        //light.pointLightOuterRadius = 10.0f;
-        //light.intensity = 1.5f;
         yield return new WaitForSeconds(0.15f);
         onTime = false;
-        //light.color = Color.white;
     }
 
     private void ComboEffect_Atk1()
     {
-        ParticleCombo();
+        StopParticule(particule_Atk2.GetComponent<ParticleSystem>());
+        ParticleCombo(particule.GetComponent<ParticleSystem>());
         LightCombo();
         TrailCombo();
     }
 
     private void ComboEffect_Atk2()
     {
+        StopParticule(particule.GetComponent<ParticleSystem>());
+        ParticleCombo(particule_Atk2_2.GetComponent<ParticleSystem>());
         WaveCombo();
-        LightCombo();
-        TrailCombo();
     }
 
-    private void ParticleCombo()
+    private void ParticleCombo(ParticleSystem ps)
     {
-        var ps = particule.GetComponent<ParticleSystem>();
-
         var main = ps.main;
-        main.startSpeedMultiplier = combo;
+        main.startSpeedMultiplier = playerManager.GetStat(Boss.stats.StatsType.combo).Value;
 
         var em = ps.emission;
         ParticleSystem.Burst burst = em.GetBurst(0);
-        burst.count = math.remap(0.0f, 20f, 0.0f, 1000f, (float)combo);
+        burst.count = math.remap(0.0f, 20f, 0.0f, 1000f, playerManager.GetStat(Boss.stats.StatsType.combo).Value);
         em.SetBurst(0, burst);
 
         ps.Play();
@@ -128,13 +109,13 @@ public class RythmBonus : MonoBehaviour
 
     private void LightCombo()
     {
-        guitareLight.intensity = math.remap(0.0f, 20f, 0.0f, 200f, (float)combo);
+        guitareLight.intensity = math.remap(0.0f, 20f, 0.0f, 200f, playerManager.GetStat(Boss.stats.StatsType.combo).Value);
     }
 
     private void TrailCombo()
     {
-        trail.time = math.remap(0.0f, 20f, 0.01f, 0.2f, (float)combo);
-        trailMaterial.SetFloat("_Combo", combo);
+        trail.time = math.remap(0.0f, 20f, 0.01f, 0.2f, playerManager.GetStat(Boss.stats.StatsType.combo).Value);
+        trailMaterial.SetFloat("_Combo", playerManager.GetStat(Boss.stats.StatsType.combo).Value);
     }
 
     private void WaveCombo()
@@ -147,10 +128,15 @@ public class RythmBonus : MonoBehaviour
 
         AnimationCurve curve = new AnimationCurve();
         curve.AddKey(0.0f, 0.0f);
-        curve.AddKey(1.0f, combo);
+        curve.AddKey(1.0f, playerManager.GetStat(Boss.stats.StatsType.combo).Value);
 
         solt.size = new ParticleSystem.MinMaxCurve(1f, curve);
 
         ps.Play();
+    }
+
+    private void StopParticule(ParticleSystem ps)
+    {
+        ps.Stop();
     }
 }

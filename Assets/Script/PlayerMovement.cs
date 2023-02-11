@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Attack")]
     public UnityEvent<AttackType> attackPerformed;
+    public RythmBonus rythmBonus;
     public TrailRenderer guitareTrail;
     public Transform aoe_gfx;
     bool aoeTrigger = false;
@@ -164,25 +165,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack1_performed(InputAction.CallbackContext context)
     {
+        camJuice.AtkZoom();
         animator.Play("Attack");
         guitareTrail.emitting = true;
+        rythmBonus.BaseAttack(0);
         attackPerformed?.Invoke(AttackType.normal);
     }
 
     private void Attack1_canceled(InputAction.CallbackContext obj)
     {
+        camJuice.Default();
         guitareTrail.emitting = false;
     }
 
     private void Attack2_performed(InputAction.CallbackContext context)
     {
+        camJuice.AtkZoom();
+        timeElapsed = 0;
+        playerManager.OpenAttackCollider_Big();
         animator.Play("RiffAttack");
+        rythmBonus.BaseAttack(1);
         attackPerformed?.Invoke(AttackType.big);
     }
 
     private void Attack2_canceled(InputAction.CallbackContext obj)
     {
-        playerManager.isAtk2 = false;
+        camJuice.Default();
     }
 
     private void EnbiggenAOE()

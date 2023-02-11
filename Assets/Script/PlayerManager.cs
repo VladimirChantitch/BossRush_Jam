@@ -8,6 +8,7 @@ using Boss.stats;
 using Boss.inventory;
 using UnityEngine.Events;
 using Boss.Upgrades;
+using Unity.Mathematics;
 
 namespace player
 {
@@ -40,6 +41,8 @@ namespace player
 
         [Header("Colliders refs")]
         [SerializeField] PlayerAttackCollider attackCollider;
+
+        private DamageEffect playerDamageEffect;
 
         public void OpenAttackCollider()
         {
@@ -93,12 +96,17 @@ namespace player
             base.Init();
             if (status == Status.BossMode)
             {
+                playerDamageEffect = GetComponent<DamageEffect>();
+
                 if (playerMovement == null)
                 {
                     playerMovement = FindObjectOfType<PlayerMovement>();
                 }
                 attackCollider.applyDamageToTarget.AddListener(target => target?.TakeDamageEvent?.Invoke(GetAttackAmount(currentAttackType)));
-                playerTakeDamageCollider.takeDamage.AddListener(amount => AddDamage(amount));
+                playerTakeDamageCollider.takeDamage.AddListener(amount => {
+                    AddDamage(amount);
+                    playerDamageEffect.Blinking();
+                    });
                 playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
                 playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
                 playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
@@ -155,7 +163,7 @@ namespace player
         public float GetAttackAmount(AttackType type)
         {
             float attack = attackDatas.Where(a => a.GetAttackType() == type).First().GetAttackDamage();
-            return attack * multiplier;
+            return attack * GetMultipler(type);
         }
 
         #region Upgrades
@@ -196,9 +204,19 @@ namespace player
             }
         }
 
-        private float GetMultipler()
+        private float GetMultipler(AttackType type)
         {
-            throw new NotImplementedException();
+           if(type == AttackType.normal)
+           {
+                float multiplier = math.remap(0, GetStat(StatsType.combo).MaxValue, 1, 100, GetStat(StatsType.combo).Value);
+                return multiplier;
+            }
+           else
+           {
+                float multiplier = math.remap(0, GetStat(StatsType.combo).MaxValue, 1, 666, GetStat(StatsType.combo).Value);
+                return multiplier;
+            }
+ 
         }
 
         #region data

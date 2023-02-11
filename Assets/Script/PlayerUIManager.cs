@@ -57,6 +57,5 @@ public class PlayerUIManager : MonoBehaviour
         combo.sizeDelta = new Vector2(amount * 10, combo.sizeDelta.y);
         float expo = math.remap(0, maxCombo, -2, 3, amount);
         combo_mat.SetColor("_Color", Color.white * math.pow(2f, expo));
-        Debug.Log(Color.white * math.pow(expo, 2f));
     }
 }
