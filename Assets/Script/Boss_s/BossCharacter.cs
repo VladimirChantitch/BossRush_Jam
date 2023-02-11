@@ -37,14 +37,27 @@ public class BossCharacter : AbstractCharacter
 [Serializable]
 public class BossRelatedDialogues
 {
+    public BossRelatedDialogues() { }
+    public BossRelatedDialogues(BossRelated_Dto dto)
+    {
+        this.winDialogue = DADDY.Instance.GetDialogueByID(dto.win_id);
+        this.looseDialogue = DADDY.Instance.GetDialogueByID(dto.loose_id);
+    }
+
     [SerializeField] AbstractDialogue winDialogue;
     [SerializeField] AbstractDialogue looseDialogue;
 
     public AbstractDialogue WinDialogue { get => winDialogue; }
     public AbstractDialogue LooseDialogue { get => looseDialogue; }
+
+    public BossRelated_Dto Save()
+    {
+        return new BossRelated_Dto() { loose_id = LooseDialogue.GetInstanceID(), win_id = WinDialogue.GetInstanceID() };
+    }
 }
 
 public class BossRelated_Dto : DTO
 {
-
+    public int loose_id;
+    public int win_id;
 }

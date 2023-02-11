@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 1000
+  - value: 0
     maxValue: 1000
     statType: 0
   inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
@@ -340,6 +340,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bossUIManager: {fileID: 707570331}
+  bossRelatedDialogues:
+    winDialogue: {fileID: 11400000, guid: a5418c3da7f68ef4aa1c934814d0bf38, type: 2}
+    looseDialogue: {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
   RightBase: {fileID: 444061968}
   LeftBase: {fileID: 1691932041}
   speedFront: 25

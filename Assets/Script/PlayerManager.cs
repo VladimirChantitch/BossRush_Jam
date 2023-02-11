@@ -214,8 +214,9 @@ namespace player
 
             Inventory_DTO inventory_DTO = inventory.Save();
             GuitareUpgrade_DTO guitareUpgrade_DTO = guitareUpgradeSystem.Save();
+            BossRelated_Dto bossRelated_Dto = currentBossRelatedDialogues.Save();
 
-            return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO);
+            return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO, bossRelated_Dto);
         }
 
         public void LoadData(DTO dTO)
@@ -230,6 +231,7 @@ namespace player
 
                 inventory.Load(player_dto.Inventory);
                 guitareUpgradeSystem.Load(player_dto.Upgrades);
+                currentBossRelatedDialogues = new BossRelatedDialogues(player_dto.BossRelated_Dto);
             }
         }
 
@@ -265,16 +267,18 @@ namespace player
 
     public class Player_DTO : DTO
     {
-        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory, GuitareUpgrade_DTO upgrades)
+        public Player_DTO(List<Stat_DTO> stats, Inventory_DTO inventory, GuitareUpgrade_DTO upgrades, BossRelated_Dto bossRelated_Dto)
         {
             Stats = stats;
             Inventory = inventory;
             Upgrades = upgrades;
+            BossRelated_Dto = bossRelated_Dto;
         }
 
         public List<Stat_DTO> Stats { get; private set; }
         public Inventory_DTO Inventory { get; private set; }
         public GuitareUpgrade_DTO Upgrades { get; private set; }
+        public BossRelated_Dto BossRelated_Dto { get; private set }
     }
 
     public enum AttackType

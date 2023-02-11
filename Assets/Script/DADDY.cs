@@ -48,5 +48,11 @@ public class DADDY : MonoBehaviour
     }
 
     public List<AbstractDialogue> allDialoguesThatNeedToBeSaved = new List<AbstractDialogue>();
+
+    public AbstractDialogue GetDialogueByID(int ID)
+    {
+        AbstractDialogue dialogue = allDialoguesThatNeedToBeSaved.Find(i => i.GetInstanceID() == ID);
+        return dialogue;
+    }
 }
 
