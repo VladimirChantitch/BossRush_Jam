@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 using Boss.Upgrades.UI;
 using System.Threading.Tasks;
 using System.Collections;
-
+using System.Linq;
 
 namespace Boss.UI
 {
@@ -170,7 +170,10 @@ namespace Boss.UI
             goblin.interacts.AddListener(() => OpenDialogue(goblin.AbstractDialogue?.dialogue));
 
             //UI_ Dialogue
-            uI_Dialogue.onFinished?.AddListener(() => dialogueRoot.visible = false);
+            uI_Dialogue.onFinished?.AddListener(() => {
+                dialogueRoot.visible = false;
+                uI_Dialogue.visible = false;
+            });
         }
         #endregion
         IEnumerator currentDialoguePlaying;
@@ -238,6 +241,7 @@ namespace Boss.UI
         {
             CloseAllPopups();
             upgradeRoot.visible = true;
+            inventoryRoot.visible = true;
             uI_inventory.visible = true;
             uI_GuitareUpgrades.visible = true;
             AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
@@ -248,6 +252,7 @@ namespace Boss.UI
         {
             CloseAllPopups();
             crafterRoot.visible = true;
+            inventoryRoot.visible = true;
             uI_inventory.visible = true;
             uI_crafter.visible = true;
             AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
@@ -262,6 +267,7 @@ namespace Boss.UI
 
         private void CloseAllPopups()
         {
+            inventoryRoot.visible = false;  
             upgradeRoot.visible = false;
             uI_inventory.visible = false;
             uI_GuitareUpgrades.visible = false;
