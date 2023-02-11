@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         bossCharacter.onBossHit.AddListener(() =>
         {
             cameraJuice.Shake(5f, 0.1f);
-            damageEffect.Blinking(); 
+            damageEffect?.Blinking(); 
         });
     }
 

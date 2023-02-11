@@ -229,7 +229,7 @@ PrefabInstance:
     - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: bossFights.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
@@ -274,8 +274,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
+      propertyPath: bossFights.Array.data[1].location
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
       propertyPath: bossFights.Array.data[0].BossFightName
       value: Boss_MobileHomeRex
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: bossFights.Array.data[1].BossFightName
+      value: Boss_Ubuntu
       objectReference: {fileID: 0}
     - target: {fileID: 7296933903230272757, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}

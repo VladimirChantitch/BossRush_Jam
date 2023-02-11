@@ -37,9 +37,12 @@ public class C_Boss_1_AttackCollider : AbstractTogglelableCollider
     {
         await Task.Delay(time);
         hasRespawned = true;
-        bulletSpawner.enabled = true;
-        await Task.Delay(duration);
-        bulletSpawner.enabled = false;
+        if(bulletSpawner != null)
+        {
+            bulletSpawner.enabled = true;
+            await Task.Delay(duration);
+            bulletSpawner.enabled = false;
+        }
     }
 
     public override void OpenCollider()

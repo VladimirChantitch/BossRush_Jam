@@ -6,7 +6,7 @@
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
         "$values": [
-          0
+          1
         ]
       }
     },
@@ -17,31 +17,31 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 100.0,
-            "maxValue": 100.0,
+            "value": 0.0,
+            "maxValue": 200.0,
             "statType": 0
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.25,
+            "value": 0.0,
             "maxValue": 1000.0,
             "statType": 2
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 1.0,
-            "maxValue": 1000.0,
+            "maxValue": 1.0,
             "statType": 1
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.0,
-            "maxValue": 1000.0,
+            "maxValue": 30.0,
             "statType": 3
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 625.0,
+            "value": 0.0,
             "maxValue": 1000.0,
             "statType": 4
           }
@@ -65,17 +65,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 48586
+              "instance_ID": 29042
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 48588
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 48590
+              "instance_ID": 29040
             }
           ]
         }
@@ -120,8 +115,8 @@
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": 57348,
-        "win_id": -252184
+        "loose_id": -1,
+        "win_id": -1
       }
     }
   ]

@@ -107,7 +107,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7, type: 2}
   Recipies:
   - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
-  bossFights: []
+  bossFights:
+  - BossFightName: Boss_MobileHomeRex
+    location: 0
+  - BossFightName: Boss_Ubuntu
+    location: 1
   hasJustLoose: 0
   allDialoguesThatNeedToBeSaved:
   - {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
