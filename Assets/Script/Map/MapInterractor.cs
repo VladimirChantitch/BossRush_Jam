@@ -16,6 +16,7 @@ namespace Boss.Map
         [SerializeField] float speed = 5;
         public BossLocalization location;
         bool isIncreasing;
+        bool isUnlocked = false;
 
         private void Awake()
         {
@@ -29,10 +30,14 @@ namespace Boss.Map
 
         public void Unlock()
         {
-            spriteRenderer.enabled = false;
-            activator.enabled = true;
-            light2D.enabled = true;
-            StartCoroutine(IntensityVariation());
+            if (!isUnlocked)
+            {
+                isUnlocked = true;
+                spriteRenderer.enabled = false;
+                activator.enabled = true;
+                light2D.enabled = true;
+                StartCoroutine(IntensityVariation());
+            }
         }
 
         public void Interact()

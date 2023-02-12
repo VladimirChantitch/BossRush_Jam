@@ -20,8 +20,6 @@ MonoBehaviour:
   - amount: 1
     item: {fileID: 11400000, guid: cf41e14fa6a41344cbaff617a04d8b8f, type: 2}
   - amount: 1
-    item: {fileID: 11400000, guid: bd71368563e013e4dac18b5d49c8383f, type: 2}
-  - amount: 1
     item: {fileID: 11400000, guid: 222f4af1d04117c4b8de7e0147139e0c, type: 2}
   - amount: 1
     item: {fileID: 11400000, guid: 06268e1495a027d4dacbd01d0c4475b1, type: 2}

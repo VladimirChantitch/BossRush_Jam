@@ -17,6 +17,7 @@ namespace Boss.crafter
         public UnityEvent<CrafterData> onFail = new UnityEvent<CrafterData>();
         public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
+        public UnityEvent onNoCraftAvailible = new UnityEvent();
 
         AbstractItem[] items = new AbstractItem[2];
 
@@ -50,7 +51,7 @@ namespace Boss.crafter
             }
             else
             {
-
+                onNoCraftAvailible?.Invoke();
             }
         }
 

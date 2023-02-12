@@ -1,5 +1,6 @@
 using Boss.inventory;
 using Boss.save;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,20 @@ namespace Boss.Map
         {
             unlockedLocalization = (dTO as MapManager_DTO).locations;
             unlockedLocalization.ForEach(ul => _maps.Find(m => m.location == ul)?.Unlock());
+        }
+
+        internal bool UnlockRandom()
+        {
+            MapInterractor map = _maps.Find(m => !unlockedLocalization.Contains(m.location));
+            if (map == null)
+            {
+                return false;
+            }
+            else
+            {
+                map.Unlock();
+                return true;
+            }
         }
     }
 
