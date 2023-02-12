@@ -100,11 +100,26 @@ MonoBehaviour:
   USS_STYLE: {fileID: 7433441132597879392, guid: 53c00014f973484478570986e543b710,
     type: 3}
   itemsAvailible:
-  - {fileID: 11400000, guid: 69460e865e163554bbfecb04ea66e7ca, type: 2}
-  - {fileID: 11400000, guid: bdc1b645280ba754d89d9790bdd49211, type: 2}
-  - {fileID: 11400000, guid: a61294474c3193c4ca4f5d63b7a72d0c, type: 2}
-  - {fileID: 11400000, guid: bd71368563e013e4dac18b5d49c8383f, type: 2}
-  - {fileID: 11400000, guid: a5933ea0e28f7b64fb8ddd75cdf4c0a7, type: 2}
+  - {fileID: 11400000, guid: c41a1c1bdbe710f4bb4ad9287f7a13de, type: 2}
+  - {fileID: 11400000, guid: a566f3c76dd7a2f49bcece6a7b7b6a49, type: 2}
+  - {fileID: 11400000, guid: 2bfa1fe532223764eaaa51c2be8bed98, type: 2}
+  - {fileID: 11400000, guid: 8151b0529267c7542b66368d6e083d3c, type: 2}
+  - {fileID: 11400000, guid: 03e3c4841a313884a829f47183ca8c7a, type: 2}
+  - {fileID: 11400000, guid: c27c3e2c193e6734092f3e0823349d1f, type: 2}
+  - {fileID: 11400000, guid: fa89a133acd9fc340a14e69fd0d20da3, type: 2}
+  - {fileID: 11400000, guid: 0156367e1935a1641bf4622994fa193d, type: 2}
+  - {fileID: 11400000, guid: 83743383777571544bbf55dcc1006c04, type: 2}
+  - {fileID: 11400000, guid: a033ef1dffd7d8348b6c7954699bc1ce, type: 2}
+  - {fileID: 11400000, guid: 0cb28833a1cdffb4abac557635fb07b8, type: 2}
+  - {fileID: 11400000, guid: 357f1e964131265408d8e0c4848bfb5a, type: 2}
+  - {fileID: 11400000, guid: 95ef759ace9816c40a2e0e9ca3151b0b, type: 2}
+  - {fileID: 11400000, guid: f8f5c213a7372d4428033ee65bb6dc8f, type: 2}
+  - {fileID: 11400000, guid: 365b4f52cca573c47b7418f22f7adf38, type: 2}
+  - {fileID: 11400000, guid: 94304f52b6d48db44b2c795c3684562d, type: 2}
+  - {fileID: 11400000, guid: 94529b82201b5c043bf04ca8b0e1db99, type: 2}
+  - {fileID: 11400000, guid: cec5d386ba33076459f0c8c4e4423ca2, type: 2}
+  - {fileID: 11400000, guid: 22cdff59e29971f41be34a97b830409a, type: 2}
+  - {fileID: 11400000, guid: f81915f61942bf243883aa6fc27325b4, type: 2}
   Recipies:
   - {fileID: 11400000, guid: a4ddff03a5725fc4ab82e5f75c49f040, type: 2}
   bossFights:

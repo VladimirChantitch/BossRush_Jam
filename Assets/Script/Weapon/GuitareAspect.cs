@@ -10,6 +10,7 @@ namespace Boss.Upgrades
     public class GuitareAspect : MonoBehaviour
     {
         List<GuitareAspectSlot> slots = new List<GuitareAspectSlot>();
+        List<UpgradeGraphicsRefType> unlocked = new List<UpgradeGraphicsRefType>();
 
         private void Awake()
         {
@@ -18,23 +19,39 @@ namespace Boss.Upgrades
 
         public void UpdateGuitareAspect(List<GuitareUpgrade> guitareUpgrades)
         {
+            List<UpgradeGraphicsRefType> localUnlock = new List<UpgradeGraphicsRefType>();
+            localUnlock.AddRange(unlocked);
+
             guitareUpgrades.ForEach(gu =>
             {
-                ChangeSprite(gu.Icon, gu.UpgradePartType);
+                localUnlock.Add(gu.upgradeGraphicsRefType);
             });
+
+            unlocked.Clear();
+            unlocked.AddRange(localUnlock.Distinct());
+
+            ReloadSprites();
         }
 
-        public void UpdateGuitareAspect(GuitareUpgrade guitareUpgrade)
+        public void DisUpdateGuitareApsect(List<GuitareUpgrade> guitareUpgrades)
         {
-            if (guitareUpgrade != null)
+            guitareUpgrades.ForEach(gu => unlocked.Remove(gu.upgradeGraphicsRefType));
+            ReloadSprites();
+        }
+
+        private void ReloadSprites()
+        {
+            slots.ForEach(s =>
             {
-                ChangeSprite(guitareUpgrade.Icon, guitareUpgrade.UpgradePartType);
-            }
-        }
-
-        private void ChangeSprite(Sprite sprite, UpgradePartType upgradePart)
-        {
-            slots.Find(s => s.type == upgradePart).LoadNewUpgrade(sprite);
+                if (unlocked.Contains(s.type))
+                {
+                    s.EnableUpgrade();
+                }
+                else
+                {
+                    s.DisableUpgrade();
+                }
+            });
         }
     }
 }

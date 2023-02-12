@@ -33,3 +33,23 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: 83743383777571544bbf55dcc1006c04, type: 2}
   - amount: 1
     item: {fileID: 11400000, guid: a033ef1dffd7d8348b6c7954699bc1ce, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 0cb28833a1cdffb4abac557635fb07b8, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 357f1e964131265408d8e0c4848bfb5a, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 95ef759ace9816c40a2e0e9ca3151b0b, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: f8f5c213a7372d4428033ee65bb6dc8f, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 365b4f52cca573c47b7418f22f7adf38, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 94304f52b6d48db44b2c795c3684562d, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 94529b82201b5c043bf04ca8b0e1db99, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: cec5d386ba33076459f0c8c4e4423ca2, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 22cdff59e29971f41be34a97b830409a, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: f81915f61942bf243883aa6fc27325b4, type: 2}

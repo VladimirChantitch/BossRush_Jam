@@ -11,6 +11,7 @@ namespace Boss.inventory
         [SerializeField] UpgradePartType upgradePartType;
 
         public UpgradePartType UpgradePartType { get => upgradePartType; }
+        public UpgradeGraphicsRefType upgradeGraphicsRefType;
     }
 }
 
@@ -23,4 +24,18 @@ public enum UpgradePartType
     TopBody,
     BottomBody,
     Amplification
+}
+
+public enum UpgradeGraphicsRefType
+{
+    Arm,
+    Axe,
+    Bone,
+    Carrot,
+    EggPlant,
+    Eye,
+    Horn,
+    Lamp,
+    Shell,
+    Synth
 }

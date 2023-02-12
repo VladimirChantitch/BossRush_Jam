@@ -96,16 +96,16 @@ namespace Boss.UI
                 {
                     crafter.HandleSelection(selected);
                 }
-                else
+                else // UPGRADES-------------------------------------
                 {
                     if(selected is GuitareUpgrade guitareUpgrade)
                     {
                         onItemSetAsUpgrade.Invoke(guitareUpgrade);
                         AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
-                        guitareAspect.UpdateGuitareAspect(guitareUpgrade);
+                        guitareAspect.UpdateGuitareAspect(new List<GuitareUpgrade>() { guitareUpgrade });
                         uI_GuitareUpgrades.SetInfo(guitareUpgrade);
                     }
-                    //TODO -- give a feed back to tell thats not the rght item
+
                     uI_inventory.DeselectItem(null);
                 }
 
@@ -124,6 +124,7 @@ namespace Boss.UI
             uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
             {
                 onRemoveUpgrade?.Invoke(guitareUpgrade);
+                guitareAspect.DisUpdateGuitareApsect(new List<GuitareUpgrade>() { guitareUpgrade });
                 AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
@@ -159,9 +160,8 @@ namespace Boss.UI
                 if (FindObjectOfType<MapManager>().UnlockRandom())
                 {
                     playerManager.AddDamage(-25);
+                    OpenDialogue("Well you cannot craft anything, but since its a demo version, here is a little help, but nothing is free ^^,... Remember its only this once :D", true);
                 }
-
-                OpenDialogue("Well you cannot craft anything, but since its a demo version, here is a little help, but nothing is free ^^,... Remember its only this once :D", true);
             });
 
             ///Blood Events
