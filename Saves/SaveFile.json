@@ -17,8 +17,8 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 200.0,
+            "value": 125.0,
+            "maxValue": 350.0,
             "statType": 0
           },
           {
@@ -41,7 +41,7 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
+            "value": 1000.0,
             "maxValue": 1000.0,
             "statType": 4
           }
@@ -71,6 +71,21 @@
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
               "instance_ID": 29040
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 48594
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 48590
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 48592
             }
           ]
         }
@@ -115,8 +130,8 @@
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": -1,
-        "win_id": -1
+        "loose_id": -755314,
+        "win_id": -749460
       }
     }
   ]
