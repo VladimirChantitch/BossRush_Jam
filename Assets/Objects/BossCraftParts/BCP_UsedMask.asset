@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
-  m_Name: hehe
+  m_Name: BCP_UsedMask
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
+  itemName: Used Mask
+  description: It was the top fashion of 2020. PLease cover up your nose and your
+    mouth bitch !
   prefab: {fileID: 0}
-  icon: {fileID: 21300000, guid: 0779ad3feec52124e97114bcbb12ef13, type: 3}
+  icon: {fileID: 21300000, guid: 31b25cca9a66444409f5354f3c4bea67, type: 3}
+  descriptiveDialogue: {fileID: 0}

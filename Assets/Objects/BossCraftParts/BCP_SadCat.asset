@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
-  m_Name: Poutre
+  m_Name: BCP_SadCat
   m_EditorClassIdentifier: 
-  itemName: Poutre
-  description: "Past\xE8que"
+  itemName: Sad Cat
+  description: 'Kitty Kitty, why are you so sad poor kitty, is it because they are
+    no more tuna, or any kind of comestible animals left ? '
   prefab: {fileID: 0}
-  icon: {fileID: -846957400024657625, guid: 63a25069b1c3aa645912c6bff3f56294, type: 3}
+  icon: {fileID: 21300000, guid: 4a812836684e421419168228f19d9225, type: 3}
+  descriptiveDialogue: {fileID: 0}

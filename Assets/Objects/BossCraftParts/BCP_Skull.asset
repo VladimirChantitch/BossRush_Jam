@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
-  m_Name: fraise
+  m_Name: BCP_Skull
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
+  itemName: Skull
+  description: 'Well its a skull you want a medal ? '
   prefab: {fileID: 0}
-  icon: {fileID: -8098555843687960924, guid: 8d481c0d195ccc14d8b130fe1d70b6ae, type: 3}
+  icon: {fileID: 21300000, guid: 5be26525af8fd2c4386c1e25023b9da5, type: 3}
+  descriptiveDialogue: {fileID: 0}

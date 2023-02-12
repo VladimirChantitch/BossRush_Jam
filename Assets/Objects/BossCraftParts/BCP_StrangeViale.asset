@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
-  m_Name: Mediat
+  m_Name: BCP_StrangeViale
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
+  itemName: Strange viale
+  description: It looks weird I think you should frink It. Beleive me its a good
+    idea.
   prefab: {fileID: 0}
-  icon: {fileID: 21300000, guid: 68e5a78013e33f247822a837e55b0ab4, type: 3}
+  icon: {fileID: 21300000, guid: 6f682f90e4643c74f90cace0afa91397, type: 3}
+  descriptiveDialogue: {fileID: 0}
