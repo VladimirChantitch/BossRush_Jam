@@ -54,5 +54,12 @@ public class DADDY : MonoBehaviour
         AbstractDialogue dialogue = allDialoguesThatNeedToBeSaved.Find(i => i.GetInstanceID() == ID);
         return dialogue;
     }
+
+    public List<AudioClip> clips = new List<AudioClip>();
+
+    internal AudioClip GetClipByName(string clip_name)
+    {
+        return clips.Find(c => c.name == clip_name);
+    }
 }
 
