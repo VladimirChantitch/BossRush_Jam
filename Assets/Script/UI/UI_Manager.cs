@@ -82,7 +82,7 @@ namespace Boss.UI
             mainMenuController = go.GetComponent<MainMenuController>();
             mainMenuController.Init(uIDocument.rootVisualElement);
 
-            mainMenuController.continuEvent.AddListener(() => LoadGame?.Invoke());
+            mainMenuController.continuEvent.AddListener(() => SceneManager.LoadScene("Hub"));
             mainMenuController.startEvent.AddListener(() =>
             {
                 DeleteSaveFile?.Invoke();
