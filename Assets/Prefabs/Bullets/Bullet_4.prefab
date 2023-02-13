@@ -139,12 +139,12 @@ MonoBehaviour:
   destroyWhenOutOfView: 0
   shotType: 3
   tag: Fontaine_actif
-  damage: 5
+  damage: 8
   canPassWall: 1
-  upForce: 20
+  upForce: 25
   sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 3.5
+  timeBeforeAutodestruct: 5
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

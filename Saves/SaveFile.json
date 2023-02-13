@@ -21,8 +21,8 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.2,
-            "maxValue": 0.25,
+            "value": 0.45,
+            "maxValue": 0.45,
             "statType": 2
           },
           {
