@@ -255,7 +255,7 @@ MonoBehaviour:
   - value: 175
     maxValue: 1000
     statType: 4
-  inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
+  inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
   bossLoot: {fileID: 18188828}
   onBossDying:
     m_PersistentCalls:

@@ -153,11 +153,17 @@ namespace player
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
-                Debug.Log("plout");
+                Debug.Log("add");
                 ModifyUpgrades(Upgrades);
             });
 
-            ModifyUpgrades(guitareUpgradeSystem.GetUpgrades());
+            guitareUpgradeSystem.onUpgradeRemoved.AddListener(Upgrade =>
+            {
+                Debug.Log("remove");
+                ClearUpgrade(Upgrade);
+            });
+
+            ModifyUpgrades(GetGuitareUpgrades());
         }
 
         public override void AddDamage(float amount)
@@ -187,11 +193,6 @@ namespace player
         public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
         {
             guitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
-            guitareUpgrade.upgrades.ForEach(u =>
-            {
-                SetStat(true, GetStat(u.StatType).MaxValue - u.MaxValue, u.StatType);
-            });
-
         }
 
         public void AddOrModifyUpgrade(GuitareUpgrade guitareUpgrade)
@@ -199,29 +200,46 @@ namespace player
             guitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
         }
 
-        List<GuitareUpgrade> upgrades = new List<GuitareUpgrade>();
-
         private void ModifyUpgrades(List<GuitareUpgrade> upgrades)
         {
-            this.upgrades = upgrades;
-            upgrades.ForEach(u =>
+            if (status == Status.BossMode)
             {
-                u.upgrades.ForEach(up =>
+                upgrades.ForEach(u =>
                 {
-                    SetStat(true, up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                    u.upgrades.ForEach(up =>
+                    {
+                        SetStat(false, up.Value + GetStat(up.StatType).Value, up.StatType);
+                        SetStat(true, up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                    });
                 });
-            });
+            }
         }
 
         public void ClearUpgrades()
         {
-            upgrades.ForEach(u =>
+            if(status == Status.BossMode)
             {
-                u.upgrades.ForEach(up =>
+                GetGuitareUpgrades().ForEach(u =>
                 {
-                    SetStat(true, - up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                    u.upgrades.ForEach(up =>
+                    {
+                        SetStat(false, -up.Value + GetStat(up.StatType).Value, up.StatType);
+                        SetStat(true, -up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                    });
                 });
-            });
+            }
+        }
+
+        private void ClearUpgrade(GuitareUpgrade upgrade)
+        {
+            if(status == Status.BossMode)
+            {
+                upgrade.upgrades.ForEach(u =>
+                {
+                    SetStat(false, GetStat(u.StatType).Value - u.Value, u.StatType);
+                    SetStat(true, GetStat(u.StatType).MaxValue - u.MaxValue, u.StatType);
+                });
+            }
         }
 
         #endregion

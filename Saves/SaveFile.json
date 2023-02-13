@@ -15,14 +15,14 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 225.0,
-            "maxValue": 1035.0,
+            "value": 325.0,
+            "maxValue": 350.0,
             "statType": 0
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.2,
-            "maxValue": 0.75000006,
+            "maxValue": 0.25,
             "statType": 2
           },
           {
@@ -34,13 +34,13 @@
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 1.0,
-            "maxValue": 23.0,
+            "maxValue": 4.0,
             "statType": 1
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.0,
-            "maxValue": 15.0,
+            "maxValue": 50.0,
             "statType": 3
           }
         ]
@@ -103,12 +103,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 30544
+              "instance_ID": 30548
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 30554
+              "instance_ID": 30558
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
@@ -118,7 +118,12 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 30558
+              "instance_ID": 30544
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 30556
             }
           ]
         }
@@ -146,7 +151,7 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 4,
-              "intance_ID": -1
+              "intance_ID": 30546
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
@@ -156,15 +161,15 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 1,
-              "intance_ID": 30548
+              "intance_ID": -1
             }
           ]
         }
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": 29156,
-        "win_id": 29154
+        "loose_id": -1,
+        "win_id": -1
       }
     }
   ]

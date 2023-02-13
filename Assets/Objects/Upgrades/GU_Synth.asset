@@ -22,7 +22,7 @@ MonoBehaviour:
   upgradeGraphicsRefType: 9
   upgrades:
   - value: 0.1
-    maxValue: 0
+    maxValue: 0.1
     statType: 2
   - value: 0
     maxValue: -5
