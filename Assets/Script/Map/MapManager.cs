@@ -76,7 +76,9 @@ namespace Boss.Map
     public enum BossLocalization
     {
         CaravanRex,
-        Ubuntu
+        Ubuntu,
+        Bubule,
+        CornMan
     }
 }
 
