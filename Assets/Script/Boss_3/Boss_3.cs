@@ -16,8 +16,6 @@ public class Boss_3 : BossCharacter
         PhaseTransition,
     }
 
-    private Camera cam;
-    private Rigidbody2D rb;
     private Animator animator;
     [SerializeField] Transform mainTransform;
 
@@ -56,8 +54,6 @@ public class Boss_3 : BossCharacter
     {
         base.Init();
 
-        cam = Camera.main;
-        rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         damageCollider.TakeDamageEvent.AddListener(amount => {
