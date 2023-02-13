@@ -28,6 +28,10 @@ namespace Boss.Upgrades
             { 
                 slots.Add(new GuitareUpgradeSlot(slot_DTO));
             });
+
+            onUpgradesUpdated?.Invoke(GetUpgrades());
+            GuitareAspect guitareAspect = GameObject.FindObjectOfType<GuitareAspect>();  ///Stinks
+            guitareAspect.UpdateGuitareAspect(GetUpgrades());   ///Stinks
         }
 
         public GuitareUpgrade_DTO Save()

@@ -18,7 +18,7 @@ public class BossCharacter : AbstractCharacter
 
     [SerializeField] BossUIManager bossUIManager;
 
-    [SerializeField] protected BossRelatedDialogues bossRelatedDialogues;
+    [SerializeField] public BossRelatedDialogues bossRelatedDialogues;
 
 
     protected override void Init()

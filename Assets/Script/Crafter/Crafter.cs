@@ -1,5 +1,6 @@
 using Boss.inventory;
 using Boss.UI;
+using player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,33 +17,82 @@ namespace Boss.crafter
         public UnityEvent<CrafterData> onFail = new UnityEvent<CrafterData>();
         public UnityEvent<CrafterSuccessData> onSuccess = new UnityEvent<CrafterSuccessData>();
         public UnityEvent<AbstractItem> onDeselect = new UnityEvent<AbstractItem>();
+        public UnityEvent onNoCraftAvailible = new UnityEvent();
 
         AbstractItem[] items = new AbstractItem[2];
 
         public void HandleSelection(AbstractItem item)
         {
-            if (items == null) items = new AbstractItem[2];
-            if (items[0] == null)
+            if (CheckIfPlayerCanEvenCraftSomething())
             {
-                items[0] = item;
-            }
-            else if (items[1] == null)
-            {
-                items[1] = item;
+
+                if (items == null) items = new AbstractItem[2];
+                if (items[0] == null)
+                {
+                    items[0] = item;
+                }
+                else if (items[1] == null)
+                {
+                    items[1] = item;
+                }
+                else
+                {
+                    onDeselect?.Invoke(items[1]);
+                    items[1] = items[0];
+                    items[0] = item;
+                }
+
+                if (items[1] != null && items[0] != null)
+                {
+                    CheckRecipy();
+                }
+
+                onInfo?.Invoke(new CrafterData(items[0], items[1]));
             }
             else
             {
-                onDeselect?.Invoke(items[1]);
-                items[1] = items[0];
-                items[0] = item;
+                onNoCraftAvailible?.Invoke();
             }
+        }
 
-            if (items[1] != null && items[0] != null)
+        private bool CheckIfPlayerCanEvenCraftSomething()
+        {
+            List<AbstractItem> all_abstractItems = new List<AbstractItem>();
+            all_abstractItems = FindObjectOfType<PlayerManager>().GetItems();
+            if (all_abstractItems == null || all_abstractItems.Count == 0) return false;
+            
+            List<Recipies> firstselect_recipies = new List<Recipies>();
+            all_abstractItems.ForEach(i =>
             {
-                CheckRecipy();
-            }
+                List<Recipies> local_recipies = recipies.Where(r => r.Item_1 == i).ToList();
+                if (local_recipies != null || local_recipies.Count != 0)
+                {
+                    firstselect_recipies.AddRange(local_recipies);
+                }
+            });
+            if (firstselect_recipies == null || firstselect_recipies.Count == 0) return false;
 
-            onInfo?.Invoke(new CrafterData(items[0], items[1]));
+            List<Recipies> l = new List<Recipies>();
+            l = firstselect_recipies.Distinct().ToList();
+
+            List<Recipies> lastselect_recipies = new List<Recipies>();
+            all_abstractItems.ForEach(i =>
+            {
+                List<Recipies> local_recipies = recipies.Where(r => r.Item_2 == i).ToList();
+                if (local_recipies != null || local_recipies.Count != 0)
+                {
+                    lastselect_recipies.AddRange(local_recipies);
+                }
+            });
+
+            if (lastselect_recipies == null || lastselect_recipies.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void CheckRecipy()

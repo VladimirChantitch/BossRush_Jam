@@ -7,7 +7,7 @@ namespace Boss.Upgrades
 {
     public class GuitareAspectSlot : MonoBehaviour
     {
-        public UpgradePartType type;
+        public UpgradeGraphicsRefType type;
         [SerializeField] SpriteRenderer spriteRenderer;
 
         private void Awake()
@@ -15,9 +15,14 @@ namespace Boss.Upgrades
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        internal void LoadNewUpgrade(Sprite sprite)
+        internal void EnableUpgrade()
         {
-            spriteRenderer.sprite = sprite; 
+            spriteRenderer.enabled = true;
+        }
+
+        public void DisableUpgrade()
+        {
+            spriteRenderer.enabled = false;
         }
 
         //TODO --- adapt acollier depending on the sprite

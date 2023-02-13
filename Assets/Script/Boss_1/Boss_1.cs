@@ -435,7 +435,6 @@ namespace Boss
         public void EnterDyingState()
         {
             state = MaxiBestOfState.Dying;
-            isDying = false;
         }
 
         private void Dying()

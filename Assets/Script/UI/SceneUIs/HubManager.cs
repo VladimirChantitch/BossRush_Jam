@@ -11,6 +11,7 @@ using Boss.Upgrades.UI;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Linq;
+using player;
 
 namespace Boss.UI
 {
@@ -95,16 +96,16 @@ namespace Boss.UI
                 {
                     crafter.HandleSelection(selected);
                 }
-                else
+                else // UPGRADES-------------------------------------
                 {
                     if(selected is GuitareUpgrade guitareUpgrade)
                     {
                         onItemSetAsUpgrade.Invoke(guitareUpgrade);
                         AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
-                        guitareAspect.UpdateGuitareAspect(guitareUpgrade);
+                        guitareAspect.UpdateGuitareAspect(new List<GuitareUpgrade>() { guitareUpgrade });
                         uI_GuitareUpgrades.SetInfo(guitareUpgrade);
                     }
-                    //TODO -- give a feed back to tell thats not the rght item
+
                     uI_inventory.DeselectItem(null);
                 }
 
@@ -123,6 +124,7 @@ namespace Boss.UI
             uI_GuitareUpgrades.onDisupgraded.AddListener(guitareUpgrade =>
             {
                 onRemoveUpgrade?.Invoke(guitareUpgrade);
+                guitareAspect.DisUpdateGuitareApsect(new List<GuitareUpgrade>() { guitareUpgrade });
                 AskForInventory?.Invoke(inventoryContent => SetInventoryItemSlots(inventoryContent));
             });
 
@@ -151,19 +153,32 @@ namespace Boss.UI
 
             crafter.interacts.AddListener(() => OpenDialogue(crafter.AbstractDialogue?.dialogue));
 
+            crafter.onNoCraftAvailible.AddListener(() =>
+            {
+                PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+
+                if (FindObjectOfType<MapManager>().UnlockRandom())
+                {
+                    playerManager.AddDamage(-25);
+                    OpenDialogue("Well you cannot craft anything, but since its a demo version, here is a little help, but nothing is free ^^,... Remember its only this once :D", true);
+                }
+            });
+
             ///Blood Events
             hubBloodGauge.interacts.AddListener(() => onRequestUseBlood?.Invoke(amount => hubBloodGauge.UpdateAmount(amount)));
             hubBloodGauge.interacts.AddListener(() => OpenDialogue(hubBloodGauge.AbstractDialogue?.dialogue));
 
             //Goblin
-            goblin.onPlayDialogue.AddListener(s =>
+            goblin.onPlayDialogue.AddListener((s,b) =>
             {
+                if (uI_Dialogue.isOverrided) return; //TODO-- pool 
+
                 if (currentDialoguePlaying != null)
                 {
                     StopCoroutine(currentDialoguePlaying);
                 }
 
-                currentDialoguePlaying = uI_Dialogue.SetNewDialogue(s);
+                currentDialoguePlaying = uI_Dialogue.SetNewDialogue(s,b);
                 StartCoroutine(currentDialoguePlaying);
             });
 
@@ -259,11 +274,11 @@ namespace Boss.UI
             AskForInventory?.Invoke(i => SetInventoryItemSlots(i));
         }
 
-        public void OpenDialogue(string txt)
+        public void OpenDialogue(string txt, bool ovverrider = false)
         {
             dialogueRoot.visible = true;
             uI_Dialogue.visible = true;
-            goblin.onPlayDialogue?.Invoke(txt);
+            goblin.onPlayDialogue?.Invoke(txt, ovverrider);
         }
 
         private void CloseAllPopups()
