@@ -17,6 +17,7 @@ namespace Boss.Map
         List<MapInterractor> _maps = new List<MapInterractor>();
 
         List<BossLocalization> unlockedLocalization = new List<BossLocalization>();
+        List<BossLocalization> temp = new List<BossLocalization>();
 
         private void Awake()
         {
@@ -49,6 +50,10 @@ namespace Boss.Map
         internal bool UnlockRandom()
         {
             MapInterractor map = _maps.Find(m => !unlockedLocalization.Contains(m.location));
+            if (temp.Contains(map.location))
+            {
+                return false;
+            }
             if (map == null)
             {
                 return false;
@@ -56,6 +61,7 @@ namespace Boss.Map
             else
             {
                 map.Unlock();
+                temp.Add(map.location);
                 return true;
             }
         }
