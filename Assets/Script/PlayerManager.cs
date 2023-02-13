@@ -186,6 +186,11 @@ namespace player
         public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
         {
             guitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
+            guitareUpgrade.upgrades.ForEach(u =>
+            {
+                SetStat(true, GetStat(u.StatType).MaxValue - u.MaxValue, u.StatType);
+            });
+
         }
 
         public void AddOrModifyUpgrade(GuitareUpgrade guitareUpgrade)

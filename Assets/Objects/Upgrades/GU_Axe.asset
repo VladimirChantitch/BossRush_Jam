@@ -21,3 +21,10 @@ MonoBehaviour:
   descriptiveDialogue: {fileID: 0}
   upgradePartType: 4
   upgradeGraphicsRefType: 1
+  upgrades:
+  - value: 0
+    maxValue: -5
+    statType: 3
+  - value: 0
+    maxValue: 15
+    statType: 0
