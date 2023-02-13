@@ -123,7 +123,10 @@ public class GameManager : MonoBehaviour
 
     private void SetPlayerManagerEvents()
     {
-        playerManager.onPlayerDead.AddListener(() => ui_manager.PlayerLoose());
+        playerManager.onPlayerDead.AddListener(() => {
+            ui_manager.PlayerLoose();
+            playerManager.ReceiveDialogueData(bossCharacter.bossRelatedDialogues);
+        });
         playerManager.onJustCameBack.AddListener((dialogues, b) =>
         {
             if (currentScrenn == CurrentScrenn.Hub)
