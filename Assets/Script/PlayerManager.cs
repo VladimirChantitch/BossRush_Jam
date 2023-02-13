@@ -153,10 +153,10 @@ namespace player
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
-                LoadUpgrades(Upgrades);
+                ModifyUpgrades(Upgrades);
             });
 
-            LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
+            ModifyUpgrades(guitareUpgradeSystem.GetUpgrades());
         }
 
         public override void AddDamage(float amount)
@@ -195,13 +195,28 @@ namespace player
 
         List<GuitareUpgrade> upgrades = new List<GuitareUpgrade>();
 
-        private void LoadUpgrades(List<GuitareUpgrade> upgrades)
+        private void ModifyUpgrades(List<GuitareUpgrade> upgrades)
         {
             this.upgrades = upgrades;
-            //upgrades.ForEach(u => SetStat(true, GetStat(u.s)
-            Debug.Log("<color=red> Not implemented </color>");
+            upgrades.ForEach(u =>
+            {
+                u.upgrades.ForEach(up =>
+                {
+                    SetStat(true, up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                });
+            });
         }
 
+        public void ClearUpgrades()
+        {
+            upgrades.ForEach(u =>
+            {
+                u.upgrades.ForEach(up =>
+                {
+                    SetStat(true, - up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                });
+            });
+        }
 
         #endregion
 
@@ -239,6 +254,7 @@ namespace player
         #region data
         public DTO GetData()
         {
+            ClearUpgrades();   
             List<Stat_DTO> stats_dto = new List<Stat_DTO>();
             stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
 
