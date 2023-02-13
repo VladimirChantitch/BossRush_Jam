@@ -215,10 +215,27 @@ PrefabInstance:
       propertyPath: Recipies.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: allDialoguesThatNeedToBeSaved.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: allDialoguesThatNeedToBeSaved.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 766c4dc4d886e5d45a14d1137061871b,
+        type: 2}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: allDialoguesThatNeedToBeSaved.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: af3214ed8ea724a42b7c42826e101d1c,
+        type: 2}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: AutoLoad
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}

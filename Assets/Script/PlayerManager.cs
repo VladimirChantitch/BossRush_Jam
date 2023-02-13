@@ -193,10 +193,16 @@ namespace player
             guitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
         }
 
+        List<GuitareUpgrade> upgrades = new List<GuitareUpgrade>();
+
         private void LoadUpgrades(List<GuitareUpgrade> upgrades)
         {
+            this.upgrades = upgrades;
+            //upgrades.ForEach(u => SetStat(true, GetStat(u.s)
             Debug.Log("<color=red> Not implemented </color>");
         }
+
+
         #endregion
 
         internal void UseBlood(Action<float> action)

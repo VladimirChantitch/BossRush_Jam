@@ -17,8 +17,10 @@ namespace Boss.Upgrades
             slots = GetComponentsInChildren<GuitareAspectSlot>().ToList();
         }
 
-        public void UpdateGuitareAspect(List<GuitareUpgrade> guitareUpgrades)
+        public void UpdateGuitareAspect(List<GuitareUpgrade> guitareUpgrades, bool isTrue = false)
         {
+            if (isTrue) unlocked.Clear();
+
             List<UpgradeGraphicsRefType> localUnlock = new List<UpgradeGraphicsRefType>();
             localUnlock.AddRange(unlocked);
 

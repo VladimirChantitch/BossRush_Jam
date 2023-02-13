@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Boss.save;
+using Boss.stats;
 
 namespace Boss.inventory
 {
@@ -12,6 +13,9 @@ namespace Boss.inventory
 
         public UpgradePartType UpgradePartType { get => upgradePartType; }
         public UpgradeGraphicsRefType upgradeGraphicsRefType;
+
+
+        public List<Stat> upgrades = new List<Stat>();
     }
 }
 
