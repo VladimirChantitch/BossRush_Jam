@@ -9,7 +9,7 @@ namespace Boss.inventory
     public class AbstractItem : ScriptableObject
     {
         [SerializeField] string itemName;
-        [SerializeField] string description;
+        [SerializeField][TextArea] string description;
         [SerializeField] GameObject prefab;
         [SerializeField] Sprite icon;
         [SerializeField] AbstractDialogue descriptiveDialogue;

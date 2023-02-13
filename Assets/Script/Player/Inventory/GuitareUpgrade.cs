@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Boss.save;
+using Boss.stats;
 
 namespace Boss.inventory
 {
@@ -11,6 +12,10 @@ namespace Boss.inventory
         [SerializeField] UpgradePartType upgradePartType;
 
         public UpgradePartType UpgradePartType { get => upgradePartType; }
+        public UpgradeGraphicsRefType upgradeGraphicsRefType;
+
+
+        public List<Stat> upgrades = new List<Stat>();
     }
 }
 
@@ -23,4 +28,18 @@ public enum UpgradePartType
     TopBody,
     BottomBody,
     Amplification
+}
+
+public enum UpgradeGraphicsRefType
+{
+    Arm,
+    Axe,
+    Bone,
+    Carrot,
+    EggPlant,
+    Eye,
+    Horn,
+    Lamp,
+    Shell,
+    Synth
 }

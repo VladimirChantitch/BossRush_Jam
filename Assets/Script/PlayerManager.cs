@@ -153,10 +153,10 @@ namespace player
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
-                LoadUpgrades(Upgrades);
+                ModifyUpgrades(Upgrades);
             });
 
-            LoadUpgrades(guitareUpgradeSystem.GetUpgrades());
+            ModifyUpgrades(guitareUpgradeSystem.GetUpgrades());
         }
 
         public override void AddDamage(float amount)
@@ -186,6 +186,11 @@ namespace player
         public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
         {
             guitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
+            guitareUpgrade.upgrades.ForEach(u =>
+            {
+                SetStat(true, GetStat(u.StatType).MaxValue - u.MaxValue, u.StatType);
+            });
+
         }
 
         public void AddOrModifyUpgrade(GuitareUpgrade guitareUpgrade)
@@ -193,10 +198,31 @@ namespace player
             guitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
         }
 
-        private void LoadUpgrades(List<GuitareUpgrade> upgrades)
+        List<GuitareUpgrade> upgrades = new List<GuitareUpgrade>();
+
+        private void ModifyUpgrades(List<GuitareUpgrade> upgrades)
         {
-            Debug.Log("<color=red> Not implemented </color>");
+            this.upgrades = upgrades;
+            upgrades.ForEach(u =>
+            {
+                u.upgrades.ForEach(up =>
+                {
+                    SetStat(true, up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                });
+            });
         }
+
+        public void ClearUpgrades()
+        {
+            upgrades.ForEach(u =>
+            {
+                u.upgrades.ForEach(up =>
+                {
+                    SetStat(true, - up.MaxValue + GetStat(up.StatType).MaxValue, up.StatType);
+                });
+            });
+        }
+
         #endregion
 
         internal void UseBlood(Action<float> action)
@@ -233,6 +259,7 @@ namespace player
         #region data
         public DTO GetData()
         {
+            ClearUpgrades();   
             List<Stat_DTO> stats_dto = new List<Stat_DTO>();
             stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
 

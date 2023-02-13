@@ -8,6 +8,6 @@ using UnityEngine.Events;
 
 public class Goblin : HubInteractor
 {
-    public UnityEvent<string> onPlayDialogue = new UnityEvent<string>();  
+    public UnityEvent<string, bool> onPlayDialogue = new UnityEvent<string, bool>();  
 
 }

@@ -13,13 +13,16 @@ public class UI_Dialogue : VisualElement
 
     Label label;
 
+    public bool isOverrided = false;
+
     public void Init()
     {
         label = this.Q<Label>("Dialogue");
     }
 
-    public IEnumerator SetNewDialogue(string txt)
+    public IEnumerator SetNewDialogue(string txt, bool overrider = false)
     {
+        isOverrided = overrider;
         if (txt == null) txt = "Well Lorem Ipsum I guess";
         this.label.text = "";
         foreach (var t in txt)
@@ -34,5 +37,6 @@ public class UI_Dialogue : VisualElement
 
         yield return new WaitForSeconds(3.5f);
         onFinished?.Invoke();
+        isOverrided = false;
     } 
 }

@@ -551,6 +551,16 @@ PrefabInstance:
       propertyPath: stats.Array.data[4].statType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5499405785823966637, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 1215742203}
+    - target: {fileID: 8834103732153775581, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: playerUIManager
+      value: 
+      objectReference: {fileID: 707570330}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ff194404c75514ea51b8740595642e, type: 3}
 --- !u!114 &503528664 stripped
@@ -24779,6 +24789,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mrh: {fileID: 18188827}
+--- !u!114 &1215742203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5366248385655959358, guid: b5ff194404c75514ea51b8740595642e,
+    type: 3}
+  m_PrefabInstance: {fileID: 495819384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1276760287
 GameObject:
   m_ObjectHideFlags: 0
@@ -24981,18 +25003,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1515676548 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2348196337018363110, guid: b5ff194404c75514ea51b8740595642e,
-    type: 3}
-  m_PrefabInstance: {fileID: 495819384}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d82fbf19b77634aade8274c85edf4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1691932040
 GameObject:
   m_ObjectHideFlags: 0
@@ -26132,6 +26142,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4427366370237253613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1859768318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8834103732153775581, guid: b5ff194404c75514ea51b8740595642e,
+    type: 3}
+  m_PrefabInstance: {fileID: 495819384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d82fbf19b77634aade8274c85edf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1873247712
 GameObject:
   m_ObjectHideFlags: 0
@@ -36646,7 +36668,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerManager
       value: 
-      objectReference: {fileID: 1515676548}
+      objectReference: {fileID: 1859768318}
     - target: {fileID: 7937059688534768007, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: m_Name
