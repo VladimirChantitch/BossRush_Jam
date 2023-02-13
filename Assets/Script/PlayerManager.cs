@@ -153,6 +153,7 @@ namespace player
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
+                Debug.Log("plout");
                 ModifyUpgrades(Upgrades);
             });
 
