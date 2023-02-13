@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2466175418964411947}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.11000001, y: 0.11000001, z: 0.11000001}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
-  m_Sprite: {fileID: 21300000, guid: 462c5fd9eca6a5b4694ec030ff814537, type: 3}
-  m_Color: {r: 1, g: 0.09019607, b: 0.6978928, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9a7846683709fb244b01b860bf5bcdbb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 3
-  tag: Fontaine_actif
-  damage: 8
-  canPassWall: 1
-  upForce: 25
-  sideForce: 5
+  shotType: 4
+  tag: CircleAtk_Low_2
+  damage: 5
+  canPassWall: 0
+  upForce: 20
+  sideForce: 10
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 5
+  timeBeforeAutodestruct: -1
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

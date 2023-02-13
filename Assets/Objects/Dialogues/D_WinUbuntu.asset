@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D_WinUbuntu
   m_EditorClassIdentifier: 
   title: 
-  dialogue: You've beaten the great ubuntu What a Chad, did you use the sudo rm -rf
-    * command line ? Apparently he is not crazy about it
+  dialogue: You've beaten the great Ubuntu! What a Chad, did you use the sudo rm
+    -rf * command line ? Apparently he is not crazy about it
   type: 1
   nextDialogue: {fileID: 0}
