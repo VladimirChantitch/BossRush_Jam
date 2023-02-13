@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: D_LooseMobilomRex
   m_EditorClassIdentifier: 
   title: D_LooseMobilomRex
-  dialogue: Ho I see you've been trash by this old Dino. Are you sure you were kicking
-    him in rythme ? Well i wouldn't like to fight him you know he is kinda scary.
-    Those last human creation, as they are called, were pretty dumb actually. I mean
-    what's the point of inventing such thing ?
+  dialogue: Ho I see you've been trashed by this old Dino. Are you sure you were
+    kicking him in rythme ? Well i wouldn't like to fight him you know he is kinda
+    scary. Those last human creation, as they are called, were pretty dumb actually.
+    I mean what's the point of inventing such thing ?
   type: 0
   nextDialogue: {fileID: 0}

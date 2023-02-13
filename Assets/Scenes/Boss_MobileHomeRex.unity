@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 0
+  - value: 1000
     maxValue: 1000
     statType: 0
   - value: 175

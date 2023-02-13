@@ -16852,9 +16852,9 @@ MonoBehaviour:
     statType: 3
   - value: 0
     maxValue: 1000
-    statType: 2
+    statType: 4
   inventory: {fileID: 11400000, guid: d23ba47588f52344d9cbd2cece1e84f3, type: 2}
-  onJustRevived:
+  onJustCameBack:
     m_PersistentCalls:
       m_Calls: []
   status: 1
@@ -16866,6 +16866,9 @@ MonoBehaviour:
   - AttackType: 1
     DamageAmount: 1
   multiplier: 1
+  currentBossRelatedDialogues:
+    winDialogue: {fileID: 0}
+    looseDialogue: {fileID: 0}
   attackCollider: {fileID: 958683403}
   attackCollider_Big: {fileID: 4798921812454511803}
   isAtk2: 0
