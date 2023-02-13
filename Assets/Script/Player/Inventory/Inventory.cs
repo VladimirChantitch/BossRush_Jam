@@ -78,10 +78,7 @@ namespace Boss.inventory
                 }
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         internal List<AbstractItem> GetItems()

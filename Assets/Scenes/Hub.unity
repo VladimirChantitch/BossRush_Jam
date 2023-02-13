@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 350
-    maxValue: 350
+  - value: 325
+    maxValue: 325
     statType: 0
   - value: 0.2
     maxValue: 0.25
@@ -168,7 +168,7 @@ MonoBehaviour:
   - value: 0
     maxValue: 50
     statType: 3
-  inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
+  inventory: {fileID: 11400000, guid: c7828b1c9b552ff4ca658ce15f34c382, type: 2}
   onJustCameBack:
     m_PersistentCalls:
       m_Calls: []
@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: AutoLoad
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
