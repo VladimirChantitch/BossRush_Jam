@@ -162,8 +162,8 @@ MonoBehaviour:
   - value: 100
     maxValue: 1000
     statType: 4
-  - value: 100
-    maxValue: 1000
+  - value: 1
+    maxValue: 4
     statType: 1
   - value: 100
     maxValue: 1000
@@ -232,6 +232,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: af3214ed8ea724a42b7c42826e101d1c,
         type: 2}
+    - target: {fileID: 7296933903230272757, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: mapParent
+      value: 
+      objectReference: {fileID: 1881849435}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: AutoLoad
@@ -320,6 +325,12 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab3ef40fcfef4cc4db20ab594fec8545, type: 3}
+--- !u!1 &1881849435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019866637253259043, guid: f105a5bcd6ee86346bd47628813adce0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7019866638605569878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7019866638605569878
 PrefabInstance:
   m_ObjectHideFlags: 0
