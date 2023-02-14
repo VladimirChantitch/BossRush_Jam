@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -137,12 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 4
-  tag: CircleAtk_High
-  damage: 1.75
+  shotType: 3
+  tag: Back_HighIntensity
+  damage: 1.25
   canPassWall: 1
   upForce: 20
-  sideForce: 5
+  sideForce: 10
   rb: {fileID: 2466175418964411949}
   timeBeforeAutodestruct: 5
   applyDamageToTarget:
