@@ -83,6 +83,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             plusMusic = FindObjectOfType<PlusMusic_DJ>();
+            plusMusic.PlayArrangement(transitionInfo);
         }
 
         if(sceneType == 0)
