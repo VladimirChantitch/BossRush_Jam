@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 35626
+  controlID: 35986
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 35604
+  controlID: 35987
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 35605
+  controlID: 35988
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   - {fileID: 7}
   - {fileID: 8}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -757,21 +757,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Objects/Dialogues
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Objects/Dialogues
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\01-MySystems\Jeu_BossRush\BossRush
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 120}
-    m_SelectedIDs: 1a7a0000
-    m_LastClickedID: 31258
+    m_SelectedIDs: 8e7c0000
+    m_LastClickedID: 31886
     m_ExpandedIDs: 00000000187a00001a7a00001c7a00001e7a0000a27c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -825,9 +825,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1675ebff
-    m_LastClickedInstanceID: -1346282
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: c0e70000
+    m_LastClickedInstanceID: 59328
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300002a6d0000986d0000006e00009a790000cc7d000030720000147600003e8d0100464e0100327800008c4c02007af50000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 35633
+  controlID: 35963
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1063,8 +1063,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1675ebff
-      m_LastClickedID: -1346282
+      m_SelectedIDs: c0e70000
+      m_LastClickedID: 0
       m_ExpandedIDs: 3846ebff5c46ebff1875ebff968aebffa88aebffb88aebff508cebffa48cebffe48cebffe88cebfff88cebfffc8cebff228debff288debff4c8debff3092ebff703eecff943eecff1e81ecff4481ecff6881ecff5237edffa63bedff4240edff1645edff92ecedff8eededff8cb9eeff38baeeffdabfeeff8ec3eefffac6eeff80c9eeff92cceeffe6cceeff7ad3eeff26d4eeffcad9eeff82ddeefff2e0eeff7ce3eeff92e6eeffeae6eeff9440efffd66cefff1a6defffc46eefff3672efffe272efff8478efff387cefffa47fefff1a82efff2285efff8685effffa8eefffa88fefff4a95effffe98efff6a9cefffe09eefffe8a1efff3ea2efffdaabefff2666f0ffe692f0ffe896f0ff8499f0ff9299f0ffac9df0ff84a1f0ffb855f1ffae56f1ffb456f1fffa59f1ff985cf1ffa65cf1ff9461f1ffdc61f1ff9063f1ffaccaf2ffb4ccf2ffb0cdf2ffbad2f2ff8c42f9ff5444f9ff7844f9ff7a44f9ff1ea3f9ff20a3f9ff32aaf9ff56aaf9ff58aaf9ff68acf9ffd4aef9ff3288feff4088feff8688feff3a8afeffca92feff26d1feff20d3feff10eafeff6eecfeff7cecfeff4c2cffff722cffffbe4cffffc04cffffa276ffffcc91ffffce91ffffd6acffffe6acffff8aafffff48b2ffff4ab2ffff60e2ffff62e2fffff2eeffff0afbfffff4ffffffdc970000aeb6000066e100009a050100721201007a600100fc6101000862010036660100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1108,8 +1108,8 @@ MonoBehaviour:
     y: 0
     width: 560
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
