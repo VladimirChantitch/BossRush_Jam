@@ -15,7 +15,7 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
+            "value": 325.0,
             "maxValue": 350.0,
             "statType": 0
           },
@@ -27,21 +27,21 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 0.0,
+            "maxValue": 1000.0,
+            "statType": 4
+          },
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 1.0,
             "maxValue": 1.0,
             "statType": 1
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 1.0,
+            "value": 0.0,
             "maxValue": 30.0,
             "statType": 3
-          },
-          {
-            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 1000.0,
-            "statType": 4
           }
         ]
       },
