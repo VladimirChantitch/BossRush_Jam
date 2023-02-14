@@ -49,7 +49,8 @@ namespace Boss.Map
 
         internal bool UnlockRandom()
         {
-            MapInterractor map = _maps.Find(m => !unlockedLocalization.Contains(m.location));
+            List<MapInterractor> maps = _maps.Where(m => !unlockedLocalization.Contains(m.location)).ToList();
+            MapInterractor map = maps[UnityEngine.Random.Range(0, maps.Count)];
             if (temp.Contains(map.location))
             {
                 return false;
@@ -75,7 +76,9 @@ namespace Boss.Map
     public enum BossLocalization
     {
         CaravanRex,
-        Ubuntu
+        Ubuntu,
+        Bubule,
+        CornMan
     }
 }
 

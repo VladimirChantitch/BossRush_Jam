@@ -112,12 +112,14 @@ public class UI_BossFight : MonoBehaviour
     private void OpenWinScreen()
     {
         endScreen.visible = true;
+        AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.victory, 1);
         fightUI.Activate(false);
     }
 
     public void OpenDeathScreen()
     {
         playerDeathScreen.visible = true;
+        AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.failure, 1);
         fightUI.Activate(false);
     }
 }

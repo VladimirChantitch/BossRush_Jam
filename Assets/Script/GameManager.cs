@@ -33,12 +33,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         SetUIManagerEvents();
         if (currentScrenn == CurrentScrenn.BossRoom)
         {
             SetBossCharacterEvent();
         }
-        SetPlayerManagerEvents();
+        if(currentScrenn != CurrentScrenn.MainMenu) SetPlayerManagerEvents();
+
         if (currentScrenn == CurrentScrenn.Hub)
         {
             SetMapEvents();
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
         ui_manager.Init(recipies);
 
         ui_manager.SaveGame.AddListener(() => saveManager.SaveGame());
-        ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
+        //ui_manager.LoadGame.AddListener(() => saveManager.LoadGame());
         ui_manager.DeleteSaveFile.AddListener(() => saveManager.DestroySaveFile());
         ui_manager.AskForInventory.AddListener(action =>
         {
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
         {
             saveManager.SaveGame();
             FindObjectOfType<PlayerMovement>().Dispose();
+            AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.lowlight, 0);
             SceneManager.LoadScene("Hub");
         });
 

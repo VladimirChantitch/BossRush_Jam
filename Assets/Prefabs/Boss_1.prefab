@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 4314876337296798835}
+  pos: {x: 0, y: 0, z: 0}
   parent: {fileID: 1229079174344375116}
   TakeDamageEvent:
     m_PersistentCalls:
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 916089480130524186}
+  pos: {x: 0, y: 0, z: 0}
   parent: {fileID: 6676601197413997833}
   TakeDamageEvent:
     m_PersistentCalls:
@@ -206,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 6333920388704868159}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -308,6 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 5476739512039993903}
+  pos: {x: 0, y: 0, z: 0}
   parent: {fileID: 6154679457142614018}
   TakeDamageEvent:
     m_PersistentCalls:
@@ -579,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 6170073547644995287}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -1510,6 +1515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -1836,6 +1842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -2054,6 +2061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -2638,6 +2646,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLight: {fileID: 0}
   speed: 1000
+  min: 0
+  max: 2
 --- !u!114 &59984245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3232,14 +3242,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 5000
-    maxValue: 5000
+  - value: 9000
+    maxValue: 9000
     statType: 0
-  inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
+  - value: 300
+    maxValue: 5000
+    statType: 4
+  inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
   bossLoot: {fileID: 2113162902}
+  onBossDying:
+    m_PersistentCalls:
+      m_Calls: []
   onBossDead:
     m_PersistentCalls:
       m_Calls: []
+  onBossHit:
+    m_PersistentCalls:
+      m_Calls: []
+  bossUIManager: {fileID: 0}
+  bossRelatedDialogues:
+    winDialogue: {fileID: 11400000, guid: 766c4dc4d886e5d45a14d1137061871b, type: 2}
+    looseDialogue: {fileID: 11400000, guid: af3214ed8ea724a42b7c42826e101d1c, type: 2}
   animator: {fileID: 786289552}
   vulnerabilityTimer: 5
   headVulnerabilityTimer: 8
@@ -3267,12 +3290,12 @@ MonoBehaviour:
     isSecondPhase: 0
     associatedAnimation: {fileID: 7400000, guid: 0ca83a2d2dcacf5409f96cc03569be35,
       type: 2}
-  - damageAmount: -5
+  - damageAmount: -10
     proba: 50
     isSecondPhase: 1
     associatedAnimation: {fileID: 7400000, guid: baa23df3a1eeab14889337d09f67d32a,
       type: 2}
-  - damageAmount: -5
+  - damageAmount: -10
     proba: 50
     isSecondPhase: 1
     associatedAnimation: {fileID: 7400000, guid: e225c7549c5efca4f9aa5c273f484d11,
@@ -3708,6 +3731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h_collider: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

@@ -21,7 +21,7 @@ MonoBehaviour:
   upgradePartType: 5
   upgradeGraphicsRefType: 9
   upgrades:
-  - value: 0
+  - value: 0.1
     maxValue: 0.1
     statType: 2
   - value: 0

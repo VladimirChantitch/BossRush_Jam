@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7937059688534768008}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7296933903230272757
 MonoBehaviour:
@@ -79,7 +79,6 @@ Transform:
   m_Children:
   - {fileID: 7937059689801115771}
   - {fileID: 7937059688992818175}
-  - {fileID: 7937059688810602940}
   - {fileID: 7937059689081261467}
   - {fileID: 4808408424924530729}
   m_Father: {fileID: 0}
@@ -131,37 +130,6 @@ MonoBehaviour:
   allDialoguesThatNeedToBeSaved:
   - {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
   - {fileID: 11400000, guid: a5418c3da7f68ef4aa1c934814d0bf38, type: 2}
---- !u!1 &7937059688810602939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7937059688810602940}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7937059688810602940
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937059688810602939}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7937059688534768008}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7937059688992818174
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7937059688534768008}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7937059689081261468
 MonoBehaviour:
@@ -295,7 +263,7 @@ MonoBehaviour:
   - CurrentScrenn: 2
     treeAsset: {fileID: 9197481963319205126, guid: 02069ed47bde8a94c984ef6f87d5738d,
       type: 3}
-  uIDocument: {fileID: 0}
+  uIDocument: {fileID: 235649885}
   mainMenuController: {fileID: 0}
   hubManager: {fileID: 0}
   ui_bossFight: {fileID: 0}

@@ -20,6 +20,7 @@ namespace Boss.Upgrades
         };
 
         public UnityEvent<List<GuitareUpgrade>> onUpgradesUpdated = new UnityEvent<List<GuitareUpgrade>>();
+        public UnityEvent<GuitareUpgrade> onUpgradeRemoved = new UnityEvent<GuitareUpgrade>();
 
         public void Load(GuitareUpgrade_DTO guitareUpgrade_DTO)
         {
@@ -78,7 +79,10 @@ namespace Boss.Upgrades
 
         public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
         {
-            slots.Find(s => s.type == guitareUpgrade.UpgradePartType).RemoveUpgrade();
+            if(slots.Find(s => s.type == guitareUpgrade.UpgradePartType).RemoveUpgrade())
+            {
+                onUpgradeRemoved?.Invoke(guitareUpgrade);
+            }
         }
 
         public class GuitareUpgradeSlot
@@ -104,9 +108,10 @@ namespace Boss.Upgrades
                 return true;
             }
 
-            internal void RemoveUpgrade()
+            internal bool RemoveUpgrade()
             {
                 this.guitareUpgrade = null;
+                return true;
             }
 
             public GuitareUpgradeSlot_DTO Save()
