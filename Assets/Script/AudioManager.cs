@@ -76,7 +76,15 @@ public class AudioManager : MonoBehaviour
     public void TransitionMusic(PlusMusic_DJ.PMTags tags, int sceneType)
     {
         TransitionInfo transitionInfo = new TransitionInfo(tags, 0.5f);
-        plusMusic.PlayArrangement(transitionInfo);
+        if (plusMusic != null)
+        {
+            plusMusic.PlayArrangement(transitionInfo);
+        }
+        else
+        {
+            plusMusic = FindObjectOfType<PlusMusic_DJ>();
+        }
+
         if(sceneType == 0)
             mixer.TransitionToSnapshots(snapshots, weight_Menu, 0.5f);
         else if (sceneType == 1)
