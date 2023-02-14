@@ -27,7 +27,7 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
+            "value": 250.0,
             "maxValue": 1000.0,
             "statType": 4
           },
@@ -39,7 +39,7 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 2.0,
+            "value": 0.0,
             "maxValue": 50.0,
             "statType": 3
           }
@@ -92,8 +92,8 @@
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": 29102,
-        "win_id": 29104
+        "loose_id": -1,
+        "win_id": -1
       }
     }
   ]
