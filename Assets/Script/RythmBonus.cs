@@ -49,7 +49,7 @@ public class RythmBonus : MonoBehaviour
 
     public void BaseAttack(int type)
     {
-        if (plusMusic?.TimeNextBeat() < rythmDZ)
+        if (plusMusic.TimeNextBeat() < rythmDZ)
         {
             Debug.Log(playerManager.GetStat(Boss.stats.StatsType.combo).Value);
             StartCoroutine(OnTime());

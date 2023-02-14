@@ -779,6 +779,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2348196337018363110, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
         type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: c7828b1c9b552ff4ca658ce15f34c382,
+        type: 2}
+    - target: {fileID: 2348196337018363110, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+        type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 2348196337006595964}

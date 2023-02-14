@@ -51,6 +51,8 @@ public class AudioManager : MonoBehaviour
             SelectMusic();
             animator.Play("FadeOut");
         }
+
+        SetSoundLevel();
     }
     public void ActivateUI(bool flag)
     {
@@ -79,7 +81,6 @@ public class AudioManager : MonoBehaviour
             mixer.TransitionToSnapshots(snapshots, weight_Menu, 0.5f);
         else if (sceneType == 1)
             mixer.TransitionToSnapshots(snapshots, weight_Fight, 0.5f);
-        SetSoundLevel();
     }
 
     public void SelectMusic()
@@ -91,7 +92,7 @@ public class AudioManager : MonoBehaviour
                 StartMusic("1683", PlusMusic_DJ.PMTags.full_song);
                 break;
             case 1: //Hub
-                StartMusic("1684", PlusMusic_DJ.PMTags.full_song);
+                StartMusic("1685", PlusMusic_DJ.PMTags.full_song);
                 break;
             case 2: //Rex
                 StartMusic("1681", PlusMusic_DJ.PMTags.full_song);
@@ -114,7 +115,8 @@ public class AudioManager : MonoBehaviour
     {
         foreach(AudioSource source in sourcePlus)
         {
-            source.volume = 1;
+            if(source.volume == 0)
+                source.volume = 1;
         }
     }
 

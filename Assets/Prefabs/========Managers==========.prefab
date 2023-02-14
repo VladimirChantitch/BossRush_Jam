@@ -263,7 +263,7 @@ MonoBehaviour:
   - CurrentScrenn: 2
     treeAsset: {fileID: 9197481963319205126, guid: 02069ed47bde8a94c984ef6f87d5738d,
       type: 3}
-  uIDocument: {fileID: 0}
+  uIDocument: {fileID: 235649885}
   mainMenuController: {fileID: 0}
   hubManager: {fileID: 0}
   ui_bossFight: {fileID: 0}

@@ -598,60 +598,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1814509099505792062, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 2404106606552462643, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
         type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3106712405370806992, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weigh_0.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weigh_1.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weight_0.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weight_1.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weigh_0.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weigh_1.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weight_0.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: weight_1.Array.data[0]
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
         type: 3}
@@ -668,30 +618,5 @@ PrefabInstance:
       propertyPath: sourcePlus.Array.data[2]
       value: 
       objectReference: {fileID: 1951386268}
-    - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190081
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e95ba190d8e71a4b97c4e95f893aa44, type: 3}
