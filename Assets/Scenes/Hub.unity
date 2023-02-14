@@ -168,7 +168,7 @@ MonoBehaviour:
   - value: 0
     maxValue: 50
     statType: 3
-  inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
+  inventory: {fileID: 11400000, guid: c7828b1c9b552ff4ca658ce15f34c382, type: 2}
   onJustCameBack:
     m_PersistentCalls:
       m_Calls: []
@@ -217,6 +217,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
+      propertyPath: bossFights.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: bossFights.Array.data[2].location
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: bossFights.Array.data[3].location
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: bossFights.Array.data[2].BossFightName
+      value: Boss_Bubule
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: bossFights.Array.data[3].BossFightName
+      value: Boss_CornMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122300098362571950, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
       propertyPath: allDialoguesThatNeedToBeSaved.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -240,7 +265,7 @@ PrefabInstance:
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: AutoLoad
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
@@ -252,6 +277,35 @@ PrefabInstance:
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 91031580}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: recipies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: recipies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c1aa1554eef2f48489a5a7450adb2e92,
+        type: 2}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: recipies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 919b6354745c1924cad9ef9cbee0fd78,
+        type: 2}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: recipies.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c17bfa4f588f85b41acf4dffb76a2ff9,
+        type: 2}
+    - target: {fileID: 7810337630690655896, guid: ab3ef40fcfef4cc4db20ab594fec8545,
+        type: 3}
+      propertyPath: recipies.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 230c76a63b01e1e4d9c00393c3503a68,
+        type: 2}
     - target: {fileID: 7937059688534768007, guid: ab3ef40fcfef4cc4db20ab594fec8545,
         type: 3}
       propertyPath: m_Name
@@ -338,6 +392,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 80278901165838745, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1093633630996841583, guid: f105a5bcd6ee86346bd47628813adce0,
         type: 3}
       propertyPath: m_Enabled
@@ -458,7 +517,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8453370825739766316, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8619885085518067408, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767576949323667032, guid: f105a5bcd6ee86346bd47628813adce0,
         type: 3}
       propertyPath: m_Enabled
       value: 0

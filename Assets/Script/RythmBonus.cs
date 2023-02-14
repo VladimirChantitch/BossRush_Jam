@@ -51,6 +51,7 @@ public class RythmBonus : MonoBehaviour
     {
         if (plusMusic?.TimeNextBeat() < rythmDZ)
         {
+            Debug.Log(playerManager.GetStat(Boss.stats.StatsType.combo).Value);
             StartCoroutine(OnTime());
         }
         else

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
   shotType: 3
-  tag: l_respawn
+  tag: r_respawn321
   damage: 5
   canPassWall: 1
   upForce: 20

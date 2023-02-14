@@ -25,6 +25,6 @@ MonoBehaviour:
   - value: 0
     maxValue: 15
     statType: 0
-  - value: 0
+  - value: 0.1
     maxValue: 0.1
     statType: 2
