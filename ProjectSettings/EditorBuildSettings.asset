@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TESTSCENE_CharaDesign.unity
     guid: 7fed2b3548f9eee4da64241a5a34af34
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 77b44507856b2cd4d9957c35484a19de
+  - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: a695722a3e3d3224383d83ee4d2db91b
   - enabled: 1
@@ -20,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boss_Ubuntu.unity
     guid: f6288a0c30b73af4db5d16f68513815e
+  - enabled: 1
+    path: Assets/Scenes/Boss_BubbleBoss.unity
+    guid: e790e93427d097b41bb966eba8f2001e
   m_configObjects: {}

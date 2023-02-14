@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         SetUIManagerEvents();
         if (currentScrenn == CurrentScrenn.BossRoom)
         {
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
         {
             saveManager.SaveGame();
             FindObjectOfType<PlayerMovement>().Dispose();
+            AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.lowlight, 0);
             SceneManager.LoadScene("Hub");
         });
 

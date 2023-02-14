@@ -153,20 +153,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 0
-    maxValue: 100
+  - value: 350
+    maxValue: 350
     statType: 0
-  - value: 1000
-    maxValue: 1000
+  - value: 0.2
+    maxValue: 0.25
     statType: 2
-  - value: 100
+  - value: 250
     maxValue: 1000
     statType: 4
   - value: 1
     maxValue: 4
     statType: 1
-  - value: 100
-    maxValue: 1000
+  - value: 0
+    maxValue: 50
     statType: 3
   inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
   onJustCameBack:
@@ -437,6 +437,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019866637926157406, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 13.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019866637926157406, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019866638308913123, guid: f105a5bcd6ee86346bd47628813adce0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8157504017258012170, guid: f105a5bcd6ee86346bd47628813adce0,
         type: 3}

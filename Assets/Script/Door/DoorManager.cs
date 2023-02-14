@@ -43,7 +43,7 @@ public class DoorManager : MonoBehaviour
 
             Camera.main.orthographicSize -= Time.deltaTime *cameraZoomSpeed;
         }
-
+        AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.high_template, 1);
         SceneManager.LoadScene(bossName);
     }
 }

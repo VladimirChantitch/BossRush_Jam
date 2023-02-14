@@ -5,9 +5,7 @@
       "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
-        "$values": [
-          1
-        ]
+        "$values": []
       }
     },
     {
@@ -17,7 +15,7 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 350.0,
+            "value": 325.0,
             "maxValue": 350.0,
             "statType": 0
           },
@@ -29,21 +27,21 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
+            "value": 250.0,
+            "maxValue": 1000.0,
+            "statType": 4
+          },
+          {
+            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 1.0,
-            "maxValue": 1.0,
+            "maxValue": 4.0,
             "statType": 1
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
             "value": 0.0,
-            "maxValue": 30.0,
+            "maxValue": 50.0,
             "statType": 3
-          },
-          {
-            "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
-            "maxValue": 1000.0,
-            "statType": 4
           }
         ]
       },
@@ -54,23 +52,103 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 7,
-              "instance_ID": 29044
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 2,
-              "instance_ID": 29046
+              "amount": 1,
+              "instance_ID": 29060
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 29042
+              "instance_ID": 29062
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 29040
+              "instance_ID": 29064
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29066
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29068
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29070
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29072
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29074
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29076
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29078
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29080
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29082
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29084
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29086
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29088
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29090
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29092
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29094
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29096
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29098
             }
           ]
         }

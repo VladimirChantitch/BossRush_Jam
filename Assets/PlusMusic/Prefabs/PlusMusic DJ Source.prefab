@@ -44,7 +44,7 @@ AudioSource:
   m_GameObject: {fileID: 7569884049259928561}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4463208085687881175, guid: fcc71635aab95ff4fbdf1880bf2afa2f,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4e772c2cf63ed4a439674cce2bef5053,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -141,7 +141,7 @@ AudioSource:
   m_GameObject: {fileID: 7569884049259928561}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4463208085687881175, guid: fcc71635aab95ff4fbdf1880bf2afa2f,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4e772c2cf63ed4a439674cce2bef5053,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -238,7 +238,7 @@ AudioSource:
   m_GameObject: {fileID: 7569884049259928561}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7528741407128503400, guid: fcc71635aab95ff4fbdf1880bf2afa2f,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4e772c2cf63ed4a439674cce2bef5053,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -341,11 +341,28 @@ MonoBehaviour:
   theAudioSource: {fileID: 7569884049259928527}
   newAudio: {fileID: 1534041466159230872}
   stingerSource: {fileID: 303685252}
+  Persist: 1
+  serverArrangementsFile:
+    id: 0
+    name: 
+    type_id: 
+    parent_id: 0
+    creator_id: 0
+    is_licensed: 0
+    licensed_by: 
+    licensed_at: 
+    deleted_at: 
+    created_at: 
+    updated_at: 
+    arrangements: []
+    message: 
+  theSoundtrackOptions: []
   defaultTransition:
-    durationTransition: 2
-    stingerId: 
     tag: 0
+    durationTransition: 2
     timing: 0
+    stingerId: 
+    canTransitionToItself: 0
     curve:
       serializedVersion: 2
       m_Curve:
@@ -370,7 +387,6 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    canTransitionToItself: 0
-  Persist: 1
+  autoPlayArrangement: 1
   musicVolume: 1
-  audioMixer: {fileID: 24100000, guid: fcc71635aab95ff4fbdf1880bf2afa2f, type: 2}
+  audioMixer: {fileID: 24100000, guid: 4e772c2cf63ed4a439674cce2bef5053, type: 2}

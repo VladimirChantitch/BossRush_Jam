@@ -37,8 +37,6 @@ public class RythmBonus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (plusMusic.AllFilesLoaded())
-        {
             light.pointLightInnerRadius = Mathf.Clamp(math.remap(rythmDZ, rythmDZ + 0.25f, 0.0f, 2.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
             light.pointLightOuterRadius = math.remap(0.0f, 1.0f, 0.0f, 20.0f, plusMusic.TimeNextBeat());
             light.intensity = Mathf.Clamp(math.remap(0.0f, rythmDZ + 0.25f, 5.0f, 0.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
@@ -47,7 +45,6 @@ public class RythmBonus : MonoBehaviour
             {
                 light.color = Color.Lerp(Color.red, Color.white, plusMusic.TimeNextBeat());
             }
-        }
     }
 
     public void BaseAttack(int type)

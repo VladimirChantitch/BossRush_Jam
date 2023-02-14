@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
 
 public class HubBloodGauge : HubInteractor
 {
@@ -13,10 +14,10 @@ public class HubBloodGauge : HubInteractor
     /// Send an amount between 0 and 1
     /// </summary>
     /// <param name="amount"></param>
-    public void UpdateAmount(float amount)
+    public void UpdateAmount(float currentAmount)
     {
         Vector3 new_scale = gaugeTranform.localScale;
-        new_scale.y = amount;
+        new_scale.y = math.remap(0f, 1000f, 0f, 13.33f, currentAmount);
         gaugeTranform.localScale = new_scale;
     }
 
@@ -24,6 +25,8 @@ public class HubBloodGauge : HubInteractor
     {
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         (float,float) value = (playerManager.GetStat(Boss.stats.StatsType.Blood).Value, playerManager.GetStat(Boss.stats.StatsType.Blood).MaxValue);
-        UpdateAmount(value.Item1 / value.Item2);
+        UpdateAmount(value.Item1);
     }
+
+
 }
