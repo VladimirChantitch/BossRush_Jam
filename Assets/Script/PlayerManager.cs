@@ -122,17 +122,25 @@ namespace player
                     playerDamageEffect.Blinking();
                     });
                 playerMovement.attackPerformed.AddListener(type => {
-                    currentAttackType = type;
-                    if (type == AttackType.normal)
+                    if (status == Status.BossMode)
                     {
-                        audioSource.PlayOneShot(clips[UnityEngine.Random.Range(0, clips.Count)]);
-                    }
-                    else
-                    {
-                        StartCoroutine(BigSound());
+                        currentAttackType = type;
+                        if (type == AttackType.normal)
+                        {
+                            audioSource.PlayOneShot(clips[UnityEngine.Random.Range(0, clips.Count)]);
+                        }
+                        else
+                        {
+                            StartCoroutine(BigSound());
+                        }
                     }
                 });
-                playerMovement.onAttack2Stopped.AddListener(() => StopCoroutine(BigSound()));
+                playerMovement.onAttack2Stopped.AddListener(() => {
+                    if(status == Status.BossMode)
+                    {
+                        StopCoroutine(BigSound());
+                    }
+                });
                 playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
                 playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
 

@@ -5,7 +5,9 @@
       "$type": "Boss.Map.MapManager_DTO, Assembly-CSharp",
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
-        "$values": []
+        "$values": [
+          1
+        ]
       }
     },
     {
@@ -15,7 +17,7 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 325.0,
+            "value": 87.75,
             "maxValue": 350.0,
             "statType": 0
           },
@@ -27,7 +29,7 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.0,
+            "value": 500.0,
             "maxValue": 1000.0,
             "statType": 4
           },
@@ -53,7 +55,17 @@
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
               "amount": 1,
-              "instance_ID": 30524
+              "instance_ID": 29066
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 2,
+              "instance_ID": 29068
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 29076
             }
           ]
         }
@@ -76,12 +88,12 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 2,
-              "intance_ID": -1
+              "intance_ID": 29102
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 4,
-              "intance_ID": -1
+              "intance_ID": 29088
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
@@ -91,15 +103,15 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 1,
-              "intance_ID": -1
+              "intance_ID": 29090
             }
           ]
         }
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": 31944,
-        "win_id": 31946
+        "loose_id": 30536,
+        "win_id": 30534
       }
     }
   ]

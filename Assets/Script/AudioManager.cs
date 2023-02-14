@@ -78,7 +78,10 @@ public class AudioManager : MonoBehaviour
         TransitionInfo transitionInfo = new TransitionInfo(tags, 0.5f);
         if (plusMusic != null)
         {
-            plusMusic.PlayArrangement(transitionInfo);
+            if (transitionInfo != null)
+            {
+                plusMusic.PlayArrangement(transitionInfo);
+            } 
         }
         else
         {

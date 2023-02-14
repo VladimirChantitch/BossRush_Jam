@@ -78,7 +78,7 @@ namespace Boss.crafter
             List<Recipies> lastselect_recipies = new List<Recipies>();
             all_abstractItems.ForEach(i =>
             {
-                List<Recipies> local_recipies = recipies.Where(r => r.Item_2 == i).ToList();
+                List<Recipies> local_recipies = firstselect_recipies.Where(r => r.Item_2 == i).ToList();
                 if (local_recipies != null || local_recipies.Count != 0)
                 {
                     lastselect_recipies.AddRange(local_recipies);
