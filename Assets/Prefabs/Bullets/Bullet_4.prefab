@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 1
-  tag: Back_Curved
-  damage: 7
-  canPassWall: 0
-  upForce: 5
-  sideForce: 10
+  shotType: 3
+  tag: Fontaine_actif
+  damage: 8
+  canPassWall: 1
+  upForce: 25
+  sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: -1
+  timeBeforeAutodestruct: 5
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

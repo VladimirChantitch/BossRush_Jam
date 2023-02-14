@@ -3242,10 +3242,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - value: 5000
-    maxValue: 5000
+  - value: 9000
+    maxValue: 9000
     statType: 0
-  inventory: {fileID: 11400000, guid: ee11d5638c6fad24093fd2eab4c3b574, type: 2}
+  - value: 300
+    maxValue: 5000
+    statType: 4
+  inventory: {fileID: 11400000, guid: 460184c2eea43f342b88a8b853403c9b, type: 2}
   bossLoot: {fileID: 2113162902}
   onBossDying:
     m_PersistentCalls:
@@ -3258,8 +3261,8 @@ MonoBehaviour:
       m_Calls: []
   bossUIManager: {fileID: 0}
   bossRelatedDialogues:
-    winDialogue: {fileID: 0}
-    looseDialogue: {fileID: 0}
+    winDialogue: {fileID: 11400000, guid: 766c4dc4d886e5d45a14d1137061871b, type: 2}
+    looseDialogue: {fileID: 11400000, guid: af3214ed8ea724a42b7c42826e101d1c, type: 2}
   animator: {fileID: 786289552}
   vulnerabilityTimer: 5
   headVulnerabilityTimer: 8
