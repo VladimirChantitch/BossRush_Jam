@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uI: {fileID: 3106712405370806992}
+  plusMusic: {fileID: 0}
   mixer: {fileID: 24100000, guid: 4e772c2cf63ed4a439674cce2bef5053, type: 2}
   snapshots:
   - {fileID: 24500006, guid: 4e772c2cf63ed4a439674cce2bef5053, type: 2}
@@ -58,6 +59,11 @@ MonoBehaviour:
   weight_Fight:
   - 0
   - 1
+  sourcePlus:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  clips: []
 --- !u!95 &4763062922450734962
 Animator:
   serializedVersion: 4

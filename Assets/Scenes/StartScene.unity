@@ -443,6 +443,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b43ffc4d9a89e64d876bc3d665e24ae, type: 3}
+--- !u!82 &1951386268 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 303685252, guid: 3b43ffc4d9a89e64d876bc3d665e24ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936066459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1951386269 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1534041466159230872, guid: 3b43ffc4d9a89e64d876bc3d665e24ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936066459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1951386270 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7569884049259928527, guid: 3b43ffc4d9a89e64d876bc3d665e24ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936066459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7937059689316579008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -635,6 +653,21 @@ PrefabInstance:
       propertyPath: weight_1.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
+        type: 3}
+      propertyPath: sourcePlus.Array.data[0]
+      value: 
+      objectReference: {fileID: 1951386270}
+    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
+        type: 3}
+      propertyPath: sourcePlus.Array.data[1]
+      value: 
+      objectReference: {fileID: 1951386269}
+    - target: {fileID: 3843532225589923973, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
+        type: 3}
+      propertyPath: sourcePlus.Array.data[2]
+      value: 
+      objectReference: {fileID: 1951386268}
     - target: {fileID: 7175039823330472287, guid: 5e95ba190d8e71a4b97c4e95f893aa44,
         type: 3}
       propertyPath: m_fontColor.b

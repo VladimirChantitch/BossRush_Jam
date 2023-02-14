@@ -27,7 +27,7 @@ public class RythmBonus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        plusMusic = PlusMusic_DJ.Instance;
+        plusMusic = AudioManager.Instance.plusMusic;
         playerManager = GetComponent<PlayerManager>();
         rythmDZ = playerManager.GetStat(Boss.stats.StatsType.rythme_deadZone).Value;
 

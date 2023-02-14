@@ -11,13 +11,17 @@ public class AudioManager : MonoBehaviour
 
     private Animator animator;
     [SerializeField] GameObject uI;
-    private PlusMusic_DJ plusMusic;
+    public PlusMusic_DJ plusMusic;
     private bool isLoaded;
 
     [SerializeField] AudioMixer mixer;
     [SerializeField] AudioMixerSnapshot[] snapshots;
     [SerializeField] float[] weight_Menu;
     [SerializeField] float[] weight_Fight;
+
+    [SerializeField] AudioSource[] sourcePlus;
+
+    [SerializeField] AudioClip[] clips;
 
     private void Awake()
     {
@@ -69,12 +73,13 @@ public class AudioManager : MonoBehaviour
 
     public void TransitionMusic(PlusMusic_DJ.PMTags tags, int sceneType)
     {
-        TransitionInfo transitionInfo = new TransitionInfo(tags, 0.25f);
+        TransitionInfo transitionInfo = new TransitionInfo(tags, 0.5f);
         plusMusic.PlayArrangement(transitionInfo);
         if(sceneType == 0)
             mixer.TransitionToSnapshots(snapshots, weight_Menu, 0.5f);
         else if (sceneType == 1)
             mixer.TransitionToSnapshots(snapshots, weight_Fight, 0.5f);
+        SetSoundLevel();
     }
 
     public void SelectMusic()
@@ -102,6 +107,14 @@ public class AudioManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void SetSoundLevel()
+    {
+        foreach(AudioSource source in sourcePlus)
+        {
+            source.volume = 1;
         }
     }
 
