@@ -85,30 +85,7 @@ public class AudioManager : MonoBehaviour
 
     public void SelectMusic()
     {
-        int rnd = Random.Range(0, 6);
-        switch (rnd)
-        {
-            case 0: //Start
-                StartMusic("1683", PlusMusic_DJ.PMTags.full_song);
-                break;
-            case 1: //Hub
-                StartMusic("1685", PlusMusic_DJ.PMTags.full_song);
-                break;
-            case 2: //Rex
-                StartMusic("1681", PlusMusic_DJ.PMTags.full_song);
-                break;
-            case 3: //Ubuntu
-                StartMusic("1434", PlusMusic_DJ.PMTags.full_song);
-                break;
-            case 4: //BubbleBoss
-                StartMusic("1595", PlusMusic_DJ.PMTags.full_song);
-                break;
-            case 5: //Tuto
-                StartMusic("1682", PlusMusic_DJ.PMTags.full_song);
-                break;
-            default:
-                break;
-        }
+         StartMusic("1434", PlusMusic_DJ.PMTags.full_song);
     }
 
     private void SetSoundLevel()
