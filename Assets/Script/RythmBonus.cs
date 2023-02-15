@@ -39,13 +39,16 @@ public class RythmBonus : MonoBehaviour
     {
         if (light != null)
         {
-            light.pointLightInnerRadius = Mathf.Clamp(math.remap(rythmDZ, rythmDZ + 0.25f, 0.0f, 2.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
-            light.pointLightOuterRadius = math.remap(0.0f, 1.0f, 0.0f, 20.0f, plusMusic.TimeNextBeat());
-            light.intensity = Mathf.Clamp(math.remap(0.0f, rythmDZ + 0.25f, 5.0f, 0.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
-
-            if (!onTime)
+            if(plusMusic != null)
             {
-                light.color = Color.Lerp(Color.red, Color.white, plusMusic.TimeNextBeat());
+                light.pointLightInnerRadius = Mathf.Clamp(math.remap(rythmDZ, rythmDZ + 0.25f, 0.0f, 2.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
+                light.pointLightOuterRadius = math.remap(0.0f, 1.0f, 0.0f, 20.0f, plusMusic.TimeNextBeat());
+                light.intensity = Mathf.Clamp(math.remap(0.0f, rythmDZ + 0.25f, 5.0f, 0.0f, plusMusic.TimeNextBeat()), 0.0f, 5.0f);
+
+                if (!onTime)
+                {
+                    light.color = Color.Lerp(Color.red, Color.white, plusMusic.TimeNextBeat());
+                }
             }
         }
     }
