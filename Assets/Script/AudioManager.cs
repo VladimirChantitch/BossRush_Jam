@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
             animator.Play("FadeOut");
         }
 
-        SetSoundLevel();
+        //SetSoundLevel();
     }
     public void ActivateUI(bool flag)
     {
