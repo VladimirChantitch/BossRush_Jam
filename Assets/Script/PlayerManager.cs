@@ -181,13 +181,11 @@ namespace player
 
             guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
-                Debug.Log("add");
                 ModifyUpgrades(Upgrades);
             });
 
             guitareUpgradeSystem.onUpgradeRemoved.AddListener(Upgrade =>
             {
-                Debug.Log("remove");
                 ClearUpgrade(Upgrade);
             });
 

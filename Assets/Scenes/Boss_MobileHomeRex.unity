@@ -581,6 +581,16 @@ PrefabInstance:
       propertyPath: playerUIManager
       value: 
       objectReference: {fileID: 707570330}
+    - target: {fileID: 8974729676852220059, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974729676852220059, guid: b5ff194404c75514ea51b8740595642e,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.372
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ff194404c75514ea51b8740595642e, type: 3}
 --- !u!114 &503528664 stripped
