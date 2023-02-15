@@ -86,8 +86,8 @@ namespace Boss.UI
             mainMenuController.startEvent.AddListener(() =>
             {
                 DeleteSaveFile?.Invoke();
-                AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.lowlight, 0);
-                SceneManager.LoadScene("Hub");
+                AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.backing_track, 1);
+                SceneManager.LoadScene(DADDY.Instance.GetBossFight(Map.BossLocalization.Ubuntu));
             });
         }
         #endregion

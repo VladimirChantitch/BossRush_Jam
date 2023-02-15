@@ -97,6 +97,15 @@ namespace player
             base.Init();
         }
 
+        [SerializeField] AudioSource audioSource;
+        [SerializeField] List<AudioClip> clips = new List<AudioClip>();
+
+        IEnumerator BigSound()
+        {
+            audioSource.PlayOneShot(clips[UnityEngine.Random.Range(0, clips.Count)]);
+            yield return new WaitForSeconds(0.15f);
+        }
+
         private void Start()
         {
             if (status == Status.BossMode)
@@ -112,7 +121,26 @@ namespace player
                     AddDamage(amount);
                     playerDamageEffect.Blinking();
                     });
-                playerMovement.attackPerformed.AddListener(type => currentAttackType = type);
+                playerMovement.attackPerformed.AddListener(type => {
+                    if (status == Status.BossMode)
+                    {
+                        currentAttackType = type;
+                        if (type == AttackType.normal)
+                        {
+                            audioSource.PlayOneShot(clips[UnityEngine.Random.Range(0, clips.Count)]);
+                        }
+                        else
+                        {
+                            StartCoroutine(BigSound());
+                        }
+                    }
+                });
+                playerMovement.onAttack2Stopped.AddListener(() => {
+                    if(status == Status.BossMode)
+                    {
+                        StopCoroutine(BigSound());
+                    }
+                });
                 playerMovement.StartDash.AddListener(() => CloseTakeDamageCollide());
                 playerMovement.EndDash.AddListener(() => OpenTakeDamageCollider());
 

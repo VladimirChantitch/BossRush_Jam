@@ -217,8 +217,11 @@ public class Boss_3 : BossCharacter
 
     private void Dying()
     {
-        isDying = true;
-        onBossDying?.Invoke(bossRelatedDialogues);
-        bossLoot.Loot(inventory.GetItems());
+        if (isDying == false)
+        {
+            isDying = true;
+            onBossDying?.Invoke(bossRelatedDialogues);
+            bossLoot.Loot(inventory.GetItems());
+        }
     }
 }

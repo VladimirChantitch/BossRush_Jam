@@ -60,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isFlipped = false;
 
     [Header("Attack")]
-    public UnityEvent<AttackType> attackPerformed;
+    public UnityEvent<AttackType> attackPerformed = new UnityEvent<AttackType>();
+    public UnityEvent onAttack2Stopped = new UnityEvent();
     public RythmBonus rythmBonus;
     public TrailRenderer guitareTrail;
     public Transform aoe_gfx;
@@ -203,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
     private void Attack2_canceled(InputAction.CallbackContext obj)
     {
         camJuice.Default();
+        onAttack2Stopped?.Invoke();
     }
 
     private void EnbiggenAOE()
