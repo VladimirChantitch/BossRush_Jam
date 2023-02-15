@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a710154a7dfec40b2dbc46a1eef767, type: 3}
+  m_Name: BCP_DorothyShoes
+  m_EditorClassIdentifier: 
+  itemName: Dorothy Shoes
+  description: What a weird kind of fetish is this, are you so deranged that you
+    are keeping that in your inventory
+  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: e784300f8bab77247b510c5059637381, type: 3}
+  descriptiveDialogue: {fileID: 0}

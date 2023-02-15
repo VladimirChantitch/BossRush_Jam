@@ -40,6 +40,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "d202e45c-3570-4a06-832c-5978a45e73ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "edae14cb-8f83-40b5-83ab-b676a1f5fdb8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Attack1",
+                    "type": "Button",
+                    "id": "9a198926-e632-4477-883a-5e3c66b8b262",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack2",
+                    "type": "Button",
+                    "id": "6f203539-db67-43fd-933a-3bb6ead4cf8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -91,7 +127,7 @@
                     "name": "",
                     "id": "71a5f9e5-cbd1-47ad-b3fb-1c82366d2805",
                     "path": "<Keyboard>/d",
-                    "interactions": "MultiTap(tapTime=0.15,tapDelay=0.25)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "FrontDash",
@@ -102,10 +138,54 @@
                     "name": "",
                     "id": "c50c38fa-b087-4eda-aeef-1f66fe93f0d3",
                     "path": "<Keyboard>/a",
-                    "interactions": "MultiTap(tapTime=0.15,tapDelay=0.25)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "BackDash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc4ee220-a64c-4662-bc3d-84bf8677ba0e",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e639afe8-9ab1-4471-91b6-d33af3d3b511",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55d0d2f3-e672-402a-9ffe-502cdd8ff9d2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "007668c1-e073-44f6-92f3-dc604c9dcb2e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
