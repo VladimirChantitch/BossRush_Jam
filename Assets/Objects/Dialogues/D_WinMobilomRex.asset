@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D_WinMobilomRex
   m_EditorClassIdentifier: 
   title: D_WinMobilomRex
-  dialogue: Oh you've killed him, i hope you brought back some shiny goodies. Hopefully
-    you also killed his children. No ? ....... Well they are going to be after you
-    soon enought I guess.
+  dialogue: Oh you've killed him, I hope you brought back some shiny goodies. Hopefully,
+    you also killed his children. No? ....... Well, they are going to be after you
+    soon enough I guess.
   type: 0
   nextDialogue: {fileID: 0}

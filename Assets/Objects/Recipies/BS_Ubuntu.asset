@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BS_Ubuntu
   m_EditorClassIdentifier: 
   itemName: Ubuntu
-  description: Good Luck with UBUNTU it shapes nightmares, try to avoid his "sudo
+  description: Good Luck with UBUNTU! He shapes nightmares, try to avoid his "sudo
     rm -rf *"
   prefab: {fileID: 0}
   icon: {fileID: 0}

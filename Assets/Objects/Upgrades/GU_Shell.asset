@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Shell
   m_EditorClassIdentifier: 
   itemName: Shell
-  description: A used ammo shell, in which dumbster did you get that ? Ho its not
-    used sorry, its the magical inity ammo. Its more a gimmic than any hting real,
-    But Lets add it to increase your damages
+  description: A used ammo shell? In which dumpster did you get that? Ho its not
+    used sorry, it's the magical infinity ammo. Its more a gimmick than anything
+    real, but let's add it to increase your damages.
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: a4ecd9952acabd0458520d4e36d2db0a, type: 3}
   descriptiveDialogue: {fileID: 0}

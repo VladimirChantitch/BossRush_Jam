@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Eye
   m_EditorClassIdentifier: 
   itemName: eye
-  description: Well firstavly thats disgusting, what kind of psycho is travelling
-    with a fucking eye ball ? Tell me? You little piss of .... Sorry i'm a bit moddy...
-    I guess I can add it to your guitare, maybe it help you stay in rythm
+  description: Well first of all that's disgusting, what kind of psycho is travelling
+    with a fucking eyeball? Tell me? You little piss off.... Sorry I'm a bit moody...
+    I guess I can add it to your guitar, maybe it helps you stay in rhythm.
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: d594b364d0a2c7c4f960221e38da9bdc, type: 3}
   descriptiveDialogue: {fileID: 0}

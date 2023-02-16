@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 0
-  tag: Boss_parabole
-  damage: 3
+  shotType: 4
+  tag: CircleAtk_Low_2
+  damage: 12
   canPassWall: 0
-  upForce: 7
-  sideForce: 5
+  upForce: 20
+  sideForce: 10
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 5
+  timeBeforeAutodestruct: -1
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

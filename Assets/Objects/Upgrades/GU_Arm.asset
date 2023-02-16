@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Arm
   m_EditorClassIdentifier: 
   itemName: Arm
-  description: 'An arm, and its in good shape, where did you get that ? If you want
-    I can add it to your guitare, I mean i think it can give you a hand staying put
-    into the rythme. '
+  description: An arm, and it's in good shape, where did you get that? If you want,
+    I can add it to your guitar, I mean, I think it can give you a hand to keep in
+    the rhythm.
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: 83b3c27aa316d504d88aeae5ca5969ad, type: 3}
   descriptiveDialogue: {fileID: 0}
