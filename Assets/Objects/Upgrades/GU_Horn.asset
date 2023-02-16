@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Horn
   m_EditorClassIdentifier: 
   itemName: Horns
-  description: You are soooo Agressive man, thats my brother's .... Ho he gifted
-    it to you? That changes everything. Ok I guess you are going to obliterate your
-    ennemies now
+  description: You are Soooo aggressive man, that's my brother's.... Oh, he gifted
+    it to you? That changes everything. Ok, I guess you are going to obliterate your
+    enemies now!
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: 61f368ec04c2478408390267c35da849, type: 3}
   descriptiveDialogue: {fileID: 0}

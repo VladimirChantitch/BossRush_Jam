@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: GU_Axe
   m_EditorClassIdentifier: 
   itemName: Axe
-  description: "Did you see shining, dady's home Mouahahahah \nWell I can add this
-    to your guitare. Since you are already using it like an axe, you dumbshit, It
-    will increase your damage."
+  description: 'Did you see Shining, "Daddy''s home" Mouahahahah!
+
+    Well, I can
+    add this to your guitar. Since you are already using it like an axe, you dumb
+    shit, It will increase your damage.'
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: c3546f429b909f145b579becb4a460e6, type: 3}
   descriptiveDialogue: {fileID: 0}

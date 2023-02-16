@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GU_Synth
   m_EditorClassIdentifier: 
   itemName: Synth
-  description: 'Now we are talking, i''m adding it presto, it will improove all of
-    your skills '
+  description: Now we are talking, I'm adding it presto, it will improve all of your
+    skills!
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: 57dca052872d2784093b3bc5adbc1f81, type: 3}
   descriptiveDialogue: {fileID: 0}

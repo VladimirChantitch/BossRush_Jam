@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D_Gauge
   m_EditorClassIdentifier: 
   title: 
-  dialogue: Ho don't use this too much it might be usefull at somepoints... Well
-    i guess you needed to heal up a bit, this is understandable. But go easy on this
-    its highly addicctive.
+  dialogue: Don't use this too much! It might be useful at some points... Well i
+    guess you needed to heal up a bit, that's understandable. But go easy, it's highly
+    addictive.
   type: 3
   nextDialogue: {fileID: 0}

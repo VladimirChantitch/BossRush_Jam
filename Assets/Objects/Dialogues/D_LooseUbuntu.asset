@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D_LooseUbuntu
   m_EditorClassIdentifier: 
   title: 
-  dialogue: 'One more that died against the great Unbuntu. Have you thinked to destroying
+  dialogue: 'One more that died against the great Ubuntu. Have you thought of destroying
     his evil gamer mouse controllers? '
   type: 0
   nextDialogue: {fileID: 0}

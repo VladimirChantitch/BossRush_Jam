@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Lamp
   m_EditorClassIdentifier: 
   itemName: Lamp
-  description: A lamp ... do you know you are fucking dumb? Lamp amp don't use lamp
-    like those WTF .... Ok i'm adding it to your rig but it make no sens, its just
-    fashion.
+  description: A lamp ... do you know you are fucking dumb? Lamp amp doesn't use
+    lamp like those WTF.... Ok I'm adding it to your rig, but it makes no sense,
+    it's just fashion.
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: d6385e4bc59597845b9ddd37a3ae3179, type: 3}
   descriptiveDialogue: {fileID: 0}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: D_Crafter
   m_EditorClassIdentifier: 
   title: Crafter
-  dialogue: He there well you've made a good decision choosing to use this. You can
-    craft your boss right there if it has been planned by our suprems makers. Just
-    select the parts you want to merge together in your inventory.
+  dialogue: Hey there! You've made a good decision by choosing to use this. You can
+    craft your boss right there if it has been planned by our suprem makers. Simply
+    choose the parts you want to merge into your inventory.
   type: 3
   nextDialogue: {fileID: 0}

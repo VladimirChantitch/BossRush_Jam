@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: D_LooseBubbleBoss
   m_EditorClassIdentifier: 
   title: D_LooseBubbleBoss
-  dialogue: You get kill by a water drop? Maybe you're getting rusty...
+  dialogue: You get killed by a water drop? Maybe you're getting rusty...
   type: 0
   nextDialogue: {fileID: 0}

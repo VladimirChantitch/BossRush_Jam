@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: GU_Carrot
   m_EditorClassIdentifier: 
   itemName: Carrot
-  description: 'I remember the 100 years under the rule of carrot man.... It was
-    awfull, thats all it lefts from him. Its a really powerfull artefact. I''m Going
-    to add it to your gears, it should allow you to dash more and to inflict more
-    damagee '
+  description: I remember the 100 years under the rule of carrot man.... It was awful,
+    that's all it lefts from him. It's a really powerful artefact. I'm Going to add
+    it to your gears, it should allow you to dash more and to inflict more damages.
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: 15a0fc0fe461d054cb01f0a28b29334b, type: 3}
   descriptiveDialogue: {fileID: 0}
