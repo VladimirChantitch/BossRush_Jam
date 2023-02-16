@@ -45,5 +45,5 @@ Material:
     m_Floats:
     - _Alpha_Clip_Threshold: 7.79
     m_Colors:
-    - _Color: {r: 32, g: 0, b: 0, a: 32}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

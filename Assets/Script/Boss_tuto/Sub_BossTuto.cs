@@ -25,11 +25,11 @@ public class Sub_BossTuto : BossCharacter
         Dead
     }
 
-    public bool isPhaseOne;
+    public bool isPhaseOne = true;
     public bool isPhaseTwo;
     public bool isPhaseThree;
 
-    [SerializeField] SubBossState state;
+    [SerializeField] SubBossState state = SubBossState.Idle;
 
     [SerializeField] Boss_1_Animator animator;
 
@@ -43,7 +43,7 @@ public class Sub_BossTuto : BossCharacter
     {
         if (GetStat(Boss.stats.StatsType.health).Value <= 0)
         {
-            state = SubBossState.Dead;
+            EnterDeadState();
         }
     }
 
@@ -55,10 +55,7 @@ public class Sub_BossTuto : BossCharacter
                 ExecuteIdleState();
                 break;
             case SubBossState.Shooting:
-                if (!isPhaseOne)
-                {
-                    ExecuteAttackState();
-                }
+                ExecuteAttackState();            
                 break;
             case SubBossState.Dead:
                 ExecuteDeadState();
@@ -77,15 +74,27 @@ public class Sub_BossTuto : BossCharacter
         if (!isIdle)
         {
             isIdle = true;
-            animator.PlayTargetAnimation(true, "Idle", 0.25f);
+            animator.PlayTargetAnimation(false, "Idle", 0.25f);
+
+            if (!isPhaseOne)
+            {
+                StartCoroutine(AwaitBeforeAttack());
+            }
         }
     }
 
     #region Attacks
     public void EnterAttackState()
     {
-        state = SubBossState.Shooting;
-        isShooting = false;
+        if (isPhaseOne)
+        {
+            EnterIdleState();
+        }
+        else
+        {
+            state = SubBossState.Shooting;
+            isShooting = false;
+        }
     }
 
     private void ExecuteAttackState()
@@ -94,25 +103,29 @@ public class Sub_BossTuto : BossCharacter
         {
             isShooting = true;
 
-            animator.PlayTargetAnimation(true, "Attack", 0.25f);
+            StopCoroutine(AwaitBeforeAttack());
+
             if (isPhaseTwo)
             {
                 HandlePhaseTwoAttack();
                 return;
             }
 
-            HandlePhaseThreeAttack();
+            if (isPhaseThree)
+            {
+                HandlePhaseThreeAttack();
+            }
         }
     }
 
     private void HandlePhaseThreeAttack()
     {
-        throw new NotImplementedException();
+        animator.PlayTargetAnimation(false, "Attaque", 0.25f);
     }
 
     private void HandlePhaseTwoAttack()
     {
-        throw new NotImplementedException();
+        animator.PlayTargetAnimation(false, "Attaque", 0.25f);
     }
     #endregion
 
@@ -127,13 +140,31 @@ public class Sub_BossTuto : BossCharacter
         if (!isDead)
         {
             isDead = true;
-            onBossDying?.Invoke(null);
-            ///Trigger a small explosion
+            onKilled?.Invoke();
+            gameObject.SetActive(false);
         }
     }
 
     internal void Revive()
     {
-        throw new NotImplementedException();
+        gameObject.SetActive(true);
+        SetStat(false, GetStat(Boss.stats.StatsType.health).MaxValue, Boss.stats.StatsType.health);
+        EnterIdleState();
+        if (isPhaseOne)
+        {
+            isPhaseOne = false;
+            isPhaseTwo = true;
+        }
+        else if (isPhaseTwo)
+        {
+            isPhaseTwo = false;
+            isPhaseThree = true;
+        }
+    }
+
+    IEnumerator AwaitBeforeAttack()
+    {
+        yield return new WaitForSeconds(2.5f);
+        EnterAttackState();
     }
 }

@@ -23,13 +23,15 @@ public class Boss_Tuto : BossCharacter
             }
         }));
 
-        animator = GetComponent<Boss_1_Animator> (); 
+        animator = GetComponent<Boss_1_Animator> ();
+
+        gameObject.SetActive(false);
     }
     [SerializeField] bool isInvisible;
     [SerializeField] bool isAppearing;
     [SerializeField] bool isIdle;
-    [SerializeField] bool isAttackSub;
-    [SerializeField] bool isAttackSolo;
+    [SerializeField] bool isAttacking;
+    [SerializeField] bool areSubDead;
     [SerializeField] bool isDead;
 
     public bool isPhase1 = true;
@@ -41,8 +43,7 @@ public class Boss_Tuto : BossCharacter
         Invisible,
         Appearing,
         Idle,
-        Attack_withSub,
-        Attack_Solo,
+        Attack,
         Dead
     }
 
@@ -67,11 +68,8 @@ public class Boss_Tuto : BossCharacter
             case BossStates.Idle:
                 ExecuteIdleState();
                 break;
-            case BossStates.Attack_withSub:
-                ExecuteSubAttackState();
-                break;
-            case BossStates.Attack_Solo:
-                ExecuteSoloAttackState();
+            case BossStates.Attack:
+                ExecuteAttackState();
                 break;
             case BossStates.Dead:
                 ExecuteDeadState();
@@ -92,6 +90,7 @@ public class Boss_Tuto : BossCharacter
         if (!isAppearing)
         {
             isAppearing = true;
+            animator.PlayTargetAnimation(false, "Appear", 0.5f);
         }
     }
 
@@ -106,34 +105,55 @@ public class Boss_Tuto : BossCharacter
         if (!isIdle)
         {
             isIdle = true;
+            animator.PlayTargetAnimation(false, "Idle", 0.5f);
+            StartCoroutine(AwaitBeforeAttack());
         }
     }
 
-    public void EnterSoloAttackState()
+    public void EnterAttackState()
     {
-        state = BossStates.Attack_Solo;
-        isAttackSolo = false;
+        state = BossStates.Attack;
+        isAttacking = false;
     }
 
-    private void ExecuteSoloAttackState()
+    private void ExecuteAttackState()
     {
-        if (!isAttackSolo)
+        if (!isAttacking)
         {
-
+            StopCoroutine(AwaitBeforeAttack());
+            isAttacking = true;
+            if (areSubDead)
+            {
+                HandleSubAttack();
+            }
+            else
+            {
+                HandleSoloAttack();
+            }
         }
     }
 
-    public void EnterSubAttackState()
+    public void HandleSoloAttack()
     {
-        state = BossStates.Attack_withSub;
-        isAttackSub = false;
+        if (isPhase2)
+        {
+            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+        }
+        else if (isPhase3)
+        {
+            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+        }
     }
 
-    private void ExecuteSubAttackState()
+    private void HandleSubAttack()
     {
-        if (!isAttackSub)
+        if (isPhase2)
         {
-
+            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+        }
+        else if (isPhase3)
+        {
+            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
         }
     }
 
@@ -153,19 +173,35 @@ public class Boss_Tuto : BossCharacter
 
     private void AllSubBossesDestroyed()
     {
+        areSubDead = true;
         StartCoroutine(ReviveAll());
-        EnterAppearingState();
         AddDamage(-1);
-
-        /// The second time the main boss Attaks the pleyr with his vulneravle head
-        /// The first time he goes full bullet hell
-        throw new NotImplementedException();
+        if (isPhase1)
+        {
+            isPhase2 = true;
+            isPhase1 = false;
+            EnterAppearingState();
+            gameObject.SetActive(true);
+        }
+        if (isPhase2)
+        {
+            isPhase2 = false;
+            isPhase3 = true;
+        }
     }
 
     IEnumerator ReviveAll()
     {
+        areSubDead = false;
         yield return new WaitForSeconds(respawnTime);
         subBosses.ForEach(sb => sb.Revive());
+        deadCount = 0;
         yield return null;
+    }
+
+    IEnumerator AwaitBeforeAttack()
+    {
+        yield return new WaitForSeconds(2.5f);
+        EnterAttackState();
     }
 }

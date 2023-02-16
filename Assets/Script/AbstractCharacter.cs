@@ -32,7 +32,6 @@ public abstract class AbstractCharacter : MonoBehaviour
     /// <param name="amout"></param>
     public virtual void AddDamage(float amount)
     {
-        Debug.Log($"<color=purple> {gameObject.name} has taken {amount} damages </color>");
         stats.Where(s => s.StatType == StatsType.health).First().AddStat(false, amount);
     }
 

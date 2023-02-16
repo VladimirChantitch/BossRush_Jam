@@ -15,7 +15,7 @@ public class PlayerAttackCollider_Big : AbstractTogglelableCollider
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 21)
+        if (collision.gameObject.layer == 21 || collision.gameObject.layer == 26)
         {
             applyDamageToTarget?.Invoke(collision.GetComponent<BossTakeDamageCollider>());
         }
@@ -48,7 +48,7 @@ public class PlayerAttackCollider_Big : AbstractTogglelableCollider
 
     private void EnbiggenCollider()
     {
-            circleCollider.radius = Mathf.Lerp(0.5f, 50f, timeElapsed / lerpDuration);
-            timeElapsed += Time.deltaTime;
+        circleCollider.radius = Mathf.Lerp(0.5f, 50f, timeElapsed / lerpDuration);
+        timeElapsed += Time.deltaTime;
     }
 }
