@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
-  shotType: 3
-  tag: l_respawn123
-  damage: 5
-  canPassWall: 1
-  upForce: 20
+  shotType: 2
+  tag: Boss_Hat
+  damage: 3
+  canPassWall: 0
+  upForce: 5
   sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 4.5
+  timeBeforeAutodestruct: 6
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

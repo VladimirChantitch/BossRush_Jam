@@ -30,7 +30,10 @@ public class BossCharacter : AbstractCharacter
     public override void AddDamage(float amount)
     {
         base.AddDamage(amount);
-        bossUIManager.SetBossHealth(GetStat(StatsType.health).Value, GetStat(StatsType.health).MaxValue);
+        if (bossUIManager != null)
+        {
+            bossUIManager.SetBossHealth(GetStat(StatsType.health).Value, GetStat(StatsType.health).MaxValue);
+        }
     }
 }
 

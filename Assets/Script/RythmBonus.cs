@@ -55,22 +55,30 @@ public class RythmBonus : MonoBehaviour
 
     public void BaseAttack(int type)
     {
-        if (plusMusic.TimeNextBeat() < rythmDZ)
+        try
         {
-            Debug.Log(playerManager.GetStat(Boss.stats.StatsType.combo).Value);
-            StartCoroutine(OnTime());
+            if (plusMusic.TimeNextBeat() < rythmDZ)
+            {
+                Debug.Log(playerManager.GetStat(Boss.stats.StatsType.combo).Value);
+                StartCoroutine(OnTime());
+            }
+            else
+            {
+                light.color = Color.white;
+                playerManager.SetStat(false, 0, Boss.stats.StatsType.combo);
+                playerManager.playerUIManager.SetPlayerCombo(playerManager.GetStat(Boss.stats.StatsType.combo).Value, playerManager.GetStat(Boss.stats.StatsType.combo).MaxValue);
+            }
+
+            if (type == 0)
+                ComboEffect_Atk1();
+            else
+                ComboEffect_Atk2();
         }
-        else
+        catch
         {
-            light.color = Color.white;
-            playerManager.SetStat(false, 0, Boss.stats.StatsType.combo);
-            playerManager.playerUIManager.SetPlayerCombo(playerManager.GetStat(Boss.stats.StatsType.combo).Value, playerManager.GetStat(Boss.stats.StatsType.combo).MaxValue);
+
         }
 
-        if (type == 0)
-            ComboEffect_Atk1();
-        else
-            ComboEffect_Atk2();
     }
 
     IEnumerator OnTime()

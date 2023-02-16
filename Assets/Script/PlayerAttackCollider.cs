@@ -11,7 +11,7 @@ public class PlayerAttackCollider : AbstractTogglelableCollider
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 21)
+        if (collision.gameObject.layer == 21 || collision.gameObject.layer == 26)
         {
             applyDamageToTarget?.Invoke(collision.GetComponent<BossTakeDamageCollider>());
         }
