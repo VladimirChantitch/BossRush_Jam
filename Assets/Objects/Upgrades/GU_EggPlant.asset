@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GU_EggPlant
   m_EditorClassIdentifier: 
   itemName: EggPlant
-  description: I didn't knew I was doing you this effect. Its so distracting . uWu
+  description: I didn't know I was doing you this effect. It's so distracting. uWu
     robotSan                   ---You can dash more---
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: a09eebdc8c3709048ac8a21793c37b6c, type: 3}

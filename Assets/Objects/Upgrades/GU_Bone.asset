@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GU_Bone
   m_EditorClassIdentifier: 
   itemName: 'A bone '
-  description: Well I don't know what i'm supposed to do with that, i'm going to
+  description: Well, I don't know what I'm supposed to do with that, I'm going to
     put on your shaft. I'm pretty sure this is useless. Who knows maybe it could
-    distract your ennemies.....
+    distract your enemies...
   prefab: {fileID: 0}
   icon: {fileID: 21300000, guid: f136f48769cf5fb489f1efcf94ea0b96, type: 3}
   descriptiveDialogue: {fileID: 0}

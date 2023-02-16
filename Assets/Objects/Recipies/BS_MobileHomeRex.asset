@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BS_MobileHomeRex
   m_EditorClassIdentifier: 
   itemName: MobilhomeRex
-  description: In the wastelands everyone fears the MobileHomeRex
+  description: In the wastelands everyone fears the MobileHomeRex.
   prefab: {fileID: 0}
   icon: {fileID: 0}
   descriptiveDialogue: {fileID: 0}

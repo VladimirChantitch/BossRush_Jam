@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: D_Goblin
   m_EditorClassIdentifier: 
   title: 
-  dialogue: 'Ho you chose me, ME!!!!! MOUHAHAHAHA -- The Name is Moody i''m an evil
-    drednaught goblin.
+  dialogue: 'Oh, you picked me, ME! MOUHAHAHAHA -- The name is Moody, I''m an evil
+    dreadnaught goblin.
 
-    Well no laught involved actually i can upgrade your guitare
-    if you''ve got the right items. But remember everything has a price. Just select
-    in you inventory the parts if its an upgrade i''ll helpo you'
+    Well, no laugh involved, actually I can upgrade your
+    guitar if you''ve got the right items. But remember everything has a price. Just
+    select an object in your inventory, if it''s an upgrade I''ll help you.'
   type: 0
   nextDialogue: {fileID: 0}
