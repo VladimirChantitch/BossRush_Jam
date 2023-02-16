@@ -11,7 +11,10 @@ public class Sub_BossTuto : BossCharacter
 
     private void Awake()
     {
-        takeDamageCollider.TakeDamageEvent.AddListener(value => AddDamage(value));
+        takeDamageCollider.TakeDamageEvent.AddListener(value => {
+            onBossHit?.Invoke();
+            AddDamage(value);
+        });
     }
 
     [SerializeField] bool isDead;
@@ -29,9 +32,17 @@ public class Sub_BossTuto : BossCharacter
     public bool isPhaseTwo;
     public bool isPhaseThree;
 
+
     [SerializeField] SubBossState state = SubBossState.Idle;
 
     [SerializeField] Boss_1_Animator animator;
+
+    public void CloseAllBulletSpawner()
+    {
+        P1_AttaqueBullets.ForEach(b => b.gameObject.SetActive(false));
+    }
+    [Header("Bullets")]
+    [SerializeField] List<BulletSpawner> P1_AttaqueBullets = new List<BulletSpawner>();
 
     private void Update()
     {
@@ -121,11 +132,13 @@ public class Sub_BossTuto : BossCharacter
     private void HandlePhaseThreeAttack()
     {
         animator.PlayTargetAnimation(false, "Attaque", 0.25f);
+        P1_AttaqueBullets.ForEach(b => b.gameObject.SetActive(true));
     }
 
     private void HandlePhaseTwoAttack()
     {
         animator.PlayTargetAnimation(false, "Attaque", 0.25f);
+        P1_AttaqueBullets.ForEach(b => b.gameObject.SetActive(true));
     }
     #endregion
 

@@ -138,13 +138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
   shotType: 3
-  tag: r_respawn321
-  damage: 5
-  canPassWall: 1
-  upForce: 20
+  tag: Boss_handR
+  damage: 3
+  canPassWall: 0
+  upForce: 7
   sideForce: 5
   rb: {fileID: 2466175418964411949}
-  timeBeforeAutodestruct: 4.5
+  timeBeforeAutodestruct: 5
   applyDamageToTarget:
     m_PersistentCalls:
       m_Calls: []

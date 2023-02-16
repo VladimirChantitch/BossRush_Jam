@@ -14,19 +14,28 @@ public class Boss_Tuto : BossCharacter
 
     private void Awake()
     {
-        subBosses.ForEach(sb => sb.onKilled.AddListener(() =>
-        {
-            deadCount++;
-            if (deadCount == subBosses.Count)
+        subBosses.ForEach(sb => {
+
+            sb.onKilled.AddListener(() =>
             {
-                AllSubBossesDestroyed();
-            }
-        }));
+                deadCount++;
+                if (deadCount == subBosses.Count)
+                {
+                    AllSubBossesDestroyed();
+                }
+            });
+
+            sb.onBossHit.AddListener(() => {
+                onBossHit?.Invoke();
+            });
+        });
 
         animator = GetComponent<Boss_1_Animator> ();
 
         gameObject.SetActive(false);
     }
+
+    [Header ("state")]
     [SerializeField] bool isInvisible;
     [SerializeField] bool isAppearing;
     [SerializeField] bool isIdle;
@@ -45,6 +54,20 @@ public class Boss_Tuto : BossCharacter
         Idle,
         Attack,
         Dead
+    }
+
+    [Header("Bullets")]
+    [SerializeField] List<BulletSpawner> AttaqueBullets = new List<BulletSpawner>();
+    [SerializeField] List<BulletSpawner> sub_02_bullets = new List<BulletSpawner>();
+    [SerializeField] List<BulletSpawner> solo_01_bullets = new List<BulletSpawner>();
+    [SerializeField] List<BulletSpawner> solo_02_bullets = new List<BulletSpawner>();
+
+    public void CloseAllBulletSpawner()
+    {
+        AttaqueBullets.ForEach(b => b.gameObject.SetActive(false));
+        sub_02_bullets.ForEach(b => b.gameObject.SetActive(false));
+        solo_01_bullets.ForEach(b => b.gameObject.SetActive(false));
+        solo_02_bullets.ForEach(b => b.gameObject.SetActive(false));
     }
 
     [SerializeField] BossStates state = BossStates.Invisible;
@@ -79,8 +102,6 @@ public class Boss_Tuto : BossCharacter
 
     public void EnterAppearingState()
     {
-        isPhase2 = true;
-        isPhase1 = false;
         isAppearing = false;
         state = BossStates.Appearing;
     }
@@ -120,15 +141,14 @@ public class Boss_Tuto : BossCharacter
     {
         if (!isAttacking)
         {
-            StopCoroutine(AwaitBeforeAttack());
             isAttacking = true;
             if (areSubDead)
             {
-                HandleSubAttack();
+                HandleSoloAttack();
             }
             else
             {
-                HandleSoloAttack();
+                HandleSubAttack();
             }
         }
     }
@@ -137,11 +157,13 @@ public class Boss_Tuto : BossCharacter
     {
         if (isPhase2)
         {
-            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+            animator.PlayTargetAnimation(false, "Solo_01", 0.5f);
+            solo_01_bullets.ForEach(b => b.gameObject.SetActive(true));
         }
         else if (isPhase3)
         {
-            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+            animator.PlayTargetAnimation(false, "Solo_02", 0.5f);
+            solo_02_bullets.ForEach(b => b.gameObject.SetActive(true));
         }
     }
 
@@ -150,10 +172,12 @@ public class Boss_Tuto : BossCharacter
         if (isPhase2)
         {
             animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+            AttaqueBullets.ForEach(b => b.gameObject.SetActive(true));
         }
         else if (isPhase3)
         {
-            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
+            animator.PlayTargetAnimation(false, "Sub_02", 0.5f);
+            sub_02_bullets.ForEach(b => b.gameObject.SetActive(true));
         }
     }
 
@@ -174,7 +198,6 @@ public class Boss_Tuto : BossCharacter
     private void AllSubBossesDestroyed()
     {
         areSubDead = true;
-        StartCoroutine(ReviveAll());
         AddDamage(-1);
         if (isPhase1)
         {
@@ -182,26 +205,38 @@ public class Boss_Tuto : BossCharacter
             isPhase1 = false;
             EnterAppearingState();
             gameObject.SetActive(true);
+            StartCoroutine(ReviveAll());
         }
-        if (isPhase2)
+        else if (isPhase2)
         {
             isPhase2 = false;
             isPhase3 = true;
+            StartCoroutine(ReviveAll());
+        }
+        else if (isPhase3)
+        {
+            StartCoroutine(BossDeath());
         }
     }
 
     IEnumerator ReviveAll()
     {
-        areSubDead = false;
         yield return new WaitForSeconds(respawnTime);
         subBosses.ForEach(sb => sb.Revive());
+        areSubDead = false;
         deadCount = 0;
-        yield return null;
     }
 
     IEnumerator AwaitBeforeAttack()
     {
         yield return new WaitForSeconds(2.5f);
         EnterAttackState();
+    }
+
+    IEnumerator BossDeath()
+    {
+        onBossDying?.Invoke(bossRelatedDialogues);
+        yield return new WaitForSeconds(0.5f);
+        bossLoot.Loot(GetItems());
     }
 }
