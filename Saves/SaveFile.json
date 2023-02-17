@@ -6,6 +6,8 @@
       "locations": {
         "$type": "System.Collections.Generic.List`1[[Boss.Map.BossLocalization, Assembly-CSharp]], mscorlib",
         "$values": [
+          2,
+          3,
           2
         ]
       }
@@ -17,19 +19,19 @@
         "$values": [
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 245.0,
+            "value": 325.0,
             "maxValue": 350.0,
             "statType": 0
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 0.2,
+            "value": 0.15,
             "maxValue": 0.25,
             "statType": 2
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 50.0,
+            "value": 0.0,
             "maxValue": 1000.0,
             "statType": 4
           },
@@ -41,7 +43,7 @@
           },
           {
             "$type": "Boss.stats.Stat_DTO, Assembly-CSharp",
-            "value": 1.0,
+            "value": 0.0,
             "maxValue": 30.0,
             "statType": 3
           }
@@ -54,18 +56,48 @@
           "$values": [
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
-              "instance_ID": 29922
-            },
-            {
-              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
+              "amount": 4,
               "instance_ID": 29936
             },
             {
               "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
-              "amount": 1,
+              "amount": 4,
               "instance_ID": 29930
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 2,
+              "instance_ID": 29922
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 2,
+              "instance_ID": 29928
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 3,
+              "instance_ID": 29938
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 2,
+              "instance_ID": 29940
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 2,
+              "instance_ID": 28562
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 28546
+            },
+            {
+              "$type": "Boss.inventory.ItemSlot_DTO, Assembly-CSharp",
+              "amount": 1,
+              "instance_ID": 28452
             }
           ]
         }
@@ -88,17 +120,17 @@
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 2,
-              "intance_ID": 28452
+              "intance_ID": 28496
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 4,
-              "intance_ID": -1
+              "intance_ID": 28578
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
               "type": 3,
-              "intance_ID": -1
+              "intance_ID": 28460
             },
             {
               "$type": "Boss.Upgrades.GuitareUpgradeSlot_DTO, Assembly-CSharp",
@@ -110,8 +142,8 @@
       },
       "BossRelated_Dto": {
         "$type": "BossRelated_Dto, Assembly-CSharp",
-        "loose_id": 28504,
-        "win_id": 29858
+        "loose_id": 28570,
+        "win_id": 28492
       }
     }
   ]

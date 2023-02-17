@@ -89,12 +89,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Attack1.canceled += Attack1_canceled;
         controls.Player.Attack2.performed += Attack2_performed;
         controls.Player.Attack2.canceled += Attack2_canceled;
-
-        maxDash = dashPool = (int)playerManager.GetStat(Boss.stats.StatsType.dash).MaxValue;
-
-        playerManager.playerUIManager.SetDash(dashPool);
-
     }
+
 
     public void Dispose()
     {
@@ -110,9 +106,18 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Dispose();
     }
+    bool isSetUp = false;
 
     private void Update()
     {
+        if (!isSetUp)
+        {
+            isSetUp = true;
+            maxDash = dashPool = (int)playerManager.GetStat(Boss.stats.StatsType.dash).MaxValue;
+
+            playerManager.playerUIManager.SetDash(dashPool);
+        }
+
         GroundCheck();
         
 

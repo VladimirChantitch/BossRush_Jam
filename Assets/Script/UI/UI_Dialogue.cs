@@ -32,10 +32,10 @@ public class UI_Dialogue : VisualElement
             {
                 yield return new WaitForSeconds(0.05f);
             }
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.02f);
         }
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4f);
         onFinished?.Invoke();
         isOverrided = false;
     } 

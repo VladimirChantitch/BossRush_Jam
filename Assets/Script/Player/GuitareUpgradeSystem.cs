@@ -1,5 +1,6 @@
 using Boss.inventory;
 using Boss.save;
+using player;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -80,9 +81,21 @@ namespace Boss.Upgrades
         /// <param name="guitareUpgrade"></param>
         public void AddOrModdifyUpgrade(GuitareUpgrade guitareUpgrade)
         {
-            if(slots.Find(s => s.type == guitareUpgrade.UpgradePartType).AddOrModifyUpgrade(guitareUpgrade))
+            GuitareUpgradeSlot slot = slots.Find(s => s.type == guitareUpgrade.UpgradePartType);
+            if (slot.guitareUpgrade == null)
             {
-                onUpgradesUpdated?.Invoke(GetUpgrades());
+                if (slots.Find(s => s.type == guitareUpgrade.UpgradePartType).AddOrModifyUpgrade(guitareUpgrade))
+                {
+                    onUpgradesUpdated?.Invoke(GetUpgrades());
+                }
+            }
+            else
+            {
+                GameObject.FindObjectOfType<PlayerManager>().AddToInventory(slot.guitareUpgrade);
+                if (slots.Find(s => s.type == guitareUpgrade.UpgradePartType).AddOrModifyUpgrade(guitareUpgrade))
+                {
+                    onUpgradesUpdated?.Invoke(GetUpgrades());
+                }
             }
         }
 

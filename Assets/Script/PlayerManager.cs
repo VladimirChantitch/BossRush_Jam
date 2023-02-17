@@ -192,6 +192,8 @@ namespace player
             });
 
             ModifyUpgrades(GetGuitareUpgrades());
+
+            SetStat(false, GetStat(StatsType.dash).MaxValue, StatsType.dash);
         }
 
         public override void AddDamage(float amount)
