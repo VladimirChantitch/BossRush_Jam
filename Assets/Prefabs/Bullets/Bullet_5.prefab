@@ -139,9 +139,9 @@ MonoBehaviour:
   destroyWhenOutOfView: 0
   shotType: 2
   tag: Boss_Hat
-  damage: 3
-  canPassWall: 0
-  upForce: 5
+  damage: 5
+  canPassWall: 1
+  upForce: 8
   sideForce: 5
   rb: {fileID: 2466175418964411949}
   timeBeforeAutodestruct: 6

@@ -1228,7 +1228,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 6.3166666
-    functionName: CloseAllBulletSpawner
+    functionName: BossCloseAllBulletSpawner
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

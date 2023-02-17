@@ -1659,15 +1659,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 3.6833334
-    functionName: EnterIdleState
+  - time: 3.5833333
+    functionName: CloseAllBulletSpawner
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.7333333
-    functionName: CloseAllBulletSpawner
+    functionName: EnterIdleState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

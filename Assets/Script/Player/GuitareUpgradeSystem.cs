@@ -24,15 +24,24 @@ namespace Boss.Upgrades
 
         public void Load(GuitareUpgrade_DTO guitareUpgrade_DTO)
         {
-            slots = new List<GuitareUpgradeSlot>();
-            guitareUpgrade_DTO.guitareUpgradeSlots_DTOs.ForEach(slot_DTO=>
-            { 
-                slots.Add(new GuitareUpgradeSlot(slot_DTO));
-            });
-
-            onUpgradesUpdated?.Invoke(GetUpgrades());
             GuitareAspect guitareAspect = GameObject.FindObjectOfType<GuitareAspect>();  ///Stinks
-            guitareAspect.UpdateGuitareAspect(GetUpgrades());   ///Stinks
+
+            if (guitareUpgrade_DTO.guitareUpgradeSlots_DTOs.Count == 0)
+            {
+                guitareAspect.UpdateGuitareAspect(GetUpgrades());
+            }
+            else
+            {
+                slots = new List<GuitareUpgradeSlot>();
+                guitareUpgrade_DTO.guitareUpgradeSlots_DTOs.ForEach(slot_DTO =>
+                {
+                    slots.Add(new GuitareUpgradeSlot(slot_DTO));
+                });
+
+                onUpgradesUpdated?.Invoke(GetUpgrades());
+
+                guitareAspect.UpdateGuitareAspect(GetUpgrades());   ///Stinks
+            }
         }
 
         public GuitareUpgrade_DTO Save()
@@ -127,6 +136,11 @@ namespace Boss.Upgrades
 
     public class GuitareUpgrade_DTO : DTO
     {
+        public GuitareUpgrade_DTO()
+        {
+            
+        }
+
         public GuitareUpgrade_DTO(List<GuitareUpgradeSlot_DTO> guitareUpgradeSlot_DTOs)
         {
             this.guitareUpgradeSlots_DTOs = guitareUpgradeSlot_DTOs;

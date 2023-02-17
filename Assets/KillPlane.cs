@@ -8,6 +8,7 @@ public class KillPlane : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<PlayerMovement>().gameObject.transform.position = checkPoint.transform.position;
+        if (collision.CompareTag("Player"))
+            collision.GetComponent<PlayerMovement>().gameObject.transform.position = checkPoint.transform.position;
     }
 }

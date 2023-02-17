@@ -62,7 +62,7 @@ public class Boss_Tuto : BossCharacter
     [SerializeField] List<BulletSpawner> solo_01_bullets = new List<BulletSpawner>();
     [SerializeField] List<BulletSpawner> solo_02_bullets = new List<BulletSpawner>();
 
-    public void CloseAllBulletSpawner()
+    public void BossCloseAllBulletSpawner()
     {
         AttaqueBullets.ForEach(b => b.gameObject.SetActive(false));
         sub_02_bullets.ForEach(b => b.gameObject.SetActive(false));
@@ -171,8 +171,8 @@ public class Boss_Tuto : BossCharacter
     {
         if (isPhase2)
         {
-            animator.PlayTargetAnimation(false, "Attaque", 0.5f);
-            AttaqueBullets.ForEach(b => b.gameObject.SetActive(true));
+            animator.PlayTargetAnimation(false, "Sub_02", 0.5f);
+            sub_02_bullets.ForEach(b => b.gameObject.SetActive(true));
         }
         else if (isPhase3)
         {
@@ -213,10 +213,10 @@ public class Boss_Tuto : BossCharacter
             isPhase3 = true;
             StartCoroutine(ReviveAll());
         }
-        else if (isPhase3)
+        if (GetStat(StatsType.health).Value <= 0)
         {
             StartCoroutine(BossDeath());
-        }
+        }      
     }
 
     IEnumerator ReviveAll()

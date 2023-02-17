@@ -100,6 +100,8 @@ namespace player
         [SerializeField] AudioSource audioSource;
         [SerializeField] List<AudioClip> clips = new List<AudioClip>();
 
+        public GuitareUpgradeSystem GuitareUpgradeSystem { get => guitareUpgradeSystem;  }
+
         IEnumerator BigSound()
         {
             audioSource.PlayOneShot(clips[UnityEngine.Random.Range(0, clips.Count)]);
@@ -179,12 +181,12 @@ namespace player
                 }
             }
 
-            guitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
+            GuitareUpgradeSystem.onUpgradesUpdated.AddListener(Upgrades =>
             {
                 ModifyUpgrades(Upgrades);
             });
 
-            guitareUpgradeSystem.onUpgradeRemoved.AddListener(Upgrade =>
+            GuitareUpgradeSystem.onUpgradeRemoved.AddListener(Upgrade =>
             {
                 ClearUpgrade(Upgrade);
             });
@@ -213,17 +215,17 @@ namespace player
         #region Upgrades
         public List<GuitareUpgrade> GetGuitareUpgrades()
         {
-            return guitareUpgradeSystem.GetUpgrades();
+            return GuitareUpgradeSystem.GetUpgrades();
         }
 
         public void RemoveUpgrade(GuitareUpgrade guitareUpgrade)
         {
-            guitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
+            GuitareUpgradeSystem.RemoveUpgrade(guitareUpgrade);
         }
 
         public void AddOrModifyUpgrade(GuitareUpgrade guitareUpgrade)
         {
-            guitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
+            GuitareUpgradeSystem.AddOrModdifyUpgrade(guitareUpgrade);
         }
 
         private void ModifyUpgrades(List<GuitareUpgrade> upgrades)
@@ -309,7 +311,7 @@ namespace player
             stats.ForEach(stat => stats_dto.Add(new Stat_DTO(stat.Value, stat.MaxValue, stat.StatType)));
 
             Inventory_DTO inventory_DTO = inventory.Save();
-            GuitareUpgrade_DTO guitareUpgrade_DTO = guitareUpgradeSystem.Save();
+            GuitareUpgrade_DTO guitareUpgrade_DTO = GuitareUpgradeSystem.Save();
             BossRelated_Dto bossRelated_Dto = currentBossRelatedDialogues.Save();
 
             return new Player_DTO(stats_dto, inventory_DTO, guitareUpgrade_DTO, bossRelated_Dto);
@@ -326,7 +328,7 @@ namespace player
                 });
 
                 inventory.Load(player_dto.Inventory);
-                guitareUpgradeSystem.Load(player_dto.Upgrades);
+                GuitareUpgradeSystem.Load(player_dto.Upgrades);
                 currentBossRelatedDialogues = new BossRelatedDialogues(player_dto.BossRelated_Dto);
             }
         }
