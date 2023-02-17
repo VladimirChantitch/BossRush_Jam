@@ -126,10 +126,20 @@ MonoBehaviour:
     location: 0
   - BossFightName: Boss_Ubuntu
     location: 1
+  - BossFightName: Boss_Bubule
+    location: 2
+  - BossFightName: Boss_CornMan
+    location: 3
   hasJustLoose: 0
   allDialoguesThatNeedToBeSaved:
   - {fileID: 11400000, guid: 0c5ab2e641a747344abd83f8ea8656fc, type: 2}
   - {fileID: 11400000, guid: a5418c3da7f68ef4aa1c934814d0bf38, type: 2}
+  - {fileID: 11400000, guid: 766c4dc4d886e5d45a14d1137061871b, type: 2}
+  - {fileID: 11400000, guid: af3214ed8ea724a42b7c42826e101d1c, type: 2}
+  - {fileID: 11400000, guid: f26574f8a59bc424d894e771b73720af, type: 2}
+  - {fileID: 11400000, guid: 8afc55b7c1bc3514a8e793d32383ab80, type: 2}
+  - {fileID: 11400000, guid: c619f63751d6dc34ea27339f5e9b578f, type: 2}
+  - {fileID: 11400000, guid: 7af0a5e685b3a7f4f912b51fd92659db, type: 2}
 --- !u!1 &7937059688992818174
 GameObject:
   m_ObjectHideFlags: 0
