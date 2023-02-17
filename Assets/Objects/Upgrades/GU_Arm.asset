@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d033fb8d0efa1479d51bd8ee695e29, type: 3}
+  m_Name: GU_Arm
+  m_EditorClassIdentifier: 
+  itemName: Arm
+  description: An arm, and it's in good shape, where did you get that? If you want,
+    I can add it to your guitar, I mean, I think it can give you a hand to keep in
+    the rhythm.
+  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: 83b3c27aa316d504d88aeae5ca5969ad, type: 3}
+  descriptiveDialogue: {fileID: 0}
+  upgradePartType: 3
+  upgradeGraphicsRefType: 0
+  upgrades:
+  - value: 0
+    maxValue: 25
+    statType: 0
+  - value: 0.05
+    maxValue: 0.05
+    statType: 2

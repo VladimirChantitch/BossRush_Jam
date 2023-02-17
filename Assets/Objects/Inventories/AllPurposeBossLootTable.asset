@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0200ef87c703a6f43a53dde0b8ef5569, type: 3}
+  m_Name: AllPurposeBossLootTable
+  m_EditorClassIdentifier: 
+  itemsSlots:
+  - amount: 1
+    item: {fileID: 11400000, guid: c41a1c1bdbe710f4bb4ad9287f7a13de, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: a566f3c76dd7a2f49bcece6a7b7b6a49, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 2bfa1fe532223764eaaa51c2be8bed98, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 8151b0529267c7542b66368d6e083d3c, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 03e3c4841a313884a829f47183ca8c7a, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: c27c3e2c193e6734092f3e0823349d1f, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: fa89a133acd9fc340a14e69fd0d20da3, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 0156367e1935a1641bf4622994fa193d, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 83743383777571544bbf55dcc1006c04, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: a033ef1dffd7d8348b6c7954699bc1ce, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 0cb28833a1cdffb4abac557635fb07b8, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 357f1e964131265408d8e0c4848bfb5a, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 95ef759ace9816c40a2e0e9ca3151b0b, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: f8f5c213a7372d4428033ee65bb6dc8f, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 365b4f52cca573c47b7418f22f7adf38, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 94304f52b6d48db44b2c795c3684562d, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 94529b82201b5c043bf04ca8b0e1db99, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: cec5d386ba33076459f0c8c4e4423ca2, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 22cdff59e29971f41be34a97b830409a, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: f81915f61942bf243883aa6fc27325b4, type: 2}

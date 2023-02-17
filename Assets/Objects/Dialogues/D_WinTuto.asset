@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f779a0bb20580f142bfdb27cae5aece5, type: 3}
+  m_Name: D_WinTuto
+  m_EditorClassIdentifier: 
+  title: W_WinTuto
+  dialogue: Ho thats ruff but you've killed him, Well Done, its a bit different then
+    stardew valley hey !!! Welcome to the hub thought here you can craft bosses by
+    clicking on the blue shit, or upgrade your equipements by clicking on me, MOOODDDYY
+    !
+  type: 1
+  nextDialogue: {fileID: 0}

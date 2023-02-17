@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -12,6 +13,7 @@ TagManager:
   - Water
   - UI
   - Ground
+  - Bullet
   - 
   - 
   - 
@@ -23,21 +25,26 @@ TagManager:
   - 
   - 
   - 
+  - PlayerInflictDamage
+  - PlayerTakeDamageCollider
+  - BossTakeDamageCollider
+  - BossInflictDamageCollider
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BossTakeDamageColliderNoCollision
   - 
   - 
   - 
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3207697471
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2003545675
     locked: 0

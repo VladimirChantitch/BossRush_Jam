@@ -1,0 +1,74 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Boss.uss?fileID=7433441132597879392&amp;guid=53c00014f973484478570986e543b710&amp;type=3#Boss" />
+    <ui:VisualElement name="PopUps" style="flex-grow: 1;">
+        <ui:VisualElement name="1" style="height: 20%;" />
+        <ui:VisualElement name="2" style="height: 20%;" />
+        <ui:VisualElement name="3" style="height: 20%; flex-direction: row;">
+            <ui:VisualElement name="1" style="width: 200%;">
+                <ui:VisualElement name="Inventory" style="position: absolute; top: 0; left: 10px; visibility: hidden;">
+                    <ui:Label text="Inventory" display-tooltip-when-elided="true" class="UI_Text UI_labels" style="display: flex;" />
+                    <Boss.UI.UI_Inventory name="UI_Inventory" class="PopUp" style="width: 348px; height: 281px; flex-direction: row; flex-wrap: wrap; visibility: hidden;">
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                    </Boss.UI.UI_Inventory>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="2" style="width: 200%;">
+                <ui:VisualElement name="Upgrades" style="position: absolute; top: 15%; left: -35%; visibility: hidden;">
+                    <ui:Label text="Upgrades" display-tooltip-when-elided="true" class="UI_Text UI_labels" />
+                    <Boss.Upgrades.UI.UI_GuitareUpgrades name="UI_GuitareUpgrades" class="PopUp" style="flex-wrap: wrap; width: 150px; position: relative; height: 220px; top: auto; left: auto; visibility: hidden;">
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                        <Boss.Upgrades.UI.UI_GuitareSlotUpgrades class="Slot" />
+                    </Boss.Upgrades.UI.UI_GuitareUpgrades>
+                </ui:VisualElement>
+                <ui:VisualElement name="Crafter" style="position: absolute; top: 15%; left: -35%; visibility: hidden;">
+                    <ui:Label text="Crafter" display-tooltip-when-elided="true" class="UI_Text UI_labels" />
+                    <Boss.UI.UI_Crafter name="UI_Crafter" class="PopUp" style="width: 144px; flex-direction: row; height: 80px; position: relative; top: auto; left: auto;">
+                        <UI_ItemSlot class="Slot" />
+                        <UI_ItemSlot class="Slot" />
+                    </Boss.UI.UI_Crafter>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="3" style="width: 200%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="4" style="height: 20%; flex-direction: row;">
+            <ui:VisualElement style="width: 200%;" />
+            <ui:VisualElement style="width: 200%;">
+                <ui:VisualElement name="Dialogue" style="position: absolute; top: 40%; left: 0; visibility: hidden;">
+                    <UI_Dialogue name="UI_Dialogue" style="height: 253px; width: 809px; background-color: rgba(132, 120, 120, 0.8); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; font-size: 22px; -unity-font-style: bold; -unity-text-align: middle-center;">
+                        <ui:VisualElement>
+                            <ui:Label text="MODDY :" display-tooltip-when-elided="true" name="Speaker" class="UI_labels" style="width: 15%; -unity-text-align: middle-left;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:Label text="Label" display-tooltip-when-elided="true" name="Dialogue" class="UI_labels" style="flex-shrink: 1; flex-grow: 1; white-space: normal; font-size: 30px;" />
+                        </ui:VisualElement>
+                    </UI_Dialogue>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 200%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="5" style="height: 20%;" />
+    </ui:VisualElement>
+</ui:UXML>

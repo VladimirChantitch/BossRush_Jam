@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f779a0bb20580f142bfdb27cae5aece5, type: 3}
+  m_Name: D_Goblin
+  m_EditorClassIdentifier: 
+  title: 
+  dialogue: 'Oh, you picked me, ME! MOUHAHAHAHA -- The name is Moddy, I''m an evil
+    dreadnaught goblin.
+
+    Well, no laugh involved, actually I can upgrade your
+    guitar if you''ve got the right items. But remember everything has a price. Just
+    select an object in your inventory, if it''s an upgrade I''ll help you.'
+  type: 0
+  nextDialogue: {fileID: 0}

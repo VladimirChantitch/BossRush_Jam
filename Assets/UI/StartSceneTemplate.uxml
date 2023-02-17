@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/StyleSheet.uss?fileID=7433441132597879392&amp;guid=0ea526cd7bf24a94ab1f2390a6ca29f2&amp;type=3#StyleSheet" />
+    <ui:VisualElement name="MainMenu" style="background-image: none; width: 100%; height: 100%; -unity-background-scale-mode: scale-to-fit;">
+        <ui:VisualElement name="Logo" style="background-image: url(&apos;project://database/Assets/Graphics/MainMenuGfx/Title.png?fileID=2800000&amp;guid=fec2cbcb39307c64fa190454063e74a3&amp;type=3#Title&apos;); width: 100%; height: 50%; align-items: center; flex-wrap: nowrap; -unity-background-scale-mode: scale-to-fit;" />
+        <ui:VisualElement name="Buttons" style="width: 25%; height: 30%; left: 50%; flex-basis: auto; flex-direction: column; top: 10%; right: 50%; bottom: 0; align-items: stretch; transform-origin: center; translate: -50% -50px; flex-grow: 1; justify-content: center; padding-bottom: 10px;">
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="Start" class="unity-button menu-button" />
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="Continue" class="unity-button menu-button" />
+            <ui:Button text="Exit" display-tooltip-when-elided="true" name="Exit" class="unity-button menu-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
