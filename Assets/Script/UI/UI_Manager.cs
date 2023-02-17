@@ -87,7 +87,7 @@ namespace Boss.UI
             {
                 DeleteSaveFile?.Invoke();
                 AudioManager.Instance.TransitionMusic(PlusMusic_DJ.PMTags.backing_track, 1);
-                SceneManager.LoadScene(DADDY.Instance.GetBossFight(Map.BossLocalization.Ubuntu));
+                SceneManager.LoadScene(DADDY.Instance.GetBossFight(Map.BossLocalization.CornMan));
             });
         }
         #endregion

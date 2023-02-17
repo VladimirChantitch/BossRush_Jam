@@ -138,10 +138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyWhenOutOfView: 0
   shotType: 4
-  tag: CircleAtk_High
-  damage: 7
+  tag: Basic
+  damage: 5
   canPassWall: 1
-  upForce: 20
+  upForce: 5
   sideForce: 5
   rb: {fileID: 2466175418964411949}
   timeBeforeAutodestruct: 5

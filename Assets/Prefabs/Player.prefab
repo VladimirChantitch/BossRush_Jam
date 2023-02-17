@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 2348196337006595906}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -792,6 +792,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775299005810145696, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.187
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775299005810145696, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.361
       objectReference: {fileID: 0}
     - target: {fileID: 2804080746438431713, guid: 6e8b22aeca4dc5d4fb2472750d6409c9,
         type: 3}

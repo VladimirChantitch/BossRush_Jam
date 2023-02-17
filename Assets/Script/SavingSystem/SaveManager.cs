@@ -16,14 +16,14 @@ namespace Boss.save
     {
         List<DTO> dTOs = new List<DTO>();
 
-        public void LoadGame()
+        public bool LoadGame()
         {
             dTOs = new List<DTO>();
             dTOs = GetDTOFromJsonString();
 
             if (dTOs.Count == 0)
             {
-                return;
+                return false;
             }
 
             List<UnityEngine.Object> savables = FindObjectsOfType<UnityEngine.Object>().Where(o => o is ISavable).ToList();
@@ -40,6 +40,7 @@ namespace Boss.save
                         break;
                 }
             }
+            return true;
         }
 
         public void SaveGame()
@@ -90,14 +91,20 @@ namespace Boss.save
                 return saved_dtos;
             }
 
-
-            if (path == null || !path.Contains("Saves"))
+            string save_path = "";
+            try
             {
-                Debug.Log("<color=red> No save files Yet </color>");
-                return saved_dtos;
+                if (path == null || !path.Contains("Saves"))
+                {
+                    Debug.Log("<color=red> No save files Yet </color>");
+                    return saved_dtos;
+                }
+                save_path = Directory.GetFiles(path)[0];
             }
-            string save_path = Directory.GetFiles(path)[0];
+            catch
+            {
 
+            }
 
             try
             {

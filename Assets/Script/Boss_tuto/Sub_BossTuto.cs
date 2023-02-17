@@ -153,6 +153,7 @@ public class Sub_BossTuto : BossCharacter
         if (!isDead)
         {
             isDead = true;
+            CloseAllBulletSpawner();
             onKilled?.Invoke();
             gameObject.SetActive(false);
         }
