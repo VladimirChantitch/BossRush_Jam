@@ -14,6 +14,7 @@ public class Boss_Tuto : BossCharacter
 
     private void Awake()
     {
+        base.Init();
         subBosses.ForEach(sb => {
 
             sb.onKilled.AddListener(() =>
